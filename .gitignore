@@ -1,0 +1,8 @@
+.gitignore
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/python_projects.iml
+.idea/workspace.xml
+.idea/vcs.xml
+.idea/
