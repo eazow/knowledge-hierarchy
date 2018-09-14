@@ -21,9 +21,10 @@ class WSGIServer(object):
         self.request_method = ""
         self.path = ""
         self.request_version = ""
+        self.application = None
 
     def set_app(self, app):
-        self.app = app
+        self.application = app
 
     def serve_forever(self):
         server_socket = self.server_socket
@@ -53,10 +54,15 @@ class WSGIServer(object):
             '< {line}\n'.format(line=line)
             for line in request_data.splitlines()
         )
+        print "request: ", self.request_data
 
         self.parse_request(request_data)
 
         env = self.get_environ()
+
+        result = self.application(env, self.start_response)
+
+        self.finish_response(result)
 
     def get_environ(self):
         env = {}
@@ -110,6 +116,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         sys.exit("Provide a WSGI application object as module:callable")
 
+    # flaskapp:app
     app_path = sys.argv[1]
     module, application = app_path.split(":")
     module = __import__(module)
