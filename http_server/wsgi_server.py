@@ -54,15 +54,16 @@ class WSGIServer(object):
             '< {line}\n'.format(line=line)
             for line in request_data.splitlines()
         )
-        print "request: ", self.request_data
 
-        self.parse_request(request_data)
+        if self.request_data:
 
-        env = self.get_environ()
+            self.parse_request(request_data)
 
-        result = self.application(env, self.start_response)
+            env = self.get_environ()
 
-        self.finish_response(result)
+            result = self.application(env, self.start_response)
+
+            self.finish_response(result)
 
     def get_environ(self):
         env = {}
@@ -110,6 +111,18 @@ def make_server(server_address, app):
     server = WSGIServer(server_address)
     server.set_app(app)
     return server
+
+
+def app(environ, start_response):
+    """
+    :param environ:
+    :param start_response:
+    :return:
+    """
+    status = "200 OK"
+    response_headers = [("Content-Type", "text/plain")]
+    start_response(status, response_headers)
+    return ["Hello world from a simple WSGI application!\n"]
 
 
 if __name__ == "__main__":
