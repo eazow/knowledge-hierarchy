@@ -2,6 +2,10 @@ import socket
 import sys
 import StringIO
 
+import os
+
+import time
+
 
 class WSGIServer(object):
     address_family = socket.AF_INET
@@ -29,8 +33,18 @@ class WSGIServer(object):
     def serve_forever(self):
         server_socket = self.server_socket
         while True:
-            self.client_connection, client_address = server_socket.accept()
-            self.handle_one_request()
+            client_connection, client_address = server_socket.accept()
+            pid = os.fork()
+            if pid == 0:
+                print pid
+                server_socket.close()
+                self.handle_request(client_connection)
+                client_connection.close()
+                os._exit(0)
+            else:
+                print pid
+                client_connection.close()
+
 
     def parse_request(self, text):
         """
@@ -48,28 +62,31 @@ class WSGIServer(object):
         self.request_method, self.path, self.request_version = request_line.split()
 
 
-    def handle_one_request(self):
-        self.request_data = request_data = self.client_connection.recv(1024)
+    def handle_request(self, client_connection):
+        request_data = client_connection.recv(1024)
+
+        print "Child PID: {pid}. Parent PID {ppid}".format(pid=os.getpid(), ppid=os.getppid())
+
         print ''.join(
             '< {line}\n'.format(line=line)
             for line in request_data.splitlines()
         )
 
-        if self.request_data:
+        if request_data:
 
             self.parse_request(request_data)
 
-            env = self.get_environ()
+            env = self.get_environ(request_data)
 
             result = self.application(env, self.start_response)
 
-            self.finish_response(result)
+            self.finish_response(result, client_connection)
 
-    def get_environ(self):
+    def get_environ(self, request_data):
         env = {}
         env["wsgi.version"] = (1, 0)
         env["wsgi.url_scheme"] = "http"
-        env["wsgi.input"] = StringIO.StringIO(self.request_data)
+        env["wsgi.input"] = StringIO.StringIO(request_data)
         env["wsgi.errors"] = sys.stderr
         env["wsgi.multithread"] = False
         env["wsgi.multiprocess"] = False
@@ -87,7 +104,7 @@ class WSGIServer(object):
         ]
         self.headers_set = [status, response_headers + server_headers]
 
-    def finish_response(self, result):
+    def finish_response(self, result, client_connection):
         try:
             status, response_headers = self.headers_set
             response = "HTTP/1.1 {status}\r\n".format(status=status)
@@ -99,9 +116,10 @@ class WSGIServer(object):
 
             print "".join("> {line}\n".format(line=line) for line in response.splitlines())
 
-            self.client_connection.sendall(response)
+            client_connection.sendall(response)
+            time.sleep(30)
         finally:
-            self.client_connection.close()
+            pass
 
 
 SERVER_ADDRESS = (HOST, PORT) = '', 8888
@@ -122,7 +140,7 @@ def app(environ, start_response):
     status = "200 OK"
     response_headers = [("Content-Type", "text/plain")]
     start_response(status, response_headers)
-    return ["Hello world from a simple WSGI application!\n"]
+    return ["Hello world from a simple WSGI application!\n", str(time.time())]
 
 
 if __name__ == "__main__":
