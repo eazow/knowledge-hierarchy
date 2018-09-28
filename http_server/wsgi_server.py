@@ -117,7 +117,6 @@ class WSGIServer(object):
             print "".join("> {line}\n".format(line=line) for line in response.splitlines())
 
             client_connection.sendall(response)
-            time.sleep(30)
         finally:
             pass
 
