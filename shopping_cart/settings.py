@@ -4,6 +4,7 @@
 class REGEX(object):
     DISCOUNT = "0\.\d"
     DATE = "\d{4}.\d{1,2}.\d{1,2}"
+    DATE_ONLY = r"^\d{4}.\d{1,2}.\d{1,2}$"
     CHINESE = ".{2,3}"
     NUMBER = "\d{1,10}"
 

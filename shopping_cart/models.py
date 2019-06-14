@@ -65,7 +65,6 @@ class Coupon(object):
         self.expiry_timestamp = TimeUtil.parse_date_to_timestamp(expiry_date)
 
 
-
 class ShoppingCart(object):
     def __init__(self):
         self.products = {}
@@ -87,11 +86,13 @@ class ShoppingCart(object):
 
     def add_coupon(self, coupon):
         """
-        需要根据优惠金额排序
+        添加优惠券，并优惠金额从大到小
         :param coupon:
         :return:
         """
         self.coupons.append(coupon)
+        # 将优惠券减免数额从大到小排序
+        self.coupons.sort(lambda x, y: -cmp(x.discount_price, y.discount_price))
 
     def add_discount(self, date_str, category, discount_rate):
         """

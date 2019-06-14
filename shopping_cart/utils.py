@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 import time
+import traceback
 from functools import wraps
 
 
@@ -17,7 +18,8 @@ def exception_handler(the_func):
         try:
             return the_func(*args, **kwargs)
         except Exception, e:
-            print e
-            # traceback.print_exc()
+            # print e
+            traceback.print_exc()
+            return unicode(e)
 
     return wrap_the_function
