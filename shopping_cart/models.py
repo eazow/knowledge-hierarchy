@@ -58,6 +58,9 @@ class Product(object):
 
 
 class Coupon(object):
+    """
+    优惠券
+    """
     def __init__(self, expiry_date, total_price, discount_price):
         self.expiry_date = expiry_date
         self.total_price = total_price
@@ -66,6 +69,9 @@ class Coupon(object):
 
 
 class ShoppingCart(object):
+    """
+    购物车
+    """
     def __init__(self):
         self.products = {}
         self.discounts = {}
@@ -86,7 +92,7 @@ class ShoppingCart(object):
 
     def add_coupon(self, coupon):
         """
-        添加优惠券，并优惠金额从大到小
+        添加优惠券，并将优惠金额从大到小排列
         :param coupon:
         :return:
         """
@@ -96,7 +102,7 @@ class ShoppingCart(object):
 
     def add_discount(self, date_str, category, discount_rate):
         """
-        记录优惠信息
+        添加优惠信息，优惠信息为根据日期、分类建立的map。如果有结算日期、分类，则可获取相应折扣
         :param date_str:
         :param category:
         :param discount_rate:

@@ -1,5 +1,4 @@
 # -*- coding:utf-8 -*-
-
 import re
 from shopping_cart.models import Product, ShoppingWebsite, Coupon, ShoppingCart
 from shopping_cart.settings import REGEX
@@ -11,7 +10,9 @@ class Customer(object):
     顾客类
     """
     def __init__(self):
+        # 购物网站
         self.shopping_website = ShoppingWebsite()
+        # 购物车
         self.shopping_cart = ShoppingCart()
 
     @exception_handler
@@ -47,16 +48,15 @@ class Customer(object):
             if self.get_coupon(line):
                 continue
 
-            # 获取结账日期，如果不为结账日期，则表明该行输入数据有问题
+            # 获取结账日期，如果格式不为结账日期，则表明该行输入数据有问题，因为它也不匹配折扣、商品、优惠券信息
             if not self.get_date(line):
                 raise Exception("Invalid line: %s" % line)
 
     def get_discount(self, line):
         """
-        获取折扣信息
-        2013.11.11 | 0.7 | 电子
-        :param line: re match对象
-        :return:
+        获取折扣信息，并记录在购物车中
+        :param line: 2013.11.11 | 0.7 | 电子
+        :return: bool
         """
         discount_match = re.match(REGEX.DISCOUNT_LINE, line)
         if discount_match:
@@ -72,11 +72,11 @@ class Customer(object):
 
     def get_product(self, line):
         """
-        获取商品信息
+        获取商品信息，并加入购物车
         :param line: 1 * 显示器: 1799.00
                      12 * 啤酒: 25.00
                      5 * 面包: 9.00
-        :return:
+        :return: bool
         """
         product_match = re.match(REGEX.PRODUCT_LINE, line)
         if product_match:
@@ -93,9 +93,9 @@ class Customer(object):
 
     def get_coupon(self, line):
         """
-        获取优惠券
+        获取优惠券，并记录在购物车中
         :param line: 2014.3.2 | 1000 | 200
-        :return:
+        :return: bool
         """
         coupon_match = re.match(REGEX.COUPON_LINE, line)
         if coupon_match:
@@ -108,6 +108,11 @@ class Customer(object):
         return coupon_match is not None
 
     def get_date(self, line):
+        """
+        获取结算日期，精准匹配日期
+        :param line: 2019.6.15
+        :return: bool
+        """
         date_match = re.match(REGEX.DATE_ONLY, line)
         if date_match:
             settle_date = date_match.group()
