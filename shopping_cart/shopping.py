@@ -49,7 +49,7 @@ class Customer(object):
 
             # 获取结账日期，如果不为结账日期，则表明该行输入数据有问题
             if not self.get_date(line):
-                raise Exception("Wrong line: %s" % line)
+                raise Exception("Invalid line: %s" % line)
 
     def get_discount(self, line):
         """
@@ -64,7 +64,7 @@ class Customer(object):
             discount_rate = float(discount_match.group(2))
             category = discount_match.group(3)
             if category not in self.shopping_website.categories:
-                raise Exception("Wrong category")
+                raise Exception("Invalid category")
 
             self.shopping_cart.add_discount(date_str, category, discount_rate)
 
@@ -85,7 +85,7 @@ class Customer(object):
             price = float(product_match.group(3))
             category = self.shopping_website.get_product_category(product_name)
             if category is None:
-                raise Exception("Wrong product name")
+                raise Exception("Invalid product name")
 
             self.shopping_cart.add_product(Product(product_name, price, category), count)
 
