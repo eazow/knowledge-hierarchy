@@ -11,7 +11,6 @@ Host: 10.91.3.37:8888
 
 
 def send_requests(max_clients, max_conns):
-    print max_clients, max_conns
     socks = []
     for client_num in range(max_clients):
         pid = os.fork()
@@ -21,8 +20,7 @@ def send_requests(max_clients, max_conns):
                 sock.connect(SERVER_ADDRESS)
                 sock.sendall(REQUEST)
                 socks.append(sock)
-                print connection_num
-                os._exit(0)
+                os.exit(0)
 
 
 if __name__ == '__main__':
