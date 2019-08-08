@@ -1,6 +1,6 @@
 # Knowledge Hierarchy
 
-### projects for learning python
+### python
 
 1. HTTP Server
 2. Intermediate Python
