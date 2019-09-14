@@ -50,3 +50,38 @@ class Interpreter(object):
 
         self.error()
 
+    def eat(self, token_type):
+        if self.current_token.type == token_type:
+            self.current_token = self.get_next_token()
+        else:
+            self.error()
+
+    def expr(self):
+        self.current_token = self.get_next_token()
+
+        left = self.current_token
+        self.eat(INTEGER)
+
+        right = self.current_token
+        self.eat(INTEGER)
+
+        result = left.value + right.value
+        return result
+
+
+def main():
+    while True:
+        try:
+            text = input('calc> ')
+        except EOFError:
+            break
+        if not text:
+            continue
+
+        interpreter = Interpreter(text)
+        result = interpreter.expr()
+        print(result)
+
+
+if __name__ == '__main__':
+    main()
