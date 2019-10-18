@@ -62,6 +62,9 @@ class Interpreter(object):
         left = self.current_token
         self.eat(INTEGER)
 
+        op = self.current_token
+        self.eat(PLUS)
+
         right = self.current_token
         self.eat(INTEGER)
 
