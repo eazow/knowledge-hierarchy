@@ -1,5 +1,5 @@
 
-INTEGER, PLUS, EOF = 'INTEGER', 'PLUS', 'EOF'
+INTEGER, PLUS, MINUS, EOF = 'INTEGER', 'PLUS', 'MINUS', 'EOF'
 
 
 class Token(object):
@@ -27,6 +27,7 @@ class Interpreter(object):
         self.text = text
         self.position = 0
         self.current_token = None
+        self.current_char = self.text[self.position]
 
     def error(self):
         raise Exception('Error parsing input')
@@ -63,7 +64,10 @@ class Interpreter(object):
         self.eat(INTEGER)
 
         op = self.current_token
-        self.eat(PLUS)
+        if op.type == PLUS:
+            self.eat(PLUS)
+        else:
+            self.eat(MINUS)
 
         right = self.current_token
         self.eat(INTEGER)
