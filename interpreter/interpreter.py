@@ -32,6 +32,10 @@ class Interpreter(object):
     def error(self):
         raise Exception('Error parsing input')
 
+    def skip_whitespace(self):
+        while self.current_char is not None and self.current_char.isspace():
+            self.advance()
+
     def get_next_token(self):
         text = self.text
         if self.position > len(text) - 1:
