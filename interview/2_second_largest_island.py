@@ -30,8 +30,8 @@ def find_land(matrix):
                     col_land_positions[j][0] = i
                 col_land_positions[j][1] = i
 
-
     return row_land_positions, col_land_positions
+
 
 def calculate_area(matrix, i, j):
     """
@@ -96,7 +96,6 @@ def find_second_largest_island(matrix):
 
     areas = calculate_all_areas(matrix)
     return areas[1] if len(areas) > 1 else areas[0]
-
 
 
 if __name__ == '__main__':

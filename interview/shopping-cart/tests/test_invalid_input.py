@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from shopping_cart.shopping import Customer
+from interview.shopping_cart.shopping import Customer
 
 def test_invalid_input1():
     input_case2 = u"""\

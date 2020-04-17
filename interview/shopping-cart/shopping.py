@@ -1,8 +1,8 @@
 # -*- coding:utf-8 -*-
 import re
-from shopping_cart.models import Product, ShoppingWebsite, Coupon, ShoppingCart
-from shopping_cart.settings import REGEX
-from shopping_cart.utils import TimeUtil, exception_handler
+from .models import Product, ShoppingWebsite, Coupon, ShoppingCart
+from .settings import REGEX
+from .utils import TimeUtil, exception_handler
 
 
 class Customer(object):

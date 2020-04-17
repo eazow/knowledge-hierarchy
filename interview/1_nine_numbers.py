@@ -23,7 +23,7 @@ def judge_nine_nums(nums):
            == nums[4-1] + nums[5-1] + nums[6-1] == nums[2-1] + nums[7-1] + nums[6-1] \
            == nums[9-1] + nums[5-1] + nums[1-1] == nums[4-1] + nums[3-1] + nums[8-1]
     if not result:
-        print u"无解"
+        print("无解")
 
     return result
 

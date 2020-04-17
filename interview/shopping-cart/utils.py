@@ -17,9 +17,8 @@ def exception_handler(the_func):
     def wrap_the_function(*args, **kwargs):
         try:
             return the_func(*args, **kwargs)
-        except Exception, e:
-            # print e
+        except Exception as e:
             traceback.print_exc()
-            return unicode(e)
+            # return unicode(e)
 
     return wrap_the_function

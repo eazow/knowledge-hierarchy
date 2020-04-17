@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
-from shopping_cart.settings import CATEGORIES
-from shopping_cart.utils import TimeUtil
+from .settings import CATEGORIES
+from .utils import TimeUtil
 
 
 class ShoppingWebsite(object):
