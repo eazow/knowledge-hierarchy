@@ -1,15 +1,15 @@
-# 在读
+## 已读
+- Clean Code
+- 人性的弱点
+- 追风筝的人
 
-#### 高效能人士的7个习惯
-
-#### 人性的弱点
-
-#### 代码整洁之道Clean Code
-A handbook of Agile Software Craftsmanship
+## 在读
+- 程序员修炼之道
+- 高效能人士的7个习惯 
 
 
 
-# 推荐书单
+## 推荐书单
 深入理解计算机系统（第2版）
 
 图灵的秘密：他的生平、思想及论文解读
@@ -101,3 +101,11 @@ xUnit Test Patterns
 批判性思维：带你走出思维的误区
 
 终身学习
+
+居里夫人传
+
+人生的盛宴
+
+卓有成效的管理者
+
+A handbook of Agile Software Craftsmanship
