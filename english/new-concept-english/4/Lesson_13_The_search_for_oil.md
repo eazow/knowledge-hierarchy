@@ -1,3 +1,7 @@
+> What do oilmen want to achieve as soon as they strike oil?
+
+
+
 The deepest holes of all made for oil, and they go down to as much as 25,0000 feet. But we not need to send men down to get the oil our, as we must with other mineral deposits. The holes are only borings, less than a foot in diameter. My particular experience is largely in oil, and the search for oil has done more to improve deep drilling than any other mining activity. When is has been decided where we are going to drill, we put up at the surface an oil derrick. It has to be tall because it is like a giant block and tackle, and we have to lower into the ground and haul out of the ground great lengths of drill pipe which are rotated by an engine at the top and are fitted with a cutting bit at the bottom.
 
 
