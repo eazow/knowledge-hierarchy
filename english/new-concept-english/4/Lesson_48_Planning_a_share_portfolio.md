@@ -14,17 +14,17 @@ But exactly how does a newcomer to the stock market go about achieving that?
 
  
 
-Well, if you go to five reputable stock brokers and ask them what you should do with your money, you're likely to get five different answers, -- even if you give all the relevant information about your age age, family, finances and what you want from your investments. 
+Well, if you go to five reputable stock brokers and ask them what you should do with your money, you're likely to get five different answers, —even if you give all the relevant information about your age age, family, finances and what you want from your investments. 
 
 Moral? There is no one 'right' way to structure a portfolio. 
 
-However, there are undoubtedly some wrong ways, and you can be sure that none of our five advisers would have suggested sinking all (or perhaps any) of your money into Periwigs.
+However, there are undoubtedly some wrong ways, and you can be sure that none of our five advisers would have suggested sinking all (or perhaps any) of your money into Periwigs*.
 
 
 
  
 
-So what should you do? We'll assume that you have sorted out the basics -- like **mortgages**, pensions, insurance and access to sufficient cash reserves. 
+So what should you do? We'll assume that you have sorted out the basics—like **mortgages**, pensions, insurance and access to sufficient cash reserves. 
 
 You should then establish your own individual aims. 
 
@@ -44,11 +44,13 @@ In this case, you'd probably construct a portfolio with some shares (but not hig
 
  
 
-If you are younger, and in a solid financial position, you may decide to take an aggressive approach -- but only if you're blessed with a sanguine disposition and won't suffer sleepless nights over share prices. 
+If you are younger, and in a solid financial position, you may decide to take an aggressive approach—but only if you're blessed with a sanguine disposition and won't suffer sleepless nights over share prices. 
 
-If portfolio, alongside your more pedestrian in vestments. 
+If you recognize yourself in this description, you might include a couple of heady growth stocks in your portfolio, alongside your more pedestrian in vestments. 
 
 Once you have decided on your investment aims, you can then decide where to put your money. 
 
-The golden rule here is spread your risk -- if you put all of your money into Periwigs International, you're setting yourself up as a hostage to fortune.
+The golden rule here is spread your risk—if you put all of your money into Periwigs International, you're setting yourself up as a hostage to fortune.
+
+*'Periwigs' is the name of a fictitious company.
 
