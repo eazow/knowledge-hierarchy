@@ -48,7 +48,7 @@ To this pleasure camping gives an **exquisite** **refinement**.
 
 From one's own front door to home or foreign hills or sands and back again, everything is to hand. 
 
-Not only are the means of arriving at the holiday paradise entirely within one's own command and keeping, but the means of escape from holiday hel (if the beach proves too crowded, the local weather too **inclement**) are there, outside -- or, as likely, part of -- the tent.
+Not only are the means of arriving at the holiday paradise entirely within one's own command and keeping, but the means of escape from holiday hel (if the beach proves too crowded, the local weather too **inclement**) are there, outside—or, as likely, part of  the tent.
 
 
 
