@@ -14,9 +14,9 @@ More likely, Ford Escort will be hub to hub with Renault or Mercedes, but rarely
 
 That the equipment of modern camping becomes yearly more **sophisticated** is an **entertaining** **paradox** for the **cynic**, a brighter promise for the hopeful traveler who has **sworn** to get away from it all. 
 
-It also provides and some student sociologist might care to base his **thesis** upon the phenomenon -- an escape of another kind. 
+It also provides—and some student sociologist might care to base his **thesis** upon the phenomenon—an escape of another kind. 
 
-The modern traveller is often a man who dislikes the Splendide and the Bellavista, not because he cannot afford, or **shuns** their material comforts. but because he is afford of them. 
+The modern traveller is often a man who dislikes the Splendide and the Bellavista, not because he cannot afford, or **shuns** their material comforts, but because he is affraid of them. 
 
 **Affluent** he may be, but he is by no means sure what to tip the doorman or the **chambermaid**. 
 
@@ -48,13 +48,13 @@ To this pleasure camping gives an **exquisite** **refinement**.
 
 From one's own front door to home or foreign hills or sands and back again, everything is to hand. 
 
-Not only are the means of arriving at the holiday paradise entirely within one's own command and keeping, but the means of escape from holiday hel (if the beach proves too crowded, the local weather too **inclement**) are there, outside—or, as likely, part of  the tent.
+Not only are the means of arriving at the holiday paradise entirely within one's own command and keeping, but the means of escape from holiday hel (if the beach proves too crowded, the local weather too **inclement**) are there, outside—or, as likely, part of—the tent.
 
 
 
  
 
-Idealists have objected to the package tour, that the traveller abroad thereby denies himself the opportunity of getting to know the people of the country visited. 
+Idealists have objected to the practice of camping, as to the package tour, that the traveller abroad thereby denies himself the opportunity of getting to know the people of the country visited. 
 
 **Insularity** and self-containment, it is argued, go hand in hand. 
 
