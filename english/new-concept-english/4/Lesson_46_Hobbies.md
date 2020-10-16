@@ -40,7 +40,9 @@ A man may acquire great knowledge of topics unconnected with his daily work, and
 
 It is no use doing what you like; you have got to like what you do. 
 
-Broadly speaking, human beings may be divided into three classes: those who are toiled to death, those who are worried to hard week's sweat and effort, the chance of playing a game of football or baseball or Saturday afternoon. 
+Broadly speaking, human beings may be divided into three classes: those who are toiled to death, those who are worried to death,  and those who are bored to death.
+
+It is no use offering the manual laborer, tired out with a hard week's sweat and effort, the chance of playing a game of football or baseball or Saturday afternoon. 
 
 It is no use inviting the politician or the professional or business man, who has beer working or worrying about serious things for six days, to work or worry about trifling things at the weekend.
 
@@ -48,7 +50,7 @@ It is no use inviting the politician or the professional or business man, who ha
 
  
 
-As for the unfortunate people who can command everything they want, who can gratify every caprice and lay their hands on almost every object of desire -- for them a new pleasure, a new excitement if only an additional satiation. 
+As for the unfortunate people who can command everything they want, who can gratify every caprice and lay their hands on almost every object of desire—for them a new pleasure, a new excitement if only an additional satiation. 
 
 In vain they rush frantically round from place to place, trying to escape from avenging boredom by mere clatter and motion. 
 
@@ -58,7 +60,9 @@ For them discipline in one form or another is the most hopeful path.
 
  
 
-It may also be said that rational, industrious, useful human being are divided into two classes: first, one. Of these the former are the majority. 
+It may also be said that rational, industrious, useful human being are divided into two classes: first, those whose work is work and whose pleasure is pleasure; and secondly, those whose work and pleasure are one. 
+
+Of these the former are the majority. 
 
 They have their compensations. 
 
@@ -74,5 +78,5 @@ Each day is a holiday, and ordinary holidays, when they come, are grudged as enf
 
 Yet to both classes, the need of an alternative outlook, of a change of atmosphere, of a diversion of effort, is essential. 
 
-Indeed, it may well be that those work is their pleasure are those who and most need the means of banishing it at intervals from their minds.
+Indeed, it may well be that those whose work is their pleasure are those who most need the means of banishing it at intervals from their minds.
 
