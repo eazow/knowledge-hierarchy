@@ -30,7 +30,9 @@ Our environment is chiefly conditoned by the things we believe.
 
 Morocco and California are bits of the Earth in very similar latitudes, both on the west coasts of continents with similar climates, and probably with rather similar natural resources. 
 
-Yet their present development is wholly different, not so much because of different people wish to emphasize.
+Yet their present development is wholly different, not so much because of different people even, but because of the different thoughts that exists in the minds of their inhabitants. 
+
+This is the point I wish to emphasize.
 
 The most important factor in our environment is the state of our own minds.
 
@@ -54,11 +56,13 @@ I would like to give you an example, but fortunately I cannot do so.
 
 Perhaps it will suffice to mention the unclear bomb. 
 
-Of making the effect on a reasonably advanced technological society, one that still does not possess the bomb, of making it aware of the possibility, of supplying sufficient details to enable the thing to be constructed. 
+Imagine the effect on a reasonably advanced technological society, one that still does not possess the bomb, of making it aware of the possibility, of supplying sufficient details to enable the thing to be constructed. 
 
 Twenty or thirty pages of information handed to any of the major world powers around the year 1925 would have been sufficient to change the course of world history. 
 
 It is a strange thought, but I believe a correct one, that twenty or thirty pages of ideas and information would be capable of turning the present-day world upside down, or even destroying it. 
 
-I have often tried to conceive of what those pages might contain, but of course outside the particular patterns that our brains are conditioned to, or, to be more accurate, we can think only a very little way outside, and then only if we are very original.
+I have often tried to conceive of what those pages might contain, but of course I cannot do so because I am a prisoner of the present-day world, just as all of you are. 
+
+We cannot think outside the particular patterns that our brains are conditioned to, or, to be more accurate, we can think only a very little way outside, and then only if we are very original.
 
