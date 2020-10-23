@@ -18,7 +18,7 @@ But even the mosquito has been subdued by attention to drainage and by chemical 
 
 
 
-Competition between our selves, person against person, community against community, still persists, however; and it is as fierce as it ever was.
+Competition between ourselves, person against person, community against community, still persists, however; and it is as fierce as it ever was.
 
  
 
@@ -30,7 +30,7 @@ Our environment is chiefly conditoned by the things we believe.
 
 Morocco and California are bits of the Earth in very similar latitudes, both on the west coasts of continents with similar climates, and probably with rather similar natural resources. 
 
-Yet their present development is wholly different, not so much because of different people even, but because of the different thoughts that exists in the minds of their inhabitants. 
+Yet their present development is wholly different, not so much because of different people even, but because of the different thoughts that exist in the minds of their inhabitants.
 
 This is the point I wish to emphasize.
 
