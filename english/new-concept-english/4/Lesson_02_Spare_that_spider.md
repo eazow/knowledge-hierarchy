@@ -1,10 +1,12 @@
 >  How much of each year do spiders spend killing insects?
 
-Why, you may wonder, should spiders be our friends? Because they destroy so many **insects**, and insects include some of the greatest enemies of the human race. Insects would make it impossible for us to live in the world; they would **devour** all our crops and kill our **flocks** and **herds**, if it were not for the protection we get from insect-eating animals. We owe a lot to the birds and **beasts** who eat insects but all of them put together kill only a **fraction** of the number destroyed by spiders. Moreover, unlike some of the other insect eaters, spiders never do the least harm to us or our belongings.
+
+
+Why, you may wonder, should spiders be our friends? Because they destroy so many insects, and insects include some of the greatest enemies of the human race. Insects would make it impossible for us to live in the world; they would devour all our crops and kill our **flocks** and **herds**, if it were not for the protection we get from insect-eating animals. We owe a lot to the birds and **beasts** who eat insects but all of them put together kill only a fraction of the number destroyed by spiders. Moreover, unlike some of the other insect eaters, spiders never do the least harm to us or our belongings.
 
 
 
-spiders are not insects, as many people think, not even nearly related to them.  One can tell the difference almost at a **glance**, for a spider always has eight legs and an insect never more than six.
+Spiders are not insects, as many people think, not even nearly related to them.  One can tell the difference almost at a **glance**, for a spider always has eight legs and an insect never more than six.
 
 
 

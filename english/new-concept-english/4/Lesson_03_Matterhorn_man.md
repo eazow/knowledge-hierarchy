@@ -1,5 +1,7 @@
 > What was the main objective of early mountain climbers?
 
+
+
 Modern **alpinist** try to climb mountains by a route which will give them good sport, and the more difficult it is , the more highly it is regarded.
 
 In the **pioneering** days, however, this was not the case at all.
