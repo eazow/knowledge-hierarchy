@@ -1,5 +1,7 @@
 > What was the main objective of early mountain climbers?
 
+
+
 Modern **alpinist** try to climb mountains by a route which will give them good sport, and the more difficult it is , the more highly it is regarded.
 
 In the **pioneering** days, however, this was not the case at all.
@@ -16,7 +18,7 @@ It is hard for us to realize nowadays how difficult it was for the pioneers.
 
 Except for one or two places such as Zermatt and Chamonix, which had rapidly become popular, Alpine villages tended to be **impoverished** settlements cut off from civilization by the high mountains.
 
-Such inns as there were generally dirty and flea-ridden; the food simply local cheese accompanied by bread often twelve months old, all washed down with coarse wine.
+Such inns as there were generally dirty and **flea-ridden**; the food simply local cheese accompanied by bread often twelve months old, all washed down with coarse wine.
 
 Often a valley boasted no inn at all, and climbers found shelter wherever they could-somtimes with the local priest(who was usually as poor as his parishioners), sometimes with shepherds or cheese-makes.
 

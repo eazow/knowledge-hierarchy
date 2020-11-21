@@ -1,10 +1,12 @@
 > How did Vera discover she had this gift of second sight?
 
+
+
 Several cases have been reported in Russia recently of people who can read and detect colours with their fingers, and even see through solid doors and walls.
 
 One case concerns an eleven-year-old schoolgirl, Vera Petrova, who has normal **vision** but who can also **perceive** things with different parts of her skin, and through solid walls.
 
-This ability war first noticed by her father.
+This ability was first noticed by her father.
 
 One day she came into his office and happened to put her hand on the door of a locked safe.
 
