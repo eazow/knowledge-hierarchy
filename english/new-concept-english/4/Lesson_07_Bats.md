@@ -1,4 +1,4 @@
-> In what way does echo-location in bats play an utilitarian role?
+> In what way does echo-location in bats play an **utilitarian** role?
 
 
 
