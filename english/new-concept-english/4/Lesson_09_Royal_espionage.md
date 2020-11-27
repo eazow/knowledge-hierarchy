@@ -1,12 +1,12 @@
-> What important thing did King Alfred learn when he penetrated the Danish camp of Guthrum?
+> What important thing did King Alfred learn when he **penetrated** the Danish camp of Guthrum?
 
 
 
-Alfred the Great acted his own spy, visiting Danish camps disguised as a minstrel. In those days wandering minstrels were welcome everywhere. They were not fighting men, and their harp was their passport. Alfred had learned many of their ballads in his youth, and could vary his programme with acrobatic tricks and simple conjuring.
+Alfred the Great acted his own spy, visiting Danish camps **disguised** as a **minstrel**. In those days wandering minstrels were welcome everywhere. They were not fighting men, and their harp was their passport. Alfred had learned many of their ballads in his youth, and could vary his programme with acrobatic tricks and simple conjuring.
 
 
 
-While Alfred's little army slowly began to gather at Athelney, the king himself set out to penetrate the camp of Guthrum, the commander of the Danish invaders. There had settled down for the winter at Chippenham: thither Alfred went. He noticed at once that discipline was slack: the Danes had the self-confidence of conquerors, and their security precautions were casual. They lived well, on the proceeds of raids on neighbouring regions. There they collected women as well as food and drink, and a life of ease had made them soft.
+While Alfred's little army slowly began to gather at Athelney, the king himself set out to penetrate the camp of Guthrum, the **commander** of the Danish invaders. There had settled down for the winter at Chippenham: thither Alfred went. He noticed at once that discipline was slack: the Danes had the self-confidence of conquerors, and their security precautions were casual. They lived well, on the proceeds of raids on neighbouring regions. There they collected women as well as food and drink, and a life of ease had made them soft.
 
 
 
