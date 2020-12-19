@@ -1,8 +1,8 @@
-> What do glimpses of beauty, either in nature or art, often suggest to the human mind?
+> What do **glimpses** of beauty, either in nature or art, often suggest to the human mind?
 
 
 
-A young man sees a sunset and, unable to understand or to express the emotion that it rouses in him, concludes that it must be the gateway to world that lies beyond. It is difficult for any of us in moments of intense aesthetic experience to resist the suggestion that we are catching a glimpse of a light that shines down to us from a different realm of existence, different and, because the experience is intensely moving, in some way higher. And, though the gleams blind and dazzle, yet do they convey a hint of beauty and serenity greater than we have known or imagined. Greater too than we can describe; for language, which was invented to convey the meanings of this world, cannot readily be fitted to the uses of another.
+A young man sees a sunset and, unable to understand or to express the emotion that it rouses in him, concludes that it must be the gateway to world that lies beyond. It is difficult for any of us in moments of intense **aesthetic** experience to resist the suggestion that we are catching a glimpse of a light that shines down to us from a different realm of existence, different and, because the experience is intensely moving, in some way higher. And, though the **gleams** blind and **dazzle**, yet do they convey a hint of beauty and **serenity** greater than we have known or imagined. Greater too than we can describe; for language, which was invented to convey the meanings of this world, cannot **readily** be fitted to the uses of another.
 
 
 
