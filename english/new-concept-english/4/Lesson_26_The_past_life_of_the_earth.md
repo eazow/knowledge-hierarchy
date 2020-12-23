@@ -1,4 +1,8 @@
-It is animals and plants which lived in or near water whose remains are most likely to be preserved, for one of the necessary conditions of preservation is quick burial, and it is only in the seas and rivers, and sometimes lakes, where mud and sit have been continuously deposited, that bodies and the can be rapidly covered over and preserved.
+> What is the main condition for the preservation of the remains of any living creature?
+
+
+
+It is animals and plants which lived in or near water whose remains are most likely to be preserved, for one of the necessary conditions of preservation is quick **burial**, and it is only in the seas and rivers, and sometimes lakes, where mud and silt have been continuously **deposited**, that bodies and the like can be rapidly covered over and preserved.
 
 
 
