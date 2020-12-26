@@ -24,25 +24,25 @@ From the Skeppsbron and surrounding islands the people watched this thing of bea
 
 They had laboured for three years to produce this floating work of art; she was more richly carved and **ornamented** than any previous ship. 
 
-The high **stern** castle was a riot of carved gods, demons, knights, kings, warriors, mermaids, cherubs; and **zoomorphic** animal shapes **ablaze** with rea and gold and blue, symbols of courage, power, and **cruelty**, were **portrayed** to stir the imaginations of the **superstitious** sailors of the day.
+The high **stern** castle was a riot of carved gods, demons, knights, kings, warriors, **mermaids**, **cherubs**; and **zoomorphic** animal shapes **ablaze** with rea and gold and blue, symbols of courage, power, and **cruelty**, were **portrayed** to **stir** the imaginations of the **superstitious** sailors of the day.
 
 
 
 Then the cannons of the anchored warships thundered a **salute** to which the Vasa fired in reply. 
 
-As the emerged from her drifting cloud of gun smoke with the water **churned** to foam beneath her bow, her flags colour, she presented a more **majestic** spectacle than Stockholmers had ever seen before. 
+As the emerged from her drifting cloud of gun smoke with the water **churned** to foam beneath her bow, her flags colour, she presented a more **majestic** **spectacle** than Stockholmers had ever seen before. 
 
-All gun-ports were open and the muzzles peeped wickedly from them.
+All gun-ports were open and the muzzles **peeped** wickedly from them.
 
  
 
-As the wind freshened there came a sudden squall and the ship made a strange movement, listing to port. 
+As the wind freshened there came a sudden **squall** and the ship made a strange movement, listing to port. 
 
-The Ordnance Officer ordered all the port cannon to be heaved to starboard to **counteract** the list, but the steepening angle of the decks increased. 
+The Ordnance Officer ordered all the port cannon to be heaved to **starboard** to **counteract** the list, but the **steepening** angle of the decks increased. 
 
-Then the sound of rumbling thunder reached the watchers on the shore, as cargo, **ballast**, **ammunition** and 400 people went sliding and crashing down to the port side of the steeply listing ship. 
+Then the sound of **rumbling** thunder reached the watchers on the shore, as cargo, **ballast**, **ammunition** and 400 people went sliding and crashing down to the port side of the steeply listing ship. 
 
-The lower gun-ports were now below water and the inrush **sealed** the ship's fate. 
+The lower gun-ports were now below water and the **inrush** **sealed** the ship's fate. 
 
-In that first glorious hour, the mighty Vasa, which was intended to rule the Baltic, sank with all flags flying-in the harbour of her birth.
+In that first glorious hour, the mighty Vasa, which was intended to rule the Baltic, sank with all flags flying—in the harbour of her birth.
 
