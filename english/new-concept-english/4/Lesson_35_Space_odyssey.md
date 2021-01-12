@@ -6,18 +6,18 @@ The Moon is likely to become the industrial hub of the Solar System, supplying t
 
 
 
-This may sound fantastic, but it is easily calculated. To escape from the Earth in a rocket, one must travel at seven miles per second. The comparable speed from the Moon is only 1.5 miles per second. Because the gravity on the Moon's surface is only a sixth of Earth's (remember how easily the Apollo astronauts bounded along), it takes much less energy to accelerate to that 1.5 miles per second than it does on Earth. Moon-dwellers will be able to fly in space at only three per cent of the cost of similar journeys by their terrestrial dwellers will be able to fly in space at only three per cent of the cost of similar journeys by their terrestrial cousins.
+This may sound fantastic, but it is easily calculated. To escape from the Earth in a rocket, one must travel at seven miles per second. The comparable speed from the Moon is only 1.5 miles per second. Because the gravity on the Moon's surface is only a sixth of Earth's (remember how easily the Apollo astronauts bounded along), it takes much less energy to accelerate to that 1.5 miles per second than it does on Earth. Moon-dwellers will be able to fly in space at only three percent of the cost of similar journeys by their **terrestrial** cousins.
 
 
 
 Arthur C. Clark once suggested a revolutionary idea passes through three phases:
 
-   1 'It's impossible—don't waste my time.'
+1. "It's impossible—don't waste my time."
 
-   2 'It's possible, but not worth doing.'
+2. "It's possible, but not worth doing."
 
-   3 'I said it was a good idea all along.'
+3. "I said it was a good idea all along."
 
 
 
-The idea of colonising Mars—a world 160 times more distant time the Moon—will move decisively from the second phase to the third, when a significant number of people are living permanently in space. Mars has an extraordinary fascination for would-be voyagers. America, Russia and Europe are filled with enthusiasts—many of them serious and senior scientists—who dream of sending people to it. Their aim is understandable. It is the one world in the Solar System that is most like the Earth. It is a world of red sandy deserts (hence its name—the Red Planet), cloudless skies, savage sandstorms, chasms wider than the Grand Canyon and at least one mountain more than twice as tall as Everest. It seems ideal for settlement.
+The idea of colonising Mars—a world 160 times more distant than the Moon—will move decisively from the second phase to the third, when a significant number of people are living permanently in space. Mars has an extraordinary fascination for would-be voyagers. America, Russia and Europe are filled with enthusiasts—many of them serious and senior scientists—who dream of sending people to it. Their aim is understandable. It is the one world in the Solar System that is most like the Earth. It is a world of red sandy deserts (hence its name—the Red Planet), cloudless skies, **savage** sandstorms, **chasms** wider than the Grand Canyon and at least one mountain more than twice as tall as Everest. It seems ideal for settlement.
