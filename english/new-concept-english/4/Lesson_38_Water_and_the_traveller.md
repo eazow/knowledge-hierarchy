@@ -1,20 +1,20 @@
-**What does this text describe?**
+> **What does this text describe?**
 
 
 
-Contamination of water supplies is usually due to poor sanitation close to water sources, sewage disposal into the sources themselves, leakage of sewage into distribution systems or contamination with industrial or farm waste. Even if a piped water supply is safe at its source, it is not always safe by the time it reaches the tap. Intermittent tap-water supplies should be regarded as particularly suspect.
-
- 
-
-Travellers on short trips to areas with water supplies of uncertain quality should avoid drinking tap-water, or untreated water from any other source. It is best to hot drinks, bottled or canned drinks of well-known brand names -- international standards of water treatment are usually followed at bottling plants. Carbonated drinks are acidic, and slightly safer. Make sure that all bottles are opened in your presence, and that their rims are clean and dry.
+**Contamination** of water supplies is usually due to poor **sanitation** close to water sources, **sewage** **disposal** into the sources themselves, leakage of sewage into distribution systems or contamination with industrial or farm waste. Even if a piped water supply is safe at its source, it is not always safe by the time it reaches the tap. **Intermittent** tap-water supplies should be regarded as particularly suspect.
 
  
 
-Boiling is always a good way of treating water. Some hotels supply boiled water on request and this can be used for drinking, or for brushing teeth. Portable boiling elements that can boil small quantities of water are useful when the right voltage of electricity is available. Refuse politely any cold drink from an unknown source.
+Travellers on short trips to areas with water supplies of uncertain quality should avoid drinking tap-water, or untreated water from any other source. It is best to hot drinks, bottled or canned drinks of well-known brand names—international standards of water treatment are usually followed at bottling plants. **Carbonated** drinks are acidic, and slightly safer. Make sure that all bottles are opened in your presence, and that their **rims** are clean and dry.
+
+ 
+
+Boiling is always a good way of treating water. Some hotels supply boiled water on request and this can be used for drinking, or for brushing teeth. Portable boiling elements that can boil small quantities of water are useful when the right **voltage** of electricity is available. Refuse politely any cold drink from an unknown source.
 
   
 
-Ice is only as safe as the water from which it is made, and should not be put in drinks unless it is known to be safe. Drink can be cooled by placing them on ice tather than adding ice to them.
+Ice is only as safe as the water from which it is made, and should not be put in drinks unless it is known to be safe. Drink can be cooled by placing them on ice, rather than adding ice to them.
 
  
 
