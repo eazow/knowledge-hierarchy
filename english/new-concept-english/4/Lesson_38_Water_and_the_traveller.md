@@ -18,7 +18,7 @@ Ice is only as safe as the water from which it is made, and should not be put in
 
  
 
-Alcohol may be a medical disinfectant, but should not be relied upon to sterilize water. Ethanol is more effective at a concentration of 50-70 per cent; below 20 per cent, its bactericidal action is negligible. Spirits labelled 95 proof contain only about 47 per cent alcohol. Beware of methylated alcohol, which is very poisonous, and should never be added to drinking water.
+Alcohol may be a medical **disinfectant**, but should not be relied upon to **sterilize** water. Ethanol is more effective at a concentration of 50-70 percent; below 20 percent, its **bactericidal** action is **negligible**. Spirits labelled 95 proof contain only about 47 percent alcohol. Beware of **methylated** alcohol, which is very poisonous, and should never be added to drinking water.
 
  
 
