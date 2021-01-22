@@ -70,7 +70,7 @@ It is only in the study of man himself that the major social sciences have **sub
 
  
 
-Anthropology was by definition impossible, as long as these distinctions between ourselves and the primitive, ourselves and the **barbarian**, ourselves and the pagan, held sway over people's minds.
+Anthropology was by definition impossible, as long as these distinctions between ourselves and the primitive, ourselves and the **barbarian**, ourselves and the **pagan**, held sway over people's minds.
 
 It was necessary first to arrive at that degree of **sophistication** where we no longer set our own belief against our neighbour's **superstition**. 
 
