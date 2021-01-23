@@ -22,9 +22,11 @@ Competition between ourselves, person against person, community against communit
 
  
 
+
+
 But the competition of man against man is not the simple process **envisioned** in biology. 
 
-It is not a simple competition for a fixed amount of food determined by the physical environment, because the environment that determines our evolution is no longer essentially physical. 
+It is not a simple competition for a fixed amount of food determined by the physical environment, because the environment that determines our **evolution** is no longer essentially physical. 
 
 Our environment is chiefly conditoned by the things we believe.
 
@@ -44,17 +46,17 @@ It is well known that where the white man has invaded a primitive culture, the m
 
 Ideas are dangerous. 
 
-The Holy Office knew this full well when it caused heretics to be burned in days gone by. 
+The Holy Office knew this full well when it caused **heretics** to be burned in days gone by. 
 
-Indeed, the concept of free speech only exists in our modern society because when you are inside a community, you are conditioned by the conventions of the community to such a degree that it is very difficult to conceive of anything really destructive.
+Indeed, the concept of free speech only exists in our modern society because when you are inside a community, you are conditioned by the conventions of the community to such a degree that it is very difficult to **conceive** of anything really destructive.
 
 It is only someone looking on from outside that can inject the dangerous thoughts. 
 
-I do not doubt that it would be possible to inject ideas into the modern world that would utterly destroy us. 
+I do not doubt that it would be possible to inject ideas into the modern world that would **utterly** destroy us. 
 
 I would like to give you an example, but fortunately I cannot do so.
 
-Perhaps it will suffice to mention the unclear bomb. 
+Perhaps it will **suffice** to mention the unclear bomb. 
 
 Imagine the effect on a reasonably advanced technological society, one that still does not possess the bomb, of making it aware of the possibility, of supplying sufficient details to enable the thing to be constructed. 
 
@@ -64,5 +66,7 @@ It is a strange thought, but I believe a correct one, that twenty or thirty page
 
 I have often tried to conceive of what those pages might contain, but of course I cannot do so because I am a prisoner of the present-day world, just as all of you are. 
 
-We cannot think outside the particular patterns that our brains are conditioned to, or, to be more accurate, we can think only a very little way outside, and then only if we are very original.
+We cannot think outside the particular patterns that our brains are conditioned to, or, to be more accurate, we can think only a very little way outside, and then only if we are very **original**.
+
+It is this pattern in which we are all conditioned that constitutes the most essential feature of our environment.
 
