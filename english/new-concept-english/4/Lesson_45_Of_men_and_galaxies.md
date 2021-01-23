@@ -1,4 +1,4 @@
-> What is the most influential factor in any human society?
+> What is the most **influential** factor in any human society?
 
  
 
@@ -6,23 +6,23 @@ In man's early days, competition with other creatures must have been critical.
 
 But this phase of our development is now finished. 
 
-Indeed, we lack practice and experience nowadays in dealing with primitive conditions. 
+Indeed, we lack practice and experience nowadays in dealing with **primitive** conditions. 
 
 I am sure that, without modern weapons, I would make a very poor show of disputing the ownership of a cave with a bear, and in this I do not think that I stand alone. 
 
-The last creature to compete with man was the mosquito. 
+The last creature to compete with man was the **mosquito**. 
 
-But even the mosquito has been subdued by attention to drainage and by chemical sprays.
+But even the mosquito has been **subdued** by attention to drainage and by chemical **sprays**.
 
    
 
 
 
-Competition between ourselves, person against person, community against community, still persists, however; and it is as fierce as it ever was.
+Competition between ourselves, person against person, community against community, still **persists**, however; and it is as fierce as it ever was.
 
  
 
-But the competition of man against man is not the simple process envisioned in biology. 
+But the competition of man against man is not the simple process **envisioned** in biology. 
 
 It is not a simple competition for a fixed amount of food determined by the physical environment, because the environment that determines our evolution is no longer essentially physical. 
 
@@ -30,7 +30,7 @@ Our environment is chiefly conditoned by the things we believe.
 
 Morocco and California are bits of the Earth in very similar latitudes, both on the west coasts of continents with similar climates, and probably with rather similar natural resources. 
 
-Yet their present development is wholly different, not so much because of different people even, but because of the different thoughts that exist in the minds of their inhabitants.
+Yet their present development is wholly different, not so much because of different people even, but because of the different thoughts that exist in the minds of their **inhabitants**.
 
 This is the point I wish to emphasize.
 
