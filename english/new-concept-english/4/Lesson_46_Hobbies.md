@@ -2,17 +2,15 @@
 
  
 
-A gifted American psychologist has said, 'Worry is a spasm of the emotion; the mind catches hold of something and will not let it go.' 
+A gifted American psychologist has said, 'Worry is a **spasm** of the emotion; the mind catches hold of something and will not let it go.' 
 
 It is useless to argue with the mind in this condition. 
 
-The stronger the will, the more futile the task. 
+The stronger the will, the more **futile** the task. 
 
-One can only gently insinuate something else into its convulsive grasp.
+One can only gently **insinuate** something else into its **convulsive** **grasp**.
 
-And if this something else is rightly chosen, if it really attended by the illumination of another field of interest, 
-
-gradually, and often quite swiftly, the old undue grip relaxes and the process of recuperation and repair begins.
+And if this something else is rightly chosen, if it really attended by the **illumination** of another field of interest, gradually, and often quite swiftly, the old **undue** **grip** relaxes and the process of **recuperation** and repair begins.
 
  
 
