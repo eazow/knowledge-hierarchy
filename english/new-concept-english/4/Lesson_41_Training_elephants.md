@@ -1,24 +1,24 @@
-> At what point does the training of a captive wild elephant begin?
+> At what point does the training of a **captive** wild elephant begin?
 
  
 
-Two main techniques have been used for training elephants, which we may respectively the tough and the gentle. 
+Two main techniques have been used for training elephants, which we may respectively the **tough** and the gentle. 
 
 The former method simply consists of setting an elephant to work and beating him until he does what is expected of him. 
 
-Apart from moral considerations this is a stupid method of training, for it produces a resentful animal who at a later stage may well turn man-killer. 
+Apart from **moral** **considerations** this is a stupid method of training, for it produces a resentful animal who at a later stage may well turn man-killer. 
 
-The gentle method requires more patience in the early stages, but produces a cheerful, good-tempered elephant who will give many years of loyal service.
+The gentle method requires more patience in the early stages, but produces a **cheerful**, good-tempered elephant who will give many years of **loyal** service.
 
  
 
-The first essential in elephant training is to assign to the animal a single mahout who will be entirely responsible for the job. 
+The first essential in elephant training is to assign to the animal a single **mahout** who will be entirely responsible for the job. 
 
 Elephants like to have one master just as dogs do, and are capable of a considerable degree of personal affection.
 
-There are even stories of half-trained elephant calves who have refused to feed and pined to death when by some unavoidable circumstance they have been deprived of their own trainer. 
+There are even stories of half-trained elephant **calves** who have refused to feed and **pined** to death when by some unavoidable circumstance they have been **deprived** of their own trainer. 
 
-Such extreme cases must probably be taken with a grain of salt, but they do underline the general principle that the relationship between elephant and mahout is the key to successful training.
+Such extreme cases must probably be taken with a **grain** of salt, but they do underline the general principle that the relationship between elephant and mahout is the key to successful training.
 
 
 
@@ -26,17 +26,17 @@ Such extreme cases must probably be taken with a grain of salt, but they do unde
 
 The most economical age to capture an elephant for training is between fifteen and twenty years, for it is then almost ready to undertake heavy work and can begin to earn its keep straight away. 
 
-But animals of this age do not easily become subservient to man, and a very time man, and a very firm hand must be employed in the early stages. 
+But animals of this age do not easily become **subservient** to man, and a very time man, and a very firm hand must be employed in the early stages. 
 
-The captive elephant, still roped to a tree, plunges and screams every time a man approaches, and for several days will probably refuse all food through anger and fear. 
+The captive elephant, still **roped** to a tree, **plunges** and screams every time a man approaches, and for several days will probably refuse all food through anger and fear. 
 
-Sometimes a tame elephant is tethered nearby to give the wild one confidence, and in most cases the captive gradually quietens down and begins to accept its food.
+Sometimes a **tame** elephant is **tethered** nearby to give the wild one confidence, and in most cases the captive gradually quietens down and begins to accept its food.
 
-The next stage is to get the elephant to the training establishment, a ticklish business which is achieved with the aid of two tame elephants roped to the captive on either side.
+The next stage is to get the elephant to the training establishment, a **ticklish** business which is achieved with the aid of two tame elephants roped to the captive on either side.
 
  
 
-When several elephants are being trained at one time, it is customary for the new arrival to be placed between the stalls of two captives whose training is already well advanced. 
+When several elephants are being trained at one time, it is **customary** for the new arrival to be placed between the **stalls** of two captives whose training is already well advanced. 
 
 It is then left completely undisturbed with plenty of food and water so that it can absorb the atmosphere of its new home and see that nothing particularly alarming is happening to its companions. 
 
@@ -44,13 +44,11 @@ When it is eating normally, its own training begins.
 
 The trainer stands in front of the elephant holding a long stick with a sharp metal point. 
 
-Two assistants, mounted on tame elephants, control the captive from either side, while others rub their hands over his skin to the accompaniment of a monotonous and soothing chant. 
+Two assistants, mounted on tame elephants, control the captive from either side, while others rub their hands over his skin to the **accompaniment** of a **monotonous** and **soothing** **chant**. 
 
-This is supposed to induce pleasurable sensations in the elephant, and its effects are reinforced by the use of endearing epithets. 
+This is supposed to **induce** pleasurable sensations in the elephant, and its effects are reinforced by the use of **endearing** **epithets**, such assuch as "ho! My son", or "ho! my father", or "my mother", according to the age and sex of the captive. 
 
-The elephant is not son', or 'ho! my father', or 'my mother', according to the age and sex of the captive. 
+The elephant is not immediately susceptible to such **blandishments**, however, and usually **lashes** fiercely with its trunk in all directions. 
 
-The elephant is not immediately susceptible to such blandishments, however, and usually lashes fiercely with its trunk in all directions. 
-
-These movements are controlled by the trainer with the metal-pointed stick, and the trunk eventually becomes so sore that the elephant curls it up and seldom afterwards uses it for offensive purposes.
+These movements are controlled by the trainer with the metal-pointed stick, and the trunk eventually becomes so **sore** that the elephant **curls** it up and seldom afterwards uses it for offensive purposes.
 
