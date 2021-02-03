@@ -1,11 +1,3 @@
-'''
-Function:
-    其他工具函数
-Author:
-    Charles
-公众号:
-    Charles的皮卡丘
-'''
 from PyQt5.QtGui import *
 
 

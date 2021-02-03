@@ -12,9 +12,9 @@ class TetrisGame(QMainWindow):
         super(TetrisGame, self).__init__(parent)
         self.is_paused = False
         self.is_started = False
-        self.initUI()
+        self.init_ui()
 
-    def initUI(self):
+    def init_ui(self):
         self.setWindowIcon(QIcon(os.path.join(os.getcwd(), 'resources/icon.jpg')))
         self.grid_size = 22
         self.fps = 200
@@ -82,9 +82,9 @@ class TetrisGame(QMainWindow):
         if self.is_paused:
             return
         elif key == Qt.Key_Left:
-            self.inner_board.moveLeft()
+            self.inner_board.move_left()
         elif key == Qt.Key_Right:
-            self.inner_board.moveRight()
+            self.inner_board.move_right()
         elif key == Qt.Key_Up:
             self.inner_board.rotateAnticlockwise()
         elif key == Qt.Key_Space:

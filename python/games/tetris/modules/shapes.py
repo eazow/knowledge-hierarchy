@@ -1,11 +1,3 @@
-'''
-Function:
-    定义俄罗斯方块的形状
-Author:
-    Charles
-微信公众号:
-    Charles的皮卡丘
-'''
 '''定义一个俄罗斯方块的形状'''
 class tetrisShape():
     def __init__(self, shape=0):

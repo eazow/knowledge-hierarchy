@@ -97,9 +97,9 @@ class Tetris(QMainWindow):
                 k = 0
                 while BOARD_DATA.currentX != self.nextMove[1] and k < 5:
                     if BOARD_DATA.currentX > self.nextMove[1]:
-                        BOARD_DATA.moveLeft()
+                        BOARD_DATA.move_left()
                     elif BOARD_DATA.currentX < self.nextMove[1]:
-                        BOARD_DATA.moveRight()
+                        BOARD_DATA.move_right()
                     k += 1
             # lines = BOARD_DATA.dropDown()
             lines = BOARD_DATA.moveDown()
@@ -125,9 +125,9 @@ class Tetris(QMainWindow):
         if self.isPaused:
             return
         elif key == Qt.Key_Left:
-            BOARD_DATA.moveLeft()
+            BOARD_DATA.move_left()
         elif key == Qt.Key_Right:
-            BOARD_DATA.moveRight()
+            BOARD_DATA.move_right()
         elif key == Qt.Key_Up:
             BOARD_DATA.rotateLeft()
         elif key == Qt.Key_Space:
