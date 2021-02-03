@@ -1,9 +1,17 @@
-from PyQt5.QtGui import *
+from PyQt5.QtGui import QColor
 
 
-'''给板块的一个Cell填色'''
-def drawCell(painter, x, y, shape, grid_size):
-    colors = [0x000000, 0xCC6666, 0x66CC66, 0x6666CC, 0xCCCC66, 0xCC66CC, 0x66CCCC, 0xDAAA00]
+def draw_cell(painter, x, y, shape, grid_size):
+    colors = [
+        0x000000,
+        0xCC6666,
+        0x66CC66,
+        0x6666CC,
+        0xCCCC66,
+        0xCC66CC,
+        0x66CCCC,
+        0xDAAA00,
+    ]
     if shape == 0:
         return
     color = QColor(colors[shape])

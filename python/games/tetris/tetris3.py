@@ -102,7 +102,7 @@ class Tetris(QMainWindow):
                         BOARD_DATA.move_right()
                     k += 1
             # lines = BOARD_DATA.dropDown()
-            lines = BOARD_DATA.moveDown()
+            lines = BOARD_DATA.move_down()
             self.tboard.score += lines
             if self.lastShape != BOARD_DATA.currentShape:
                 self.nextMove = None
@@ -131,7 +131,7 @@ class Tetris(QMainWindow):
         elif key == Qt.Key_Up:
             BOARD_DATA.rotateLeft()
         elif key == Qt.Key_Space:
-            self.tboard.score += BOARD_DATA.dropDown()
+            self.tboard.score += BOARD_DATA.drop_down()
         else:
             super(Tetris, self).keyPressEvent(event)
 

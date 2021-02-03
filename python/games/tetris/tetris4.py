@@ -1,12 +1,12 @@
-import Tkinter
-from Tkinter import Canvas, Label, Tk, StringVar
-import tkMessageBox
+import tkinter
+from tkinter import Canvas, Label, Tk, StringVar
+import tkinter.messagebox
 
 from random import choice
 from collections import Counter
 
 
-class Game():
+class Game:
     WIDTH = 300
     HEIGHT = 500
 
@@ -121,30 +121,30 @@ class Game():
                             zip(all_boxes, [self.canvas.coords(box)[3]
                                             for box in all_boxes])}
         lines_to_check = set(shape_boxes_coords)
-        boxes_to_check = dict((k, v) for k, v in all_boxes_coords.iteritems()
+        boxes_to_check = dict((k, v) for k, v in all_boxes_coords.items()
                               if any(v == line for line in lines_to_check))
         counter = Counter()
-        for box in boxes_to_check.values(): counter[box] += 1
-        complete_lines = [k for k, v in counter.iteritems()
+        for box in list(boxes_to_check.values()): counter[box] += 1
+        complete_lines = [k for k, v in counter.items()
                           if v == (Game.WIDTH / Shape.BOX_SIZE)]
 
         if not complete_lines: return False
 
-        for k, v in boxes_to_check.iteritems():
+        for k, v in boxes_to_check.items():
             if v in complete_lines:
                 self.canvas.delete(k)
                 del all_boxes_coords[k]
 
         # TODO Would be cooler if the line flashed or something
-        for (box, coords) in all_boxes_coords.iteritems():
+        for (box, coords) in all_boxes_coords.items():
             for line in complete_lines:
                 if coords < line:
                     self.canvas.move(box, 0, Shape.BOX_SIZE)
         return len(complete_lines)
 
     def game_over(self):
-        self.canvas.delete(Tkinter.ALL)
-        tkMessageBox.showinfo(
+        self.canvas.delete(tkinter.ALL)
+        tkinter.messagebox.showinfo(
             "Game Over",
             "You scored %d points." % self.score)
 
