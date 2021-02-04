@@ -2,9 +2,9 @@ class TetrisShape:
     def __init__(self, shape=0):
         # 空块
         self.shape_empty = 0
-        # 一字型块
+        # 一
         self.shape_I = 1
-        # L型块
+        # L
         self.shape_L = 2
         # 向左的L型块
         self.shape_J = 3
@@ -30,8 +30,8 @@ class TetrisShape:
         self.shape = shape
         self.relative_coords = self.shapes_relative_coords[self.shape]
 
-    """获得该形状当前旋转状态的四个小方块的相对坐标分布"""
     def get_rotated_relative_coords(self, direction):
+        """获得该形状当前旋转状态的四个小方块的相对坐标分布"""
         # 初始分布
         if direction == 0 or self.shape == self.shape_O:
             return self.relative_coords
@@ -51,12 +51,12 @@ class TetrisShape:
             else:
                 return [[y, -x] for x, y in self.relative_coords]
 
-    """获得该俄罗斯方块的各个小块绝对坐标"""
     def get_absolute_coords(self, direction, x, y):
+        """获得该俄罗斯方块的各个小块绝对坐标"""
         return [[x + i, y + j] for i, j in self.get_rotated_relative_coords(direction)]
 
-    """获得相对坐标的边界"""
     def get_relative_boundary(self, direction):
+        """获得相对坐标的边界"""
         relative_coords_now = self.get_rotated_relative_coords(direction)
         xs = [i[0] for i in relative_coords_now]
         ys = [i[1] for i in relative_coords_now]

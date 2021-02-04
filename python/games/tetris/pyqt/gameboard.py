@@ -37,7 +37,6 @@ class InnerBoard:
 
     def rotate_clockwise(self):
         """顺时针转"""
-
         if self.able_move(self.current_coord, (self.current_direction - 1) % 4):
             self.current_direction = (self.current_direction - 1) % 4
 
@@ -72,7 +71,7 @@ class InnerBoard:
         x_min, x_max, y_min, y_max = self.current_tetris.get_relative_boundary(
             self.current_direction
         )
-        # 简单起见, 有超出屏幕就判定游戏结束
+        # 超出屏幕就判定游戏结束
         if self.current_coord[1] + y_min < 0:
             self.is_gameover = True
             return removed_lines

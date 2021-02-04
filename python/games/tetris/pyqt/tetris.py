@@ -16,7 +16,7 @@ class TetrisGame(QMainWindow):
         self.init_ui()
 
     def init_ui(self):
-        self.setWindowIcon(QIcon(os.path.join(os.getcwd(), "resources/icon.jpg")))
+        # self.setWindowIcon(QIcon(os.path.join(os.getcwd(), "resources/icon.jpg")))
         self.grid_size = 22
         self.fps = 200
         self.timer = QBasicTimer()
@@ -84,7 +84,6 @@ class TetrisGame(QMainWindow):
             super(TetrisGame, self).keyPressEvent(event)
             return
         key = event.key()
-        # P键暂停
         if key == Qt.Key_P:
             self.pause()
             return
