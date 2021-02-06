@@ -21,11 +21,12 @@ class TetrisGame(QMainWindow):
         self.fps = 200
         self.timer = QBasicTimer()
         self.setFocusPolicy(Qt.StrongFocus)
-        layout_horizontal = QHBoxLayout()
         self.inner_board = InnerBoard()
         self.external_board = ExternalBoard(self, self.grid_size, self.inner_board)
-        layout_horizontal.addWidget(self.external_board)
         self.side_panel = SidePanel(self, self.grid_size, self.inner_board)
+
+        layout_horizontal = QHBoxLayout()
+        layout_horizontal.addWidget(self.external_board)
         layout_horizontal.addWidget(self.side_panel)
         self.status_bar = self.statusBar()
         self.external_board.score_signal[str].connect(self.status_bar.showMessage)

@@ -12,7 +12,7 @@ class InnerBoard:
         self.height = height
         self.reset()
 
-    def able_move(self, coord, direction=None):
+    def can_move(self, coord, direction=None):
         assert len(coord) == 2
         if direction is None:
             direction = self.current_direction
@@ -28,26 +28,26 @@ class InnerBoard:
         return True
 
     def move_right(self):
-        if self.able_move([self.current_coord[0] + 1, self.current_coord[1]]):
+        if self.can_move([self.current_coord[0] + 1, self.current_coord[1]]):
             self.current_coord[0] += 1
 
     def move_left(self):
-        if self.able_move([self.current_coord[0] - 1, self.current_coord[1]]):
+        if self.can_move([self.current_coord[0] - 1, self.current_coord[1]]):
             self.current_coord[0] -= 1
 
     def rotate_clockwise(self):
         """顺时针转"""
-        if self.able_move(self.current_coord, (self.current_direction - 1) % 4):
+        if self.can_move(self.current_coord, (self.current_direction - 1) % 4):
             self.current_direction = (self.current_direction - 1) % 4
 
     def rotate_anticlockwise(self):
         """逆时针转"""
-        if self.able_move(self.current_coord, (self.current_direction + 1) % 4):
+        if self.can_move(self.current_coord, (self.current_direction + 1) % 4):
             self.current_direction = (self.current_direction + 1) % 4
 
     def move_down(self):
         removed_lines = 0
-        if self.able_move([self.current_coord[0], self.current_coord[1] + 1]):
+        if self.can_move([self.current_coord[0], self.current_coord[1] + 1]):
             self.current_coord[1] += 1
         else:
             x_min, x_max, y_min, y_max = self.current_tetris.get_relative_boundary(
@@ -63,10 +63,8 @@ class InnerBoard:
         return removed_lines
 
     def drop_down(self):
-        """坠落"""
-
         removed_lines = 0
-        while self.able_move([self.current_coord[0], self.current_coord[1] + 1]):
+        while self.can_move([self.current_coord[0], self.current_coord[1] + 1]):
             self.current_coord[1] += 1
         x_min, x_max, y_min, y_max = self.current_tetris.get_relative_boundary(
             self.current_direction
@@ -119,7 +117,7 @@ class InnerBoard:
         """创建新的俄罗斯方块(即将next_tetris变为current_tetris)"""
         x_min, x_max, y_min, y_max = self.next_tetris.get_relative_boundary(0)
         # y_min肯定是-1
-        if self.able_move([self.init_x, -y_min]):
+        if self.can_move([self.init_x, -y_min]):
             self.current_coord = [self.init_x, -y_min]
             self.current_tetris = self.next_tetris
             self.next_tetris = self.get_next_tetris()

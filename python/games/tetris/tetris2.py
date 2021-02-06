@@ -21,110 +21,54 @@ top_left_y = s_height - play_height
 
 # SHAPE FORMATS
 
-S = [['.....',
-      '.....',
-      '..00.',
-      '.00..',
-      '.....'],
-     ['.....',
-      '..0..',
-      '..00.',
-      '...0.',
-      '.....']]
+S = [
+    [".....", ".....", "..00.", ".00..", "....."],
+    [".....", "..0..", "..00.", "...0.", "....."],
+]
 
-Z = [['.....',
-      '.....',
-      '.00..',
-      '..00.',
-      '.....'],
-     ['.....',
-      '..0..',
-      '.00..',
-      '.0...',
-      '.....']]
+Z = [
+    [".....", ".....", ".00..", "..00.", "....."],
+    [".....", "..0..", ".00..", ".0...", "....."],
+]
 
-I = [['..0..',
-      '..0..',
-      '..0..',
-      '..0..',
-      '.....'],
-     ['.....',
-      '0000.',
-      '.....',
-      '.....',
-      '.....']]
+I = [
+    ["..0..", "..0..", "..0..", "..0..", "....."],
+    [".....", "0000.", ".....", ".....", "....."],
+]
 
-O = [['.....',
-      '.....',
-      '.00..',
-      '.00..',
-      '.....']]
+O = [[".....", ".....", ".00..", ".00..", "....."]]
 
-J = [['.....',
-      '.0...',
-      '.000.',
-      '.....',
-      '.....'],
-     ['.....',
-      '..00.',
-      '..0..',
-      '..0..',
-      '.....'],
-     ['.....',
-      '.....',
-      '.000.',
-      '...0.',
-      '.....'],
-     ['.....',
-      '..0..',
-      '..0..',
-      '.00..',
-      '.....']]
+J = [
+    [".....", ".0...", ".000.", ".....", "....."],
+    [".....", "..00.", "..0..", "..0..", "....."],
+    [".....", ".....", ".000.", "...0.", "....."],
+    [".....", "..0..", "..0..", ".00..", "....."],
+]
 
-L = [['.....',
-      '...0.',
-      '.000.',
-      '.....',
-      '.....'],
-     ['.....',
-      '..0..',
-      '..0..',
-      '..00.',
-      '.....'],
-     ['.....',
-      '.....',
-      '.000.',
-      '.0...',
-      '.....'],
-     ['.....',
-      '.00..',
-      '..0..',
-      '..0..',
-      '.....']]
+L = [
+    [".....", "...0.", ".000.", ".....", "....."],
+    [".....", "..0..", "..0..", "..00.", "....."],
+    [".....", ".....", ".000.", ".0...", "....."],
+    [".....", ".00..", "..0..", "..0..", "....."],
+]
 
-T = [['.....',
-      '..0..',
-      '.000.',
-      '.....',
-      '.....'],
-     ['.....',
-      '..0..',
-      '..00.',
-      '..0..',
-      '.....'],
-     ['.....',
-      '.....',
-      '.000.',
-      '..0..',
-      '.....'],
-     ['.....',
-      '..0..',
-      '.00..',
-      '..0..',
-      '.....']]
+T = [
+    [".....", "..0..", ".000.", ".....", "....."],
+    [".....", "..0..", "..00.", "..0..", "....."],
+    [".....", ".....", ".000.", "..0..", "....."],
+    [".....", "..0..", ".00..", "..0..", "....."],
+]
 
 shapes = [S, Z, I, O, J, L, T]
-shape_colors = [(0, 255, 0), (255, 0, 0), (0, 255, 255), (255, 255, 0), (255, 165, 0), (0, 0, 255), (128, 0, 128)]
+shape_colors = [
+    (0, 255, 0),
+    (255, 0, 0),
+    (0, 255, 255),
+    (255, 255, 0),
+    (255, 165, 0),
+    (0, 0, 255),
+    (128, 0, 128),
+]
 
 
 # index 0 - 6 represent shape
@@ -160,7 +104,7 @@ def convert_shape_format(shape):
     for i, line in enumerate(format):
         row = list(line)
         for j, column in enumerate(row):
-            if column == '0':
+            if column == "0":
                 positions.append((shape.x + j, shape.y + i))
 
     for i, pos in enumerate(positions):
@@ -170,7 +114,9 @@ def convert_shape_format(shape):
 
 
 def valid_space(shape, grid):
-    accepted_positions = [[(j, i) for j in range(10) if grid[i][j] == (0, 0, 0)] for i in range(20)]
+    accepted_positions = [
+        [(j, i) for j in range(10) if grid[i][j] == (0, 0, 0)] for i in range(20)
+    ]
     accepted_positions = [j for sub in accepted_positions for j in sub]
     formatted = convert_shape_format(shape)
 
@@ -197,22 +143,32 @@ def get_shape():
 
 
 def draw_text_middle(text, size, color, surface):
-    font = pygame.font.SysFont('comicsans', size, bold=True)
+    font = pygame.font.SysFont("comicsans", size, bold=True)
     label = font.render(text, 1, color)
 
-    surface.blit(label, (
-    top_left_x + play_width / 2 - (label.get_width() / 2), top_left_y + play_height / 2 - label.get_height() / 2))
+    surface.blit(
+        label,
+        (
+            top_left_x + play_width / 2 - (label.get_width() / 2),
+            top_left_y + play_height / 2 - label.get_height() / 2,
+        ),
+    )
 
 
 def draw_grid(surface, row, col):
     sx = top_left_x
     sy = top_left_y
     for i in range(row):
-        pygame.draw.line(surface, (128, 128, 128), (sx, sy + i * 30),
-                         (sx + play_width, sy + i * 30))  # horizontal lines
+        pygame.draw.line(
+            surface, (128, 128, 128), (sx, sy + i * 30), (sx + play_width, sy + i * 30)
+        )  # horizontal lines
         for j in range(col):
-            pygame.draw.line(surface, (128, 128, 128), (sx + j * 30, sy),
-                             (sx + j * 30, sy + play_height))  # vertical lines
+            pygame.draw.line(
+                surface,
+                (128, 128, 128),
+                (sx + j * 30, sy),
+                (sx + j * 30, sy + play_height),
+            )  # vertical lines
 
 
 def clear_rows(grid, locked):
@@ -239,8 +195,8 @@ def clear_rows(grid, locked):
 
 
 def draw_next_shape(shape, surface):
-    font = pygame.font.SysFont('comicsans', 30)
-    label = font.render('Next Shape', 1, (255, 255, 255))
+    font = pygame.font.SysFont("comicsans", 30)
+    label = font.render("Next Shape", 1, (255, 255, 255))
 
     sx = top_left_x + play_width + 50
     sy = top_left_y + play_height / 2 - 100
@@ -249,8 +205,10 @@ def draw_next_shape(shape, surface):
     for i, line in enumerate(format):
         row = list(line)
         for j, column in enumerate(row):
-            if column == '0':
-                pygame.draw.rect(surface, shape.color, (sx + j * 30, sy + i * 30, 30, 30), 0)
+            if column == "0":
+                pygame.draw.rect(
+                    surface, shape.color, (sx + j * 30, sy + i * 30, 30, 30), 0
+                )
 
     surface.blit(label, (sx + 10, sy - 30))
 
@@ -258,18 +216,25 @@ def draw_next_shape(shape, surface):
 def draw_window(surface):
     surface.fill((0, 0, 0))
     # Tetris Title
-    font = pygame.font.SysFont('comicsans', 60)
-    label = font.render('TETRIS', 1, (255, 255, 255))
+    font = pygame.font.SysFont("comicsans", 60)
+    label = font.render("TETRIS", 1, (255, 255, 255))
 
     surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 30))
 
     for i in range(len(grid)):
         for j in range(len(grid[i])):
-            pygame.draw.rect(surface, grid[i][j], (top_left_x + j * 30, top_left_y + i * 30, 30, 30), 0)
+            pygame.draw.rect(
+                surface,
+                grid[i][j],
+                (top_left_x + j * 30, top_left_y + i * 30, 30, 30),
+                0,
+            )
 
     # draw grid and border
     draw_grid(surface, 20, 10)
-    pygame.draw.rect(surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 5)
+    pygame.draw.rect(
+        surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 5
+    )
     # pygame.display.update()
 
 
@@ -327,9 +292,13 @@ def main():
                         current_piece.x -= 1
                 elif event.key == pygame.K_UP:
                     # rotate shape
-                    current_piece.rotation = current_piece.rotation + 1 % len(current_piece.shape)
+                    current_piece.rotation = current_piece.rotation + 1 % len(
+                        current_piece.shape
+                    )
                     if not valid_space(current_piece, grid):
-                        current_piece.rotation = current_piece.rotation - 1 % len(current_piece.shape)
+                        current_piece.rotation = current_piece.rotation - 1 % len(
+                            current_piece.shape
+                        )
 
                 if event.key == pygame.K_DOWN:
                     # move shape down
@@ -337,11 +306,11 @@ def main():
                     if not valid_space(current_piece, grid):
                         current_piece.y -= 1
 
-                '''if event.key == pygame.K_SPACE:
+                """if event.key == pygame.K_SPACE:
                     while valid_space(current_piece, grid):
                         current_piece.y += 1
                     current_piece.y -= 1
-                    print(convert_shape_format(current_piece))'''  # todo fix
+                    print(convert_shape_format(current_piece))"""  # todo fix
 
         shape_pos = convert_shape_format(current_piece)
 
@@ -381,7 +350,7 @@ def main_menu():
     run = True
     while run:
         win.fill((0, 0, 0))
-        draw_text_middle('Press any key to begin.', 60, (255, 255, 255), win)
+        draw_text_middle("Press any key to begin.", 60, (255, 255, 255), win)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -393,6 +362,6 @@ def main_menu():
 
 
 win = pygame.display.set_mode((s_width, s_height))
-pygame.display.set_caption('Tetris')
+pygame.display.set_caption("Tetris")
 
 main_menu()  # start game
