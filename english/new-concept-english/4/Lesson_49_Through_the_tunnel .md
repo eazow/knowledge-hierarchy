@@ -7,4 +7,4 @@ Soon he was clear inside. He was in a small rock-bound hole filled with yellowis
 
 
 
-He was being continually pressed against the sharp roof, which felt slimy as well as sharp. Again he thought of octopuses, and wondered if the tunnel might be filled with weed that could tangle him. He gave himself a panicky, convulsive kick forward, ducked his head, and swam. His feet and hands moved freely, as if in open water. The hole must
+He was being continually pressed against the sharp roof, which felt slimy as well as sharp. Again he thought of octopuses, and wondered if the tunnel might be filled with weed that could tangle him. He gave himself a panicky, convulsive kick forward, ducked his head, and swam. His feet and hands moved freely, as if in open water. The hole must have windened out. He thought he must be swimming fast, and he was frightened of banging his head if the tunnel narrowed.
