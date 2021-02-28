@@ -109,3 +109,5 @@ xUnit Test Patterns
 卓有成效的管理者
 
 A handbook of Agile Software Craftsmanship
+
+刻意练习
