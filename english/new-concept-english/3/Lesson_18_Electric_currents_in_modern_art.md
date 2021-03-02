@@ -14,7 +14,7 @@ Some so-called 'modern' pieces have been on display for nearly fifty years.
 
 
 
-In spite of this, some people--including myself--were surprised by a recent exhibition of modern sculpture. 
+In spite of this, some people—including myself—were surprised by a recent exhibition of modern sculpture. 
 
 The first thing I saw when I entered the art **gallery** was a notice which said: 'Do not touch the exhibits. Some of them are dangerous!' 
 
@@ -36,4 +36,4 @@ These lights **flickered** continuously like traffic lights which have gone mad.
 
 It was rather like an exhibition of **prehistoric** electronic equipment. 
 
-These p**eculiar** forms not only seemed designed to shock people emotionally, but to give them electric shocks as well!
+These **peculiar** forms not only seemed designed to shock people emotionally, but to give them electric shocks as well!
