@@ -1,10 +1,12 @@
 Whether we find a joke funny or not largely depends on where we have been brought up. 
 
-The sense of humour is mysteriously **bound up with** national **characteristics**. 
+The sense of humour is mysteriously **bound up** with national **characteristics**. 
 
 A Frenchman, for instance, might find it hard to laugh at a Russian joke. 
 
 In the same way, a Russian might fail to see anything amusing in a joke which would make an Englishman laugh to tears. 
+
+
 
 Most funny stories are based on **comic** situations. 
 
@@ -40,6 +42,6 @@ The man took heart and, sure enough, on New Year's Eve he was able to **hobble**
 
 To compensate for his unpleasant experiences in hospital, the man drank a little more than was good for him. 
 
-In the **process**, he enjoyed himself **thoroughly** and kept telling everybody how much he hated hospitals. 
+In the process, he enjoyed himself **thoroughly** and kept telling everybody how much he hated hospitals. 
 
 He was still **mumbling** something about hospitals at the end of the party when he **slipped** on a piece of ice and broke his left.
