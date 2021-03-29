@@ -3,3 +3,5 @@
 3. Anthropologists have discovered that fear, happiness, sadness, and surprise are universallyreflected in facial expressions.
 4. Of the millions who saw Haley’s Comet in 1986, how many people will live long enough tosee it return in the twenty-first century.
 
+5. The greater the population there is in a locality, the greater the need there is for water,transportation, and disposal of refuse.
+6. Perfectly matched pearls, strung into a necklace, bring a far higher price than the samepearls sold individually.
