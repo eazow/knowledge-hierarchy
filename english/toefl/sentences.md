@@ -7,3 +7,5 @@
 6. Perfectly matched pearls, strung into a necklace, bring a far higher price than the samepearls sold individually.
 7. The development of mechanical timepieces spurred the search for more accurate sundialswith which to regulate them.
 8. Studies of the gravity field of the Earth indicate that its crust and mantle yield when unusualweight is placed on them.
+9. Quails typically have short rounded wings that enable them to spring into full flight instantlywhen disturbed in their hiding places.
+10. Fungi are important in the process of decay, which returns ingredients to the soil, enhancessoil fertility, and decomposes animal debris.
