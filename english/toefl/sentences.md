@@ -10,3 +10,5 @@
 10. Fungi are important in the process of decay, which returns ingredients to the soil, enhancessoil fertility, and decomposes animal debris.
 11. Most substance contract when they freeze so that the density of a substance’s solid is higher than the density of its liquid.
 12. By the middle of the twentieth century, painters and sculptors in the United States had begun to exert a great worldwide influence over art.
+13. Although apparently rigid, bones exhibit a degree of elasticity that enables the skeleton to with stand considerable impact.
+14. Finally, the coughing reflex in reaction to irritants in the airway produces not a cough during sleep but a cessation of breathing.
