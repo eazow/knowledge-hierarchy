@@ -14,3 +14,5 @@
 14. Finally, the coughing reflex in reaction to irritants in the airway produces not a cough during sleep but a cessation of breathing.
 15. But when consumers do not know they are being lobbied,they may accept claims they would otherwise be suspicious of.
 16. Buyers and sellers should be aware of new developments in technology which can and does affect marketing activities.
+17. With modern offices becoming more mechanized,designers are attempting to personalize them with warmer, less severe interiors.
+18. The worker and soldier castes of termites consist of both males and females, and the queen lives permanently with a male consort.
