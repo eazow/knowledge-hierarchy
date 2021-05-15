@@ -18,3 +18,5 @@
 18. The worker and soldier castes of termites consist of both males and females, and the queen lives permanently with a male consort.
 19. Children with parents whose guidance is firm, consistent,and rational are inclined to possess high levels of self-confidence.
 20. Lucretia Mott’s influence was so significant that she has been credited by some authorities as the originator of feminism in the United States.
+21. No social crusade aroused Elizabeth Williams’enthusiasm more than the expansion of educational facilities for immigrants to the United States.
+22. Since wind-pollinated flowers have no need to attract insects or other animals, they have dispensed with bright petals, nectar, and scent.
