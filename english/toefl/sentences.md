@@ -20,3 +20,6 @@
 20. Lucretia Mott’s influence was so significant that she has been credited by some authorities as the originator of feminism in the United States.
 21. No social crusade aroused Elizabeth Williams’enthusiasm more than the expansion of educational facilities for immigrants to the United States.
 22. Since wind-pollinated flowers have no need to attract insects or other animals, they have dispensed with bright petals, nectar, and scent.
+23. In the absence of a tradition of classical stone-carving and building, the desire to develop Roman amenities would have been difficult to fulfill.
+24. Out in remote areas of the countryside, in rural locations,music was more traditional; the same songs were enjoyed by previous generations.
+25. In the second half of the millennium, in the south around the city of Uruk, there was an enormous escalation in the area occupied by permanent settlements.
