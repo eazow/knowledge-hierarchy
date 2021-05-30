@@ -23,3 +23,5 @@
 23. In the absence of a tradition of classical stone-carving and building, the desire to develop Roman amenities would have been difficult to fulfill.
 24. Out in remote areas of the countryside, in rural locations,music was more traditional; the same songs were enjoyed by previous generations.
 25. In the second half of the millennium, in the south around the city of Uruk, there was an enormous escalation in the area occupied by permanent settlements.
+26. By fossils, we mean traces of prehistoric animals such as bones, which become mineralized, or impressions of bones or organs that are left in stone.
+27. The application of electronic controls made possible by the microprocessor and computer storage have multiplied the uses of the modern typewriter.
