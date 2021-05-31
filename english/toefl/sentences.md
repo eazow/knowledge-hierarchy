@@ -25,3 +25,5 @@
 25. In the second half of the millennium, in the south around the city of Uruk, there was an enormous escalation in the area occupied by permanent settlements.
 26. By fossils, we mean traces of prehistoric animals such as bones, which become mineralized, or impressions of bones or organs that are left in stone.
 27. The application of electronic controls made possible by the microprocessor and computer storage have multiplied the uses of the modern typewriter.
+28. Even though the precise qualities of hero in literary words may vary over time, the basic exemplary function of the hero seems to remain constant.
+29. When Henry Ford first sought financial backing for making cars, the very notion of farmers and clerks owning automobiles was considered ridiculous.
