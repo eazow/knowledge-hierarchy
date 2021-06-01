@@ -27,3 +27,5 @@
 27. The application of electronic controls made possible by the microprocessor and computer storage have multiplied the uses of the modern typewriter.
 28. Even though the precise qualities of hero in literary words may vary over time, the basic exemplary function of the hero seems to remain constant.
 29. When Henry Ford first sought financial backing for making cars, the very notion of farmers and clerks owning automobiles was considered ridiculous.
+30. Many people who wanted to become archaeologists ended up pursuing other careers and contributing to archaeological research only as unpaid amateurs.
+31. Even before the discovery of germs, beliefs that disease spread by “miasmas” （noxious forms of bad air）prompted attention to sewers and open garbage.
