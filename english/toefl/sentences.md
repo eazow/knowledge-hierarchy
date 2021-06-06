@@ -29,3 +29,5 @@
 29. When Henry Ford first sought financial backing for making cars, the very notion of farmers and clerks owning automobiles was considered ridiculous.
 30. Many people who wanted to become archaeologists ended up pursuing other careers and contributing to archaeological research only as unpaid amateurs.
 31. Even before the discovery of germs, beliefs that disease spread by “miasmas” （noxious forms of bad air）prompted attention to sewers and open garbage.
+32. Since the consumer considers the best fruit to be that which is the most attractive, the grower must provide products that satisfy the discerning eye.
+33. With no oceans to dissolve it, outgassed carbon dioxide began to accumulate in the atmosphere, intensifying the green house effect even more.
