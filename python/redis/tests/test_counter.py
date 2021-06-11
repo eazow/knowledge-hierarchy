@@ -23,3 +23,6 @@ class TestCounter:
         product_2_counter.decrease()
         product_2_counter.decrease()
         assert product_2_counter.get() == 98
+
+    def teardown_class(self):
+        self.client.close()
