@@ -1,9 +1,11 @@
-def make_edge_name_from_vertexs(start, end):
+def get_edge_from_vertexs(start, end):
     return str(start) + "->" + str(end)
 
 
-def decompose_vertexs_from_edge_name(name):
-    return name.split("->")
+def get_vertexs_from_edge(edge):
+    if isinstance(edge, bytes):
+        edge = str(edge, encoding="utf8")
+    return edge.split("->")
 
 
 class Graph:
@@ -12,19 +14,19 @@ class Graph:
         self.key = key
 
     def add_edge(self, start, end, weight):
-        edge = make_edge_name_from_vertexs(start, end)
+        edge = get_edge_from_vertexs(start, end)
         self.client.hset(self.key, edge, weight)
 
     def remove_edge(self, start, end):
-        edge = make_edge_name_from_vertexs(start, end)
+        edge = get_edge_from_vertexs(start, end)
         return self.client.hdel(self.key, edge)
 
     def get_edge_weight(self, start, end):
-        edge = make_edge_name_from_vertexs(start, end)
-        return self.client.hget(self.key, edge)
+        edge = get_edge_from_vertexs(start, end)
+        return int(self.client.hget(self.key, edge))
 
     def has_edge(self, start, end):
-        edge = make_edge_name_from_vertexs(start, end)
+        edge = get_edge_from_vertexs(start, end)
 
         return self.client.hexists(self.key, edge)
 
@@ -32,16 +34,17 @@ class Graph:
         nodes_and_weights = {}
 
         for start, end, weight in tuples:
-            edge = make_edge_name_from_vertexs(start, end)
-            nodes_and_weights[edge] = weight
+            edge = get_edge_from_vertexs(start, end)
+            # nodes_and_weights[edge] = weight
+            self.client.hset(self.key, edge, weight)
 
-        self.client.hmset(self.key, nodes_and_weights)
+        # self.client.hmset(self.key, nodes_and_weights)
 
     def get_multi_edge_weights(self, *tuples):
         edge_list = []
 
         for start, end in tuples:
-            edge = make_edge_name_from_vertexs(start, end)
+            edge = get_edge_from_vertexs(start, end)
             edge_list.append(edge)
 
         return self.client.hmget(self.key, edge_list)
@@ -51,7 +54,7 @@ class Graph:
 
         result = set()
         for edge in edges:
-            start, end = decompose_vertexs_from_edge_name(edge)
+            start, end = get_vertexs_from_edge(edge)
             result.add((start, end))
 
         return result
@@ -62,7 +65,7 @@ class Graph:
         result = set()
 
         for edge, weight in edges_and_weights.items():
-            start, end = decompose_vertexs_from_edge_name(edge)
-            result.add((start, end, weight))
+            start, end = get_vertexs_from_edge(edge)
+            result.add((start, end, int(weight)))
 
         return result
