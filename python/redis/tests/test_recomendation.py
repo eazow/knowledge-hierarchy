@@ -37,4 +37,6 @@ class TestRecommendation:
         ]
 
     def teardown_class(self):
+        keys = [k for k in self.client.keys()]
+        self.client.delete(*keys)
         self.client.close()
