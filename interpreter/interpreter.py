@@ -43,6 +43,14 @@ class Interpreter(object):
         else:
             self.current_char = self.text[self.pos]
 
+    def integer(self):
+        """Return a (multidigit) integer consumed from the input."""
+        digits = ""
+        while self.current_char is not None and self.current_char.isdigit():
+            digits += self.current_char
+            self.advance()
+        return int(digits)
+
     def get_next_token(self):
         while self.current_char is not None:
             if self.current_char.isspace():
@@ -50,9 +58,7 @@ class Interpreter(object):
                 continue
 
             if self.current_char.isdigit():
-                token = Token(INTEGER, int(self.current_char))
-                self.advance()
-                return token
+                return Token(INTEGER, self.integer())
 
             if self.current_char == "+":
                 self.advance()

@@ -27,3 +27,8 @@ def test_plus():
 def test_minus():
     assert Interpreter("5-2").expr() == 3
     assert Interpreter("5 - 2").expr() == 3
+
+
+def test_multi_digits_plus():
+    assert Interpreter("126+200").expr() == 326
+    assert Interpreter("126 + 200").expr() == 326
