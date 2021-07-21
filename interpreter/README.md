@@ -1,0 +1,4 @@
+### Tests
+```
+env PYTHONPATH="." pytest
+```

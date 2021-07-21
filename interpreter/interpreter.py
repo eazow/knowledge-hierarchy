@@ -20,6 +20,9 @@ class Token(object):
     def __repr__(self):
         return self.__str__()
 
+    def __eq__(self, other):
+        return self.type == other.type and self.value == other.value
+
 
 class Interpreter(object):
 
