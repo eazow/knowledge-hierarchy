@@ -1,3 +1,4 @@
+import pytest
 from interpreter import Interpreter, Token, EOF, INTEGER, PLUS
 
 
@@ -32,3 +33,10 @@ def test_minus():
 def test_multi_digits_plus():
     assert Interpreter("126+200").expr() == 326
     assert Interpreter("126 + 200").expr() == 326
+
+
+def test_invalid_syntax():
+    with pytest.raises(Exception) as exec_info:
+        Interpreter("126+").expr()
+
+    assert str(exec_info.value) == "Error parsing input"
