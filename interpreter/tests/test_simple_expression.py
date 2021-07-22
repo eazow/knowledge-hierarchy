@@ -50,3 +50,8 @@ def test_arithmetic_expressions():
 def test_multiply_and_divide():
     assert Interpreter(Lexer("2*6/2")).expr() == 6
     assert Interpreter(Lexer("2 * 6 / 2")).expr() == 6
+
+
+def test_hybrid_expressions():
+    assert Interpreter(Lexer("7 - 3 * 2 - 1")).expr() == 0
+    assert Interpreter(Lexer("16 + 2 * 3 - 6 / 2")).expr() == 19

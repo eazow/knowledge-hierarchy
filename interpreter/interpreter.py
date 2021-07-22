@@ -100,21 +100,37 @@ class Interpreter(object):
         self.eat(INTEGER)
         return token.value
 
-    def expr(self):
+    def term(self):
+        """term : factor ((MUL | DIV) factor)*"""
         result = self.factor()
 
-        while self.current_token.type in [PLUS, MINUS, MUL, DIV]:
+        while self.current_token.type in [MUL, DIV]:
+            op = self.current_token
+            self.eat(op.type)
+
+            if op.type == MUL:
+                result *= self.factor()
+            elif op.type == DIV:
+                result /= self.factor()
+
+        return result
+
+    def expr(self):
+        """Arithmetic expression parser / interpreter.
+        expr   : term ((PLUS | MINUS) term)*
+        term   : factor ((MUL | DIV) factor)*
+        factor : INTEGER
+        """
+        result = self.term()
+
+        while self.current_token.type in [PLUS, MINUS]:
             op = self.current_token
             self.eat(op.type)
 
             if op.type == PLUS:
-                result += self.factor()
+                result += self.term()
             elif op.type == MINUS:
-                result -= self.factor()
-            elif op.type == MUL:
-                result *= self.factor()
-            elif op.type == DIV:
-                result /= self.factor()
+                result -= self.term()
 
         return result
 
