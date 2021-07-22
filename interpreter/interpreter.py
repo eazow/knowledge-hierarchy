@@ -1,4 +1,4 @@
-INTEGER, PLUS, MINUS, EOF = "INTEGER", "PLUS", "MINUS", "EOF"
+INTEGER, PLUS, MINUS, MUL, DIV, EOF = "INTEGER", "PLUS", "MINUS", "MUL", "DIV", "EOF"
 
 
 class Token(object):
@@ -68,6 +68,14 @@ class Interpreter(object):
                 self.advance()
                 return Token(MINUS, "-")
 
+            if self.current_char == "*":
+                self.advance()
+                return Token(MUL, "*")
+
+            if self.current_char == "/":
+                self.advance()
+                return Token(DIV, "/")
+
             self.error()
 
         return Token(EOF, None)
@@ -88,14 +96,18 @@ class Interpreter(object):
 
         result = self.term()
 
-        while self.current_token.type in [PLUS, MINUS]:
+        while self.current_token.type in [PLUS, MINUS, MUL, DIV]:
             op = self.current_token
             self.eat(op.type)
 
             if op.type == PLUS:
                 result += self.term()
-            else:
+            elif op.type == MINUS:
                 result -= self.term()
+            elif op.type == MUL:
+                result *= self.term()
+            elif op.type == DIV:
+                result /= self.term()
 
         return result
 

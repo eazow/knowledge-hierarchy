@@ -45,3 +45,9 @@ def test_invalid_syntax():
 def test_arithmetic_expressions():
     assert Interpreter("7 - 3 + 2 - 1").expr() == 5
     assert Interpreter("12 - 10 + 11 + 15").expr() == 28
+
+
+def test_multiply_and_divide():
+    assert Interpreter("2*6/2").expr() == 6
+    assert Interpreter("2 * 6 / 2").expr() == 6
+
