@@ -1,53 +1,52 @@
 import pytest
-from interpreter import Interpreter, Token, EOF, INTEGER, PLUS
+from interpreter import Interpreter, Token, EOF, INTEGER, PLUS, Lexer
 
 
 def test_tokens():
-    interpreter = Interpreter("3+5")
+    lexer = Lexer("3+5")
 
-    assert interpreter.get_next_token() == Token(INTEGER, 3)
-    assert interpreter.get_next_token() == Token(PLUS, "+")
-    assert interpreter.get_next_token() == Token(INTEGER, 5)
-    assert interpreter.get_next_token() == Token(EOF, None)
+    assert lexer.get_next_token() == Token(INTEGER, 3)
+    assert lexer.get_next_token() == Token(PLUS, "+")
+    assert lexer.get_next_token() == Token(INTEGER, 5)
+    assert lexer.get_next_token() == Token(EOF, None)
 
 
 def test_tokens_with_whitespaces():
-    interpreter = Interpreter("3 + 5")
+    lexer = Lexer("3 + 5")
 
-    assert interpreter.get_next_token() == Token(INTEGER, 3)
-    assert interpreter.get_next_token() == Token(PLUS, "+")
-    assert interpreter.get_next_token() == Token(INTEGER, 5)
-    assert interpreter.get_next_token() == Token(EOF, None)
+    assert lexer.get_next_token() == Token(INTEGER, 3)
+    assert lexer.get_next_token() == Token(PLUS, "+")
+    assert lexer.get_next_token() == Token(INTEGER, 5)
+    assert lexer.get_next_token() == Token(EOF, None)
 
 
 def test_plus():
-    assert Interpreter("3+5").expr() == 8
-    assert Interpreter("3 + 5").expr() == 8
+    assert Interpreter(Lexer("3+5")).expr() == 8
+    assert Interpreter(Lexer("3 + 5")).expr() == 8
 
 
 def test_minus():
-    assert Interpreter("5-2").expr() == 3
-    assert Interpreter("5 - 2").expr() == 3
+    assert Interpreter(Lexer("5-2")).expr() == 3
+    assert Interpreter(Lexer("5 - 2")).expr() == 3
 
 
 def test_multi_digits_plus():
-    assert Interpreter("126+200").expr() == 326
-    assert Interpreter("126 + 200").expr() == 326
+    assert Interpreter(Lexer("126+200")).expr() == 326
+    assert Interpreter(Lexer("126 + 200")).expr() == 326
 
 
 def test_invalid_syntax():
     with pytest.raises(Exception) as exec_info:
-        Interpreter("126+").expr()
+        Interpreter(Lexer("126+")).expr()
 
     assert str(exec_info.value) == "Invalid syntax"
 
 
 def test_arithmetic_expressions():
-    assert Interpreter("7 - 3 + 2 - 1").expr() == 5
-    assert Interpreter("12 - 10 + 11 + 15").expr() == 28
+    assert Interpreter(Lexer("7 - 3 + 2 - 1")).expr() == 5
+    assert Interpreter(Lexer("12 - 10 + 11 + 15")).expr() == 28
 
 
 def test_multiply_and_divide():
-    assert Interpreter("2*6/2").expr() == 6
-    assert Interpreter("2 * 6 / 2").expr() == 6
-
+    assert Interpreter(Lexer("2*6/2")).expr() == 6
+    assert Interpreter(Lexer("2 * 6 / 2")).expr() == 6

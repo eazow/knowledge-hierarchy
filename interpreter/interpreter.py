@@ -21,15 +21,12 @@ class Token(object):
         return self.type == other.type and self.value == other.value
 
 
-class Interpreter(object):
+class Lexer:
     def __init__(self, text):
         self.text = text
         self.pos = 0
         self.current_token = None
         self.current_char = self.text[self.pos]
-
-    def error(self):
-        raise Exception("Invalid syntax")
 
     def skip_whitespace(self):
         while self.current_char is not None and self.current_char.isspace():
@@ -80,34 +77,44 @@ class Interpreter(object):
 
         return Token(EOF, None)
 
+
+class Interpreter(object):
+    def __init__(self, lexer):
+        self.lexer = lexer
+        self.current_token = self.lexer.get_next_token()
+
+    def error(self):
+        raise Exception("Invalid syntax")
+
     def eat(self, token_type):
         if self.current_token.type == token_type:
-            self.current_token = self.get_next_token()
+            self.current_token = self.lexer.get_next_token()
         else:
             self.error()
 
-    def term(self):
+    def factor(self):
+        """Return an INTEGER token value.
+        factor : INTEGER
+        """
         token = self.current_token
         self.eat(INTEGER)
         return token.value
 
     def expr(self):
-        self.current_token = self.get_next_token()
-
-        result = self.term()
+        result = self.factor()
 
         while self.current_token.type in [PLUS, MINUS, MUL, DIV]:
             op = self.current_token
             self.eat(op.type)
 
             if op.type == PLUS:
-                result += self.term()
+                result += self.factor()
             elif op.type == MINUS:
-                result -= self.term()
+                result -= self.factor()
             elif op.type == MUL:
-                result *= self.term()
+                result *= self.factor()
             elif op.type == DIV:
-                result /= self.term()
+                result /= self.factor()
 
         return result
 
@@ -121,7 +128,7 @@ def main():
         if not text:
             continue
 
-        interpreter = Interpreter(text)
+        interpreter = Interpreter(Lexer(text))
         result = interpreter.expr()
         print(result)
 
