@@ -39,4 +39,9 @@ def test_invalid_syntax():
     with pytest.raises(Exception) as exec_info:
         Interpreter("126+").expr()
 
-    assert str(exec_info.value) == "Error parsing input"
+    assert str(exec_info.value) == "Invalid syntax"
+
+
+def test_arithmetic_expressions():
+    assert Interpreter("7 - 3 + 2 - 1").expr() == 5
+    assert Interpreter("12 - 10 + 11 + 15").expr() == 28

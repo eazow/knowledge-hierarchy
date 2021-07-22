@@ -10,9 +10,9 @@ class Token(object):
         """
         Examples:
             Token(INTEGER, 6)
-        :return:
+            Token(PLUS, '+')
         """
-        return "Token({type}, {value})".format(type=self.type, value=self.value)
+        return "Token({type}, {value})".format(type=self.type, value=repr(self.value))
 
     def __repr__(self):
         return self.__str__()
@@ -29,7 +29,7 @@ class Interpreter(object):
         self.current_char = self.text[self.pos]
 
     def error(self):
-        raise Exception("Error parsing input")
+        raise Exception("Invalid syntax")
 
     def skip_whitespace(self):
         while self.current_char is not None and self.current_char.isspace():
@@ -78,22 +78,25 @@ class Interpreter(object):
         else:
             self.error()
 
+    def term(self):
+        token = self.current_token
+        self.eat(INTEGER)
+        return token.value
+
     def expr(self):
         self.current_token = self.get_next_token()
 
-        left = self.current_token
-        self.eat(INTEGER)
+        result = self.term()
 
-        op = self.current_token
-        self.eat(op.type)
+        while self.current_token.type in [PLUS, MINUS]:
+            op = self.current_token
+            self.eat(op.type)
 
-        right = self.current_token
-        self.eat(INTEGER)
+            if op.type == PLUS:
+                result += self.term()
+            else:
+                result -= self.term()
 
-        if op.type == PLUS:
-            result = left.value + right.value
-        else:
-            result = left.value - right.value
         return result
 
 
