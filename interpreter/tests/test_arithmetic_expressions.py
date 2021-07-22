@@ -57,10 +57,12 @@ def test_hybrid_expressions():
     assert Interpreter(Lexer("16 + 2 * 3 - 6 / 2")).expr() == 19
 
 
-def test_hybrid_expressions_with_parenthesis():
-    assert Interpreter(Lexer("7 + 3 * (10 / (12 / (3 + 1) - 1))")) == 22
+def test_hybrid_expressions_with_parentheses():
+    assert Interpreter(Lexer("7 + 3 * (10 / (12 / (3 + 1) - 1))")).expr() == 22
     assert (
-        Interpreter(Lexer("7 + 3 * (10 / (12 / (3 + 1) - 1)) / (2 + 3) - 5 - 3 + (8)"))
+        Interpreter(
+            Lexer("7 + 3 * (10 / (12 / (3 + 1) - 1)) / (2 + 3) - 5 - 3 + (8)")
+        ).expr()
         == 10
     )
-    assert Interpreter(Lexer("7 + (((3 + 2)))")) == 12
+    assert Interpreter(Lexer("7 + (((3 + 2)))")).expr() == 12

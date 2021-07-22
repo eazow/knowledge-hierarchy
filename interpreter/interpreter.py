@@ -1,4 +1,17 @@
-INTEGER, PLUS, MINUS, MUL, DIV, EOF = "INTEGER", "PLUS", "MINUS", "MUL", "DIV", "EOF"
+# Token types
+#
+# EOF (end-of-file) token is used to indicate that
+# there is no more input left for lexical analysis
+INTEGER, PLUS, MINUS, MUL, DIV, LPAREN, RPAREN, EOF = (
+    "INTEGER",
+    "PLUS",
+    "MINUS",
+    "MUL",
+    "DIV",
+    "(",
+    ")",
+    "EOF",
+)
 
 
 class Token(object):
@@ -7,10 +20,12 @@ class Token(object):
         self.value = value
 
     def __str__(self):
-        """
+        """String representation of the class instance.
+
         Examples:
-            Token(INTEGER, 6)
+            Token(INTEGER, 3)
             Token(PLUS, '+')
+            Token(MUL, '*')
         """
         return "Token({type}, {value})".format(type=self.type, value=repr(self.value))
 
@@ -25,8 +40,10 @@ class Lexer:
     def __init__(self, text):
         self.text = text
         self.pos = 0
-        self.current_token = None
         self.current_char = self.text[self.pos]
+
+    def error(self):
+        raise Exception("Invalid character")
 
     def skip_whitespace(self):
         while self.current_char is not None and self.current_char.isspace():
@@ -73,6 +90,14 @@ class Lexer:
                 self.advance()
                 return Token(DIV, "/")
 
+            if self.current_char == "(":
+                self.advance()
+                return Token(LPAREN, "(")
+
+            if self.current_char == ")":
+                self.advance()
+                return Token(RPAREN, ")")
+
             self.error()
 
         return Token(EOF, None)
@@ -93,12 +118,18 @@ class Interpreter(object):
             self.error()
 
     def factor(self):
-        """Return an INTEGER token value.
-        factor : INTEGER
-        """
+        """factor : INTEGER | LPAREN expr RPAREN"""
         token = self.current_token
-        self.eat(INTEGER)
-        return token.value
+        if token.type == INTEGER:
+            self.eat(INTEGER)
+            return token.value
+        elif token.type == LPAREN:
+            self.eat(LPAREN)
+            result = self.expr()
+            self.eat(RPAREN)
+            return result
+
+        self.error()
 
     def term(self):
         """term : factor ((MUL | DIV) factor)*"""
