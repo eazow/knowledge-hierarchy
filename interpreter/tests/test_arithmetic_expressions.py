@@ -42,7 +42,7 @@ def test_invalid_syntax():
     assert str(exec_info.value) == "Invalid syntax"
 
 
-def test_arithmetic_expressions():
+def test_plus_and_minus():
     assert Interpreter(Lexer("7 - 3 + 2 - 1")).expr() == 5
     assert Interpreter(Lexer("12 - 10 + 11 + 15")).expr() == 28
 
@@ -55,3 +55,12 @@ def test_multiply_and_divide():
 def test_hybrid_expressions():
     assert Interpreter(Lexer("7 - 3 * 2 - 1")).expr() == 0
     assert Interpreter(Lexer("16 + 2 * 3 - 6 / 2")).expr() == 19
+
+
+def test_hybrid_expressions_with_parenthesis():
+    assert Interpreter(Lexer("7 + 3 * (10 / (12 / (3 + 1) - 1))")) == 22
+    assert (
+        Interpreter(Lexer("7 + 3 * (10 / (12 / (3 + 1) - 1)) / (2 + 3) - 5 - 3 + (8)"))
+        == 10
+    )
+    assert Interpreter(Lexer("7 + (((3 + 2)))")) == 12
