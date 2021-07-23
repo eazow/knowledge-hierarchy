@@ -68,5 +68,11 @@ def test_hybrid_expressions_with_parentheses():
         ).interpret()
         == 10
     )
-
     assert Interpreter(Parser(Lexer("7 + (((3 + 2)))"))).interpret() == 12
+
+
+def test_unary_operators():
+    assert Interpreter(Parser(Lexer("--6"))).interpret() == 6
+    assert Interpreter(Parser(Lexer("5--3"))).interpret() == 8
+
+

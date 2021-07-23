@@ -118,7 +118,7 @@ class Parser:
             self.error()
 
     def factor(self):
-        """factor : INTEGER | LPAREN expr RPAREN"""
+        """factor : (PLUS | MINUS) factor | INTEGER | LPAREN expr RPAREN"""
         token = self.current_token
         if token.type == INTEGER:
             self.eat(INTEGER)
@@ -128,6 +128,9 @@ class Parser:
             node = self.expr()
             self.eat(RPAREN)
             return node
+        elif token.type in [PLUS, MINUS]:
+            self.eat(token.type)
+            return UnaryOp(token, self.factor())
 
         self.error()
 
@@ -174,27 +177,35 @@ class BinOp(AST):
         self.right = right
 
 
+class UnaryOp(AST):
+    def __init__(self, token, node):
+        self.token = token
+        self.node = node
+
+
 class Num(AST):
     def __init__(self, token):
         self.token = token
         self.value = token.value
 
 
-class Interpreter:
+class NodeVisitor:
+    def visit(self, node):
+        method_name = "visit_{}".format(type(node).__name__)
+        visitor = getattr(self, method_name, self.generic_visit)
+        return visitor(node)
+
+    def generic_visit(self, node):
+        raise Exception("No visit_{} method".format(type(node).__name__))
+
+
+class Interpreter(NodeVisitor):
     def __init__(self, parser):
         self.parser = parser
 
     def interpret(self):
         tree = self.parser.parse()
         return self.visit(tree)
-
-    def generic_visit(self, node):
-        raise Exception("No visit_{} method".format(type(node).__name__))
-
-    def visit(self, node):
-        method_name = "visit_{}".format(type(node).__name__)
-        visitor = getattr(self, method_name, self.generic_visit)
-        return visitor(node)
 
     def visit_BinOp(self, node):
         if node.op.type == PLUS:
@@ -208,6 +219,13 @@ class Interpreter:
 
     def visit_Num(self, node):
         return node.value
+
+    def visit_UnaryOp(self, node):
+        op = node.token.type
+        if op == PLUS:
+            return self.visit(node.node)
+        elif op == MINUS:
+            return -self.visit(node.node)
 
 
 def main():
