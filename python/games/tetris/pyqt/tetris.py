@@ -5,7 +5,8 @@ from PyQt5.QtCore import QBasicTimer, Qt
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow, QHBoxLayout, QApplication, QDesktopWidget
 from shapes import TetrisShape
-from gameboard import InnerBoard, ExternalBoard, SidePanel
+from gameboard import InnerBoard, ExternalBoard
+from panel import SidePanel
 
 
 class TetrisGame(QMainWindow):
@@ -17,7 +18,7 @@ class TetrisGame(QMainWindow):
 
     def init_ui(self):
         # self.setWindowIcon(QIcon(os.path.join(os.getcwd(), "resources/icon.jpg")))
-        self.grid_size = 22
+        self.grid_size = 30
         self.fps = 200
         self.timer = QBasicTimer()
         self.setFocusPolicy(Qt.StrongFocus)

@@ -80,7 +80,6 @@ class InnerBoard:
 
     def merge_tetris(self):
         """合并俄罗斯方块(最下面定型不能再动的那些)"""
-
         for x, y in self.current_tetris.get_absolute_coords(
             self.current_direction, self.current_coord[0], self.current_coord[1]
         ):
@@ -88,8 +87,6 @@ class InnerBoard:
         self.current_coord = [-1, -1]
         self.current_direction = 0
         self.current_tetris = TetrisShape()
-
-    """移出整行都有小方块的"""
 
     def remove_full_lines(self):
         new_board_data = [0] * self.width * self.height
@@ -171,7 +168,7 @@ class ExternalBoard(QFrame):
         self.grid_size = grid_size
         self.inner_board = inner_board
         self.setFixedSize(grid_size * inner_board.width, grid_size * inner_board.height)
-        self.score = 0
+        self.score = 100
 
     def paintEvent(self, event):
         """把内部板块结构画出来"""
@@ -200,33 +197,4 @@ class ExternalBoard(QFrame):
 
     def updateData(self):
         self.score_signal.emit(str(self.score))
-        self.update()
-
-
-class SidePanel(QFrame):
-    def __init__(self, parent, grid_size, inner_board):
-        super(SidePanel, self).__init__(parent)
-        self.grid_size = grid_size
-        self.inner_board = inner_board
-        self.setFixedSize(grid_size * 5, grid_size * inner_board.height)
-        self.move(grid_size * inner_board.width, 0)
-
-    def paintEvent(self, event):
-        painter = QPainter(self)
-        x_min, x_max, y_min, y_max = self.inner_board.next_tetris.get_relative_boundary(
-            0
-        )
-        dy = 3 * self.grid_size
-        dx = (self.width() - (x_max - x_min) * self.grid_size) / 2
-        shape = self.inner_board.next_tetris.shape
-        for x, y in self.inner_board.next_tetris.get_absolute_coords(0, 0, -y_min):
-            draw_cell(
-                painter,
-                x * self.grid_size + dx,
-                y * self.grid_size + dy,
-                shape,
-                self.grid_size,
-            )
-
-    def updateData(self):
         self.update()
