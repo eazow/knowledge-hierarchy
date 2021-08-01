@@ -1,23 +1,5 @@
 import pytest
-from interpreter import Parser, Token, EOF, INTEGER, PLUS, Lexer, Interpreter
-
-
-def test_tokens():
-    lexer = Lexer("3+5")
-
-    assert lexer.get_next_token() == Token(INTEGER, 3)
-    assert lexer.get_next_token() == Token(PLUS, "+")
-    assert lexer.get_next_token() == Token(INTEGER, 5)
-    assert lexer.get_next_token() == Token(EOF, None)
-
-
-def test_tokens_with_whitespaces():
-    lexer = Lexer("3 + 5")
-
-    assert lexer.get_next_token() == Token(INTEGER, 3)
-    assert lexer.get_next_token() == Token(PLUS, "+")
-    assert lexer.get_next_token() == Token(INTEGER, 5)
-    assert lexer.get_next_token() == Token(EOF, None)
+from interpreter import Parser, Lexer, Interpreter
 
 
 def test_plus():
