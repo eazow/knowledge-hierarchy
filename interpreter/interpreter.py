@@ -23,6 +23,12 @@ class Token(object):
         return self.type == other.type and self.value == other.value
 
 
+RESERVED_KEYWORDS = {
+    'BEGIN': Token('BEGIN', 'BEGIN'),
+    'END': Token('END', 'END'),
+}
+
+
 class Lexer:
     def __init__(self, text):
         self.text = text
@@ -44,6 +50,13 @@ class Lexer:
         else:
             self.current_char = self.text[self.pos]
 
+    def peek(self):
+        peek_pos = self.pos + 1
+        if peek_pos > len(self.text) - 1:
+            return None
+        else:
+            return self.text[peek_pos]
+
     def integer(self):
         """Return a (multidigit) integer consumed from the input."""
         digits = ""
@@ -52,8 +65,18 @@ class Lexer:
             self.advance()
         return int(digits)
 
+    def _id(self):
+        """Handle identifiers and reserved keywords"""
+        result = ""
+        while self.current_char is not None and self.current_char.isalnum():
+            result += self.current_char
+            self.advance()
+
     def get_next_token(self):
         while self.current_char is not None:
+            if self.current_char.isalpha():
+                return self._id()
+
             if self.current_char.isspace():
                 self.skip_whitespace()
                 continue
