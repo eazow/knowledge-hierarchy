@@ -1,4 +1,4 @@
-from tokens import INTEGER, PLUS, MINUS, MUL, DIV, LPAREN, RPAREN, EOF
+from tokens import INTEGER, PLUS, MINUS, MUL, DIV, LPAREN, RPAREN, EOF, ASSIGN, ID
 
 
 class Token(object):
@@ -72,10 +72,25 @@ class Lexer:
             result += self.current_char
             self.advance()
 
+        return RESERVED_KEYWORDS.get(result, Token(ID, result))
+
     def get_next_token(self):
         while self.current_char is not None:
             if self.current_char.isalpha():
                 return self._id()
+
+            if self.current_char == ":" and self.peek() == "=":
+                self.advance()
+                self.advance()
+                return Token(ASSIGN, ":=")
+
+            if self.current_char == ";"
+                self.advance()
+                return Token(SEMI, ";")
+
+            if self.current_char == ".":
+                self.advance()
+                return Token(DOT, ".")
 
             if self.current_char.isspace():
                 self.skip_whitespace()
