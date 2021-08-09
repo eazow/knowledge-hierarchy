@@ -1,4 +1,6 @@
-from interpreter import Lexer, Parser, Interpreter
+from interpreter import Interpreter
+from lexer import Lexer
+from parser import Parser
 
 
 def test_compound_statement():

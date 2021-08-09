@@ -1,5 +1,7 @@
 import pytest
-from interpreter import Parser, Lexer, Interpreter
+from interpreter import Interpreter
+from lexer import Lexer
+from parser import Parser
 
 
 def test_plus():
