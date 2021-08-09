@@ -1,4 +1,4 @@
-from tokens import INTEGER, PLUS, MINUS, MUL, DIV, LPAREN, RPAREN, EOF, ASSIGN, ID
+from tokens import INTEGER, PLUS, MINUS, MUL, DIV, LPAREN, RPAREN, EOF, ASSIGN, ID, SEMI, DOT
 
 
 class Token(object):
@@ -84,7 +84,7 @@ class Lexer:
                 self.advance()
                 return Token(ASSIGN, ":=")
 
-            if self.current_char == ";"
+            if self.current_char == ";":
                 self.advance()
                 return Token(SEMI, ";")
 

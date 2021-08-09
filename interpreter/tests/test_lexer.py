@@ -1,5 +1,5 @@
 from interpreter import Lexer, Token
-from tokens import INTEGER, PLUS, EOF, BEGIN
+from tokens import INTEGER, PLUS, EOF, BEGIN, ID, ASSIGN, SEMI, END, DOT
 
 
 def test_tokens():
