@@ -20,7 +20,7 @@ def test_tokens_with_whitespaces():
     assert lexer.get_next_token() == Token(EOF, None)
 
 
-def test_compound_statement():
+def test_statement():
     lexer = Lexer("BEGIN a := 2; END.")
 
     assert lexer.get_next_token() == Token(BEGIN, "BEGIN")
