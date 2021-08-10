@@ -1,4 +1,19 @@
-from tokens import ID, ASSIGN, SEMI, DOT, INTEGER, PLUS, MINUS, MUL, DIV, LPAREN, RPAREN, EOF, Token
+from keywords import RESERVED_KEYWORDS
+from tokens import (
+    ID,
+    ASSIGN,
+    SEMI,
+    DOT,
+    INTEGER,
+    PLUS,
+    MINUS,
+    MUL,
+    DIV,
+    LPAREN,
+    RPAREN,
+    EOF,
+    Token,
+)
 
 
 class Lexer:
@@ -98,9 +113,3 @@ class Lexer:
             self.error()
 
         return Token(EOF, None)
-
-
-RESERVED_KEYWORDS = {
-    'BEGIN': Token('BEGIN', 'BEGIN'),
-    'END': Token('END', 'END'),
-}
