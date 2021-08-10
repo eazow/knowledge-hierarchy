@@ -61,7 +61,6 @@ class Interpreter(NodeVisitor):
         return val
 
 
-
 def main():
     while True:
         try:
