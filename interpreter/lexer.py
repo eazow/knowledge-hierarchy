@@ -13,6 +13,8 @@ from tokens import (
     RPAREN,
     EOF,
     Token,
+    REAL_CONST,
+    INTEGER_CONST,
 )
 
 
@@ -44,13 +46,25 @@ class Lexer:
         else:
             return self.text[peek_pos]
 
-    def integer(self):
-        """Return a (multidigit) integer consumed from the input."""
-        digits = ""
+    def number(self):
+        """Return a (multidigit) integer or float consumed from the input."""
+        result = ""
         while self.current_char is not None and self.current_char.isdigit():
-            digits += self.current_char
+            result += self.current_char
             self.advance()
-        return int(digits)
+
+        if self.current_char == ".":
+            result += self.current_char
+            self.advance()
+
+            while self.current_char is not None and self.current_char.isdigit():
+                result += self.current_char
+                self.advance()
+            token = Token(REAL_CONST, float(result))
+        else:
+            token = Token(INTEGER_CONST, int(result))
+
+        return token
 
     def _id(self):
         """Handle identifiers and reserved keywords"""
@@ -65,6 +79,11 @@ class Lexer:
         while self.current_char is not None:
             if self.current_char.isalpha():
                 return self._id()
+
+            if self.current_char == "{":
+                self.advance()
+                self.skip_comment()
+                continue
 
             if self.current_char == ":" and self.peek() == "=":
                 self.advance()
@@ -84,7 +103,7 @@ class Lexer:
                 continue
 
             if self.current_char.isdigit():
-                return Token(INTEGER, self.integer())
+                return self.number()
 
             if self.current_char == "+":
                 self.advance()
@@ -110,6 +129,16 @@ class Lexer:
                 self.advance()
                 return Token(RPAREN, ")")
 
+            if self.current_char == ":":
+                self.advance()
+                return Token(COLON)
+
             self.error()
 
         return Token(EOF, None)
+
+    def skip_comment(self):
+        while self.current_char is not None and self.current_char != "}":
+            self.advance()
+
+        self.advance()
