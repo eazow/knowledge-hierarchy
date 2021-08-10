@@ -1,4 +1,20 @@
-from tokens import INTEGER, LPAREN, RPAREN, PLUS, MINUS, MUL, DIV, EOF, DOT, BEGIN, END, ID, ASSIGN, SEMI
+from nodes import BinOp, UnaryOp, Num, Compound, Assign, Var, NoOp
+from tokens import (
+    INTEGER,
+    LPAREN,
+    RPAREN,
+    PLUS,
+    MINUS,
+    MUL,
+    DIV,
+    EOF,
+    DOT,
+    BEGIN,
+    END,
+    ID,
+    ASSIGN,
+    SEMI,
+)
 
 
 class Parser:
@@ -127,49 +143,3 @@ class Parser:
 
     def empty(self):
         return NoOp()
-
-
-class AST:
-    pass
-
-
-class BinOp(AST):
-    def __init__(self, left, op, right):
-        self.left = left
-        self.token = self.op = op
-        self.right = right
-
-
-class UnaryOp(AST):
-    def __init__(self, token, node):
-        self.token = token
-        self.node = node
-
-
-class Num(AST):
-    def __init__(self, token):
-        self.token = token
-        self.value = token.value
-
-
-class Compound(AST):
-    """Represents a 'BEGIN ... END' block"""
-    def __init__(self):
-        self.children = []
-
-
-class Assign(AST):
-    def __init__(self, left, op, right):
-        self.left = left
-        self.op = op
-        self.right = right
-
-
-class Var(AST):
-    def __init__(self, token):
-        self.token = token
-        self.value = token.value
-
-
-class NoOp(AST):
-    pass
