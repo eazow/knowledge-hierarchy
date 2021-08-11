@@ -1,4 +1,4 @@
-from nodes import BinOp, UnaryOp, Num, Compound, Assign, Var, NoOp
+from nodes import BinOp, UnaryOp, Num, Compound, Assign, Var, NoOp, Block
 from tokens import (
     INTEGER,
     LPAREN,
@@ -13,7 +13,7 @@ from tokens import (
     END,
     ID,
     ASSIGN,
-    SEMI,
+    SEMI, VAR,
 )
 
 
@@ -143,3 +143,25 @@ class Parser:
 
     def empty(self):
         return NoOp()
+
+    def block(self):
+        """block : declarations compound_statement"""
+        declaration_nodes = self.declarations()
+        compound_statement_node = self.compound_statement()
+        node = Block(declaration_nodes, compound_statement_node)
+        return node
+
+    def declarations(self):
+        """
+        declarations : VAR (variable_declaration SEMI)+
+                      | empty
+        """
+        declarations = []
+        if self.current_token.type == VAR:
+            self.eat(VAR)
+            while self.current_token.type == ID:
+                var_decl = self.variable_declartion()
+                declarations.extend(var_decl)
+                self.eat(SEMI)
+
+        return declarations

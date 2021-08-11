@@ -14,7 +14,7 @@ from tokens import (
     EOF,
     Token,
     REAL_CONST,
-    INTEGER_CONST,
+    INTEGER_CONST, COLON,
 )
 
 
