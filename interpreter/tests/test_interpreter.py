@@ -46,3 +46,8 @@ BEGIN {Test}
    { writeln('y = ', y); }
 END.  {Part10}
 """
+
+    interpreter = Interpreter(Parser(Lexer(text)))
+    interpreter.interpret()
+
+    assert interpreter.GLOBAL_SCOPE == {"a": 2, "x": 11, "c": 27, "b": 25, "number": 2}

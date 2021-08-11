@@ -1,5 +1,5 @@
 from parser import Parser
-from tokens import PLUS, MINUS, MUL, DIV
+from tokens import PLUS, MINUS, MUL, DIV, INTEGER_DIV, FLOAT_DIV
 from lexer import Lexer
 
 
@@ -29,8 +29,10 @@ class Interpreter(NodeVisitor):
             return self.visit(node.left) - self.visit(node.right)
         elif node.op.type == MUL:
             return self.visit(node.left) * self.visit(node.right)
-        elif node.op.type == DIV:
-            return self.visit(node.left) / self.visit(node.right)
+        elif node.op.type == INTEGER_DIV:
+            return self.visit(node.left) // self.visit(node.right)
+        elif node.op.type == FLOAT_DIV:
+            return self.visit(node.left) / float(self.visit(node.right))
 
     def visit_Num(self, node):
         return node.value
@@ -59,6 +61,21 @@ class Interpreter(NodeVisitor):
         if val is None:
             raise NameError(repr(var_name))
         return val
+
+    def visit_Program(self, node):
+        self.visit(node.block)
+
+    def visit_Block(self, node):
+        for declaration in node.declarations:
+            self.visit(declaration)
+
+        self.visit(node.compound_statement)
+
+    def visit_ValDecl(self, node):
+        pass
+
+    def visit_Type(self, node):
+        pass
 
 
 def main():

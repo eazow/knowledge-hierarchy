@@ -24,6 +24,8 @@
     INTEGER_CONST,
     COLON,
     COMMA,
+    INTEGER_DIV,
+    FLOAT_DIV
 ) = (
     "INTEGER",
     "PLUS",
@@ -45,7 +47,9 @@
     "REAL_CONST",
     "INTEGER_CONST",
     "COLON",
-    "COMMA"
+    "COMMA",
+    "INTEGER_DIV",
+    "FLOAT_DIV"
 )
 
 
