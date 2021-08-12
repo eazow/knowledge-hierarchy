@@ -22,6 +22,10 @@ class Interpreter(NodeVisitor):
         tree = self.parser.parse()
         return self.visit(tree)
 
+    def expr(self):  # deprecated
+        tree = self.parser.expr()
+        return self.visit(tree)
+
     def visit_BinOp(self, node):
         if node.op.type == PLUS:
             return self.visit(node.left) + self.visit(node.right)
