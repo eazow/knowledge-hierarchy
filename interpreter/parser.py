@@ -177,7 +177,7 @@ class Parser:
         if self.current_token.type == VAR:
             self.eat(VAR)
             while self.current_token.type == ID:
-                var_decl = self.variable_declartion()
+                var_decl = self.variable_declaration()
                 declarations.extend(var_decl)
                 self.eat(SEMI)
 

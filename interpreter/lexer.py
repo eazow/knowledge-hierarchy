@@ -131,7 +131,7 @@ class Lexer:
 
             if self.current_char == ":":
                 self.advance()
-                return Token(COLON)
+                return Token(COLON, ":")
 
             self.error()
 

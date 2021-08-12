@@ -1,8 +1,10 @@
+import pytest
 from interpreter import Interpreter
 from lexer import Lexer
 from parser import Parser
 
 
+@pytest.mark.skip()
 def test_compound_statement():
     text = """
 BEGIN
