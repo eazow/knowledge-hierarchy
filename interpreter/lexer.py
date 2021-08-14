@@ -14,7 +14,9 @@ from tokens import (
     EOF,
     Token,
     REAL_CONST,
-    INTEGER_CONST, COLON,
+    INTEGER_CONST,
+    COLON,
+    FLOAT_DIV,
 )
 
 
@@ -119,7 +121,7 @@ class Lexer:
 
             if self.current_char == "/":
                 self.advance()
-                return Token(DIV, "/")
+                return Token(FLOAT_DIV, "/")
 
             if self.current_char == "(":
                 self.advance()
