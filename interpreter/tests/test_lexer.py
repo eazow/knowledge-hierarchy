@@ -1,4 +1,21 @@
-from tokens import PLUS, EOF, BEGIN, ID, ASSIGN, SEMI, END, DOT, Token, INTEGER_CONST
+from tokens import (
+    PLUS,
+    EOF,
+    BEGIN,
+    ID,
+    ASSIGN,
+    SEMI,
+    END,
+    DOT,
+    Token,
+    INTEGER_CONST,
+    COMMA,
+    COLON,
+    VAR,
+    INTEGER,
+    FLOAT_DIV,
+    INTEGER_DIV, REAL, PROGRAM,
+)
 from lexer import Lexer
 
 
@@ -31,3 +48,22 @@ def test_statement():
     assert lexer.get_next_token() == Token(END, "END")
     assert lexer.get_next_token() == Token(DOT, ".")
     assert lexer.get_next_token() == Token(EOF, None)
+
+
+def test_symbol_tokens():
+    assert Lexer(",").get_next_token() == Token(COMMA, ",")
+    assert Lexer(";").get_next_token() == Token(SEMI, ";")
+    assert Lexer(".").get_next_token() == Token(DOT, ".")
+    assert Lexer(":").get_next_token() == Token(COLON, ":")
+    assert Lexer("+").get_next_token() == Token(PLUS, "+")
+    assert Lexer("/").get_next_token() == Token(FLOAT_DIV, "/")
+
+
+def test_keyword_tokens():
+    assert Lexer("VAR").get_next_token() == Token(VAR, "VAR")
+    assert Lexer("INTEGER").get_next_token() == Token(INTEGER, "INTEGER")
+    assert Lexer("DIV").get_next_token() == Token(INTEGER_DIV, "DIV")
+    assert Lexer("REAL").get_next_token() == Token(REAL, "REAL")
+    assert Lexer("PROGRAM").get_next_token() == Token(PROGRAM, "PROGRAM")
+    assert Lexer("BEGIN").get_next_token() == Token(BEGIN, "BEGIN")
+    assert Lexer("END").get_next_token() == Token(END, "END")

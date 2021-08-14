@@ -52,4 +52,10 @@ END.  {Part10}
     interpreter = Interpreter(Parser(Lexer(text)))
     interpreter.interpret()
 
-    assert interpreter.GLOBAL_SCOPE == {"a": 2, "x": 11, "c": 27, "b": 25, "number": 2}
+    results = interpreter.GLOBAL_SCOPE
+    assert 2 == results.get("a")
+    assert 11 == results.get("x")
+    assert 27 == results.get("c")
+    assert 25 == results.get("b")
+    assert 2 == results.get("number")
+    assert 5.997 == round(results.get("y"), 3)

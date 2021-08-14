@@ -16,7 +16,7 @@ from tokens import (
     REAL_CONST,
     INTEGER_CONST,
     COLON,
-    FLOAT_DIV,
+    FLOAT_DIV, COMMA,
 )
 
 
@@ -82,23 +82,10 @@ class Lexer:
             if self.current_char.isalpha():
                 return self._id()
 
-            if self.current_char == "{":
-                self.advance()
-                self.skip_comment()
-                continue
-
             if self.current_char == ":" and self.peek() == "=":
                 self.advance()
                 self.advance()
                 return Token(ASSIGN, ":=")
-
-            if self.current_char == ";":
-                self.advance()
-                return Token(SEMI, ";")
-
-            if self.current_char == ".":
-                self.advance()
-                return Token(DOT, ".")
 
             if self.current_char.isspace():
                 self.skip_whitespace()
@@ -131,9 +118,26 @@ class Lexer:
                 self.advance()
                 return Token(RPAREN, ")")
 
+            if self.current_char == ",":
+                self.advance()
+                return Token(COMMA, ",")
+
+            if self.current_char == ";":
+                self.advance()
+                return Token(SEMI, ";")
+
+            if self.current_char == ".":
+                self.advance()
+                return Token(DOT, ".")
+
             if self.current_char == ":":
                 self.advance()
                 return Token(COLON, ":")
+
+            if self.current_char == "{":
+                self.advance()
+                self.skip_comment()
+                continue
 
             self.error()
 

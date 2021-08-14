@@ -75,7 +75,7 @@ class Interpreter(NodeVisitor):
 
         self.visit(node.compound_statement)
 
-    def visit_ValDecl(self, node):
+    def visit_VarDecl(self, node):
         pass
 
     def visit_Type(self, node):
