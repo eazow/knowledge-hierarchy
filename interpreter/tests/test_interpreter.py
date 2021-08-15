@@ -59,3 +59,19 @@ END.  {Part10}
     assert 25 == results.get("b")
     assert 2 == results.get("number")
     assert 5.997 == round(results.get("y"), 3)
+
+
+def test_name_error():
+    text = """
+PROGRAM NameError;
+VAR
+   a : INTEGER;
+
+BEGIN
+   a := 2 + b;
+END.
+"""
+    with pytest.raises(Exception) as exec_info:
+        Interpreter(Parser(Lexer(text))).interpret()
+
+    assert str(exec_info.value) == "Name Error: 'b'"
