@@ -52,7 +52,7 @@ END.  {Part10}
     interpreter = Interpreter(Parser(Lexer(text)))
     interpreter.interpret()
 
-    results = interpreter.GLOBAL_SCOPE
+    results = interpreter.symbol_table_builder.GLOBAL_SCOPE
     assert 2 == results.get("a")
     assert 11 == results.get("x")
     assert 27 == results.get("c")
@@ -74,4 +74,5 @@ END.
     with pytest.raises(Exception) as exec_info:
         Interpreter(Parser(Lexer(text))).interpret()
 
-    assert str(exec_info.value) == "Name Error: 'b'"
+    assert exec_info.typename == "NameError"
+    assert exec_info.value.args[0] == "'b'"

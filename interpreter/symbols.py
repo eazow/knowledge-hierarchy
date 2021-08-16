@@ -1,4 +1,4 @@
-from tokens import PLUS, MINUS, MUL, INTEGER_DIV, FLOAT_DIV
+from tokens import PLUS, MINUS, MUL, INTEGER_DIV, FLOAT_DIV, INTEGER, REAL
 
 
 class Symbol:
@@ -60,6 +60,11 @@ class SymbolTableBuilder(NodeVisitor):
     def __init__(self):
         self.symbol_table = SymbolTable()
         self.GLOBAL_SCOPE = {}
+        self._init_builtins()
+
+    def _init_builtins(self):
+        self.symbol_table.define(BuiltInSymbol(INTEGER))
+        self.symbol_table.define(BuiltInSymbol(REAL))
 
     def visit_BinOp(self, node):
         if node.op.type == PLUS:
@@ -111,7 +116,10 @@ class SymbolTableBuilder(NodeVisitor):
         self.visit(node.compound_statement)
 
     def visit_VarDecl(self, node):
-        pass
+        type_name = node.type_node.value
+        type_symbol = self.symbol_table.lookup(type_name)
+        var_name = node.var_node.value
+        self.symbol_table.define(VarSymbol(var_name, type_symbol))
 
     def visit_Type(self, node):
         pass
