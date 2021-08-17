@@ -23,6 +23,7 @@ class Num(AST):
 
 class Compound(AST):
     """Represents a 'BEGIN ... END' block"""
+
     def __init__(self):
         self.children = []
 
@@ -66,3 +67,9 @@ class Type(AST):
     def __init__(self, token):
         self.token = token
         self.value = token.value
+
+
+class ProcedureDecl(AST):
+    def __init__(self, proc_name, block_node):
+        self.proc_name = proc_name
+        self.block_node = block_node

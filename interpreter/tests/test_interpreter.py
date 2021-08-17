@@ -61,6 +61,22 @@ END.  {Part10}
     assert 5.997 == round(results.get("y"), 3)
 
 
+def test_empty_program():
+    text = """
+PROGRAM Empty;
+
+BEGIN {Empty}
+   BEGIN
+   END;
+END.  {Empty}
+"""
+    interpreter = Interpreter(Parser(Lexer(text)))
+    interpreter.interpret()
+
+    results = interpreter.symbol_table_builder.GLOBAL_SCOPE
+    assert results == {}
+
+
 def test_name_error():
     text = """
 PROGRAM NameError;
@@ -109,4 +125,4 @@ END.  {TestProcedure}
     interpreter.interpret()
 
     results = interpreter.symbol_table_builder.GLOBAL_SCOPE
-    assert 2 == results.get("a")
+    assert 10 == results.get("a")

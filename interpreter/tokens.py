@@ -25,7 +25,8 @@
     COLON,
     COMMA,
     INTEGER_DIV,
-    FLOAT_DIV
+    FLOAT_DIV,
+    PROCEDURE,
 ) = (
     "INTEGER",
     "PLUS",
@@ -49,7 +50,8 @@
     "COLON",
     "COMMA",
     "INTEGER_DIV",
-    "FLOAT_DIV"
+    "FLOAT_DIV",
+    "PROCEDURE",
 )
 
 

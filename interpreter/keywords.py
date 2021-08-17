@@ -1,4 +1,4 @@
-from tokens import Token, BEGIN, END, VAR, INTEGER, REAL, PROGRAM, INTEGER_DIV
+from tokens import Token, BEGIN, END, VAR, INTEGER, REAL, PROGRAM, INTEGER_DIV, PROCEDURE
 
 RESERVED_KEYWORDS = {
     "PROGRAM": Token(PROGRAM, "PROGRAM"),
@@ -8,4 +8,5 @@ RESERVED_KEYWORDS = {
     "REAL": Token(REAL, "REAL"),
     "BEGIN": Token(BEGIN, "BEGIN"),
     "END": Token(END, "END"),
+    "PROCEDURE": Token(PROCEDURE, "PROCEDURE")
 }
