@@ -1,8 +1,10 @@
+import pytest
 from interpreter import Interpreter
 from lexer import Lexer
 from parser import Parser
 
 
+@pytest.mark.skip()
 def test_compound_statement():
     text = """
 BEGIN
@@ -50,4 +52,77 @@ END.  {Part10}
     interpreter = Interpreter(Parser(Lexer(text)))
     interpreter.interpret()
 
-    assert interpreter.GLOBAL_SCOPE == {"a": 2, "x": 11, "c": 27, "b": 25, "number": 2}
+    results = interpreter.symbol_table_builder.GLOBAL_SCOPE
+    assert 2 == results.get("a")
+    assert 11 == results.get("x")
+    assert 27 == results.get("c")
+    assert 25 == results.get("b")
+    assert 2 == results.get("number")
+    assert 5.997 == round(results.get("y"), 3)
+
+
+def test_empty_program():
+    text = """
+PROGRAM Empty;
+
+BEGIN {Empty}
+   BEGIN
+   END;
+END.  {Empty}
+"""
+    interpreter = Interpreter(Parser(Lexer(text)))
+    interpreter.interpret()
+
+    results = interpreter.symbol_table_builder.GLOBAL_SCOPE
+    assert results == {}
+
+
+def test_name_error():
+    text = """
+PROGRAM NameError;
+VAR
+   a : INTEGER;
+
+BEGIN
+   a := 2 + b;
+END.
+"""
+    with pytest.raises(Exception) as exec_info:
+        Interpreter(Parser(Lexer(text))).interpret()
+
+    assert exec_info.typename == "NameError"
+    assert exec_info.value.args[0] == "'b'"
+
+
+def test_procedure():
+    text = """
+PROGRAM TestProcedure;
+VAR
+   a : INTEGER;
+
+PROCEDURE P1;
+VAR
+   a : REAL;
+   k : INTEGER;
+
+   PROCEDURE P2;
+   VAR
+      a, z : INTEGER;
+   BEGIN {P2}
+      z := 777;
+   END;  {P2}
+
+BEGIN {P1}
+
+END;  {P1}
+
+BEGIN {TestProcedure}
+   a := 10;
+END.  {TestProcedure}
+"""
+
+    interpreter = Interpreter(Parser(Lexer(text)))
+    interpreter.interpret()
+
+    results = interpreter.symbol_table_builder.GLOBAL_SCOPE
+    assert 10 == results.get("a")
