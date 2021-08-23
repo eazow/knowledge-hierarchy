@@ -9,21 +9,25 @@ class Symbol:
 
 class BuiltInSymbol(Symbol):
     def __init__(self, name):
-        self.name = name
+        super().__init__(name)
 
     def __str__(self):
         return self.name
 
-    __repr__ = __str__
+    def __repr__(self):
+        return "<{class_name}(name='{name}')>".format(
+            class_name=self.__class__.__name__, name=self.name
+        )
 
 
 class VarSymbol(Symbol):
     def __init__(self, name, type):
-        self.name = name
-        self.type = type
+        super().__init__(name, type)
 
     def __str__(self):
-        return "<{name}:{type}>".format(name=self.name, type=self.type)
+        return "<{class_name}(name='{name}', type='{type}')>".format(
+            class_name=self.__class__.__name__, name=self.name, type=self.type
+        )
 
     __repr__ = __str__
 
@@ -56,7 +60,7 @@ class NodeVisitor:
         raise Exception("No visit_{} method".format(type(node).__name__))
 
 
-class SymbolTableBuilder(NodeVisitor):
+class SemanticAnalyzer(NodeVisitor):
     def __init__(self):
         self.symbol_table = SymbolTable()
         self.GLOBAL_SCOPE = {}
@@ -101,9 +105,13 @@ class SymbolTableBuilder(NodeVisitor):
 
     def visit_Var(self, node):
         var_name = node.value
+        var_symbol = self.symbol_table.lookup(var_name)
+        if var_symbol is None:
+            raise NameError("Error: Symbol(identifier) not found '{var_name}'".format(var_name=var_name))
+
         val = self.GLOBAL_SCOPE.get(var_name)
-        if val is None:
-            raise NameError(repr(var_name))
+        # if val is None:
+        #     raise NameError(repr(var_name))
         return val
 
     def visit_Program(self, node):

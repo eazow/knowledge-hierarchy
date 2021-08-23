@@ -52,7 +52,7 @@ END.  {Part10}
     interpreter = Interpreter(Parser(Lexer(text)))
     interpreter.interpret()
 
-    results = interpreter.symbol_table_builder.GLOBAL_SCOPE
+    results = interpreter.semantic_analyzer.GLOBAL_SCOPE
     assert 2 == results.get("a")
     assert 11 == results.get("x")
     assert 27 == results.get("c")
@@ -73,11 +73,11 @@ END.  {Empty}
     interpreter = Interpreter(Parser(Lexer(text)))
     interpreter.interpret()
 
-    results = interpreter.symbol_table_builder.GLOBAL_SCOPE
+    results = interpreter.semantic_analyzer.GLOBAL_SCOPE
     assert results == {}
 
 
-def test_name_error():
+def test_undeclared_variable():
     text = """
 PROGRAM NameError;
 VAR
@@ -91,7 +91,7 @@ END.
         Interpreter(Parser(Lexer(text))).interpret()
 
     assert exec_info.typename == "NameError"
-    assert exec_info.value.args[0] == "'b'"
+    assert exec_info.value.args[0] == "Error: Symbol(identifier) not found 'b'"
 
 
 def test_procedure():
@@ -120,9 +120,8 @@ BEGIN {TestProcedure}
    a := 10;
 END.  {TestProcedure}
 """
-
     interpreter = Interpreter(Parser(Lexer(text)))
     interpreter.interpret()
 
-    results = interpreter.symbol_table_builder.GLOBAL_SCOPE
+    results = interpreter.semantic_analyzer.GLOBAL_SCOPE
     assert 10 == results.get("a")
