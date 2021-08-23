@@ -143,3 +143,20 @@ END.  {TestProcedure}
 
     results = interpreter.semantic_analyzer.GLOBAL_SCOPE
     assert 10 == results.get("a")
+
+
+def test_case_insensitive():
+    text = """
+program CaseInsensitive;
+var
+   a : INTEGER;
+
+begin
+   a := 2 * 6 - 2;
+end.
+"""
+    interpreter = Interpreter(Parser(Lexer(text)))
+    interpreter.interpret()
+
+    results = interpreter.semantic_analyzer.GLOBAL_SCOPE
+    assert 10 == results.get("a")

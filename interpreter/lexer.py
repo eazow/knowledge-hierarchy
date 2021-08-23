@@ -75,7 +75,7 @@ class Lexer:
             result += self.current_char
             self.advance()
 
-        return RESERVED_KEYWORDS.get(result, Token(ID, result))
+        return RESERVED_KEYWORDS.get(result.upper(), Token(ID, result))
 
     def get_next_token(self):
         while self.current_char is not None:

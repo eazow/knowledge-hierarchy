@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from tokens import PLUS, MINUS, MUL, INTEGER_DIV, FLOAT_DIV, INTEGER, REAL
 
 
@@ -32,9 +34,16 @@ class VarSymbol(Symbol):
     __repr__ = __str__
 
 
-class SymbolTable:
-    def __init__(self):
-        self._symbols = {}
+class ScopedSymbolTable:
+    def __init__(self, scope_name=None, scope_level=0):
+        self._symbols = OrderedDict()
+        self.scope_name = scope_name
+        self.scope_level = scope_level
+        self._init_builtins()
+
+    def _init_builtins(self):
+        self.define(BuiltInSymbol(INTEGER))
+        self.define(BuiltInSymbol(REAL))
 
     def __str__(self):
         return "Symbols: {}".format(self._symbols.values())
@@ -62,13 +71,8 @@ class NodeVisitor:
 
 class SemanticAnalyzer(NodeVisitor):
     def __init__(self):
-        self.symbol_table = SymbolTable()
+        self.symbol_table = ScopedSymbolTable(scope_name="global", scope_level=1)
         self.GLOBAL_SCOPE = {}
-        self._init_builtins()
-
-    def _init_builtins(self):
-        self.symbol_table.define(BuiltInSymbol(INTEGER))
-        self.symbol_table.define(BuiltInSymbol(REAL))
 
     def visit_BinOp(self, node):
         if node.op.type == PLUS:
