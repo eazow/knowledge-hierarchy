@@ -94,6 +94,24 @@ END.
     assert exec_info.value.args[0] == "Error: Symbol(identifier) not found 'b'"
 
 
+def test_duplicate_identifier():
+    text = """
+PROGRAM DuplicateIdentifier;
+VAR
+    x, y: INTEGER;
+    y: REAL;
+
+BEGIN
+x := x + y;
+END.
+"""
+    with pytest.raises(Exception) as exec_info:
+        Interpreter(Parser(Lexer(text))).interpret()
+
+    assert exec_info.typename == "NameError"
+    assert exec_info.value.args[0] == "Error: Duplicate identifier 'y' found"
+
+
 def test_procedure():
     text = """
 PROGRAM TestProcedure;

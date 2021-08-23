@@ -127,6 +127,10 @@ class SemanticAnalyzer(NodeVisitor):
         type_name = node.type_node.value
         type_symbol = self.symbol_table.lookup(type_name)
         var_name = node.var_node.value
+
+        if self.symbol_table.lookup(var_name):
+            raise NameError("Error: Duplicate identifier '{var_name}' found".format(var_name=var_name))
+
         self.symbol_table.define(VarSymbol(var_name, type_symbol))
 
     def visit_Type(self, node):
