@@ -1,5 +1,5 @@
 from parser import Parser
-from symbols import NodeVisitor, SemanticAnalyzer
+from analyzer import NodeVisitor, SemanticAnalyzer
 from lexer import Lexer
 
 

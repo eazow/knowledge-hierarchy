@@ -1,4 +1,17 @@
-from nodes import BinOp, UnaryOp, Num, Compound, Assign, Var, NoOp, Block, VarDecl, Type, Program, ProcedureDecl
+from nodes import (
+    BinOp,
+    UnaryOp,
+    Num,
+    Compound,
+    Assign,
+    Var,
+    NoOp,
+    Block,
+    VarDecl,
+    Type,
+    Program,
+    ProcedureDecl,
+)
 from tokens import (
     INTEGER,
     LPAREN,
@@ -13,7 +26,17 @@ from tokens import (
     END,
     ID,
     ASSIGN,
-    SEMI, VAR, COMMA, COLON, REAL, PROGRAM, FLOAT_DIV, INTEGER_DIV, INTEGER_CONST, REAL_CONST, PROCEDURE,
+    SEMI,
+    VAR,
+    COMMA,
+    COLON,
+    REAL,
+    PROGRAM,
+    FLOAT_DIV,
+    INTEGER_DIV,
+    INTEGER_CONST,
+    REAL_CONST,
+    PROCEDURE,
 )
 
 
@@ -169,8 +192,8 @@ class Parser:
         return node
 
     def declarations(self):
-        """declarations : VAR (variable_declaration SEMI)+
-                        | (PROCEDURE ID SEMI block SEMI)*
+        """declarations : (VAR (variable_declaration SEMI)+)*
+                        | (PROCEDURE ID (LPAREN formal_parameter_list RPAREN)? SEMI block SEMI)*
                         | empty
         """
         declarations = []
@@ -187,10 +210,9 @@ class Parser:
             self.eat(ID)
             self.eat(SEMI)
             block_node = self.block()
-            proc_decl = ProcedureDecl(proc_name, block_node)
+            proc_decl = ProcedureDecl(proc_name, params=None, block_node=block_node)
             declarations.append(proc_decl)
             self.eat(SEMI)
-
 
         return declarations
 
@@ -207,10 +229,7 @@ class Parser:
         self.eat(COLON)
 
         type_node = self.type_spec()
-        var_declarations = [
-            VarDecl(var_node, type_node)
-            for var_node in var_nodes
-        ]
+        var_declarations = [VarDecl(var_node, type_node) for var_node in var_nodes]
         return var_declarations
 
     def type_spec(self):
@@ -223,6 +242,3 @@ class Parser:
         else:
             self.eat(REAL)
         return Type(token)
-
-
-
