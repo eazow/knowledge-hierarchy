@@ -34,6 +34,20 @@ class VarSymbol(Symbol):
     __repr__ = __str__
 
 
+class ProcedureSymbol(Symbol):
+    def __init__(self, name, params=None):
+        super(ProcedureSymbol, self).__init__(name)
+
+        self.params = params if params else []
+
+    def __str__(self):
+        return "<{class_name}(name={name}, parameters={params})>".format(
+            class_name=self.__class__.__name__, name=self.name, params=self.params
+        )
+
+    __repr__ = __str__
+
+
 class ScopedSymbolTable:
     def __init__(self, scope_name=None, scope_level=0):
         self._symbols = OrderedDict()
@@ -57,5 +71,3 @@ class ScopedSymbolTable:
     def lookup(self, name):
         print("Lookup: {}".format(name))
         return self._symbols.get(name)
-
-

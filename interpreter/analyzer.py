@@ -1,4 +1,4 @@
-from symbols import ScopedSymbolTable, VarSymbol
+from symbols import ScopedSymbolTable, VarSymbol, ProcedureSymbol
 from tokens import PLUS, MINUS, MUL, INTEGER_DIV, FLOAT_DIV
 
 
@@ -14,8 +14,8 @@ class NodeVisitor:
 
 class SemanticAnalyzer(NodeVisitor):
     def __init__(self):
-        self.symbol_table = ScopedSymbolTable(scope_name="global", scope_level=1)
         self.GLOBAL_SCOPE = {}
+        self.current_scoped_symbol_table = None
 
     def visit_BinOp(self, node):
         if node.op.type == PLUS:
@@ -52,17 +52,21 @@ class SemanticAnalyzer(NodeVisitor):
 
     def visit_Var(self, node):
         var_name = node.value
-        var_symbol = self.symbol_table.lookup(var_name)
+        var_symbol = self.current_scoped_symbol_table.lookup(var_name)
         if var_symbol is None:
             raise NameError("Error: Symbol(identifier) not found '{var_name}'".format(var_name=var_name))
 
-        val = self.GLOBAL_SCOPE.get(var_name)
-        # if val is None:
-        #     raise NameError(repr(var_name))
-        return val
+        return self.GLOBAL_SCOPE.get(var_name)
 
     def visit_Program(self, node):
+        print("Enter scope: global")
+        global_scope = ScopedSymbolTable(scope_name="global", scope_level=1)
+        self.current_scoped_symbol_table = global_scope
+
         self.visit(node.block)
+
+        print(global_scope)
+        print("Leave scope: global")
 
     def visit_Block(self, node):
         for declaration in node.declarations:
@@ -72,16 +76,20 @@ class SemanticAnalyzer(NodeVisitor):
 
     def visit_VarDecl(self, node):
         type_name = node.type_node.value
-        type_symbol = self.symbol_table.lookup(type_name)
+        type_symbol = self.current_scoped_symbol_table.lookup(type_name)
         var_name = node.var_node.value
 
-        if self.symbol_table.lookup(var_name):
+        if self.current_scoped_symbol_table.lookup(var_name):
             raise NameError("Error: Duplicate identifier '{var_name}' found".format(var_name=var_name))
 
-        self.symbol_table.define(VarSymbol(var_name, type_symbol))
+        self.current_scoped_symbol_table.define(VarSymbol(var_name, type_symbol))
 
     def visit_Type(self, node):
         pass
 
     def visit_ProcedureDecl(self, node):
-        pass
+        proc_name = node.proc_name
+        procedure_symbol = ProcedureSymbol(name=proc_name)
+
+        self.current_scoped_symbol_table.define(procedure_symbol)
+        
