@@ -112,39 +112,6 @@ END.
     assert exec_info.value.args[0] == "Error: Duplicate identifier 'y' found"
 
 
-def test_procedure():
-    text = """
-PROGRAM TestProcedure;
-VAR
-   a : INTEGER;
-
-PROCEDURE P1;
-VAR
-   a : REAL;
-   k : INTEGER;
-
-   PROCEDURE P2;
-   VAR
-      a, z : INTEGER;
-   BEGIN {P2}
-      z := 777;
-   END;  {P2}
-
-BEGIN {P1}
-
-END;  {P1}
-
-BEGIN {TestProcedure}
-   a := 10;
-END.  {TestProcedure}
-"""
-    interpreter = Interpreter(Parser(Lexer(text)))
-    interpreter.interpret()
-
-    results = interpreter.semantic_analyzer.GLOBAL_SCOPE
-    assert 10 == results.get("a")
-
-
 def test_case_insensitive():
     text = """
 program CaseInsensitive;
