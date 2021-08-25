@@ -1,10 +1,11 @@
 from symbols import ScopedSymbolTable, VarSymbol, ProcedureSymbol
 from tokens import PLUS, MINUS, MUL, INTEGER_DIV, FLOAT_DIV
+from utils import camel_to_snake
 
 
 class NodeVisitor:
     def visit(self, node):
-        method_name = "visit_{}".format(type(node).__name__)
+        method_name = "visit_{}".format(camel_to_snake(type(node).__name__))
         visitor = getattr(self, method_name, self.generic_visit)
         return visitor(node)
 
@@ -17,7 +18,7 @@ class SemanticAnalyzer(NodeVisitor):
         self.GLOBAL_SCOPE = {}
         self.current_scoped_symbol_table = None
 
-    def visit_BinOp(self, node):
+    def visit_bin_op(self, node):
         if node.op.type == PLUS:
             return self.visit(node.left) + self.visit(node.right)
         elif node.op.type == MINUS:
@@ -29,28 +30,28 @@ class SemanticAnalyzer(NodeVisitor):
         elif node.op.type == FLOAT_DIV:
             return self.visit(node.left) / float(self.visit(node.right))
 
-    def visit_Num(self, node):
+    def visit_num(self, node):
         return node.value
 
-    def visit_UnaryOp(self, node):
+    def visit_unary_op(self, node):
         op = node.token.type
         if op == PLUS:
             return self.visit(node.node)
         elif op == MINUS:
             return -self.visit(node.node)
 
-    def visit_Compound(self, node):
+    def visit_compound(self, node):
         for child in node.children:
             self.visit(child)
 
-    def visit_NoOp(self, node):
+    def visit_no_op(self, node):
         pass
 
-    def visit_Assign(self, node):
+    def visit_assign(self, node):
         var_name = node.left.value
         self.GLOBAL_SCOPE[var_name] = self.visit(node.right)
 
-    def visit_Var(self, node):
+    def visit_var(self, node):
         var_name = node.value
         var_symbol = self.current_scoped_symbol_table.lookup(var_name)
         if var_symbol is None:
@@ -62,7 +63,7 @@ class SemanticAnalyzer(NodeVisitor):
 
         return self.GLOBAL_SCOPE.get(var_name)
 
-    def visit_Program(self, node):
+    def visit_program(self, node):
         print("Enter scope: global")
         global_scope = ScopedSymbolTable(scope_name="global", scope_level=1)
         self.current_scoped_symbol_table = global_scope
@@ -72,13 +73,13 @@ class SemanticAnalyzer(NodeVisitor):
         print(global_scope)
         print("Leave scope: global")
 
-    def visit_Block(self, node):
+    def visit_block(self, node):
         for declaration in node.declarations:
             self.visit(declaration)
 
         self.visit(node.compound_statement)
 
-    def visit_VarDecl(self, node):
+    def visit_var_decl(self, node):
         type_name = node.type_node.value
         type_symbol = self.current_scoped_symbol_table.lookup(type_name)
         var_name = node.var_node.value
@@ -92,10 +93,10 @@ class SemanticAnalyzer(NodeVisitor):
 
         self.current_scoped_symbol_table.define(VarSymbol(var_name, type_symbol))
 
-    def visit_Type(self, node):
+    def visit_type(self, node):
         pass
 
-    def visit_ProcedureDecl(self, node):
+    def visit_procedure_decl(self, node):
         proc_name = node.proc_name
         procedure_symbol = ProcedureSymbol(name=proc_name)
         self.current_scoped_symbol_table.define(procedure_symbol)
