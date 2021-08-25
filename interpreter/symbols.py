@@ -49,10 +49,11 @@ class ProcedureSymbol(Symbol):
 
 
 class ScopedSymbolTable:
-    def __init__(self, scope_name=None, scope_level=0):
+    def __init__(self, scope_name=None, scope_level=0, enclosing_scope=None):
         self._symbols = OrderedDict()
         self.scope_name = scope_name
         self.scope_level = scope_level
+        self.enclosing_scope = enclosing_scope
         self._init_builtins()
 
     def _init_builtins(self):

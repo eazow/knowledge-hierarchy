@@ -39,13 +39,21 @@ END.  {TestProcedure}
 def test_procedure_with_parameters():
     text = """
 program Main;
-   var x, y: real;
+  var x, y: real;
 
-   procedure Alpha(a : integer);
-      var y : integer;
-   begin
+  procedure p1(a : integer);
+    var y : integer;
+    begin
       x := a + x + y;
-   end;
+    end;
+  procedure p2(a, b : integer; c : real);
+    var x : integer;
+    begin
+    end;
+  procedure p3();
+    var x : integer; 
+    begin
+    end;
 
 begin { Main }
 

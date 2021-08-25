@@ -54,7 +54,11 @@ class SemanticAnalyzer(NodeVisitor):
         var_name = node.value
         var_symbol = self.current_scoped_symbol_table.lookup(var_name)
         if var_symbol is None:
-            raise NameError("Error: Symbol(identifier) not found '{var_name}'".format(var_name=var_name))
+            raise NameError(
+                "Error: Symbol(identifier) not found '{var_name}'".format(
+                    var_name=var_name
+                )
+            )
 
         return self.GLOBAL_SCOPE.get(var_name)
 
@@ -80,7 +84,11 @@ class SemanticAnalyzer(NodeVisitor):
         var_name = node.var_node.value
 
         if self.current_scoped_symbol_table.lookup(var_name):
-            raise NameError("Error: Duplicate identifier '{var_name}' found".format(var_name=var_name))
+            raise NameError(
+                "Error: Duplicate identifier '{var_name}' found".format(
+                    var_name=var_name
+                )
+            )
 
         self.current_scoped_symbol_table.define(VarSymbol(var_name, type_symbol))
 
@@ -90,6 +98,12 @@ class SemanticAnalyzer(NodeVisitor):
     def visit_ProcedureDecl(self, node):
         proc_name = node.proc_name
         procedure_symbol = ProcedureSymbol(name=proc_name)
-
         self.current_scoped_symbol_table.define(procedure_symbol)
-        
+
+        print("Enter scope: {proc_name}".format(proc_name=proc_name))
+        procedure_scoped_symbol_table = ScopedSymbolTable(
+            scope_name=proc_name,
+            scope_level=self.current_scoped_symbol_table.scope_level + 1,
+        )
+        self.current_scoped_symbol_table = procedure_scoped_symbol_table
+

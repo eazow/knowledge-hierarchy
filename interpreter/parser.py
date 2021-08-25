@@ -11,6 +11,7 @@ from nodes import (
     Type,
     Program,
     ProcedureDecl,
+    Param,
 )
 from tokens import (
     INTEGER,
@@ -193,8 +194,8 @@ class Parser:
 
     def declarations(self):
         """declarations : (VAR (variable_declaration SEMI)+)*
-                        | (PROCEDURE ID (LPAREN formal_parameter_list RPAREN)? SEMI block SEMI)*
-                        | empty
+        | (PROCEDURE ID (LPAREN formal_parameter_list RPAREN)? SEMI block SEMI)*
+        | empty
         """
         declarations = []
         if self.current_token.type == VAR:
@@ -208,9 +209,16 @@ class Parser:
             self.eat(PROCEDURE)
             proc_name = self.current_token.value
             self.eat(ID)
+            params = []
+
+            if self.current_token.type == LPAREN:
+                self.eat(LPAREN)
+                params = self.formal_params_list()
+                self.eat(RPAREN)
+
             self.eat(SEMI)
             block_node = self.block()
-            proc_decl = ProcedureDecl(proc_name, params=None, block_node=block_node)
+            proc_decl = ProcedureDecl(proc_name, params, block_node)
             declarations.append(proc_decl)
             self.eat(SEMI)
 
@@ -233,12 +241,38 @@ class Parser:
         return var_declarations
 
     def type_spec(self):
-        """
-        type_spec : INTEGER | REAL
-        """
+        """type_spec : INTEGER | REAL"""
         token = self.current_token
         if token.type == INTEGER:
             self.eat(INTEGER)
         else:
             self.eat(REAL)
         return Type(token)
+
+    def formal_params_list(self):
+        """formal_params_list: formal_params | formal_params SEMI formal_params"""
+        if self.current_token.type != ID:
+            return []
+
+        param_nodes = self.formal_params()
+
+        while self.current_token.type == SEMI:
+            self.eat(SEMI)
+            param_nodes.extend(self.formal_params())
+
+        return param_nodes
+
+    def formal_params(self):
+        """formal_params: ID (, ID)* : type_spec"""
+        param_tokens = [self.current_token]
+        self.eat(ID)
+
+        while self.current_token.type == COMMA:
+            self.eat(COMMA)
+            param_tokens.append(self.current_token)
+            self.eat(ID)
+
+        self.eat(COLON)
+        type_node = self.type_spec()
+
+        return [Param(Var(t), type_node) for t in param_tokens]
