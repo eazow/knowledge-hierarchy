@@ -70,5 +70,5 @@ class ScopedSymbolTable:
         self._symbols[symbol.name] = symbol
 
     def lookup(self, name):
-        print("Lookup: {}".format(name))
+        print("Lookup: {name}. (Scope name: {scope_name})".format(name=name, scope_name=self.scope_name))
         return self._symbols.get(name)

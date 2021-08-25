@@ -105,6 +105,20 @@ class SemanticAnalyzer(NodeVisitor):
         procedure_scoped_symbol_table = ScopedSymbolTable(
             scope_name=proc_name,
             scope_level=self.current_scoped_symbol_table.scope_level + 1,
+            enclosing_scope=self.current_scoped_symbol_table
         )
         self.current_scoped_symbol_table = procedure_scoped_symbol_table
+
+        for param in node.params:
+            param_type_symbol = self.current_scoped_symbol_table.lookup(param.type_node)
+            param_name = param.var_node.value
+            var_symbol = VarSymbol(param_name, param_type_symbol)
+            self.current_scoped_symbol_table.define(var_symbol)
+
+        self.visit(node.block_node)
+
+        print(procedure_scoped_symbol_table)
+
+        self.current_scoped_symbol_table = procedure_scoped_symbol_table.enclosing_scope
+        print("Leave scope: {proc_name}".format(proc_name=proc_name))
 
