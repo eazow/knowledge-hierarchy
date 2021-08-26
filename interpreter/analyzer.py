@@ -1,11 +1,12 @@
+from inflection import underscore
+
 from symbols import ScopedSymbolTable, VarSymbol, ProcedureSymbol
 from tokens import PLUS, MINUS, MUL, INTEGER_DIV, FLOAT_DIV
-from utils import camel_to_snake
 
 
 class NodeVisitor:
     def visit(self, node):
-        method_name = "visit_{}".format(camel_to_snake(type(node).__name__))
+        method_name = "visit_{}".format(underscore(type(node).__name__))
         visitor = getattr(self, method_name, self.generic_visit)
         return visitor(node)
 
