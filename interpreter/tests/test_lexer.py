@@ -1,3 +1,5 @@
+import pytest
+from errors import LexerError
 from tokens import (
     PLUS,
     EOF,
@@ -14,7 +16,9 @@ from tokens import (
     VAR,
     INTEGER,
     FLOAT_DIV,
-    INTEGER_DIV, REAL, PROGRAM,
+    INTEGER_DIV,
+    REAL,
+    PROGRAM,
 )
 from lexer import Lexer
 
@@ -67,3 +71,11 @@ def test_keyword_tokens():
     assert Lexer("PROGRAM").get_next_token() == Token(PROGRAM, "PROGRAM")
     assert Lexer("BEGIN").get_next_token() == Token(BEGIN, "BEGIN")
     assert Lexer("END").get_next_token() == Token(END, "END")
+
+
+def test_lexer_error():
+    with pytest.raises(LexerError) as exec_info:
+        Lexer("^").get_next_token()
+
+    # assert exec_info.value.args[0] == "Lexer error on '^' line: 1 column: 1"
+    # print(exec_info.value.args[0])

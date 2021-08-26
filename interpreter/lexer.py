@@ -1,3 +1,4 @@
+from errors import LexerError
 from keywords import RESERVED_KEYWORDS
 from tokens import (
     ID,
@@ -26,8 +27,13 @@ class Lexer:
         self.pos = 0
         self.current_char = self.text[self.pos]
 
+        self.lineno = 1
+        self.column = 1
+
     def error(self):
-        raise Exception("Invalid character")
+        message = f"Lexer error on '{self.current_char}' line: {self.lineno} column: {self.column}"
+
+        raise LexerError(message=message)
 
     def skip_whitespace(self):
         while self.current_char is not None and self.current_char.isspace():
@@ -35,11 +41,16 @@ class Lexer:
 
     def advance(self):
         """Advance the 'pos' pointer and set the 'current_char' variable."""
+        if self.current_char == "\n":
+            self.lineno += 1
+            self.column = 0
+
         self.pos += 1
         if self.pos > len(self.text) - 1:
             self.current_char = None  # Indicates end of input
         else:
             self.current_char = self.text[self.pos]
+            self.column += 1
 
     def peek(self):
         peek_pos = self.pos + 1
