@@ -69,6 +69,16 @@ class ScopedSymbolTable:
         print("Define: {}".format(symbol))
         self._symbols[symbol.name] = symbol
 
-    def lookup(self, name):
+    def lookup(self, name, current_scope_only=False):
         print("Lookup: {name}. (Scope name: {scope_name})".format(name=name, scope_name=self.scope_name))
-        return self._symbols.get(name)
+        symbol = self._symbols.get(name)
+
+        if symbol:
+            return symbol
+
+        if current_scope_only:
+            return None
+
+        # recursively go up the chain and lookup the name
+        if self.enclosing_scope:
+            return self.enclosing_scope.lookup(name)

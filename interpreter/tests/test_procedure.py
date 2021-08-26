@@ -1,3 +1,4 @@
+import pytest
 from interpreter import Interpreter
 from lexer import Lexer
 from parser import Parser
@@ -44,7 +45,6 @@ program Main;
   procedure p1(a : integer);
     var y : integer;
     begin
-      x := a + x + y;
     end;
   procedure p2(a, b : integer; c : real);
     var x : integer;
@@ -61,3 +61,25 @@ end.  { Main }
 """
     interpreter = Interpreter(Parser(Lexer(text)))
     interpreter.interpret()
+
+
+def test_duplicate_identifier_in_procedure():
+    text = """
+program Main;
+   var x, y: real;
+
+   procedure Alpha(a : integer);
+      var y : integer;
+          a : real;  { ERROR here! }
+   begin
+   end;
+
+begin { Main }
+
+end.  { Main }
+"""
+    with pytest.raises(Exception) as exec_info:
+        Interpreter(Parser(Lexer(text))).interpret()
+
+    assert exec_info.typename == "NameError"
+    assert exec_info.value.args[0] == "Error: Duplicate identifier 'a' found"

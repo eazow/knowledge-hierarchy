@@ -71,7 +71,6 @@ class SemanticAnalyzer(NodeVisitor):
 
         self.visit(node.block)
 
-        print(global_scope)
         print("Leave scope: global")
 
     def visit_block(self, node):
@@ -85,7 +84,7 @@ class SemanticAnalyzer(NodeVisitor):
         type_symbol = self.current_scoped_symbol_table.lookup(type_name)
         var_name = node.var_node.value
 
-        if self.current_scoped_symbol_table.lookup(var_name):
+        if self.current_scoped_symbol_table.lookup(var_name, current_scope_only=True):
             raise NameError(
                 "Error: Duplicate identifier '{var_name}' found".format(
                     var_name=var_name
@@ -111,14 +110,12 @@ class SemanticAnalyzer(NodeVisitor):
         self.current_scoped_symbol_table = procedure_scoped_symbol_table
 
         for param in node.params:
-            param_type_symbol = self.current_scoped_symbol_table.lookup(param.type_node)
+            param_type_symbol = self.current_scoped_symbol_table.lookup(param.type_node.value)
             param_name = param.var_node.value
             var_symbol = VarSymbol(param_name, param_type_symbol)
             self.current_scoped_symbol_table.define(var_symbol)
 
         self.visit(node.block_node)
-
-        print(procedure_scoped_symbol_table)
 
         self.current_scoped_symbol_table = procedure_scoped_symbol_table.enclosing_scope
         print("Leave scope: {proc_name}".format(proc_name=proc_name))
