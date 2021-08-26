@@ -87,10 +87,9 @@ BEGIN
    a := 2 + b;
 END.
 """
-    with pytest.raises(Exception) as exec_info:
+    with pytest.raises(NameError) as exec_info:
         Interpreter(Parser(Lexer(text))).interpret()
 
-    assert exec_info.typename == "NameError"
     assert exec_info.value.args[0] == "Error: Symbol(identifier) not found 'b'"
 
 
@@ -105,10 +104,9 @@ BEGIN
 x := x + y;
 END.
 """
-    with pytest.raises(Exception) as exec_info:
+    with pytest.raises(NameError) as exec_info:
         Interpreter(Parser(Lexer(text))).interpret()
 
-    assert exec_info.typename == "NameError"
     assert exec_info.value.args[0] == "Error: Duplicate identifier 'y' found"
 
 
