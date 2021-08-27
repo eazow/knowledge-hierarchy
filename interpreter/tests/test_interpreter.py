@@ -1,4 +1,5 @@
 import pytest
+from errors import SemanticError
 from interpreter import Interpreter
 from lexer import Lexer
 from parser import Parser
@@ -87,10 +88,13 @@ BEGIN
    a := 2 + b;
 END.
 """
-    with pytest.raises(NameError) as exec_info:
+    with pytest.raises(SemanticError) as exec_info:
         Interpreter(Parser(Lexer(text))).interpret()
 
-    assert exec_info.value.args[0] == "Error: Symbol(identifier) not found 'b'"
+    assert (
+        exec_info.value.message
+        == "SemanticError: Identifier not found -> Token(TokenType.ID, b, position=6:13)"
+    )
 
 
 def test_duplicate_identifier():
@@ -104,10 +108,13 @@ BEGIN
 x := x + y;
 END.
 """
-    with pytest.raises(NameError) as exec_info:
+    with pytest.raises(SemanticError) as exec_info:
         Interpreter(Parser(Lexer(text))).interpret()
 
-    assert exec_info.value.args[0] == "Error: Duplicate identifier 'y' found"
+    assert (
+        exec_info.value.message
+        == "SemanticError: Duplicate identifier found -> Token(TokenType.ID, y, position=4:5)"
+    )
 
 
 def test_case_insensitive():

@@ -1,4 +1,5 @@
 import pytest
+from errors import SemanticError
 from interpreter import Interpreter
 from lexer import Lexer
 from parser import Parser
@@ -78,8 +79,10 @@ begin { Main }
 
 end.  { Main }
 """
-    with pytest.raises(Exception) as exec_info:
+    with pytest.raises(SemanticError) as exec_info:
         Interpreter(Parser(Lexer(text))).interpret()
 
-    assert exec_info.typename == "NameError"
-    assert exec_info.value.args[0] == "Error: Duplicate identifier 'a' found"
+    assert (
+        exec_info.value.message
+        == "SemanticError: Duplicate identifier found -> Token(TokenType.ID, a, position=6:11)"
+    )

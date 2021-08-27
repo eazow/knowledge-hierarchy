@@ -5,7 +5,7 @@ from tokens import Token, TokenType
 
 class Lexer:
     def __init__(self, text):
-        self.text = text
+        self.text = text.strip()
         self.pos = 0
         self.current_char = self.text[self.pos]
 
@@ -44,6 +44,8 @@ class Lexer:
     def number(self):
         """Return a (multidigit) integer or float consumed from the input."""
         result = ""
+        token = Token(type=None, value=None, lineno=self.lineno, column=self.column)
+
         while self.current_char is not None and self.current_char.isdigit():
             result += self.current_char
             self.advance()
@@ -55,39 +57,48 @@ class Lexer:
             while self.current_char is not None and self.current_char.isdigit():
                 result += self.current_char
                 self.advance()
-            token = Token(TokenType.REAL_CONST, float(result))
+
+            token.type = TokenType.REAL_CONST
+            token.value = float(result)
         else:
-            token = Token(TokenType.INTEGER_CONST, int(result))
+            token.type = TokenType.INTEGER_CONST
+            token.value = int(result)
 
         return token
 
     def _id(self):
         """Handle identifiers and reserved keywords"""
-        result = ""
+        token = Token(type=None, value=None, lineno=self.lineno, column=self.column)
+
+        value = ""
         while self.current_char is not None and self.current_char.isalnum():
-            result += self.current_char
+            value += self.current_char
             self.advance()
 
-        return RESERVED_KEYWORDS.get(result.upper(), Token(TokenType.ID, result))
+        token.type = RESERVED_KEYWORDS.get(value.upper(), TokenType.ID)
+        token.value = value
+
+        return token
 
     def get_next_token(self):
         while self.current_char is not None:
-            if self.current_char.isalpha():
-                return self._id()
-
-            if self.current_char == ":" and self.peek() == "=":
-                self.advance()
-                self.advance()
-                return Token(TokenType.ASSIGN, ":=")
+            if self.current_char.isspace():
+                self.skip_whitespace()
+                continue
 
             if self.current_char == "{":
                 self.advance()
                 self.skip_comment()
                 continue
 
-            if self.current_char.isspace():
-                self.skip_whitespace()
-                continue
+            if self.current_char == ":" and self.peek() == "=":
+                token = Token(TokenType.ASSIGN, TokenType.ASSIGN.value, lineno=self.lineno, column=self.column)
+                self.advance()
+                self.advance()
+                return token
+
+            if self.current_char.isalpha():
+                return self._id()
 
             if self.current_char.isdigit():
                 return self.number()

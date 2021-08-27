@@ -57,8 +57,8 @@ class ScopedSymbolTable:
         self._init_builtins()
 
     def _init_builtins(self):
-        self.define(BuiltInSymbol(TokenType.INTEGER))
-        self.define(BuiltInSymbol(TokenType.REAL))
+        self.define(BuiltInSymbol(TokenType.INTEGER.value))
+        self.define(BuiltInSymbol(TokenType.REAL.value))
 
     def __str__(self):
         return "Symbols: {}".format(self._symbols.values())

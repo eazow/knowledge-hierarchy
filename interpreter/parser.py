@@ -92,7 +92,6 @@ class Parser:
         return node
 
     def parse(self):
-        # return self.expr()
         node = self.program()
         if self.current_token.type != TokenType.EOF:
             self.error()

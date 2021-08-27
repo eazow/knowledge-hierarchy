@@ -11,7 +11,7 @@ def test_tokens():
     assert lexer.get_next_token() == Token(TokenType.INTEGER_CONST, 3)
     assert lexer.get_next_token() == Token(TokenType.PLUS, "+")
     assert lexer.get_next_token() == Token(TokenType.INTEGER_CONST, 5)
-    assert lexer.get_next_token() == Token(TokenType.EOF, None)
+    assert lexer.get_next_token() == Token(TokenType.EOF, TokenType.EOF.value)
 
 
 def test_tokens_with_whitespaces():
@@ -20,20 +20,20 @@ def test_tokens_with_whitespaces():
     assert lexer.get_next_token() == Token(TokenType.INTEGER_CONST, 3)
     assert lexer.get_next_token() == Token(TokenType.PLUS, "+")
     assert lexer.get_next_token() == Token(TokenType.INTEGER_CONST, 5)
-    assert lexer.get_next_token() == Token(TokenType.EOF, None)
+    assert lexer.get_next_token() == Token(TokenType.EOF, TokenType.EOF.value)
 
 
 def test_statement():
     lexer = Lexer("BEGIN a := 2; END.")
 
-    assert lexer.get_next_token() == Token(TokenType.BEGIN, "BEGIN")
+    assert lexer.get_next_token() == Token(TokenType.BEGIN, TokenType.BEGIN.value)
     assert lexer.get_next_token() == Token(TokenType.ID, "a")
-    assert lexer.get_next_token() == Token(TokenType.ASSIGN, ":=")
+    assert lexer.get_next_token() == Token(TokenType.ASSIGN, TokenType.ASSIGN.value)
     assert lexer.get_next_token() == Token(TokenType.INTEGER_CONST, 2)
-    assert lexer.get_next_token() == Token(TokenType.SEMI, ";")
-    assert lexer.get_next_token() == Token(TokenType.END, "END")
-    assert lexer.get_next_token() == Token(TokenType.DOT, ".")
-    assert lexer.get_next_token() == Token(TokenType.EOF, None)
+    assert lexer.get_next_token() == Token(TokenType.SEMI, TokenType.SEMI.value)
+    assert lexer.get_next_token() == Token(TokenType.END, TokenType.END.value)
+    assert lexer.get_next_token() == Token(TokenType.DOT, TokenType.DOT.value)
+    assert lexer.get_next_token() == Token(TokenType.EOF, TokenType.EOF.value)
 
 
 def test_symbol_tokens():
