@@ -1,12 +1,12 @@
-from tokens import Token, BEGIN, END, VAR, INTEGER, REAL, PROGRAM, INTEGER_DIV, PROCEDURE
+from tokens import Token, TokenType
 
 RESERVED_KEYWORDS = {
-    "PROGRAM": Token(PROGRAM, "PROGRAM"),
-    "VAR": Token(VAR, "VAR"),
-    "DIV": Token(INTEGER_DIV, "DIV"),
-    "INTEGER": Token(INTEGER, "INTEGER"),
-    "REAL": Token(REAL, "REAL"),
-    "BEGIN": Token(BEGIN, "BEGIN"),
-    "END": Token(END, "END"),
-    "PROCEDURE": Token(PROCEDURE, "PROCEDURE")
+    "PROGRAM": Token(TokenType.PROGRAM, "PROGRAM"),
+    "VAR": Token(TokenType.VAR, "VAR"),
+    "DIV": Token(TokenType.INTEGER_DIV, "DIV"),
+    "INTEGER": Token(TokenType.INTEGER, "INTEGER"),
+    "REAL": Token(TokenType.REAL, "REAL"),
+    "BEGIN": Token(TokenType.BEGIN, "BEGIN"),
+    "END": Token(TokenType.END, "END"),
+    "PROCEDURE": Token(TokenType.PROCEDURE, "PROCEDURE")
 }

@@ -1,24 +1,6 @@
 from errors import LexerError
 from keywords import RESERVED_KEYWORDS
-from tokens import (
-    ID,
-    ASSIGN,
-    SEMI,
-    DOT,
-    INTEGER,
-    PLUS,
-    MINUS,
-    MUL,
-    DIV,
-    LPAREN,
-    RPAREN,
-    EOF,
-    Token,
-    REAL_CONST,
-    INTEGER_CONST,
-    COLON,
-    FLOAT_DIV, COMMA,
-)
+from tokens import Token, TokenType
 
 
 class Lexer:
@@ -73,9 +55,9 @@ class Lexer:
             while self.current_char is not None and self.current_char.isdigit():
                 result += self.current_char
                 self.advance()
-            token = Token(REAL_CONST, float(result))
+            token = Token(TokenType.REAL_CONST, float(result))
         else:
-            token = Token(INTEGER_CONST, int(result))
+            token = Token(TokenType.INTEGER_CONST, int(result))
 
         return token
 
@@ -98,6 +80,11 @@ class Lexer:
                 self.advance()
                 return Token(ASSIGN, ":=")
 
+            if self.current_char == "{":
+                self.advance()
+                self.skip_comment()
+                continue
+
             if self.current_char.isspace():
                 self.skip_whitespace()
                 continue
@@ -105,54 +92,16 @@ class Lexer:
             if self.current_char.isdigit():
                 return self.number()
 
-            if self.current_char == "+":
+            try:
+                token_type = TokenType(self.current_char)
+            except ValueError:
+                self.error()
+            else:
+                token = Token(type=token_type, value=token_type.value, lineno=self.lineno, column=self.column)
                 self.advance()
-                return Token(PLUS, "+")
+                return token
 
-            if self.current_char == "-":
-                self.advance()
-                return Token(MINUS, "-")
-
-            if self.current_char == "*":
-                self.advance()
-                return Token(MUL, "*")
-
-            if self.current_char == "/":
-                self.advance()
-                return Token(FLOAT_DIV, "/")
-
-            if self.current_char == "(":
-                self.advance()
-                return Token(LPAREN, "(")
-
-            if self.current_char == ")":
-                self.advance()
-                return Token(RPAREN, ")")
-
-            if self.current_char == ",":
-                self.advance()
-                return Token(COMMA, ",")
-
-            if self.current_char == ";":
-                self.advance()
-                return Token(SEMI, ";")
-
-            if self.current_char == ".":
-                self.advance()
-                return Token(DOT, ".")
-
-            if self.current_char == ":":
-                self.advance()
-                return Token(COLON, ":")
-
-            if self.current_char == "{":
-                self.advance()
-                self.skip_comment()
-                continue
-
-            self.error()
-
-        return Token(EOF, None)
+        return Token(type=TokenType.EOF, value=TokenType.EOF.value, lineno=self.lineno, column=self.column)
 
     def skip_comment(self):
         while self.current_char is not None and self.current_char != "}":
