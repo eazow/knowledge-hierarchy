@@ -1,7 +1,8 @@
+from errors import SemanticError, ErrorCode
 from inflection import underscore
 
 from symbols import ScopedSymbolTable, VarSymbol, ProcedureSymbol
-from tokens import PLUS, MINUS, MUL, INTEGER_DIV, FLOAT_DIV
+from tokens import TokenType
 
 
 class NodeVisitor:
@@ -20,15 +21,15 @@ class SemanticAnalyzer(NodeVisitor):
         self.current_scoped_symbol_table = None
 
     def visit_bin_op(self, node):
-        if node.op.type == PLUS:
+        if node.op.type == TokenType.PLUS:
             return self.visit(node.left) + self.visit(node.right)
-        elif node.op.type == MINUS:
+        elif node.op.type == TokenType.MINUS:
             return self.visit(node.left) - self.visit(node.right)
-        elif node.op.type == MUL:
+        elif node.op.type == TokenType.MUL:
             return self.visit(node.left) * self.visit(node.right)
-        elif node.op.type == INTEGER_DIV:
+        elif node.op.type == TokenType.INTEGER_DIV:
             return self.visit(node.left) // self.visit(node.right)
-        elif node.op.type == FLOAT_DIV:
+        elif node.op.type == TokenType.FLOAT_DIV:
             return self.visit(node.left) / float(self.visit(node.right))
 
     def visit_num(self, node):
@@ -36,9 +37,9 @@ class SemanticAnalyzer(NodeVisitor):
 
     def visit_unary_op(self, node):
         op = node.token.type
-        if op == PLUS:
+        if op == TokenType.PLUS:
             return self.visit(node.node)
-        elif op == MINUS:
+        elif op == TokenType.MINUS:
             return -self.visit(node.node)
 
     def visit_compound(self, node):
@@ -56,11 +57,7 @@ class SemanticAnalyzer(NodeVisitor):
         var_name = node.value
         var_symbol = self.current_scoped_symbol_table.lookup(var_name)
         if var_symbol is None:
-            raise NameError(
-                "Error: Symbol(identifier) not found '{var_name}'".format(
-                    var_name=var_name
-                )
-            )
+            self.error(error_code=ErrorCode.ID_NOT_FOUND, token=node.token)
 
         return self.GLOBAL_SCOPE.get(var_name)
 
@@ -85,11 +82,7 @@ class SemanticAnalyzer(NodeVisitor):
         var_name = node.var_node.value
 
         if self.current_scoped_symbol_table.lookup(var_name, current_scope_only=True):
-            raise NameError(
-                "Error: Duplicate identifier '{var_name}' found".format(
-                    var_name=var_name
-                )
-            )
+            self.error(ErrorCode.DUPLICATE_ID, token=node.var_node.token)
 
         self.current_scoped_symbol_table.define(VarSymbol(var_name, type_symbol))
 
@@ -120,3 +113,5 @@ class SemanticAnalyzer(NodeVisitor):
         self.current_scoped_symbol_table = procedure_scoped_symbol_table.enclosing_scope
         print("Leave scope: {proc_name}".format(proc_name=proc_name))
 
+    def error(self, error_code, token):
+        raise SemanticError(error_code=error_code, token=token, message=f"{error_code.value} -> {token}")

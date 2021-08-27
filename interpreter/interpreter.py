@@ -1,6 +1,4 @@
-from parser import Parser
 from analyzer import NodeVisitor, SemanticAnalyzer
-from lexer import Lexer
 
 
 class Interpreter(NodeVisitor):

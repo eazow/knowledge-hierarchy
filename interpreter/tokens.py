@@ -11,7 +11,7 @@ class TokenType(Enum):
     SEMI = ";"
     DOT = "."
     COLON = ":"
-    COMMA = ""
+    COMMA = ","
     EOF = "EOF"
     # reserved words
     PROGRAM = "PROGRAM"

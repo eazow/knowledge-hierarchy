@@ -68,7 +68,7 @@ class Lexer:
             result += self.current_char
             self.advance()
 
-        return RESERVED_KEYWORDS.get(result.upper(), Token(ID, result))
+        return RESERVED_KEYWORDS.get(result.upper(), Token(TokenType.ID, result))
 
     def get_next_token(self):
         while self.current_char is not None:
@@ -78,7 +78,7 @@ class Lexer:
             if self.current_char == ":" and self.peek() == "=":
                 self.advance()
                 self.advance()
-                return Token(ASSIGN, ":=")
+                return Token(TokenType.ASSIGN, ":=")
 
             if self.current_char == "{":
                 self.advance()

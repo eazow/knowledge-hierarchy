@@ -1,6 +1,6 @@
 from collections import OrderedDict
 
-from tokens import INTEGER, REAL
+from tokens import TokenType
 
 
 class Symbol:
@@ -57,8 +57,8 @@ class ScopedSymbolTable:
         self._init_builtins()
 
     def _init_builtins(self):
-        self.define(BuiltInSymbol(INTEGER))
-        self.define(BuiltInSymbol(REAL))
+        self.define(BuiltInSymbol(TokenType.INTEGER))
+        self.define(BuiltInSymbol(TokenType.REAL))
 
     def __str__(self):
         return "Symbols: {}".format(self._symbols.values())
@@ -70,7 +70,11 @@ class ScopedSymbolTable:
         self._symbols[symbol.name] = symbol
 
     def lookup(self, name, current_scope_only=False):
-        print("Lookup: {name}. (Scope name: {scope_name})".format(name=name, scope_name=self.scope_name))
+        print(
+            "Lookup: {name}. (Scope name: {scope_name})".format(
+                name=name, scope_name=self.scope_name
+            )
+        )
         symbol = self._symbols.get(name)
 
         if symbol:
