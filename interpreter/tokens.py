@@ -1,74 +1,49 @@
-# Token types
-#
-# EOF (end-of-file) token is used to indicate that
-# there is no more input left for lexical analysis
-(
-    INTEGER,
-    PLUS,
-    MINUS,
-    MUL,
-    DIV,
-    LPAREN,
-    RPAREN,
-    EOF,
-    BEGIN,
-    END,
-    ID,
-    ASSIGN,
-    SEMI,
-    DOT,
-    PROGRAM,
-    VAR,
-    REAL,
-    REAL_CONST,
-    INTEGER_CONST,
-    COLON,
-    COMMA,
-    INTEGER_DIV,
-    FLOAT_DIV,
-    PROCEDURE,
-) = (
-    "INTEGER",
-    "PLUS",
-    "MINUS",
-    "MUL",
-    "DIV",
-    "(",
-    ")",
-    "EOF",
-    "BEGIN",
-    "END",
-    "ID",
-    "ASSIGN",
-    "SEMI",
-    "DOT",
-    "PROGRAM",
-    "VAR",
-    "REAL",
-    "REAL_CONST",
-    "INTEGER_CONST",
-    "COLON",
-    "COMMA",
-    "INTEGER_DIV",
-    "FLOAT_DIV",
-    "PROCEDURE",
-)
+from enum import Enum
+
+
+class TokenType(Enum):
+    PLUS = "+"
+    MINUS = "-"
+    MUL = "*"
+    FLOAT_DIV = "/"
+    LPAREN = "("
+    RPAREN = ")"
+    SEMI = ";"
+    DOT = "."
+    COLON = ":"
+    COMMA = ""
+    EOF = "EOF"
+    # reserved words
+    PROGRAM = "PROGRAM"
+    PROCEDURE = "PROCEDURE"
+    VAR = "VAR"
+    INTEGER = "INTEGER"
+    REAL = "REAL"
+    BEGIN = "BEGIN"
+    END = "END"
+    INTEGER_DIV = "DIV"
+    # misc
+    ID = "ID"
+    ASSIGN = ":="
+    REAL_CONST = "REAL_CONST"
+    INTEGER_CONST = "INTEGER_CONST"
 
 
 class Token(object):
-    def __init__(self, type, value):
+    def __init__(self, type, value, lineno=None, column=None):
         self.type = type
         self.value = value
+        self.lineno = lineno
+        self.column = column
 
     def __str__(self):
         """String representation of the class instance.
 
-        Examples:
-            Token(INTEGER, 3)
-            Token(PLUS, '+')
-            Token(MUL, '*')
+        Example:
+            >>> Token(TokenType.INTEGER, 7, lineno=5, column=10)
+            Token(TokenType.INTEGER, 7, position=5:10)
         """
-        return "Token({type}, {value})".format(type=self.type, value=repr(self.value))
+        return f"Token({self.type}, {self.value}, position={self.lineno}:{self.column})"
 
     def __repr__(self):
         return self.__str__()
