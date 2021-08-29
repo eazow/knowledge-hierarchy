@@ -57,7 +57,7 @@ program Main;
     end;
 
 begin { Main }
-
+  p2(1+2, 3)
 end.  { Main }
 """
     interpreter = Interpreter(Parser(Lexer(text)))

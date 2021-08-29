@@ -80,3 +80,12 @@ class Param(AST):
     def __init__(self, var_node, type_node):
         self.var_node = var_node
         self.type_node = type_node
+
+
+class ProcedureCall(AST):
+    def __init__(self, proc_name, actual_params, token):
+        self.proc_name = proc_name
+        self.actual_params = actual_params
+        self.token = token
+
+
