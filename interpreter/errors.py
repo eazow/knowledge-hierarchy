@@ -4,7 +4,7 @@ from enum import Enum
 class ErrorCode(Enum):
     UNEXPECTED_TOKEN = "Unexpected token"
     ID_NOT_FOUND = "Identifier not found"
-    DUPLICATE_ID = "Duplicate id found"
+    DUPLICATE_ID = "Duplicate identifier found"
 
 
 class Error(Exception):
@@ -12,7 +12,6 @@ class Error(Exception):
         self.error_code = error_code
         self.token = token
         self.message = f"{self.__class__.__name__}: {message}"
-        self.message = "aaa"
 
 
 class LexerError(Error):
