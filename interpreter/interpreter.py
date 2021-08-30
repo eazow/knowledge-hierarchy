@@ -4,7 +4,6 @@ from analyzer import NodeVisitor, SemanticAnalyzer
 class Interpreter(NodeVisitor):
     def __init__(self, parser):
         self.parser = parser
-
         self.semantic_analyzer = SemanticAnalyzer()
 
     def interpret(self):

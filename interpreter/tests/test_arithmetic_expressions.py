@@ -1,8 +1,18 @@
 import pytest
+from errors import ParserError
 
 from interpreter import Interpreter
 from lexer import Lexer
 from parser import Parser
+
+
+template = """
+program TestArithmeticExpressions;
+var result: integer;
+begin
+    result = {};
+end.
+"""
 
 
 def test_plus():
@@ -21,10 +31,10 @@ def test_multi_digits_plus():
 
 
 def test_invalid_syntax():
-    with pytest.raises(Exception) as exec_info:
+    with pytest.raises(ParserError) as exec_info:
         Interpreter(Parser(Lexer("126+"))).expr()
 
-    assert str(exec_info.value) == "Invalid syntax"
+    assert exec_info.value.message == "ParserError: Invalid syntax -> Token(TokenType.EOF, EOF, position=1:4)"
 
 
 def test_plus_and_minus():

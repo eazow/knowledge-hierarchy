@@ -61,7 +61,7 @@ class Parser:
             node = self.variable()
             return node
 
-        self.error()
+        self.error(error_code=ErrorCode.INVALID_SYNTAX, token=token)
 
     def term(self):
         """term : factor ((MUL | INTEGER_DIV | FLOAT_DIV) factor)*"""
