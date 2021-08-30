@@ -113,5 +113,9 @@ class SemanticAnalyzer(NodeVisitor):
         self.current_scoped_symbol_table = procedure_scoped_symbol_table.enclosing_scope
         print("Leave scope: {proc_name}".format(proc_name=proc_name))
 
+    def visit_procedure_call(self, node):
+        for param in node.actual_params:
+            self.visit(param)
+
     def error(self, error_code, token):
         raise SemanticError(error_code=error_code, token=token, message=f"{error_code.value} -> {token}")

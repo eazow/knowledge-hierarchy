@@ -12,7 +12,7 @@ from nodes import (
     Type,
     Program,
     ProcedureDecl,
-    Param,
+    Param, ProcedureCall,
 )
 from tokens import TokenType
 
@@ -136,13 +136,17 @@ class Parser:
     def statement(self):
         """
         statement : compound_statement
+                  | proccall_statement
                   | assignment_statement
                   | empty
         """
         if self.current_token.type == TokenType.BEGIN:
             node = self.compound_statement()
         elif self.current_token.type == TokenType.ID:
-            node = self.assign_statement()
+            if self.lexer.current_char == TokenType.LPAREN.value:
+                node = self.proccall_statement()
+            else:
+                node = self.assign_statement()
         else:
             node = self.empty()
         return node
@@ -256,3 +260,24 @@ class Parser:
         type_node = self.type_spec()
 
         return [Param(Var(t), type_node) for t in param_tokens]
+
+    def proccall_statement(self):
+        """proccall_statement: ID LPAREN (expr (COMMA expr)*)? RPAREN"""
+        token = self.current_token
+
+        proc_name = token.value
+        self.eat(TokenType.ID)
+        self.eat(TokenType.LPAREN)
+
+        actual_params = []
+
+        if self.current_token.type != TokenType.RPAREN:
+            actual_params.append(self.expr())
+
+        while self.current_token.type == TokenType.COMMA:
+            self.eat(TokenType.COMMA)
+            actual_params.append(self.expr())
+
+        self.eat(TokenType.RPAREN)
+
+        return ProcedureCall(proc_name, actual_params, token)
