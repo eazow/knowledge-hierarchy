@@ -12,7 +12,8 @@ from nodes import (
     Type,
     Program,
     ProcedureDecl,
-    Param, ProcedureCall,
+    Param,
+    ProcedureCall,
 )
 from tokens import TokenType
 
@@ -106,7 +107,6 @@ class Parser:
 
         block_node = self.block()
         program_node = Program(prog_name, block_node)
-        # node = self.compound_statement()
         self.eat(TokenType.DOT)
         return program_node
 

@@ -87,5 +87,3 @@ class ProcedureCall(AST):
         self.proc_name = proc_name
         self.actual_params = actual_params
         self.token = token
-
-

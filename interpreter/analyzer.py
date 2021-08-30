@@ -1,5 +1,6 @@
 from errors import SemanticError, ErrorCode
 from inflection import underscore
+from stack import CallStack
 
 from symbols import ScopedSymbolTable, VarSymbol, ProcedureSymbol
 from tokens import TokenType
@@ -17,7 +18,6 @@ class NodeVisitor:
 
 class SemanticAnalyzer(NodeVisitor):
     def __init__(self):
-        self.GLOBAL_SCOPE = {}
         self.current_scoped_symbol_table = None
 
     def visit_bin_op(self, node):
