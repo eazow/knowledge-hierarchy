@@ -35,14 +35,15 @@ class VarSymbol(Symbol):
 
 
 class ProcedureSymbol(Symbol):
-    def __init__(self, name, params=None):
+    def __init__(self, name, formal_params=None):
         super(ProcedureSymbol, self).__init__(name)
 
-        self.params = params if params else []
+        self.formal_params = formal_params if formal_params else []
+        self.block_node = None
 
     def __str__(self):
         return "<{class_name}(name={name}, parameters={params})>".format(
-            class_name=self.__class__.__name__, name=self.name, params=self.params
+            class_name=self.__class__.__name__, name=self.name, params=self.formal_params
         )
 
     __repr__ = __str__

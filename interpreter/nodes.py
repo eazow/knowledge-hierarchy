@@ -70,9 +70,9 @@ class Type(AST):
 
 
 class ProcedureDecl(AST):
-    def __init__(self, proc_name, params, block_node):
+    def __init__(self, proc_name, formal_params, block_node):
         self.proc_name = proc_name
-        self.params = params
+        self.formal_params = formal_params
         self.block_node = block_node
 
 
@@ -87,3 +87,5 @@ class ProcedureCall(AST):
         self.proc_name = proc_name
         self.actual_params = actual_params
         self.token = token
+
+        self.procedure_symbol = None

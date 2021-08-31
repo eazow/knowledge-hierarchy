@@ -1,5 +1,6 @@
 from analyzer import NodeVisitor, SemanticAnalyzer
-from stack import ActivationRecord, ARType, CallStack
+from stack import CallStack
+from activation_record import ARType, ActivationRecord
 
 
 class Interpreter(NodeVisitor):
@@ -38,3 +39,24 @@ class Interpreter(NodeVisitor):
         var_name = node.name
         ar = self.call_stack.peek()
         return ar.get(var_name)
+
+    def visit_procedure_call(self, node):
+        proc_name = node.proc_name
+
+        ar = ActivationRecord(name=proc_name, type=ARType.PROCEDURE, nesting_level=2)
+
+        procedure_symbol = node.procedure_symbol
+
+        formal_param_symbols = procedure_symbol.formal_params
+        actual_params = node.actual_params
+
+        for formal_param_symbol, actual_param in zip(formal_param_symbols, actual_params):
+            ar[formal_param_symbol.name] = self.visit(actual_param)
+
+        self.call_stack.push(ar)
+
+        result = self.visit(procedure_symbol.block_node)
+
+        self.call_stack.pop()
+
+        return result

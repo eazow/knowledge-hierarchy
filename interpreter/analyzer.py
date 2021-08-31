@@ -102,13 +102,15 @@ class SemanticAnalyzer(NodeVisitor):
         )
         self.current_scoped_symbol_table = procedure_scoped_symbol_table
 
-        for param in node.params:
+        for param in node.formal_params:
             param_type_symbol = self.current_scoped_symbol_table.lookup(param.type_node.value)
             param_name = param.var_node.value
             var_symbol = VarSymbol(param_name, param_type_symbol)
             self.current_scoped_symbol_table.define(var_symbol)
+            procedure_symbol.formal_params.append(var_symbol)
 
         self.visit(node.block_node)
+        procedure_symbol.block_node = node.block_node
 
         self.current_scoped_symbol_table = procedure_scoped_symbol_table.enclosing_scope
         print("Leave scope: {proc_name}".format(proc_name=proc_name))
@@ -116,6 +118,8 @@ class SemanticAnalyzer(NodeVisitor):
     def visit_procedure_call(self, node):
         for param in node.actual_params:
             self.visit(param)
+
+        node.procedure_symbol = self.current_scoped_symbol_table.lookup(node.proc_name)
 
     def error(self, error_code, token):
         raise SemanticError(error_code=error_code, token=token, message=f"{error_code.value} -> {token}")
