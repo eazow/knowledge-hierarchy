@@ -50,6 +50,7 @@ program Main;
   procedure p2(a, b : integer; c : real);
     var x : integer;
     begin
+        x := a + b + c
     end;
   procedure p3();
     var x : integer; 
