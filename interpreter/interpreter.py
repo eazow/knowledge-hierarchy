@@ -1,6 +1,7 @@
 from analyzer import NodeVisitor, SemanticAnalyzer
 from stack import CallStack
 from activation_record import ARType, ActivationRecord
+from tokens import TokenType
 
 
 class Interpreter(NodeVisitor):
@@ -27,16 +28,16 @@ class Interpreter(NodeVisitor):
 
         self.visit(node.block)
 
-        self.call_stack.pop()
+        # self.call_stack.pop()
 
     def visit_assign(self, node):
-        var_name = node.left.name
+        var_name = node.left.value
         var_value = self.visit(node.right)
         ar = self.call_stack.peek()
         ar[var_name] = var_value
 
     def visit_var(self, node):
-        var_name = node.name
+        var_name = node.value
         ar = self.call_stack.peek()
         return ar.get(var_name)
 
@@ -60,3 +61,22 @@ class Interpreter(NodeVisitor):
         self.call_stack.pop()
 
         return result
+
+    def visit_bin_op(self, node):
+        if node.op.type == TokenType.PLUS:
+            return self.visit(node.left) + self.visit(node.right)
+        elif node.op.type == TokenType.MINUS:
+            return self.visit(node.left) - self.visit(node.right)
+        elif node.op.type == TokenType.MUL:
+            return self.visit(node.left) * self.visit(node.right)
+        elif node.op.type == TokenType.INTEGER_DIV:
+            return self.visit(node.left) // self.visit(node.right)
+        elif node.op.type == TokenType.FLOAT_DIV:
+            return self.visit(node.left) / float(self.visit(node.right))
+
+    def visit_unary_op(self, node):
+        op = node.token.type
+        if op == TokenType.PLUS:
+            return self.visit(node.node)
+        elif op == TokenType.MINUS:
+            return -self.visit(node.node)

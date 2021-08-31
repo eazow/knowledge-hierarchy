@@ -34,7 +34,7 @@ END.  {TestProcedure}
     interpreter = Interpreter(Parser(Lexer(text)))
     interpreter.interpret()
 
-    results = interpreter.semantic_analyzer.GLOBAL_SCOPE
+    results = interpreter.call_stack.peek()
     assert 10 == results.get("a")
 
 
@@ -57,7 +57,7 @@ program Main;
     end;
 
 begin { Main }
-  p2(1+2, 3)
+  p2(1+2, 3, 6)
 end.  { Main }
 """
     interpreter = Interpreter(Parser(Lexer(text)))

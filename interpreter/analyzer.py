@@ -1,9 +1,7 @@
 from errors import SemanticError, ErrorCode
 from inflection import underscore
-from stack import CallStack
 
 from symbols import ScopedSymbolTable, VarSymbol, ProcedureSymbol
-from tokens import TokenType
 
 
 class NodeVisitor:
@@ -13,7 +11,29 @@ class NodeVisitor:
         return visitor(node)
 
     def generic_visit(self, node):
-        raise Exception("No visit_{} method".format(type(node).__name__))
+        raise Exception("No visit_{} method".format(underscore(type(node).__name__)))
+
+    def visit_block(self, node):
+        for declaration in node.declarations:
+            self.visit(declaration)
+
+        self.visit(node.compound_statement)
+
+    def visit_var_decl(self, node):
+        pass
+
+    def visit_compound(self, node):
+        for child in node.children:
+            self.visit(child)
+
+    def visit_num(self, node):
+        return node.value
+
+    def visit_no_op(self, node):
+        pass
+
+    def visit_procedure_decl(self, node):
+        pass
 
 
 class SemanticAnalyzer(NodeVisitor):
@@ -21,45 +41,21 @@ class SemanticAnalyzer(NodeVisitor):
         self.current_scoped_symbol_table = None
 
     def visit_bin_op(self, node):
-        if node.op.type == TokenType.PLUS:
-            return self.visit(node.left) + self.visit(node.right)
-        elif node.op.type == TokenType.MINUS:
-            return self.visit(node.left) - self.visit(node.right)
-        elif node.op.type == TokenType.MUL:
-            return self.visit(node.left) * self.visit(node.right)
-        elif node.op.type == TokenType.INTEGER_DIV:
-            return self.visit(node.left) // self.visit(node.right)
-        elif node.op.type == TokenType.FLOAT_DIV:
-            return self.visit(node.left) / float(self.visit(node.right))
-
-    def visit_num(self, node):
-        return node.value
+        self.visit(node.left)
+        self.visit(node.right)
 
     def visit_unary_op(self, node):
-        op = node.token.type
-        if op == TokenType.PLUS:
-            return self.visit(node.node)
-        elif op == TokenType.MINUS:
-            return -self.visit(node.node)
-
-    def visit_compound(self, node):
-        for child in node.children:
-            self.visit(child)
-
-    def visit_no_op(self, node):
-        pass
+        self.visit(node.node)
 
     def visit_assign(self, node):
-        var_name = node.left.value
-        self.GLOBAL_SCOPE[var_name] = self.visit(node.right)
+        self.visit(node.right)
+        self.visit(node.left)
 
     def visit_var(self, node):
         var_name = node.value
         var_symbol = self.current_scoped_symbol_table.lookup(var_name)
         if var_symbol is None:
             self.error(error_code=ErrorCode.ID_NOT_FOUND, token=node.token)
-
-        return self.GLOBAL_SCOPE.get(var_name)
 
     def visit_program(self, node):
         print("Enter scope: global")
@@ -69,12 +65,6 @@ class SemanticAnalyzer(NodeVisitor):
         self.visit(node.block)
 
         print("Leave scope: global")
-
-    def visit_block(self, node):
-        for declaration in node.declarations:
-            self.visit(declaration)
-
-        self.visit(node.compound_statement)
 
     def visit_var_decl(self, node):
         type_name = node.type_node.value
