@@ -16,14 +16,10 @@ class Interpreter(NodeVisitor):
 
         self.visit(tree)
 
-    def expr(self):  # deprecated
-        tree = self.parser.expr()
-        return self.semantic_analyzer.visit(tree)
-
     def visit_program(self, node):
-        prog_name = node.name
+        program_name = node.name
 
-        ar = ActivationRecord(name=prog_name, type=ARType.PROGRAM, nesting_level=1)
+        ar = ActivationRecord(name=program_name, type=ARType.PROGRAM, nesting_level=1)
         self.call_stack.push(ar)
 
         self.visit(node.block)
