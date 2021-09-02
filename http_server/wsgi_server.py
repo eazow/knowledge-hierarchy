@@ -1,6 +1,6 @@
 import socket
 import sys
-import StringIO
+from io import StringIO
 
 import os
 
@@ -36,13 +36,13 @@ class WSGIServer(object):
             client_connection, client_address = server_socket.accept()
             pid = os.fork()
             if pid == 0:
-                print pid
+                print(pid)
                 server_socket.close()
                 self.handle_request(client_connection)
                 client_connection.close()
                 os._exit(0)
             else:
-                print pid
+                print(pid)
                 client_connection.close()
 
 
@@ -61,16 +61,15 @@ class WSGIServer(object):
         request_line = request_line.rstrip("\r\n")
         self.request_method, self.path, self.request_version = request_line.split()
 
-
     def handle_request(self, client_connection):
         request_data = client_connection.recv(1024)
 
-        print "Child PID: {pid}. Parent PID {ppid}".format(pid=os.getpid(), ppid=os.getppid())
+        print("Child PID: {pid}. Parent PID {ppid}".format(pid=os.getpid(), ppid=os.getppid()))
 
-        print ''.join(
+        print("".join(
             '< {line}\n'.format(line=line)
             for line in request_data.splitlines()
-        )
+        ))
 
         if request_data:
 
@@ -86,7 +85,7 @@ class WSGIServer(object):
         env = {}
         env["wsgi.version"] = (1, 0)
         env["wsgi.url_scheme"] = "http"
-        env["wsgi.input"] = StringIO.StringIO(request_data)
+        env["wsgi.input"] = StringIO(request_data)
         env["wsgi.errors"] = sys.stderr
         env["wsgi.multithread"] = False
         env["wsgi.multiprocess"] = False
@@ -114,7 +113,7 @@ class WSGIServer(object):
             for data in result:
                 response += data
 
-            print "".join("> {line}\n".format(line=line) for line in response.splitlines())
+            print("".join("> {line}\n".format(line=line) for line in response.splitlines()))
 
             client_connection.sendall(response)
         finally:
@@ -152,7 +151,7 @@ if __name__ == "__main__":
     module = __import__(module)
     application = getattr(module, application)
     httpd = make_server(SERVER_ADDRESS, application)
-    print "WSGIServer: Serving HTTP on port {port} ...\n".format(port=PORT)
+    print("WSGIServer: Serving HTTP on port {port} ...\n".format(port=PORT))
     httpd.serve_forever()
 
 

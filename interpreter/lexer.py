@@ -1,33 +1,21 @@
+from errors import LexerError
 from keywords import RESERVED_KEYWORDS
-from tokens import (
-    ID,
-    ASSIGN,
-    SEMI,
-    DOT,
-    INTEGER,
-    PLUS,
-    MINUS,
-    MUL,
-    DIV,
-    LPAREN,
-    RPAREN,
-    EOF,
-    Token,
-    REAL_CONST,
-    INTEGER_CONST,
-    COLON,
-    FLOAT_DIV, COMMA,
-)
+from tokens import Token, TokenType
 
 
 class Lexer:
     def __init__(self, text):
-        self.text = text
+        self.text = text.strip()
         self.pos = 0
         self.current_char = self.text[self.pos]
 
+        self.lineno = 1
+        self.column = 1
+
     def error(self):
-        raise Exception("Invalid character")
+        message = f"Lexer error on '{self.current_char}' line: {self.lineno} column: {self.column}"
+
+        raise LexerError(message=message)
 
     def skip_whitespace(self):
         while self.current_char is not None and self.current_char.isspace():
@@ -35,11 +23,16 @@ class Lexer:
 
     def advance(self):
         """Advance the 'pos' pointer and set the 'current_char' variable."""
+        if self.current_char == "\n":
+            self.lineno += 1
+            self.column = 0
+
         self.pos += 1
         if self.pos > len(self.text) - 1:
             self.current_char = None  # Indicates end of input
         else:
             self.current_char = self.text[self.pos]
+            self.column += 1
 
     def peek(self):
         peek_pos = self.pos + 1
@@ -51,6 +44,8 @@ class Lexer:
     def number(self):
         """Return a (multidigit) integer or float consumed from the input."""
         result = ""
+        token = Token(type=None, value=None, lineno=self.lineno, column=self.column)
+
         while self.current_char is not None and self.current_char.isdigit():
             result += self.current_char
             self.advance()
@@ -62,86 +57,62 @@ class Lexer:
             while self.current_char is not None and self.current_char.isdigit():
                 result += self.current_char
                 self.advance()
-            token = Token(REAL_CONST, float(result))
+
+            token.type = TokenType.REAL_CONST
+            token.value = float(result)
         else:
-            token = Token(INTEGER_CONST, int(result))
+            token.type = TokenType.INTEGER_CONST
+            token.value = int(result)
 
         return token
 
     def _id(self):
         """Handle identifiers and reserved keywords"""
-        result = ""
+        token = Token(type=None, value=None, lineno=self.lineno, column=self.column)
+
+        value = ""
         while self.current_char is not None and self.current_char.isalnum():
-            result += self.current_char
+            value += self.current_char
             self.advance()
 
-        return RESERVED_KEYWORDS.get(result, Token(ID, result))
+        token.type = RESERVED_KEYWORDS.get(value.upper(), TokenType.ID)
+        token.value = value
+
+        return token
 
     def get_next_token(self):
         while self.current_char is not None:
-            if self.current_char.isalpha():
-                return self._id()
-
-            if self.current_char == ":" and self.peek() == "=":
-                self.advance()
-                self.advance()
-                return Token(ASSIGN, ":=")
-
             if self.current_char.isspace():
                 self.skip_whitespace()
                 continue
-
-            if self.current_char.isdigit():
-                return self.number()
-
-            if self.current_char == "+":
-                self.advance()
-                return Token(PLUS, "+")
-
-            if self.current_char == "-":
-                self.advance()
-                return Token(MINUS, "-")
-
-            if self.current_char == "*":
-                self.advance()
-                return Token(MUL, "*")
-
-            if self.current_char == "/":
-                self.advance()
-                return Token(FLOAT_DIV, "/")
-
-            if self.current_char == "(":
-                self.advance()
-                return Token(LPAREN, "(")
-
-            if self.current_char == ")":
-                self.advance()
-                return Token(RPAREN, ")")
-
-            if self.current_char == ",":
-                self.advance()
-                return Token(COMMA, ",")
-
-            if self.current_char == ";":
-                self.advance()
-                return Token(SEMI, ";")
-
-            if self.current_char == ".":
-                self.advance()
-                return Token(DOT, ".")
-
-            if self.current_char == ":":
-                self.advance()
-                return Token(COLON, ":")
 
             if self.current_char == "{":
                 self.advance()
                 self.skip_comment()
                 continue
 
-            self.error()
+            if self.current_char == ":" and self.peek() == "=":
+                token = Token(TokenType.ASSIGN, TokenType.ASSIGN.value, lineno=self.lineno, column=self.column)
+                self.advance()
+                self.advance()
+                return token
 
-        return Token(EOF, None)
+            if self.current_char.isalpha():
+                return self._id()
+
+            if self.current_char.isdigit():
+                return self.number()
+
+            try:
+                token_type = TokenType(self.current_char)
+            except ValueError:
+                self.error()
+            else:
+                token = Token(type=token_type, value=token_type.value, lineno=self.lineno, column=self.column)
+                self.advance()
+                return token
+
+        return Token(type=TokenType.EOF, value=TokenType.EOF.value, lineno=self.lineno, column=self.column)
 
     def skip_comment(self):
         while self.current_char is not None and self.current_char != "}":

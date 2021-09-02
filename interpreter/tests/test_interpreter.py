@@ -1,4 +1,5 @@
 import pytest
+from errors import SemanticError
 from interpreter import Interpreter
 from lexer import Lexer
 from parser import Parser
@@ -19,8 +20,13 @@ END.
 """
     interpreter = Interpreter(Parser(Lexer(text)))
     interpreter.interpret()
+    ar = interpreter.call_stack.peek()
 
-    assert interpreter.GLOBAL_SCOPE == {"a": 2, "x": 11, "c": 27, "b": 25, "number": 2}
+    assert ar["number"] == 2
+    assert ar["a"] == 2
+    assert ar["b"] == 25
+    assert ar["c"] == 27
+    assert ar["x"] == 11
 
 
 def test_program():
@@ -52,7 +58,7 @@ END.  {Part10}
     interpreter = Interpreter(Parser(Lexer(text)))
     interpreter.interpret()
 
-    results = interpreter.symbol_table_builder.GLOBAL_SCOPE
+    results = interpreter.call_stack.peek()
     assert 2 == results.get("a")
     assert 11 == results.get("x")
     assert 27 == results.get("c")
@@ -61,6 +67,7 @@ END.  {Part10}
     assert 5.997 == round(results.get("y"), 3)
 
 
+@pytest.mark.skip()
 def test_empty_program():
     text = """
 PROGRAM Empty;
@@ -73,11 +80,11 @@ END.  {Empty}
     interpreter = Interpreter(Parser(Lexer(text)))
     interpreter.interpret()
 
-    results = interpreter.symbol_table_builder.GLOBAL_SCOPE
-    assert results == {}
+    results = interpreter.call_stack.peek()
+    assert len(results) == 0
 
 
-def test_name_error():
+def test_undeclared_variable():
     text = """
 PROGRAM NameError;
 VAR
@@ -87,42 +94,47 @@ BEGIN
    a := 2 + b;
 END.
 """
-    with pytest.raises(Exception) as exec_info:
+    with pytest.raises(SemanticError) as exec_info:
         Interpreter(Parser(Lexer(text))).interpret()
 
-    assert exec_info.typename == "NameError"
-    assert exec_info.value.args[0] == "'b'"
+    assert (
+        exec_info.value.message
+        == "SemanticError: Identifier not found -> Token(TokenType.ID, b, position=6:13)"
+    )
 
 
-def test_procedure():
+def test_duplicate_identifier():
     text = """
-PROGRAM TestProcedure;
+PROGRAM DuplicateIdentifier;
 VAR
+    x, y: INTEGER;
+    y: REAL;
+
+BEGIN
+x := x + y;
+END.
+"""
+    with pytest.raises(SemanticError) as exec_info:
+        Interpreter(Parser(Lexer(text))).interpret()
+
+    assert (
+        exec_info.value.message
+        == "SemanticError: Duplicate identifier found -> Token(TokenType.ID, y, position=4:5)"
+    )
+
+
+def test_case_insensitive():
+    text = """
+program CaseInsensitive;
+var
    a : INTEGER;
 
-PROCEDURE P1;
-VAR
-   a : REAL;
-   k : INTEGER;
-
-   PROCEDURE P2;
-   VAR
-      a, z : INTEGER;
-   BEGIN {P2}
-      z := 777;
-   END;  {P2}
-
-BEGIN {P1}
-
-END;  {P1}
-
-BEGIN {TestProcedure}
-   a := 10;
-END.  {TestProcedure}
+begin
+   a := 2 * 6 - 2;
+end.
 """
-
     interpreter = Interpreter(Parser(Lexer(text)))
     interpreter.interpret()
 
-    results = interpreter.symbol_table_builder.GLOBAL_SCOPE
+    results = interpreter.call_stack.peek()
     assert 10 == results.get("a")
