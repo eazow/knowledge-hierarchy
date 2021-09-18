@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QFrame
 
 
 class InnerBoard:
-    def __init__(self, width=10, height=22):
+    def __init__(self, width=10, height=20):
         self.width = width
         self.height = height
         self.reset()
@@ -168,7 +168,7 @@ class ExternalBoard(QFrame):
         self.grid_size = grid_size
         self.inner_board = inner_board
         self.setFixedSize(grid_size * inner_board.width, grid_size * inner_board.height)
-        self.score = 100
+        self.score = 0
 
     def paintEvent(self, event):
         """把内部板块结构画出来"""

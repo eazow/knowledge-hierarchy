@@ -235,7 +235,7 @@ def draw_window(surface):
     pygame.draw.rect(
         surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 5
     )
-    # pygame.display.update()
+    # pygame_.display.update()
 
 
 def main():
@@ -306,7 +306,7 @@ def main():
                     if not valid_space(current_piece, grid):
                         current_piece.y -= 1
 
-                """if event.key == pygame.K_SPACE:
+                """if event.key == pygame_.K_SPACE:
                     while valid_space(current_piece, grid):
                         current_piece.y += 1
                     current_piece.y -= 1
