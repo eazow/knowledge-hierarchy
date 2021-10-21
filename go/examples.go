@@ -20,6 +20,8 @@ import (
 //     "net/http"  // Yes, a web server!
 //     "os"        // OS functions like working with the file system
 //     "strconv"   // String conversions.
+    "time"
+    "strings"
 )
 
 // A function definition. Main is special. It is the entry point for the
@@ -31,4 +33,10 @@ func main() {
 
     // Call another function within this package.
 //     beyondHello()
+
+    time.Now()
+
+    broker := "#hello#"
+    replacer := strings.NewReplacer("#", "O")
+    replacer.Replace(broken)
 }
