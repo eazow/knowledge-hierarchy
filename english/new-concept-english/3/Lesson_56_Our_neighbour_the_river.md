@@ -1,6 +1,4 @@
-The river which forms the eastern boundary of our farm has always played an important part in our lives.
-
-Without it we could not make a living.
+The river which forms the eastern boundary of our farm has always played an important part in our lives. Without it we could not make a living.
 
 There is only enough spring water to supply the needs of the house, so we have to pump from the river for farm use.
 
