@@ -63,8 +63,7 @@ class State(ABC):
 
 
 """
-Concrete States implement various behaviors, associated with a state of the
-Context.
+Concrete States implement various behaviors, associated with a state of the Context.
 """
 
 
@@ -88,9 +87,11 @@ class ConcreteStateB(State):
         self.context.transition_to(ConcreteStateA())
 
 
-if __name__ == "__main__":
-    # The client code.
-
+def client_code():
     context = Context(ConcreteStateA())
     context.request1()
     context.request2()
+
+
+if __name__ == "__main__":
+    client_code()

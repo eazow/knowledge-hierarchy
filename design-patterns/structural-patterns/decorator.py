@@ -1,4 +1,4 @@
-class Component():
+class Component:
     """
     The base Component interface defines operations that can be altered by
     decorators.
@@ -75,12 +75,7 @@ def client_code(component: Component) -> None:
     way it can stay independent of the concrete classes of components it works
     with.
     """
-
-    # ...
-
     print(f"RESULT: {component.operation()}", end="")
-
-    # ...
 
 
 if __name__ == "__main__":

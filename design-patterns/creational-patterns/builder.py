@@ -137,7 +137,6 @@ if __name__ == "__main__":
     initiates the construction process. The end result is retrieved from the
     builder object.
     """
-
     director = Director()
     builder = ConcreteBuilder1()
     director.builder = builder
