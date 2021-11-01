@@ -1,4 +1,4 @@
-> Whick life forms are most likely to develop on a distant planet?
+> Which life forms are most likely to develop on a distant planet?
 
 
 
