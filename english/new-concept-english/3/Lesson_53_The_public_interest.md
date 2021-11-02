@@ -1,3 +1,7 @@
+> What could not be reported in the official files?
+
+
+
 The Scandinavian countries are much admired all over the world for their **enlightened** social policies. Sweden has **evolved** an excellent system for protecting the individual citizen from **highhanded** or **incompetent** public officers. The system has worked so well, that it has been adopted in other countries too.
 
 
