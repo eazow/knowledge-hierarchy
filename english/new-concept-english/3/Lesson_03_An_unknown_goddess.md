@@ -1,4 +1,8 @@
-Some time ago, an interesting discovery was made by **archaeologists** on the **Aegean** island of **Kea**. An American team explored a temple which stands in an ancient city on the **promontory** of Ayia Irini. The city at one time must have been **prosperous**, for it enjoyed a high level of civilization. Houses--often three storeys high--were built of stone. They had large rooms with beautifully **decorated** walls. The city was even **equipped** with a **drainage** system, for a great many **clay pipes** were found beneath the narrow streets.
+> How did the archaeologists know that statue was a goddess?
+
+
+
+Some time ago, an interesting discovery was made by **archaeologists** on the **Aegean island of Kea**. An American team explored a temple which stands in an ancient city on the **promontory** of **Ayia Irini**. The city at one time must have been **prosperous**, for it enjoyed a high level of civilization. Houses—often three storeys high—were built of stone. They had large rooms with beautifully decorated walls. The city was even **equipped** with a **drainage** system, for a great many **clay pipes** were found beneath the narrow streets.
 
 
 
