@@ -1,8 +1,10 @@
+> Why did John cook John's wallet?
+
+
+
 Has it ever happened to you? 
 
 Have you ever put your trousers in the washing machine and then remembered there was a large bank note in your back pocket? 
-
-When you rescued your trousers, did note in your back pocket? 
 
 When you rescued your trousers, did you find the note was whiter than white? 
 
@@ -32,9 +34,7 @@ They examined the remain and John got all his money back.
 
 "So long as there's something to identify, we will give people their money back," said a spokeswoman for the Bank. 
 
-"Last year, we paid $1.5m on 21,000 claims."
+"Last year, we paid £1.5m on 21,000 claims."
 
-`Damaged bank notes.` 
-
-`The Queen's head appears on English bank notes, and 'lady' refers to this.`
+`Damaged bank notes. The Queen's head appears on English bank notes, and 'lady' refers to this.`
 
