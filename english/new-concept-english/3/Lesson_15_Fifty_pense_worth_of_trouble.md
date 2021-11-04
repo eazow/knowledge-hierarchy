@@ -1,3 +1,7 @@
+> Did George get anything for his fifty pence? What?
+
+
+
 Children always appreciate small gifts of money. 
 
 Father, of course, provides a regular supply of pocket-money, but uncles and aunts are always a source of extra income. 
@@ -8,7 +12,7 @@ If fifty pences are not exchanged for sweets, they **rattle** for months inside 
 
 Only very thrifty children manage to fill up a money-box. 
 
-For most of them, fifty pence is a small price to pay for a **satisfying bar** of chocolate.
+For most of them, fifty pence is a small price to pay for a nice big bar of chocolate.
 
 
 
@@ -30,6 +34,6 @@ He could not find his fifty pence anywhere, and what is more, he could not get h
 
 A crowd of people gathered round him and a lady **rubbed** his arm with soap and butter, but George was firmly stuck. 
 
-The fire-brigade was called and two firemen freed George using a special type of **grease**. 
+The fire **brigade** was called and two firemen **freed** George using a special type of **grease**. 
 
 George was not too upset by his experience because the lady who owns the sweet shop heard about his troubles and rewarded him with a large box of chocolates.
