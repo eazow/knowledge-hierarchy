@@ -1,8 +1,12 @@
+> What was the name of the first plane to fly across the English Channel?
+
+
+
 In 1908 Lord Northcliffe offered a prize of $1000 to the first man who would fly across the English Channel. 
 
 Over a year passed before the first attempt was made. 
 
-On July 19th, 1909, in the early morning, Hubert Latham took off from the French **coast** in his plane the 'Antoinette IV'. 
+On July 19th, 1909, in the early morning, Hubert Latham took off from the French coast in his plane the 'Antoinette IV'. 
 
 He had travelled only seven miles across the Channel when his engine failed and he was forced to land on the sea. 
 
