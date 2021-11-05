@@ -1,6 +1,10 @@
+> Which actor read the letter in the end, the **aristocrat** or the **gaoler**?
+
+
+
 Some plays are so successful that they run for years on end. 
 
-In many ways, this is unfortunate for the poor actors who are required to go on repeating the same **lines** night after night. 
+In many ways, this is unfortunate for the poor actors who are required to go on repeating the same lines night after night. 
 
 One would expect them to know their parts by heart and never have cause to **falter**. 
 
@@ -18,7 +22,7 @@ Even though the **noble** was expected to read the letter at each performance, h
 
 One night, the gaoler decided to play a joke on his colleague to find out if, after so many performances, he had managed to learn the contents of the letter by heart. 
 
-The curtain went up on the final act of the play and **revealed** the aristocrat sitting alone behind bars in his dark cell. 
+The curtain went up on the final act of the play and **revealed** the aristocrat sitting alone behind **bars** in his dark cell. 
 
 Just then, the gaoler appeared with the precious letter in his hands. 
 
@@ -28,7 +32,7 @@ But the copy he gave him had not been written out in full as usual.
 
 It was simply a blank sheet of paper. 
 
-The gaoler looked on eagerly, anxious to see if his fellow-actor had at last learnt his lines. 
+The gaoler looked on eagerly, anxious to see if his fellow actor had at last learnt his lines. 
 
 The noble stared at the blank sheet of paper for a few seconds. 
 
@@ -36,7 +40,7 @@ Then, **squinting** his eyes, he said: 'The light is **dim**. Read the letter to
 
 And he promptly handed the sheet of paper to the gaoler. 
 
-Finding that he could not remember a word of the letter either, the gaoler replied: 'The light is indeed dim, sire. I must get my glasses.' 
+Finding that he could not remember a word of the letter either, the gaoler replied: 'The light is indeed dim, **sire**. I must get my glasses.' 
 
 With this, he hurried off the stage. 
 
