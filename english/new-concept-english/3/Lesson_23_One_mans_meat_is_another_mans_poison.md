@@ -1,3 +1,7 @@
+> What was it about snails that made the writer collect them for his friend on that day in particular?
+
+
+
 People become quite **illogical** when they try to decide what can be eaten and what cannot be eaten. 
 
 If you lived in the Mediterranean, for instance, you would consider **octopus** a great **delicacy**. 
