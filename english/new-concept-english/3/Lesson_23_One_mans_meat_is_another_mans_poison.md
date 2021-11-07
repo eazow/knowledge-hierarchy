@@ -34,7 +34,7 @@ Acting on a sudden **impulse**, I collected several dozen, put them in a paper b
 
 Robert was delighted to see me and **equally** pleased with my little gift. 
 
-I left the bag in the hall and Robert and I went into the living-room where we talked for a couple of hours. 
+I left the bag in the hall and Robert and I went into the living room where we talked for a couple of hours. 
 
 I had forgotten all about the snails when Robert suddenly said that I must stay to dinner. 
 
