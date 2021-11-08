@@ -1,6 +1,10 @@
-Small boats loaded with **wares** sped to the great liner as she was entering the **harbour**. 
+> Why was even five pounds 'too dear'?
 
-Before she had **anchored**, the men from the boats had climbed on board and the **decks** were soon covered with colourful **rugs** from Persia, silks from India, **copper** coffee **pots**, and beautiful handmade **silverware**. 
+
+
+Small boats loaded with **wares** sped to the great liner as she was entering the harbour. 
+
+Before she had anchored, the men from the boats had climbed on board and the **decks** were soon covered with colourful **rugs** from Persia, silks from India, **copper** coffee **pots**, and beautiful handmade **silverware**. 
 
 It was difficult not to be tempted. 
 
@@ -38,8 +42,8 @@ I shook my head and held up five fingers **indicating** that I was willing to pa
 
 **Shrugging** my shoulders, I began to walk away when, a moment later, he ran after me and **thrust** the pen into my hands. 
 
-Though he kept **throwing up his arms** in despair, he **readily** accepted the £5 I gave him. 
+Though he kept throwing up his arms in despair, he **readily** accepted the £5 I gave him. 
 
-I felt especially pleased with my wonderful bargain -- until I got back to the ship. 
+I felt especially pleased with my wonderful bargain — until I got back to the ship. 
 
 No matter how hard I tried, it was impossible to fill this beautiful pen with ink and to this day it has never written a single word!
