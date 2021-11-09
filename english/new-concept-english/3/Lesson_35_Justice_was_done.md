@@ -1,4 +1,8 @@
-The word justice is usually associated with **courts** of law. 
+> The word 'justice' is given two different meanings in the text. What is the distinction between them?
+
+
+
+The word justice is usually associated with courts of law. 
 
 We might say that justice has been done when a man's **innocence** or guilt has been proved beyond doubt. 
 
@@ -8,6 +12,8 @@ Those who seek it undertake an **arduous** journey and can never be sure that th
 
 Judges, however wise or **eminent**, are human and can make mistakes.
 
+
+
 There are rare instances when justice almost **ceases** to be an abstract concept. 
 
 Reward or punishment are **meted** out quite independent of human **interference**. 
@@ -16,13 +22,15 @@ At such times, justice acts like a living force.
 
 When we use a phrase like 'it serves him right', we are, in part, admitting that a certain set of circumstances has enabled justice to **act of its own accord**.
 
+
+
 When a thief was caught on the **premises** of a large jewellery store one morning, the shop assistants must have found it impossible to **resist** the **temptation** to say 'it serves him right'. 
 
-The shop was an old **converted** house with many large, disused fireplaces and tall, narrow chimneys. 
+The shop was an old converted house with many large, disused **fireplaces** and tall, narrow chimneys. 
 
 Towards midday, a girl heard a **muffled** cry coming from behind one of the walls. 
 
-As the cry was repeated several times, she ran to tell the manager who **promptly** rang up the fire brigade. 
+As the cry was repeated several times, she ran to tell the manager who **promptly** rang up the fire **brigade**. 
 
 The cry had certainly come from one of the chimneys, but as there were so many of them, the firemen could not be certain which one it was. 
 
