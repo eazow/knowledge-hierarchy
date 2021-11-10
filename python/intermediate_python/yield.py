@@ -1,6 +1,3 @@
-# -*- coding:utf-8 -*-
-
-
 def fibon(n):
     a = b = 1
     for i in range(n):
@@ -19,4 +16,3 @@ print(next(gen))
 my_string = "Yasoob"
 my_iter = iter(my_string)
 assert next(my_iter) == "Y"
-

@@ -1,5 +1,3 @@
-# -*- coding:utf-8 -*-
-
 def my_var_args(f_arg, *args):
     print("first normal arg: ", f_arg)
     for arg in args:
