@@ -1,3 +1,7 @@
+> Was Dimitri right to apologize to his neighbour? Why not?
+
+
+
 Mary and her husband Dimitri lived in the tiny village of Perachora in southern Greece. 
 
 One of Mary's **prize** possessions was a little white lamb which her husband had given her. 
@@ -6,7 +10,7 @@ She kept it tied to a tree in a field during the day and went to fetch it every 
 
 One evening, however, the lamb was missing. 
 
-The rope had been cut, so it was obvious that the lamb had been stolen. 
+The **rope** had been cut, so it was obvious that the lamb had been stolen. 
 
 When Dimitri came in from the fields, his wife told him what had happened. 
 

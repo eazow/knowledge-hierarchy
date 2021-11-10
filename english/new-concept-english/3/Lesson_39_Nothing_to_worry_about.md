@@ -1,4 +1,8 @@
-The rough road across the plain soon became so bad that we tried to get Bruce to drive back to the village we had come from. 
+> What was the difference between Bruce's behaviour and that of other people?
+
+
+
+The rough road across the plain soon became so bad that we tried to get Bruce to drive back to the village we had come from.
 
 Even though the road was **littered** with **boulders** and **pitted** with holes, Bruce was not in the least **perturbed**. 
 
@@ -10,21 +14,25 @@ He simply had no sense of danger at all.
 
 No matter what the conditions were, he believed that a car should be driven as fast as it could possibly go.
 
+
+
 As we bumped over the dusty **track**, we **swerved** to avoid large boulders. 
 
 The wheels **scooped** up stones which **hammered ominously** under the car. 
 
-We felt sure that sooner or later a stone would rip a hole in our petrol tank or damage the engine. 
+We felt sure that sooner or later a stone would **rip** a hole in our petrol tank or damage the engine. 
 
 Because of this, we kept looking back, wondering if we were leaving a trail of oil and petrol behind us. 
+
+
 
 What a relief it was when the boulders suddenly disappeared, giving way to a **stretch** of plain where the only obstacles were clumps of bushes. 
 
 But there was worse to come. 
 
-Just ahead of us there was a huge fissure. 
+Just ahead of us there was a huge **fissure**. 
 
-In response to renewed pleadings, Bruce stopped. 
+In response to renewed **pleadings**, Bruce stopped. 
 
 Though we all got out to examine the fissure, he remained in the car. 
 
@@ -32,7 +40,7 @@ We informed him that the fissure extended for fifty yards and was two feet wide 
 
 Even this had no effect. 
 
-Bruce engaged low gear and drove at a terrifying speed, keeping the front wheels astride the crack as he followed its **zigzag** course. 
+Bruce engaged low gear and drove at a terrifying speed, keeping the front wheels astride the **crack** as he followed its **zigzag** course. 
 
 Before we had time to worry about what might happen, we were back on the plain again. 
 

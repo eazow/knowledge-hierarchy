@@ -1,3 +1,7 @@
+> How did Haywood make money in times of peace?
+
+
+
 There was a time when the owners of shop and businesses in Chicago had to pay large sums of money to **gangsters** in return for 'protection'. 
 
 If the money was not paid promptly, the gangsters would quickly put a man out of business by destroying his shop. 

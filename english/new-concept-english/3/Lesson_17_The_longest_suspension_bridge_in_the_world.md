@@ -1,8 +1,12 @@
-Verrazano, an Italian about whom little is known, sailed into New York **Harbour** in 1524 and named it Angouleme. 
+> How is the bridge supported?
+
+
+
+Verrazano, an Italian about whom little is known, sailed into New York **Harbour** in 1524 and named it Angouleme.
 
 He described it as 'a very **agreeable situation** located within two small hills in the midst of which flowed a great river.'
 
-Though Verrazano is by no means considered to be a great explorer, his name will probably remain immortal, for on November 21st, 1964, the longest suspension bridge in the world was named after him.
+Though Verrazano is by no means considered to be a great explorer, his name will probably remain **immortal**, for on November 21st, 1964, the longest suspension bridge in the world was named after him.
 
 
 
@@ -28,8 +32,8 @@ They support the cables from which the bridge has been suspended.
 
 Each of the four cables contains 26,108 lengths of **wire**. 
 
-It has been estimated that if the bridge were **packed** with cars, it would still only be carrying a third of its total capacity. 
+It has been estimated that if the bridge were packed with cars, it would still only be carrying a third of its total capacity. 
 
 However, size and strength are not the only important things about this bridge. 
 
-Despite its immensity, it is both simple and **elegant**, **fulfilling** its designer's dream to create 'an enormous object drawn as **faintly** as possible'.
+Despite its immensity, it is both simple and elegant, **fulfilling** its designer's dream to create 'an enormous object drawn as **faintly** as possible'.

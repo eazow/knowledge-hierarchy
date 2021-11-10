@@ -1,3 +1,7 @@
+> Why did the two brothers keep the secret?
+
+
+
 For years, villagers believed that Endley Farm was **haunted**.
 
 The farm was owned by two brothers, Joe and Bob Cox. 
@@ -10,9 +14,11 @@ Farm labourers said that they always woke up to find that work had been done ove
 
 **Hay** had been cut and **cowsheds** had been cleaned. 
 
-A farm worker, who stayed up all night claimed to have seen a figure cutting corn in the **moonlight**. 
+A farm worker, who stayed up all night claimed to have seen a figure cutting corn in the moonlight. 
 
 In time, it became an accepted fact that the Cox brothers employed a **conscientious** ghost that did most of their work for them.
+
+
 
 No one suspected that there might be someone else on the farm who had never been seen. 
 
@@ -22,7 +28,9 @@ A short time ago, villagers were astonished to learn that the ghost of Endley ha
 
 Everyone went to the funeral, for the 'ghost' was none other than Eric Cox, a third brother who was supposed to have died as a young man. 
 
-After the funeral, Joe and Bob **revealed** a secret which they had kept for over 50 years.
+After the funeral, Joe and Bob revealed a secret which they had kept for over 50 years.
+
+
 
 Eric had been the eldest son of the family, very much older than his two brothers. 
 
