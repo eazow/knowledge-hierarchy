@@ -1,3 +1,7 @@
+> What was Bessis's 'little weakness'?
+
+
+
 It is a good thing my aunt Harriet died years ago.
 
 If she were alive today she would not be able to air her views on her favourite topic of conversation: **domestic** servants.
@@ -24,6 +28,8 @@ Though my aunt **pursued** what was, in those days, an **enlightened** policy, i
 
 While she always criticized the **fickleness** of human nature, she carried on an **unrelenting** search for the ideal servant to the end of her days, even after she had been sadly **disillusioned** by Bessie.
 
+
+
 Bessie worked for Aunt Harriet for three years.
 
 During that time she so gained my aunt's confidence, that she was put in charge of the domestic staff.
@@ -40,7 +46,7 @@ Not only was the meal well below the usual standard, but Bessie seemed unable to
 
 She bumped into the furniture and kept **mumbling** about the guests.
 
-When she came in with the last course -- a huge **pudding** -- she **tripped** on the carpet and the pudding went flying through the air, narrowly missed my aunt, and crashed on the dining table with considerable force.
+When she came in with the last course — a huge **pudding** — she **tripped** on the carpet and the pudding went flying through the air, narrowly missed my aunt, and crashed on the dining table with considerable force.
 
 Though this caused great **mirth** among the guests, Aunt Harriet was horrified.
 
@@ -53,3 +59,4 @@ The poor girl was **dismissed** instantly.
 After her departure, Aunt Harriet discovered that there were piles of empty wine bottles of all shapes and sizes **neatly stacked** in what had once been Bessie's **wardrobe**.
 
 They had mysteriously found their way there from the wine **cellar**!
+
