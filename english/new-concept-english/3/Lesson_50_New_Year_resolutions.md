@@ -1,3 +1,7 @@
+> What marked the end of the writer's New Year resolutions?
+
+
+
 The New Year is a time for **resolutions**.
 
 **Mentally**, at least, most of us could compile **formidable** lists of 'dos' and 'don'ts'.
@@ -20,6 +24,8 @@ I limited myself to two **modest** ambitions: to do physical exercise every morn
 
 An all-night party on New Year's Eve provided me with a good excuse for not carrying out either of these new resolutions on the first day of the year, but on the second, I applied myself **assiduously** to the task.
 
+
+
 The daily exercises lasted only eleven minutes and I **proposed** to do them early in the morning before anyone had got up.
 
 The self-discipline required to drag myself out of bed eleven minutes earlier than usual was considerable.
@@ -32,7 +38,7 @@ It was this that betrayed me.
 
 The next morning the whole family **trooped** in to watch the performance.
 
-That was really **unsettling**, but I **fended** off the **taunts** and **jibes** of the family good-**humouredly** and soon everybody got used to the idea.
+That was really **unsettling**, but I **fended** off the **taunts** and **jibes** of the family **good-humouredly** and soon everybody got used to the idea.
 
 However, my enthusiasm **waned**.
 
@@ -52,6 +58,6 @@ That proved to be my **undoing**, for I soon got back to my old bad habit of **d
 
 I still haven't given up my resolution to do more reading.
 
-In fact, I have just bought a book entitled How to Read a Thousand Words a Minute.
+In fact, I have just bought a book entitled *How to Read a Thousand Words a Minute*.
 
 Perhaps it will solve my problem, but I just haven't had time to read it!

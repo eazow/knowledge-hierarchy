@@ -1,3 +1,7 @@
+> Why did Harry decide to give up his little game?
+
+
+
 My cousin, Harry, keeps a large curiously-shaped bottle on **permanent** display in his study.
 
 Despite the fact that the bottle is **tinted** a **delicate** shade of green, an **observant** visitor would soon notice that it is filled with what looks like a thick, **greyish substance**.
@@ -14,6 +18,8 @@ How Harry came into the possession of this **outlandish** stuff makes an interes
 
 Furthermore, the acquisition of this bottle **cured** him of a bad habit he had been developing for years.
 
+
+
 Harry used to consider it a great joke to go into expensive **cosmetic** shops and make **outrageous** requests for goods that do not exist.
 
 He would invent **fanciful** names on the spot.
@@ -25,6 +31,8 @@ If a shop assistant told him she had not heard of it, he would pretend to be con
 He loved to be told that one of his imaginary products was temporarily out of **stock** and he would **faithfully** promise to call again at some future date, but of course he never did.
 
 How Harry managed to keep a straight face during these performances is quite beyond me.
+
+
 
 Harry does not need to be **prompted** to explain how he bought his precious bottle of mud.
 
