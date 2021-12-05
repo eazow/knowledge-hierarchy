@@ -1,4 +1,3 @@
-# -*- coding:utf-8 -*-
 from functools import wraps
 
 
@@ -27,9 +26,8 @@ a_function_requiring_decoration("abc", b="def")
 print(a_function_requiring_decoration.__name__)
 
 
-
 class Logit(object):
-    def __init__(self, logfile='out.log'):
+    def __init__(self, logfile="out.log"):
         self.logfile = logfile
 
     def __call__(self, func):
@@ -38,7 +36,7 @@ class Logit(object):
             log_string = func.__name__ + " was called"
             print(log_string)
 
-            with open(self.logfile, 'a') as opened_file:
+            with open(self.logfile, "a") as opened_file:
                 opened_file.write(log_string + "\n")
 
             self.notify()
