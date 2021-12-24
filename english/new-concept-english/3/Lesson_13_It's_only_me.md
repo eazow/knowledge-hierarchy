@@ -1,3 +1,7 @@
+> What did the man expect to find under the stairs?
+
+
+
 After her husband had gone to work, Mrs Richards sent her children to school and went upstairs to her bedroom. 
 
 She was too excited to do any housework that morning, for in the evening she would be going to a **fancy** dress party with her husband. 
@@ -26,7 +30,7 @@ She heard the front door open and heavy footsteps in the hall.
 
 Suddenly the door of the storeroom was opened and a man entered. 
 
-Mrs Richards realized that it must be the man from the Electricity Board who had come to read the **meter**. 
+Mrs Richards realized that it must be the man from the Electricity Board who had come to read the meter. 
 
 She tried to explain the situation, saying' It's only me', but it was too late. 
 

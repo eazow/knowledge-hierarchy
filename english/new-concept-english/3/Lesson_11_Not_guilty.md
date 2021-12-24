@@ -1,10 +1,14 @@
-Going through the **Customs** is a **tiresome** business. 
+> What was the Customs officer looking for?
 
-The strangest thing about it is that really honest people are often made to feel guilty. 
 
-The hardened professional **smuggler**, on the other hand, is never troubled by such feelings, even if he has five hundred gold watches hidden in his suitcase. 
 
-When I returned from abroad recently, a particularly officious young Customs Officer clearly regarded me as a smuggler.
+Customs Officers are quite tolerant these days, but they can still stop you when you are going through the Green Channel and have nothing to declare. 
+
+Even really honest people are often made to feel guilty. 
+
+The **hardened** professional **smuggler**, on the other hand, is never troubled by such feelings, even if he has five hundred gold watches hidden in his suitcase. 
+
+When I returned form abroad recently, a particularly officious young Customs Officer clearly regarded me as a smuggler.
 
 'Have you anything to declare?' he asked, looking me in the eye.
 
@@ -26,7 +30,7 @@ He had spotted a tiny bottle at the bottom of my case and he **pounced** on it w
 
 'Perfume, eh?' he asked **sarcastically**. 'You should have declared that.' 
 
-Perfume is not exempt from import **duty**.'
+Perfume is not **exempt** from import **duty**.'
 
 'But it isn't perfume,' I said.' It's hair-oil.' 
 
@@ -40,4 +44,4 @@ The Officer unscrewed the cap and put the bottle to his **nostrils**.
 
 He was greeted by an unpleasant smell which convinced him that I was telling the truth. 
 
-A few minutes later, I was able to hurry away with precious chalk-marks on my baggage.
+A few minutes later, I was able to hurry away with precious chalk smarks on my baggage.

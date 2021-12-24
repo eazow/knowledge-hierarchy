@@ -1,3 +1,7 @@
+> What was the 'future' electronic development that Leon Bagrit wasn't able to foresee?
+
+
+
 Predicting the future is **notoriously** difficult.
 
 Who could have imagined, in the mid 1970s, for example, that by the end of the 20th century, computers would be as common in people's homes as TV sets?
@@ -9,6 +13,8 @@ These were the so-called **mainframe** machines.
 Mainframe computers were very large indeed, often occupying whole air-conditioned rooms, employing full-time technicians and run on specially-written software.
 
 Though these large machines still exist, many of their functions have been taken over by small powerful personal computers, commonly known as PCs.
+
+
 
 In 1975, a **primitive** machine called the Altair, was launched in the USA.
 
@@ -24,11 +30,13 @@ The IBM Personal Computer was widely copied.
 
 From those **humble** beginnings, we have seen the development of the user-friendly home computers and multimedia machines which are in common use today.
 
+
+
 Considering how recent these developments are, it is even more remarkable that as long ago as the 1960s, an Englishman, Leon Bagrit, was able to predict some of the uses of computers which we know today.
 
 Bagrit **dismissed** the idea that computers would learn to 'think' for themselves and would 'rule the world', which people liked to believe in those days.
 
-Bagrit foresaw a time when computers would be small enough to hold in the hand, when they would be capable of providing information about traffic jams and suggesting alternative routes, when they would be used in hospitals to help doctors to diagnose illnesses, when they would relieve office workers and accountants of dull, repetitive clerical work.
+Bagrit foresaw a time when computers would be small enough to hold in the hand, when they would be capable of providing information about traffic jams and suggesting alternative routes, when they would be used in hospitals to help doctors to diagnose illnesses, when they would relieve office workers and accountants of dull, repetitive **clerical** work.
 
 All these computer uses have become common place.
 

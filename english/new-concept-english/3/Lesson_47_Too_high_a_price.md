@@ -1,8 +1,14 @@
+> What does the writer describe as an 'amusing old-fashioned source of noise'?
+
+
+
 Pollution is the price we pay for an overpopulated, over industrialized planet.
 
 When you come to think about it, there are only four ways you can deal with rubbish: dump it, burn it, turn it into something you can use again, attempt to produce less of it.
 
 We keep trying all four methods, but the **sheer** volume of rubbish we produce worldwide threatens to overwhelm us.
+
+
 
 Rubbish, however, is only part of the problem of polluting our planet.
 
@@ -12,21 +18,23 @@ Industrialized farming methods produce cheap meat products: beef, **pork** and c
 
 The use of **pesticides** and **fertilizers** produces cheap **grain** and vegetables.
 
-The price we pay for cheap food may be already too high: 
+The price we pay for cheap food may be already too high: Mad Cow Disease(BSE) in cattle, **salmonella** in chicken and eggs, and **listeria** in dairy products.
 
-Mad Cow Disease(BSE) in **cattle**, **salmonella** in chicken and eggs, and **listeria** in dairy products.
+And if you think you'll abandon meat and become a **vegetarian**, you have the choice of very expensive **organically**-grown vegetables or a **steady** diet of **pesticides** every time you think you're eating fresh salads and vegetables, or just having an **innocent** glass of water!
 
-And if you think you'll abandon meat and become a **vegetarian**, you have the choice of very expensive **organically**-grown vegetables or a **steady** diet of pesticides every time you think you're eating fresh salads and vegetables, or just having an **innocent** glass of water!
+
 
 However, there is an even more **insidious** kind of pollution that particularly affects urban areas and **invades** our daily lives, and that is noise.
 
-Burglar alarms going off at any time of the day or night serve only to annoy passers-by and actually assist burglars to burgle.
+**Burglar** alarms going off at any time of the day or night serve only to annoy passers-by and actually assist burglars to burgle.
 
 Car alarms constantly scream at us in the street and are a source of **profound irritation**.
 
-A recent survey of the effects of noise revealed (surprisingly?) that dogs barking **incessantly** in the night rated the highest form of noise pollution on a **scale** ranging from 1 to 7.
+A recent survey of the effects of noise revealed (surprisingly?) that dogs **barking** **incessantly** in the night rated the highest form of noise pollution on a **scale** ranging from 1 to 7.
 
-The survey revealed a large number of sources of noise that we really dislike. Lawn mowers **whining** on a summer's day, late-night parties in apartment blocks, noisy neighbours, vehicles of all kinds, especially large container trucks thundering through quiet villages, planes and helicopters flying overhead, large radios carried round in public places and played at maximum volume.
+The survey revealed a large number of sources of noise that we really dislike. 
+
+Lawn mowers **whining** on a summer's day, late-night parties in apartment blocks, noisy neighbours, vehicles of all kinds, especially large container trucks thundering through quiet villages, planes and helicopters flying overhead, large radios carried round in public places and played at maximum volume.
 
 New technology has also made its own contribution to noise.
 

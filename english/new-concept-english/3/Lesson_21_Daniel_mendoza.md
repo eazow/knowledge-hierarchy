@@ -1,10 +1,14 @@
+> How many unsuccessful attempts did Mendoza make before becoming Champion of all England?
+
+
+
 Boxing matches were very popular in England two hundred years ago. 
 
-In those days, boxers fought with **bare fists** for Prize money. 
+In those days, boxers fought with **bare fists** for prize money. 
 
-Because of this, they were known as 'prize-fighters'. 
+Because of this, they were known as 'prizefighters'. 
 
-However, boxing was very crude, for there were no rules and a prize-fighter could be seriously injured or even killed during a match.
+However, boxing was very crude, for there were no rules and a prizefighter could be seriously injured or even killed during a match.
 
 
 
@@ -12,15 +16,15 @@ One of the most colourful figures in boxing history was Daniel Mendoza who was b
 
 The use of gloves was not introduced until 1860 when the **Marquis** of Queensberry **drew up** the first set Of rules. 
 
-Though he was **technically** a prize-fighter, Mendoza did much to change crude prize-fighting into a sport, for he brought science to the game. 
+Though he was **technically** a prizefighter, Mendoza did much to change crude prizefighting into a sport, for he brought science to the game. 
 
 In his day, Mendoza enjoyed **tremendous** popularity. 
 
-He was **adored** by rich and poor alike. 
+He was adored by rich and poor alike. 
 
 
 
-Mendoza rose to fame swiftly after a boxing-match when he was only fourteen years old. 
+Mendoza rose to fame swiftly after a boxing match when he was only fourteen years old. 
 
 This attracted the attention of Richard Humphries who was then the most **eminent** boxer in England. 
 
@@ -38,7 +42,7 @@ Mendoza met Humphries in the ring on a later occasion and he lost for a second t
 
 It was not until his third match in 1790 that he finally beat Humphries and became Champion of England. 
 
-Meanwhile, he founded a highly successful **Academy** and even Lord Byron became one of his pupils. 
+Meanwhile, he founded a highly successful Academy and even Lord Byron became one of his pupils. 
 
 He earned enormous sums of money and was paid as much as £100 for a single appearance. 
 
@@ -46,4 +50,4 @@ Despite this, he was so **extravagant** that he was always in debt.
 
 After he was defeated by a boxer called Gentleman Jackson, he was quickly forgotten. 
 
-He was sent to prison for failing to pay his **debts** and died in poverty in 1836.
+He was sent to prison for failing to pay his debts and died in poverty in 1836.

@@ -1,3 +1,7 @@
+> What was exceptional about the two men's stay on the desert island?
+
+
+
 Most of us have formed an unrealistic picture of life on a desert island. 
 
 We sometimes imagine a desert island to be a sort of paradise where the sun always shines. 
@@ -18,13 +22,13 @@ Perhaps there is an element of truth in both these pictures, but few of us have 
 
 
 
-Two men who recently spent five days on a coral island wished they had stayed there longer. 
+Two men who recently spent five days on a **coral** island wished they had stayed there longer. 
 
 They were taking a badly damaged boat from the Virgin Islands to Miami to have it repaired.
 
 During the journey, their boat began to sink. 
 
-They quickly loaded a small rubber dinghy with food, matches, and tins of beer and **rowed** for a few miles across the Caribbean until they arrived at a tiny coral island. 
+They quickly loaded a small **rubber** **dinghy** with food, **matches**, and tins of beer and **rowed** for a few miles across the Caribbean until they arrived at a tiny coral island. 
 
 There were hardly any trees on the island and there was no water, but this did not prove to be a problem. 
 

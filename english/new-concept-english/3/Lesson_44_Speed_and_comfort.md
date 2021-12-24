@@ -1,3 +1,7 @@
+> Which type of transport does the writer prefer, do you think?
+
+
+
 People travelling long distances frequently have to decide whether they would prefer to go by land, sea, or air.
 
 Hardly anyone can positively enjoy sitting in a train for more than a few hours.
@@ -20,15 +24,17 @@ Long car journeys are even less pleasant, for it is quite impossible even to rea
 
 On motorways you can, at least, travel fairly safely at high speeds, but more often than not, the greater part of the journey is spent on roads with few service stations and too much traffic.
 
-By comparison, ferry trips or **cruises** offer a great variety of civilized comforts.
+By comparison, **ferry** trips or **cruises** offer a great variety of civilized comforts.
 
-You can stretch your legs on the **spacious** decks, play games, meet interesting people and enjoy good food -- always assuming, of course, that the sea is calm.
+You can stretch your legs on the **spacious** decks, play games, meet interesting people and enjoy good food — always assuming, of course, that the sea is calm.
 
 If it is not, and you are likely to get seasick, no form of transport could be worse.
 
 Even if you travel in ideal weather, sea journeys take a long time.
 
 Relatively few people are prepared to sacrifice holiday time for the pleasure of travlling by sea.
+
+
 
 Aeroplanes have the reputation of being dangerous and even hardened travellers are **intimidated** by them.
 
@@ -38,7 +44,7 @@ But nothing can match them for speed and comfort.
 
 Travelling at a height of 30,000 feet, far above the clouds, and at over 500 miles an hour is an **exhilarating** experience.
 
-You do not have to **devise** ways of taking your mind off the journey, for an aeroplane gets you to your destination rapidly.
+You do not have to devise ways of taking your mind off the journey, for an aeroplane gets you to your destination rapidly.
 
 For a few hours, you **settle** back in a deep armchair to enjoy the flight.
 
