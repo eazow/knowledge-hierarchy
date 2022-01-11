@@ -1,9 +1,8 @@
-import tkinter
-from tkinter import Canvas, Label, Tk, StringVar
-import tkinter.messagebox
-
 from random import choice
 from collections import Counter
+
+import tkinter
+from tkinter import Canvas, Label, Tk, StringVar, messagebox
 
 
 class Game:
@@ -144,7 +143,7 @@ class Game:
 
     def game_over(self):
         self.canvas.delete(tkinter.ALL)
-        tkinter.messagebox.showinfo(
+        messagebox.showinfo(
             "Game Over",
             "You scored %d points." % self.score)
 
