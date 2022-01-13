@@ -1,14 +1,14 @@
-def fibon(n):
+def fibonacci(n):
     a = b = 1
     for i in range(n):
         yield a
         a, b = b, a + b
 
 
-for x in fibon(10000):
+for x in fibonacci(10000):
     print(x)
 
-gen = fibon(100)
+gen = fibonacci(100)
 print(next(gen))
 print(next(gen))
 
