@@ -22,10 +22,20 @@ top_left_y = s_height - play_height
 # SHAPE FORMATS
 
 S = [
-    [".....", ".....", "..00.", ".00..", "....."],
-    [".....", "..0..", "..00.", "...0.", "....."],
+    [".....",
+     ".....",
+     "..00.",
+     ".00..",
+     "....."
+    ],
+    [
+        ".....",
+        "..0..",
+        "..00.",
+        "...0.",
+        "....."
+    ],
 ]
-
 Z = [
     [".....", ".....", ".00..", "..00.", "....."],
     [".....", "..0..", ".00..", ".0...", "....."],
@@ -346,22 +356,23 @@ def main():
     pygame.time.delay(2000)
 
 
-def main_menu():
+def start_game():
     run = True
     while run:
         win.fill((0, 0, 0))
-        draw_text_middle("Press any key to begin.", 60, (255, 255, 255), win)
+        # draw_text_middle("Press any key to begin.", 60, (255, 255, 255), win)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
 
-            if event.type == pygame.KEYDOWN:
-                main()
+            # if event.type == pygame.KEYDOWN:
+            main()
     pygame.quit()
 
 
-win = pygame.display.set_mode((s_width, s_height))
-pygame.display.set_caption("Tetris")
+if __name__ == '__main__':
+    win = pygame.display.set_mode((s_width, s_height))
+    pygame.display.set_caption("Tetris")
 
-main_menu()  # start game
+    start_game()
