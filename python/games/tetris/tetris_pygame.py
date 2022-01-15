@@ -10,14 +10,14 @@ represented in order by 0 - 6
 pygame.font.init()
 
 # GLOBALS VARS
-s_width = 800
-s_height = 700
+window_width = 500
+window_height = 700
 play_width = 300  # meaning 300 // 10 = 30 width per block
 play_height = 600  # meaning 600 // 20 = 20 height per blo ck
 block_size = 30
 
-top_left_x = (s_width - play_width) // 2
-top_left_y = s_height - play_height
+top_left_x = (window_width - play_width) // 2
+top_left_y = window_height - play_height
 
 # SHAPE FORMATS
 
@@ -372,7 +372,7 @@ def start_game():
 
 
 if __name__ == '__main__':
-    win = pygame.display.set_mode((s_width, s_height))
+    win = pygame.display.set_mode((window_width, window_height))
     pygame.display.set_caption("Tetris")
 
     start_game()
