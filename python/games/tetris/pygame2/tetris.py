@@ -76,7 +76,7 @@ def valid_space(shape, grid):
     return True
 
 
-def check_lost(positions):
+def is_game_over(positions):
     for pos in positions:
         x, y = pos
         if y < 1:
@@ -287,7 +287,7 @@ def main():
         pygame.display.update()
 
         # Check if user lost
-        if check_lost(locked_positions):
+        if is_game_over(locked_positions):
             run = False
 
     draw_text_middle("You Lost", 40, (255, 255, 255), win)
