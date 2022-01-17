@@ -2,8 +2,8 @@ import pygame
 import random
 
 import shape
-from conf import window_width, window_height, play_width, play_height, shape_colors
 from shape import shapes
+from conf import window_width, window_height, play_width, play_height, shape_colors
 
 """
 10 x 20 square grid
