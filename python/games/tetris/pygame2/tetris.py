@@ -296,25 +296,14 @@ def start():
 
 
 def init():
+    pygame.init()
+    pygame.font.init()
     pygame.display.set_caption("Tetris")
-
-    while True:
-        # window.fill((0, 0, 0))
-        window.fill("white")
-        draw_text_middle("Press any key to begin.", 60, (255, 255, 255), window)
-        pygame.display.update()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit(0)
-
-            if event.type == pygame.KEYDOWN:
-                start()
+    return pygame.display.set_mode((window_width, window_height))
+    # window.fill((0, 0, 0))
+    # return window
 
 
 if __name__ == '__main__':
-    pygame.init()
-    pygame.font.init()
-    window = pygame.display.set_mode((window_width, window_height))
-
-    init()
+    window = init()
+    start()
