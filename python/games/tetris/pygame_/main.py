@@ -79,14 +79,14 @@ def on_key_down(event, game_state, game_resource):
         if game_state.piece:
             game_state.piece.fall_down()
     elif event.key == pygame.K_s and game_state.stopped:
-        game_state.start_game()
+        game_state.init()
     elif event.key == pygame.K_p and not game_state.stopped:
         if game_state.paused:
             game_state.resume_game()
         else:
             game_state.pause_game()
     elif event.key == pygame.K_r:
-        game_state.start_game()  #按r键强制重新开始游戏
+        game_state.init()  #按r键强制重新开始游戏
     elif event.key == pygame.K_m:
         game_resource.pause_bg_music()
     elif event.key == pygame.K_q:

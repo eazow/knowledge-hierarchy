@@ -187,7 +187,7 @@ def draw_window(surface):
     # pygame_.display.update()
 
 
-def main():
+def start():
     global grid
 
     locked_positions = {}  # (x,y):(255,0,0)
@@ -295,23 +295,22 @@ def main():
     pygame.time.delay(2000)
 
 
-def start_game():
-    run = True
-    while run:
+def init():
+    win = pygame.display.set_mode((window_width, window_height))
+    pygame.display.set_caption("Tetris")
+
+    while True:
         win.fill((0, 0, 0))
         # draw_text_middle("Press any key to begin.", 60, (255, 255, 255), win)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                run = False
+                break
 
             # if event.type == pygame.KEYDOWN:
-            main()
+            start()
     pygame.quit()
 
 
 if __name__ == '__main__':
-    win = pygame.display.set_mode((window_width, window_height))
-    pygame.display.set_caption("Tetris")
-
-    start_game()
+    init()
