@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 import random
 
@@ -11,7 +13,6 @@ shapes: S, Z, I, O, J, L, T
 represented in order by 0 - 6
 """
 
-pygame.font.init()
 
 top_left_x = (window_width - play_width) // 2
 top_left_y = window_height - play_height
@@ -194,7 +195,6 @@ def start():
     grid = create_grid(locked_positions)
 
     change_piece = False
-    run = True
     current_piece = get_shape()
     next_piece = get_shape()
     clock = pygame.time.Clock()
@@ -203,7 +203,7 @@ def start():
     fall_speed = 0.27
     score = 0
 
-    while run:
+    while True:
 
         grid = create_grid(locked_positions)
         fall_time += clock.get_rawtime()
@@ -225,9 +225,9 @@ def start():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                run = False
                 pygame.display.quit()
                 quit()
+                sys.exit(0)
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
@@ -282,35 +282,39 @@ def start():
             if clear_rows(grid, locked_positions):
                 score += 10
 
-        draw_window(win)
-        draw_next_shape(next_piece, win)
+        draw_window(window)
+        draw_next_shape(next_piece, window)
         pygame.display.update()
 
         # Check if user lost
         if is_game_over(locked_positions):
             run = False
 
-    draw_text_middle("You Lost", 40, (255, 255, 255), win)
+    draw_text_middle("You Lost", 40, (255, 255, 255), window)
     pygame.display.update()
     pygame.time.delay(2000)
 
 
 def init():
-    win = pygame.display.set_mode((window_width, window_height))
     pygame.display.set_caption("Tetris")
 
     while True:
-        win.fill((0, 0, 0))
-        # draw_text_middle("Press any key to begin.", 60, (255, 255, 255), win)
+        # window.fill((0, 0, 0))
+        window.fill("white")
+        draw_text_middle("Press any key to begin.", 60, (255, 255, 255), window)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                break
+                pygame.quit()
+                sys.exit(0)
 
-            # if event.type == pygame.KEYDOWN:
-            start()
-    pygame.quit()
+            if event.type == pygame.KEYDOWN:
+                start()
 
 
 if __name__ == '__main__':
+    pygame.init()
+    pygame.font.init()
+    window = pygame.display.set_mode((window_width, window_height))
+
     init()
