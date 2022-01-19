@@ -18,8 +18,6 @@ top_left_x = (window_width - play_width) // 2
 top_left_y = window_height - play_height
 
 
-
-
 # index 0 - 6 represent shape
 
 
@@ -230,36 +228,7 @@ def start():
                 sys.exit(0)
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    current_piece.x -= 1
-                    if not valid_space(current_piece, grid):
-                        current_piece.x += 1
-
-                elif event.key == pygame.K_RIGHT:
-                    current_piece.x += 1
-                    if not valid_space(current_piece, grid):
-                        current_piece.x -= 1
-                elif event.key == pygame.K_UP:
-                    # rotate shape
-                    current_piece.rotation = current_piece.rotation + 1 % len(
-                        current_piece.shape
-                    )
-                    if not valid_space(current_piece, grid):
-                        current_piece.rotation = current_piece.rotation - 1 % len(
-                            current_piece.shape
-                        )
-
-                if event.key == pygame.K_DOWN:
-                    # move shape down
-                    current_piece.y += 1
-                    if not valid_space(current_piece, grid):
-                        current_piece.y -= 1
-
-                """if event.key == pygame_.K_SPACE:
-                    while valid_space(current_piece, grid):
-                        current_piece.y += 1
-                    current_piece.y -= 1
-                    print(convert_shape_format(current_piece))"""  # todo fix
+                handle_keydown(current_piece, event)
 
         shape_pos = convert_shape_format(current_piece)
 
@@ -281,6 +250,7 @@ def start():
             # call four times to check for multiple clear rows
             if clear_rows(grid, locked_positions):
                 score += 10
+                print(score)
 
         draw_window(window)
         draw_next_shape(next_piece, window)
@@ -295,13 +265,43 @@ def start():
     pygame.time.delay(2000)
 
 
+def handle_keydown(current_piece, event):
+    if event.key == pygame.K_LEFT:
+        current_piece.x -= 1
+        if not valid_space(current_piece, grid):
+            current_piece.x += 1
+
+    elif event.key == pygame.K_RIGHT:
+        current_piece.x += 1
+        if not valid_space(current_piece, grid):
+            current_piece.x -= 1
+    elif event.key == pygame.K_UP:
+        # rotate shape
+        current_piece.rotation = current_piece.rotation + 1 % len(
+            current_piece.shape
+        )
+        if not valid_space(current_piece, grid):
+            current_piece.rotation = current_piece.rotation - 1 % len(
+                current_piece.shape
+            )
+    if event.key == pygame.K_DOWN:
+        # move shape down
+        current_piece.y += 1
+        if not valid_space(current_piece, grid):
+            current_piece.y -= 1
+    """if event.key == pygame_.K_SPACE:
+                    while valid_space(current_piece, grid):
+                        current_piece.y += 1
+                    current_piece.y -= 1
+                    print(convert_shape_format(current_piece))"""  # todo fix
+
+
 def init():
     pygame.init()
     pygame.font.init()
     pygame.display.set_caption("Tetris")
     return pygame.display.set_mode((window_width, window_height))
     # window.fill((0, 0, 0))
-    # return window
 
 
 if __name__ == '__main__':
