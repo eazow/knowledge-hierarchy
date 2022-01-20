@@ -18,21 +18,6 @@ top_left_x = (window_width - play_width) // 2
 top_left_y = window_height - play_height
 
 
-# index 0 - 6 represent shape
-
-
-class Piece(object):
-    rows = 20  # y
-    columns = 10  # x
-
-    def __init__(self, column, row, shape):
-        self.x = column
-        self.y = row
-        self.shape = shape
-        self.color = shape_colors[shapes.index(shape)]
-        self.rotation = 0  # number from 0-3
-
-
 def create_grid(locked_positions={}):
     grid = [[(0, 0, 0) for x in range(10)] for x in range(20)]
 
@@ -105,8 +90,7 @@ def draw_grid(surface, row, col):
     sy = top_left_y
     for i in range(row):
         pygame.draw.line(
-            surface, (128, 128, 128), (sx, sy + i *
-                                       30), (sx + play_width, sy + i * 30)
+            surface, (128, 128, 128), (sx, sy + i * 30), (sx + play_width, sy + i * 30)
         )  # horizontal lines
         for j in range(col):
             pygame.draw.line(
@@ -165,8 +149,7 @@ def draw_window(surface):
     font = pygame.font.SysFont("comicsans", 60)
     label = font.render("TETRIS", 1, (255, 255, 255))
 
-    surface.blit(label, (top_left_x + play_width /
-                 2 - (label.get_width() / 2), 30))
+    surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 30))
 
     for i in range(len(grid)):
         for j in range(len(grid[i])):
@@ -180,8 +163,7 @@ def draw_window(surface):
     # draw grid and border
     draw_grid(surface, 20, 10)
     pygame.draw.rect(
-        surface, (255, 0, 0), (top_left_x, top_left_y,
-                               play_width, play_height), 5
+        surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 5
     )
     # pygame_.display.update()
 
@@ -277,9 +259,7 @@ def handle_keydown(current_piece, event):
             current_piece.x -= 1
     elif event.key == pygame.K_UP:
         # rotate shape
-        current_piece.rotation = current_piece.rotation + 1 % len(
-            current_piece.shape
-        )
+        current_piece.rotation = current_piece.rotation + 1 % len(current_piece.shape)
         if not valid_space(current_piece, grid):
             current_piece.rotation = current_piece.rotation - 1 % len(
                 current_piece.shape
@@ -304,6 +284,6 @@ def init():
     # window.fill((0, 0, 0))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     window = init()
     start()
