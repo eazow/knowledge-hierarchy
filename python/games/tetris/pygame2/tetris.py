@@ -4,18 +4,15 @@ import pygame
 import random
 
 import shape
+from piece import Piece
 from shape import shapes
 from conf import window_width, window_height, play_width, play_height, shape_colors
 
-"""
-10 x 20 square grid
-shapes: S, Z, I, O, J, L, T
-represented in order by 0 - 6
-"""
-
 
 top_left_x = (window_width - play_width) // 2
+top_left_x = 0
 top_left_y = window_height - play_height
+top_left_y = 0
 
 
 def create_grid(locked_positions={}):
@@ -144,12 +141,11 @@ def draw_next_shape(shape, surface):
 
 
 def draw_window(surface):
-    surface.fill((0, 0, 0))
+    # surface.fill((0, 0, 0))
     # Tetris Title
     font = pygame.font.SysFont("comicsans", 60)
-    label = font.render("TETRIS", 1, (255, 255, 255))
-
-    surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 30))
+    # label = font.render("TETRIS", 1, (255, 255, 255))
+    # surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 30))
 
     for i in range(len(grid)):
         for j in range(len(grid[i])):
