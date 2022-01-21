@@ -127,6 +127,7 @@ def draw_next_shape(shape, surface):
 
     sx = top_left_x + play_width + 50
     sy = top_left_y + play_height / 2 - 100
+    sy = top_left_y + 50
     format = shape.shape[shape.rotation % len(shape.shape)]
 
     for i, line in enumerate(format):
@@ -159,7 +160,7 @@ def draw_window(surface):
     # draw grid and border
     draw_grid(surface, 20, 10)
     pygame.draw.rect(
-        surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 5
+        surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 1
     )
     # pygame_.display.update()
 
