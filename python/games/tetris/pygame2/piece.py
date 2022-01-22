@@ -3,8 +3,8 @@ from shape import shapes
 
 
 class Piece(object):
-    rows = 20  # y
-    columns = 10  # x
+    # rows = 20  # y
+    # columns = 10  # x
 
     def __init__(self, column, row, shape):
         self.x = column

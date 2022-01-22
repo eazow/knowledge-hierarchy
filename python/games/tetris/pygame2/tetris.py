@@ -184,13 +184,13 @@ def start():
 
         grid = create_grid(locked_positions)
         fall_time += clock.get_rawtime()
-        level_time += clock.get_rawtime()
+        # level_time += clock.get_rawtime()
         clock.tick()
 
-        if level_time / 1000 > 4:
-            level_time = 0
-            if fall_speed > 0.15:
-                fall_speed -= 0.005
+        # if level_time / 1000 > 4:
+        #     level_time = 0
+        #     if fall_speed > 0.15:
+        #         fall_speed -= 0.005
 
         # PIECE FALLING CODE
         if fall_time / 1000 >= fall_speed:
@@ -237,7 +237,7 @@ def start():
 
         # Check if user lost
         if is_game_over(locked_positions):
-            run = False
+            break
 
     draw_text_middle("You Lost", 40, (255, 255, 255), window)
     pygame.display.update()
