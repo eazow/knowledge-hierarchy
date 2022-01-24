@@ -6,8 +6,7 @@ import random
 import shape
 from piece import Piece
 from shape import shapes
-from conf import window_width, window_height, play_width, play_height, shape_colors
-
+from conf import window_width, window_height, play_width, play_height, shape_colors, fall_speed
 
 top_left_x = (window_width - play_width) // 2
 top_left_x = 0
@@ -177,7 +176,6 @@ def start():
     clock = pygame.time.Clock()
     fall_time = 0
     level_time = 0
-    fall_speed = 0.27
     score = 0
 
     while True:
