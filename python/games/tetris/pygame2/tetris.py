@@ -124,11 +124,11 @@ def draw_window(surface):
             )
 
     # draw grid and border
-    Grid.draw(surface, 20, 10)
+    Grid.draw(surface, 20, 10, top_left_x, top_left_y)
     pygame.draw.rect(
         surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 1
     )
-    # pygame_.display.update()
+    # pygame.display.update()
 
 
 def start():
