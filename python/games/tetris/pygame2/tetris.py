@@ -19,9 +19,8 @@ def create_grid(locked_positions={}):
 
     for i in range(len(grid)):
         for j in range(len(grid[i])):
-            if (j, i) in locked_positions:
-                c = locked_positions[(j, i)]
-                grid[i][j] = c
+            grid[i][j] = locked_positions.get((j, i), grid[i][j])
+
     return grid
 
 
@@ -175,20 +174,14 @@ def start():
     next_piece = get_shape()
     clock = pygame.time.Clock()
     fall_time = 0
-    level_time = 0
     score = 0
 
     while True:
 
         grid = create_grid(locked_positions)
         fall_time += clock.get_rawtime()
-        # level_time += clock.get_rawtime()
-        clock.tick()
 
-        # if level_time / 1000 > 4:
-        #     level_time = 0
-        #     if fall_speed > 0.15:
-        #         fall_speed -= 0.005
+        clock.tick()
 
         # PIECE FALLING CODE
         if fall_time / 1000 >= fall_speed:
