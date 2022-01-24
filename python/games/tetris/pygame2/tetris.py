@@ -1,27 +1,15 @@
 import sys
 
 import pygame
-import random
 
-import shape
-from grid import draw_grid, Grid
-from piece import Piece
+from grid import Grid, create_grid
+from piece import get_shape
 from conf import window_width, window_height, play_width, play_height, fall_speed
 
 top_left_x = (window_width - play_width) // 2
 top_left_x = 0
 top_left_y = window_height - play_height
 top_left_y = 0
-
-
-def create_grid(locked_positions={}):
-    grid = [[(0, 0, 0) for x in range(10)] for x in range(20)]
-
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
-            grid[i][j] = locked_positions.get((j, i), grid[i][j])
-
-    return grid
 
 
 def convert_shape_format(shape):
@@ -61,10 +49,6 @@ def is_game_over(positions):
         if y < 1:
             return True
     return False
-
-
-def get_shape():
-    return Piece(5, 0, random.choice(shape.shapes))
 
 
 def draw_text_middle(text, size, color, surface):
