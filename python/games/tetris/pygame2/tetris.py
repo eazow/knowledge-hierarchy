@@ -4,9 +4,9 @@ import pygame
 import random
 
 import shape
+from grid import draw_grid, Grid
 from piece import Piece
-from shape import shapes
-from conf import window_width, window_height, play_width, play_height, shape_colors, fall_speed
+from conf import window_width, window_height, play_width, play_height, fall_speed
 
 top_left_x = (window_width - play_width) // 2
 top_left_x = 0
@@ -80,22 +80,6 @@ def draw_text_middle(text, size, color, surface):
     )
 
 
-def draw_grid(surface, row, col):
-    sx = top_left_x
-    sy = top_left_y
-    for i in range(row):
-        pygame.draw.line(
-            surface, (128, 128, 128), (sx, sy + i * 30), (sx + play_width, sy + i * 30)
-        )  # horizontal lines
-        for j in range(col):
-            pygame.draw.line(
-                surface,
-                (128, 128, 128),
-                (sx + j * 30, sy),
-                (sx + j * 30, sy + play_height),
-            )  # vertical lines
-
-
 def clear_rows(grid, locked):
     # need to see if row is clear the shift every other row above down one
 
@@ -156,7 +140,7 @@ def draw_window(surface):
             )
 
     # draw grid and border
-    draw_grid(surface, 20, 10)
+    Grid.draw(surface, 20, 10)
     pygame.draw.rect(
         surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 1
     )
