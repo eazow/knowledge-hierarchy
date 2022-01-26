@@ -145,7 +145,7 @@ def start():
     score = 0
 
     while True:
-
+        print(locked_positions)
         grid = create_grid(locked_positions)
         fall_time += clock.get_rawtime()
 
@@ -159,14 +159,7 @@ def start():
                 current_piece.y -= 1
                 change_piece = True
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.display.quit()
-                quit()
-                sys.exit(0)
-
-            if event.type == pygame.KEYDOWN:
-                handle_keydown(current_piece, event)
+        [handle_event(current_piece, event) for event in pygame.event.get()]
 
         shape_pos = convert_shape_format(current_piece)
 
@@ -203,6 +196,15 @@ def start():
     pygame.time.delay(2000)
 
 
+def handle_event(current_piece, event):
+    if event.type == pygame.QUIT:
+        pygame.display.quit()
+        quit()
+        sys.exit(0)
+    if event.type == pygame.KEYDOWN:
+        handle_keydown(current_piece, event)
+
+
 def handle_keydown(current_piece, event):
     if event.key == pygame.K_LEFT:
         current_piece.x -= 1
@@ -237,7 +239,6 @@ def init():
     pygame.font.init()
     pygame.display.set_caption("Tetris")
     return pygame.display.set_mode((window_width, window_height))
-    # window.fill((0, 0, 0))
 
 
 if __name__ == "__main__":
