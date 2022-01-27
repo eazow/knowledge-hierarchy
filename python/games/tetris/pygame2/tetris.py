@@ -6,9 +6,7 @@ from grid import Grid
 from piece import get_shape
 from conf import window_width, window_height, play_width, play_height, fall_speed
 
-top_left_x = (window_width - play_width) // 2
 top_left_x = 0
-top_left_y = window_height - play_height
 top_left_y = 0
 
 
@@ -52,7 +50,9 @@ def is_game_over(positions):
 
 
 def draw_text_middle(text, size, color, surface):
-    font = pygame.font.SysFont("comicsans", size, bold=True)
+    # font = pygame.font.SysFont("comicsans", size, bold=True)
+    font = pygame.font.SysFont(None, size, bold=True)
+
     label = font.render(text, 1, color)
 
     surface.blit(
@@ -89,7 +89,9 @@ def clear_rows(grid, locked):
 
 def draw_next_shape(shape, surface):
     font = pygame.font.SysFont("comicsans", 30)
-    label = font.render("Next Shape", 1, (255, 255, 255))
+    # font = pygame.font.Font(None, 30)
+
+    label = font.render("Next Shape", True, (255, 255, 255))
 
     sx = top_left_x + play_width + 50
     sy = top_left_y + play_height / 2 - 100
@@ -131,70 +133,6 @@ def draw_window(surface):
     # pygame.display.update()
 
 
-def start():
-    global grid
-
-    locked_positions = {}  # (x,y):(255,0,0)
-    grid = Grid.create(locked_positions)
-
-    change_piece = False
-    current_piece = get_shape()
-    next_piece = get_shape()
-    clock = pygame.time.Clock()
-    fall_time = 0
-    score = 0
-
-    while True:
-        print(locked_positions)
-        grid = Grid.create(locked_positions)
-        fall_time += clock.get_rawtime()
-
-        clock.tick()
-
-        # PIECE FALLING CODE
-        if fall_time / 1000 >= fall_speed:
-            fall_time = 0
-            current_piece.y += 1
-            if not (valid_space(current_piece, grid)) and current_piece.y > 0:
-                current_piece.y -= 1
-                change_piece = True
-
-        [handle_event(current_piece, event) for event in pygame.event.get()]
-
-        shape_pos = convert_shape_format(current_piece)
-
-        # add piece to the grid for drawing
-        for i in range(len(shape_pos)):
-            x, y = shape_pos[i]
-            if y > -1:
-                grid[y][x] = current_piece.color
-
-        # IF PIECE HIT GROUND
-        if change_piece:
-            for pos in shape_pos:
-                p = (pos[0], pos[1])
-                locked_positions[p] = current_piece.color
-            current_piece = next_piece
-            next_piece = get_shape()
-            change_piece = False
-
-            # call four times to check for multiple clear rows
-            if clear_rows(grid, locked_positions):
-                score += 10
-                print(score)
-
-        draw_window(window)
-        draw_next_shape(next_piece, window)
-        pygame.display.update()
-
-        # Check if user lost
-        if is_game_over(locked_positions):
-            break
-
-    draw_text_middle("You Lost", 40, (255, 255, 255), window)
-    pygame.display.update()
-    pygame.time.delay(2000)
-
 
 def handle_event(current_piece, event):
     if event.type == pygame.QUIT:
@@ -234,13 +172,75 @@ def handle_keydown(current_piece, event):
                     print(convert_shape_format(current_piece))"""  # todo fix
 
 
-def init():
-    pygame.init()
-    pygame.font.init()
-    pygame.display.set_caption("Tetris")
-    return pygame.display.set_mode((window_width, window_height))
+class Game:
+    def __init__(self):
+        pygame.init()
+        pygame.font.init()
+        pygame.display.set_caption("Tetris")
+        self.window = pygame.display.set_mode((window_width, window_height))
+
+    def start(self):
+        global grid
+
+        locked_positions = {}  # (x,y):(255,0,0)
+
+        change_piece = False
+        current_piece = get_shape()
+        next_piece = get_shape()
+        clock = pygame.time.Clock()
+        fall_time = 0
+        score = 0
+
+        while True:
+            grid = Grid.create(locked_positions)
+            fall_time += clock.get_rawtime()
+
+            clock.tick()
+
+            # PIECE FALLING CODE
+            if fall_time / 1000 >= fall_speed:
+                fall_time = 0
+                current_piece.y += 1
+                if not (valid_space(current_piece, grid)) and current_piece.y > 0:
+                    current_piece.y -= 1
+                    change_piece = True
+
+            [handle_event(current_piece, event) for event in pygame.event.get()]
+
+            shape_pos = convert_shape_format(current_piece)
+
+            # add piece to the grid for drawing
+            for i in range(len(shape_pos)):
+                x, y = shape_pos[i]
+                if y > -1:
+                    grid[y][x] = current_piece.color
+
+            # IF PIECE HIT GROUND
+            if change_piece:
+                for pos in shape_pos:
+                    p = (pos[0], pos[1])
+                    locked_positions[p] = current_piece.color
+                current_piece = next_piece
+                next_piece = get_shape()
+                change_piece = False
+
+                # call four times to check for multiple clear rows
+                if clear_rows(grid, locked_positions):
+                    score += 10
+                    print(score)
+
+            draw_window(self.window)
+            draw_next_shape(next_piece, self.window)
+            pygame.display.update()
+
+            if is_game_over(locked_positions):
+                break
+
+        draw_text_middle("You Lost", 40, (255, 255, 255), self.window)
+        pygame.display.update()
+        pygame.time.delay(2000)
 
 
 if __name__ == "__main__":
-    window = init()
-    start()
+    Game().start()
+
