@@ -20,12 +20,12 @@ class Grid:
                     (top_left_x + j * 30, top_left_y + play_height),
                 )  # vertical lines
 
+    @classmethod
+    def create(cls, locked_positions={}):
+            grid = [[(0, 0, 0) for x in range(10)] for x in range(20)]
 
-def create_grid(locked_positions={}):
-    grid = [[(0, 0, 0) for x in range(10)] for x in range(20)]
+            for i in range(len(grid)):
+                for j in range(len(grid[i])):
+                    grid[i][j] = locked_positions.get((j, i), grid[i][j])
 
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
-            grid[i][j] = locked_positions.get((j, i), grid[i][j])
-
-    return grid
+            return grid

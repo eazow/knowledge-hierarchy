@@ -2,7 +2,7 @@ import sys
 
 import pygame
 
-from grid import Grid, create_grid
+from grid import Grid
 from piece import get_shape
 from conf import window_width, window_height, play_width, play_height, fall_speed
 
@@ -135,7 +135,7 @@ def start():
     global grid
 
     locked_positions = {}  # (x,y):(255,0,0)
-    grid = create_grid(locked_positions)
+    grid = Grid.create(locked_positions)
 
     change_piece = False
     current_piece = get_shape()
@@ -146,7 +146,7 @@ def start():
 
     while True:
         print(locked_positions)
-        grid = create_grid(locked_positions)
+        grid = Grid.create(locked_positions)
         fall_time += clock.get_rawtime()
 
         clock.tick()
