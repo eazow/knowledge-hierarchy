@@ -2,43 +2,12 @@ import sys
 
 import pygame
 
-from grid import Grid
-from piece import get_shape
+from grid import Grid, valid_space
+from piece import get_shape, convert_shape_format
 from conf import window_width, window_height, play_width, play_height, fall_speed
 
 top_left_x = 0
 top_left_y = 0
-
-
-def convert_shape_format(shape):
-    positions = []
-    format = shape.shape[shape.rotation % len(shape.shape)]
-
-    for i, line in enumerate(format):
-        row = list(line)
-        for j, column in enumerate(row):
-            if column == "0":
-                positions.append((shape.x + j, shape.y + i))
-
-    for i, pos in enumerate(positions):
-        positions[i] = (pos[0] - 2, pos[1] - 4)
-
-    return positions
-
-
-def valid_space(shape, grid):
-    accepted_positions = [
-        [(j, i) for j in range(10) if grid[i][j] == (0, 0, 0)] for i in range(20)
-    ]
-    accepted_positions = [j for sub in accepted_positions for j in sub]
-    formatted = convert_shape_format(shape)
-
-    for pos in formatted:
-        if pos not in accepted_positions:
-            if pos[1] > -1:
-                return False
-
-    return True
 
 
 def is_game_over(positions):
@@ -109,31 +78,6 @@ def draw_next_shape(shape, surface):
     surface.blit(label, (sx + 10, sy - 30))
 
 
-def draw_window(surface):
-    # surface.fill((0, 0, 0))
-    # Tetris Title
-    font = pygame.font.SysFont("comicsans", 60)
-    # label = font.render("TETRIS", 1, (255, 255, 255))
-    # surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 30))
-
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
-            pygame.draw.rect(
-                surface,
-                grid[i][j],
-                (top_left_x + j * 30, top_left_y + i * 30, 30, 30),
-                0,
-            )
-
-    # draw grid and border
-    Grid.draw(surface, 20, 10, top_left_x, top_left_y)
-    pygame.draw.rect(
-        surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 1
-    )
-    # pygame.display.update()
-
-
-
 def handle_event(current_piece, event):
     if event.type == pygame.QUIT:
         pygame.display.quit()
@@ -179,58 +123,52 @@ class Game:
         pygame.display.set_caption("Tetris")
         self.window = pygame.display.set_mode((window_width, window_height))
 
-    def start(self):
-        global grid
+        self.current_piece = get_shape()
+        self.next_piece = get_shape()
+        self.change_piece = False
+        self.grid = None
+        self.fall_time = 0
 
+    def start(self):
         locked_positions = {}  # (x,y):(255,0,0)
 
-        change_piece = False
-        current_piece = get_shape()
-        next_piece = get_shape()
         clock = pygame.time.Clock()
-        fall_time = 0
         score = 0
 
         while True:
-            grid = Grid.create(locked_positions)
-            fall_time += clock.get_rawtime()
+            self.grid = Grid.create(locked_positions)
+            self.fall_time += clock.get_rawtime()
 
             clock.tick()
 
-            # PIECE FALLING CODE
-            if fall_time / 1000 >= fall_speed:
-                fall_time = 0
-                current_piece.y += 1
-                if not (valid_space(current_piece, grid)) and current_piece.y > 0:
-                    current_piece.y -= 1
-                    change_piece = True
+            self.fall_piece()
 
-            [handle_event(current_piece, event) for event in pygame.event.get()]
+            [handle_event(self.current_piece, event) for event in pygame.event.get()]
 
-            shape_pos = convert_shape_format(current_piece)
+            shape_pos = convert_shape_format(self.current_piece)
 
             # add piece to the grid for drawing
             for i in range(len(shape_pos)):
                 x, y = shape_pos[i]
                 if y > -1:
-                    grid[y][x] = current_piece.color
+                    self.grid[y][x] = self.current_piece.color
 
             # IF PIECE HIT GROUND
-            if change_piece:
+            if self.change_piece:
                 for pos in shape_pos:
                     p = (pos[0], pos[1])
-                    locked_positions[p] = current_piece.color
-                current_piece = next_piece
-                next_piece = get_shape()
-                change_piece = False
+                    locked_positions[p] = self.current_piece.color
+                self.current_piece = self.next_piece
+                self.next_piece = get_shape()
+                self.change_piece = False
 
                 # call four times to check for multiple clear rows
-                if clear_rows(grid, locked_positions):
+                if clear_rows(self.grid, locked_positions):
                     score += 10
                     print(score)
 
-            draw_window(self.window)
-            draw_next_shape(next_piece, self.window)
+            self.draw_window(self.window)
+            draw_next_shape(self.next_piece, self.window)
             pygame.display.update()
 
             if is_game_over(locked_positions):
@@ -240,7 +178,41 @@ class Game:
         pygame.display.update()
         pygame.time.delay(2000)
 
+    def fall_piece(self):
+        if self.fall_time >= 1000 * fall_speed:
+            self.fall_time = 0
+
+            self.current_piece.y += 1
+            if (
+                not (valid_space(self.current_piece, self.grid))
+                and self.current_piece.y > 0
+            ):
+                self.current_piece.y -= 1
+                self.change_piece = True
+
+    def draw_window(self, surface):
+        # surface.fill((0, 0, 0))
+        # Tetris Title
+        font = pygame.font.SysFont("comicsans", 60)
+        # label = font.render("TETRIS", 1, (255, 255, 255))
+        # surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 30))
+
+        for i in range(len(self.grid)):
+            for j in range(len(self.grid[i])):
+                pygame.draw.rect(
+                    surface,
+                    self.grid[i][j],
+                    (top_left_x + j * 30, top_left_y + i * 30, 30, 30),
+                    0,
+                )
+
+        # draw grid and border
+        Grid.draw(surface, 20, 10, top_left_x, top_left_y)
+        pygame.draw.rect(
+            surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 1
+        )
+        # pygame.display.update()
+
 
 if __name__ == "__main__":
     Game().start()
-

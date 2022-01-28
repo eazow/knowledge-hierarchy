@@ -1,5 +1,6 @@
 import pygame
 from conf import play_width, play_height
+from piece import convert_shape_format
 
 
 class Grid:
@@ -29,3 +30,18 @@ class Grid:
                     grid[i][j] = locked_positions.get((j, i), grid[i][j])
 
             return grid
+
+
+def valid_space(shape, grid):
+    accepted_positions = [
+        [(j, i) for j in range(10) if grid[i][j] == (0, 0, 0)] for i in range(20)
+    ]
+    accepted_positions = [j for sub in accepted_positions for j in sub]
+    formatted = convert_shape_format(shape)
+
+    for pos in formatted:
+        if pos not in accepted_positions:
+            if pos[1] > -1:
+                return False
+
+    return True
