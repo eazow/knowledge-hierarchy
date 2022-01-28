@@ -18,19 +18,7 @@ def is_game_over(positions):
     return False
 
 
-def draw_text_middle(text, size, color, surface):
-    # font = pygame.font.SysFont("comicsans", size, bold=True)
-    font = pygame.font.SysFont(None, size, bold=True)
 
-    label = font.render(text, 1, color)
-
-    surface.blit(
-        label,
-        (
-            top_left_x + play_width / 2 - (label.get_width() / 2),
-            top_left_y + play_height / 2 - label.get_height() / 2,
-        ),
-    )
 
 
 def clear_rows(grid, locked):
@@ -116,7 +104,15 @@ def handle_keydown(current_piece, event):
                     print(convert_shape_format(current_piece))"""  # todo fix
 
 
-class Game:
+class ScoreRecorder:
+    def __init__(self):
+        self.score = 0
+
+    def add_score(self):
+        self.score += 10
+
+
+class Game(ScoreRecorder):
     def __init__(self):
         pygame.init()
         pygame.font.init()
@@ -128,15 +124,13 @@ class Game:
         self.change_piece = False
         self.grid = None
         self.fall_time = 0
+        self.locked_positions = {}  # (x,y):(255,0,0)
 
     def start(self):
-        locked_positions = {}  # (x,y):(255,0,0)
-
         clock = pygame.time.Clock()
-        score = 0
 
         while True:
-            self.grid = Grid.create(locked_positions)
+            self.grid = Grid.create(self.locked_positions)
             self.fall_time += clock.get_rawtime()
 
             clock.tick()
@@ -157,24 +151,23 @@ class Game:
             if self.change_piece:
                 for pos in shape_pos:
                     p = (pos[0], pos[1])
-                    locked_positions[p] = self.current_piece.color
+                    self.locked_positions[p] = self.current_piece.color
                 self.current_piece = self.next_piece
                 self.next_piece = get_shape()
                 self.change_piece = False
 
                 # call four times to check for multiple clear rows
-                if clear_rows(self.grid, locked_positions):
-                    score += 10
-                    print(score)
+                if clear_rows(self.grid, self.locked_positions):
+                    self.add_score()
 
-            self.draw_window(self.window)
+            self.draw_window()
             draw_next_shape(self.next_piece, self.window)
             pygame.display.update()
 
-            if is_game_over(locked_positions):
+            if is_game_over(self.locked_positions):
                 break
 
-        draw_text_middle("You Lost", 40, (255, 255, 255), self.window)
+        self.draw_text_middle("You Lost", 40, (255, 255, 255))
         pygame.display.update()
         pygame.time.delay(2000)
 
@@ -190,28 +183,34 @@ class Game:
                 self.current_piece.y -= 1
                 self.change_piece = True
 
-    def draw_window(self, surface):
-        # surface.fill((0, 0, 0))
-        # Tetris Title
-        font = pygame.font.SysFont("comicsans", 60)
-        # label = font.render("TETRIS", 1, (255, 255, 255))
-        # surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 30))
-
+    def draw_window(self):
         for i in range(len(self.grid)):
             for j in range(len(self.grid[i])):
                 pygame.draw.rect(
-                    surface,
+                    self.window,
                     self.grid[i][j],
                     (top_left_x + j * 30, top_left_y + i * 30, 30, 30),
                     0,
                 )
 
         # draw grid and border
-        Grid.draw(surface, 20, 10, top_left_x, top_left_y)
+        Grid.draw(self.window, 20, 10, top_left_x, top_left_y)
         pygame.draw.rect(
-            surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 1
+            self.window, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 1
         )
         # pygame.display.update()
+
+    def draw_text_middle(self, text, size, color):
+        font = pygame.font.SysFont("comicsans", size, bold=True)
+        label = font.render(text, 1, color)
+
+        self.window.blit(
+            label,
+            (
+                top_left_x + play_width / 2 - (label.get_width() / 2),
+                top_left_y + play_height / 2 - label.get_height() / 2,
+            ),
+        )
 
 
 if __name__ == "__main__":

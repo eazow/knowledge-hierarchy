@@ -13,4 +13,4 @@ shape_colors = [
     (128, 0, 128),
 ]
 
-fall_speed = 0.27
+fall_speed = 0.3
