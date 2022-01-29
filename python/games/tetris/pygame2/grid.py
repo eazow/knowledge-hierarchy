@@ -21,6 +21,10 @@ class Grid:
                     (top_left_x + j * 30, top_left_y + play_height),
                 )  # vertical lines
 
+        pygame.draw.rect(
+            surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 1
+        )
+
     @classmethod
     def create(cls, locked_positions={}):
         grid = [[(0, 0, 0) for x in range(10)] for x in range(20)]

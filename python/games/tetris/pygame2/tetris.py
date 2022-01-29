@@ -18,9 +18,6 @@ def is_game_over(positions):
     return False
 
 
-
-
-
 def clear_rows(grid, locked):
     # need to see if row is clear the shift every other row above down one
 
@@ -87,7 +84,8 @@ def handle_keydown(current_piece, event):
             current_piece.x -= 1
     elif event.key == pygame.K_UP:
         # rotate shape
-        current_piece.rotation = current_piece.rotation + 1 % len(current_piece.shape)
+        current_piece.rotation = current_piece.rotation + \
+            1 % len(current_piece.shape)
         if not valid_space(current_piece, grid):
             current_piece.rotation = current_piece.rotation - 1 % len(
                 current_piece.shape
@@ -137,7 +135,8 @@ class Game(ScoreRecorder):
 
             self.fall_piece()
 
-            [handle_event(self.current_piece, event) for event in pygame.event.get()]
+            [handle_event(self.current_piece, event)
+             for event in pygame.event.get()]
 
             shape_pos = convert_shape_format(self.current_piece)
 
@@ -193,12 +192,7 @@ class Game(ScoreRecorder):
                     0,
                 )
 
-        # draw grid and border
         Grid.draw(self.window, 20, 10, top_left_x, top_left_y)
-        pygame.draw.rect(
-            self.window, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 1
-        )
-        # pygame.display.update()
 
     def draw_text_middle(self, text, size, color):
         font = pygame.font.SysFont("comicsans", size, bold=True)

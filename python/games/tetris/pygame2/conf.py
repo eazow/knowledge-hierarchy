@@ -1,7 +1,9 @@
 window_width = 600
 window_height = 600
-play_width = 300  # meaning 300 // 10 = 30 width per block
-play_height = 600  # meaning 600 // 20 = 20 height per blo ck
+
+play_width = 300
+play_height = 600
+
 block_size = 30
 shape_colors = [
     (0, 255, 0),
