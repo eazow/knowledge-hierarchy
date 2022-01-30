@@ -146,18 +146,7 @@ class Game(ScoreRecorder):
                 if y > -1:
                     self.grid[y][x] = self.current_piece.color
 
-            # IF PIECE HIT GROUND
-            if self.change_piece:
-                for pos in shape_pos:
-                    p = (pos[0], pos[1])
-                    self.locked_positions[p] = self.current_piece.color
-                self.current_piece = self.next_piece
-                self.next_piece = get_shape()
-                self.change_piece = False
-
-                # call four times to check for multiple clear rows
-                if clear_rows(self.grid, self.locked_positions):
-                    self.add_score()
+            self.check_rows(shape_pos)
 
             self.draw_window()
             draw_next_shape(self.next_piece, self.window)
@@ -169,6 +158,19 @@ class Game(ScoreRecorder):
         self.draw_text_middle("You Lost", 40, (255, 255, 255))
         pygame.display.update()
         pygame.time.delay(2000)
+
+    def check_rows(self, shape_pos):
+        if self.change_piece:
+            for pos in shape_pos:
+                p = (pos[0], pos[1])
+                self.locked_positions[p] = self.current_piece.color
+            self.current_piece = self.next_piece
+            self.next_piece = get_shape()
+            self.change_piece = False
+
+            # call four times to check for multiple clear rows
+            if clear_rows(self.grid, self.locked_positions):
+                self.add_score()
 
     def fall_piece(self):
         if self.fall_time >= 1000 * fall_speed:
