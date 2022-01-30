@@ -63,45 +63,6 @@ def draw_next_shape(shape, surface):
     surface.blit(label, (sx + 10, sy - 30))
 
 
-def handle_event(current_piece, event):
-    if event.type == pygame.QUIT:
-        pygame.display.quit()
-        quit()
-        sys.exit(0)
-    if event.type == pygame.KEYDOWN:
-        handle_keydown(current_piece, event)
-
-
-def handle_keydown(current_piece, event):
-    if event.key == pygame.K_LEFT:
-        current_piece.x -= 1
-        if not valid_space(current_piece, grid):
-            current_piece.x += 1
-
-    elif event.key == pygame.K_RIGHT:
-        current_piece.x += 1
-        if not valid_space(current_piece, grid):
-            current_piece.x -= 1
-    elif event.key == pygame.K_UP:
-        # rotate shape
-        current_piece.rotation = current_piece.rotation + \
-            1 % len(current_piece.shape)
-        if not valid_space(current_piece, grid):
-            current_piece.rotation = current_piece.rotation - 1 % len(
-                current_piece.shape
-            )
-    if event.key == pygame.K_DOWN:
-        # move shape down
-        current_piece.y += 1
-        if not valid_space(current_piece, grid):
-            current_piece.y -= 1
-    """if event.key == pygame_.K_SPACE:
-                    while valid_space(current_piece, grid):
-                        current_piece.y += 1
-                    current_piece.y -= 1
-                    print(convert_shape_format(current_piece))"""  # todo fix
-
-
 class ScoreRecorder:
     def __init__(self):
         self.score = 0
@@ -135,8 +96,7 @@ class Game(ScoreRecorder):
 
             self.fall_piece()
 
-            [handle_event(self.current_piece, event)
-             for event in pygame.event.get()]
+            [self.handle_event(event) for event in pygame.event.get()]
 
             shape_pos = convert_shape_format(self.current_piece)
 
@@ -207,6 +167,47 @@ class Game(ScoreRecorder):
                 top_left_y + play_height / 2 - label.get_height() / 2,
             ),
         )
+
+    def handle_event(self, event):
+        if event.type == pygame.QUIT:
+            pygame.display.quit()
+            quit()
+            sys.exit(0)
+        if event.type == pygame.KEYDOWN:
+            self.handle_keydown(event)
+
+    def handle_keydown(self, event):
+        current_piece = self.current_piece
+        grid = self.grid
+
+        if event.key == pygame.K_LEFT:
+            current_piece.x -= 1
+            if not valid_space(current_piece, grid):
+                current_piece.x += 1
+
+        elif event.key == pygame.K_RIGHT:
+            current_piece.x += 1
+            if not valid_space(current_piece, grid):
+                current_piece.x -= 1
+        elif event.key == pygame.K_UP:
+            # rotate shape
+            current_piece.rotation = current_piece.rotation + 1 % len(
+                current_piece.shape
+            )
+            if not valid_space(current_piece, grid):
+                current_piece.rotation = current_piece.rotation - 1 % len(
+                    current_piece.shape
+                )
+        if event.key == pygame.K_DOWN:
+            # move shape down
+            current_piece.y += 1
+            if not valid_space(current_piece, grid):
+                current_piece.y -= 1
+        """if event.key == pygame_.K_SPACE:
+                        while valid_space(current_piece, grid):
+                            current_piece.y += 1
+                        current_piece.y -= 1
+                        print(convert_shape_format(current_piece))"""  # todo fix
 
 
 if __name__ == "__main__":
