@@ -71,8 +71,15 @@ class ScoreRecorder:
         self.score += 10
 
 
-class Game(ScoreRecorder):
+class ClockMixin:
     def __init__(self):
+        self.clock = pygame.time.Clock()
+
+
+class Game(ClockMixin, ScoreRecorder):
+    def __init__(self):
+        super(Game, self).__init__()
+
         pygame.init()
         pygame.font.init()
         pygame.display.set_caption("Tetris")
@@ -86,13 +93,11 @@ class Game(ScoreRecorder):
         self.locked_positions = {}  # (x,y):(255,0,0)
 
     def start(self):
-        clock = pygame.time.Clock()
-
         while True:
             self.grid = Grid.create(self.locked_positions)
-            self.fall_time += clock.get_rawtime()
+            self.fall_time += self.clock.get_rawtime()
 
-            clock.tick()
+            self.clock.tick()
 
             self.fall_piece()
 
