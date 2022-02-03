@@ -90,7 +90,7 @@ class Game(ClockMixin, ScoreRecorder):
         self.change_piece = False
         self.grid = None
         self.fall_time = 0
-        self.locked_positions = {}  # (x,y):(255,0,0)
+        self.locked_positions = {}
 
     def start(self):
         while True:
@@ -104,8 +104,8 @@ class Game(ClockMixin, ScoreRecorder):
             [self.handle_event(event) for event in pygame.event.get()]
 
             shape_pos = convert_shape_format(self.current_piece)
+            print(shape_pos)
 
-            # add piece to the grid for drawing
             for i in range(len(shape_pos)):
                 x, y = shape_pos[i]
                 if y > -1:
@@ -122,7 +122,7 @@ class Game(ClockMixin, ScoreRecorder):
 
         self.draw_text_middle("You Lost", 40, (255, 255, 255))
         pygame.display.update()
-        pygame.time.delay(2000)
+        # pygame.time.delay(2000)
 
     def check_rows(self, shape_pos):
         if self.change_piece:
