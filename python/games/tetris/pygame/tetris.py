@@ -3,7 +3,7 @@ import sys
 import pygame
 
 from grid import Grid, valid_space
-from piece import get_shape, convert_shape_format
+from piece import get_shape
 from conf import window_width, window_height, play_width, play_height, fall_speed
 
 top_left_x = 0
@@ -103,13 +103,9 @@ class Game(ClockMixin, ScoreRecorder):
 
             [self.handle_event(event) for event in pygame.event.get()]
 
-            shape_pos = convert_shape_format(self.current_piece)
-            print(shape_pos)
+            shape_pos = self.current_piece.convert_shape_format()
 
-            for i in range(len(shape_pos)):
-                x, y = shape_pos[i]
-                if y > -1:
-                    self.grid[y][x] = self.current_piece.color
+            self.update_grid(shape_pos)
 
             self.check_rows(shape_pos)
 
@@ -123,6 +119,12 @@ class Game(ClockMixin, ScoreRecorder):
         self.draw_text_middle("You Lost", 40, (255, 255, 255))
         pygame.display.update()
         # pygame.time.delay(2000)
+
+    def update_grid(self, shape_pos):
+        for i in range(len(shape_pos)):
+            x, y = shape_pos[i]
+            if y > -1:
+                self.grid[y][x] = self.current_piece.color
 
     def check_rows(self, shape_pos):
         if self.change_piece:
