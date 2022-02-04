@@ -3,8 +3,8 @@ import sys
 import pygame
 
 from grid import Grid, valid_space
-from piece import get_shape
 from conf import window_width, window_height, play_width, play_height, fall_speed
+from shape import Shape
 
 top_left_x = 0
 top_left_y = 0
@@ -85,8 +85,8 @@ class Game(ClockMixin, ScoreRecorder):
         pygame.display.set_caption("Tetris")
         self.window = pygame.display.set_mode((window_width, window_height))
 
-        self.current_piece = get_shape()
-        self.next_piece = get_shape()
+        self.current_piece = Shape.create()
+        self.next_piece = Shape.create()
         self.change_piece = False
         self.grid = None
         self.fall_time = 0
@@ -132,7 +132,7 @@ class Game(ClockMixin, ScoreRecorder):
                 p = (pos[0], pos[1])
                 self.locked_positions[p] = self.current_piece.color
             self.current_piece = self.next_piece
-            self.next_piece = get_shape()
+            self.next_piece = Shape.create()
             self.change_piece = False
 
             # call four times to check for multiple clear rows
