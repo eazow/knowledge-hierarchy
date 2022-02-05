@@ -4,7 +4,7 @@ import pygame
 
 from grid import Grid, valid_space
 from conf import window_width, window_height, play_width, play_height, fall_speed
-from shape import Shape
+from block import Block
 
 top_left_x = 0
 top_left_y = 0
@@ -85,9 +85,9 @@ class Game(ClockMixin, ScoreRecorder):
         pygame.display.set_caption("Tetris")
         self.window = pygame.display.set_mode((window_width, window_height))
 
-        self.current_piece = Shape.create()
-        self.next_piece = Shape.create()
-        self.change_piece = False
+        self.current_block = Block.create()
+        self.next_block = Block.create()
+        self.is_changing = False
         self.grid = None
         self.fall_time = 0
         self.locked_positions = {}
@@ -103,14 +103,14 @@ class Game(ClockMixin, ScoreRecorder):
 
             [self.handle_event(event) for event in pygame.event.get()]
 
-            shape_pos = self.current_piece.convert_shape_format()
+            shape_pos = self.current_block.convert_shape_format()
 
             self.update_grid(shape_pos)
 
             self.check_rows(shape_pos)
 
             self.draw_window()
-            draw_next_shape(self.next_piece, self.window)
+            draw_next_shape(self.next_block, self.window)
             pygame.display.update()
 
             if is_game_over(self.locked_positions):
@@ -124,16 +124,16 @@ class Game(ClockMixin, ScoreRecorder):
         for i in range(len(shape_pos)):
             x, y = shape_pos[i]
             if y > -1:
-                self.grid[y][x] = self.current_piece.color
+                self.grid[y][x] = self.current_block.color
 
     def check_rows(self, shape_pos):
-        if self.change_piece:
+        if self.is_changing:
             for pos in shape_pos:
                 p = (pos[0], pos[1])
-                self.locked_positions[p] = self.current_piece.color
-            self.current_piece = self.next_piece
-            self.next_piece = Shape.create()
-            self.change_piece = False
+                self.locked_positions[p] = self.current_block.color
+            self.current_block = self.next_block
+            self.next_block = Block.create()
+            self.is_changing = False
 
             # call four times to check for multiple clear rows
             if clear_rows(self.grid, self.locked_positions):
@@ -143,13 +143,13 @@ class Game(ClockMixin, ScoreRecorder):
         if self.fall_time >= 1000 * fall_speed:
             self.fall_time = 0
 
-            self.current_piece.y += 1
+            self.current_block.y += 1
             if (
-                not (valid_space(self.current_piece, self.grid))
-                and self.current_piece.y > 0
+                not (valid_space(self.current_block, self.grid))
+                and self.current_block.y > 0
             ):
-                self.current_piece.y -= 1
-                self.change_piece = True
+                self.current_block.y -= 1
+                self.is_changing = True
 
     def draw_window(self):
         for i in range(len(self.grid)):
@@ -184,7 +184,7 @@ class Game(ClockMixin, ScoreRecorder):
             self.handle_keydown(event)
 
     def handle_keydown(self, event):
-        current_piece = self.current_piece
+        current_piece = self.current_block
         grid = self.grid
 
         if event.key == pygame.K_LEFT:

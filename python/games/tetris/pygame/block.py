@@ -48,7 +48,7 @@ T = [
 shapes = [S, Z, I, O, J, L, T]
 
 
-class Shape(object):
+class Block(object):
     def __init__(self, x, y, shape):
         self.x = x
         self.y = y
@@ -74,4 +74,4 @@ class Shape(object):
 
     @classmethod
     def create(cls):
-        return Shape(5, 0, random.choice(shapes))
+        return Block(5, 0, random.choice(shapes))
