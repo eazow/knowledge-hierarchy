@@ -41,7 +41,7 @@ def clear_rows(grid, locked):
                 locked[newKey] = locked.pop(key)
 
 
-def draw_next_shape(shape, surface):
+def draw_next_block(shape, surface):
     font = pygame.font.SysFont("comicsans", 30)
     # font = pygame.font.Font(None, 30)
 
@@ -110,7 +110,7 @@ class Game(ClockMixin, ScoreRecorder):
             self.check_rows(shape_pos)
 
             self.draw_window()
-            draw_next_shape(self.next_block, self.window)
+            draw_next_block(self.next_block, self.window)
             pygame.display.update()
 
             if is_game_over(self.locked_positions):
