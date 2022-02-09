@@ -210,11 +210,10 @@ class Game(ClockMixin, ScoreRecorder):
             current_piece.y += 1
             if not valid_space(current_piece, grid):
                 current_piece.y -= 1
-        """if event.key == pygame_.K_SPACE:
-                        while valid_space(current_piece, grid):
-                            current_piece.y += 1
-                        current_piece.y -= 1
-                        print(convert_shape_format(current_piece))"""  # todo fix
+        if event.key == pygame.K_SPACE:
+            while valid_space(current_piece, grid):
+                current_piece.y += 1
+            current_piece.y -= 1
 
 
 if __name__ == "__main__":
