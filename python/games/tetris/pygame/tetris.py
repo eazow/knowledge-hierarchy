@@ -5,6 +5,7 @@ import pygame
 from grid import Grid, valid_space
 from conf import window_width, window_height, play_width, play_height, fall_speed
 from block import Block
+from handler import handle_key_down, handle_key_space, handle_key_up, handle_key_right, handle_key_left
 
 top_left_x = 0
 top_left_y = 0
@@ -188,32 +189,15 @@ class Game(ClockMixin, ScoreRecorder):
         grid = self.grid
 
         if event.key == pygame.K_LEFT:
-            current_piece.x -= 1
-            if not valid_space(current_piece, grid):
-                current_piece.x += 1
-
+            handle_key_left(current_piece, grid)
         elif event.key == pygame.K_RIGHT:
-            current_piece.x += 1
-            if not valid_space(current_piece, grid):
-                current_piece.x -= 1
+            handle_key_right(current_piece, grid)
         elif event.key == pygame.K_UP:
-            # rotate shape
-            current_piece.rotation = current_piece.rotation + 1 % len(
-                current_piece.shape
-            )
-            if not valid_space(current_piece, grid):
-                current_piece.rotation = current_piece.rotation - 1 % len(
-                    current_piece.shape
-                )
+            handle_key_up(current_piece, grid)
         if event.key == pygame.K_DOWN:
-            # move shape down
-            current_piece.y += 1
-            if not valid_space(current_piece, grid):
-                current_piece.y -= 1
+            handle_key_down(current_piece, grid)
         if event.key == pygame.K_SPACE:
-            while valid_space(current_piece, grid):
-                current_piece.y += 1
-            current_piece.y -= 1
+            handle_key_space(current_piece, grid)
 
 
 if __name__ == "__main__":
