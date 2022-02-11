@@ -34,6 +34,14 @@ class Grid:
 
         return grid
 
+    @classmethod
+    def is_game_over(cls, positions):
+        for pos in positions:
+            x, y = pos
+            if y < 1:
+                return True
+        return False
+
 
 def valid_space(shape, grid):
     accepted_positions = [

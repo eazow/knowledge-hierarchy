@@ -56,7 +56,7 @@ class Block(object):
         self.color = shape_colors[shapes.index(shape)]
         self.rotation = 0
 
-    def convert_shape_format(shape):
+    def convert_shape_format(self, shape):
         positions = []
         format = shape.shape[shape.rotation % len(shape.shape)]
         print(format)

@@ -12,14 +12,6 @@ top_left_x = 0
 top_left_y = 0
 
 
-def is_game_over(positions):
-    for pos in positions:
-        x, y = pos
-        if y < 1:
-            return True
-    return False
-
-
 def clear_rows(grid, locked):
     # need to see if row is clear the shift every other row above down one
 
@@ -102,7 +94,7 @@ class Game(ClockMixin, ScoreRecorder):
             draw_next_block(self.next_block, self.window)
             pygame.display.update()
 
-            if is_game_over(self.locked_positions):
+            if Grid.is_game_over(self.locked_positions):
                 break
 
         self.draw_text_middle("You Lost", 40, (255, 255, 255))
