@@ -5,7 +5,8 @@ import pygame
 from grid import Grid, valid_space
 from conf import window_width, window_height, play_width, play_height, fall_speed
 from block import Block
-from handler import handle_key_down, handle_key_space, handle_key_up, handle_key_right, handle_key_left
+from handler import handler_registry
+from mixins import ScoreRecorder, ClockMixin
 
 top_left_x = 0
 top_left_y = 0
@@ -62,19 +63,6 @@ def draw_next_block(shape, surface):
                 )
 
     surface.blit(label, (sx + 10, sy - 30))
-
-
-class ScoreRecorder:
-    def __init__(self):
-        self.score = 0
-
-    def add_score(self):
-        self.score += 10
-
-
-class ClockMixin:
-    def __init__(self):
-        self.clock = pygame.time.Clock()
 
 
 class Game(ClockMixin, ScoreRecorder):
@@ -182,22 +170,7 @@ class Game(ClockMixin, ScoreRecorder):
             quit()
             sys.exit(0)
         if event.type == pygame.KEYDOWN:
-            self.handle_keydown(event)
-
-    def handle_keydown(self, event):
-        current_piece = self.current_block
-        grid = self.grid
-
-        if event.key == pygame.K_LEFT:
-            handle_key_left(current_piece, grid)
-        elif event.key == pygame.K_RIGHT:
-            handle_key_right(current_piece, grid)
-        elif event.key == pygame.K_UP:
-            handle_key_up(current_piece, grid)
-        if event.key == pygame.K_DOWN:
-            handle_key_down(current_piece, grid)
-        if event.key == pygame.K_SPACE:
-            handle_key_space(current_piece, grid)
+            handler_registry.get(event.key)(self.current_block, self.grid)
 
 
 if __name__ == "__main__":
