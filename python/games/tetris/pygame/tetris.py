@@ -15,9 +15,9 @@ class Game(ClockMixin, ScoreRecorder, PygameMixin):
         self.current_block = Block.create()
         self.next_block = Block.create()
         self.is_changing = False
-        self.grid = None
         self.fall_time = 0
         self.locked_positions = {}
+        self.grid = Grid(self.locked_positions)
 
         self.drawer = Drawer(pygame.display.set_mode((window_width, window_height)))
 
