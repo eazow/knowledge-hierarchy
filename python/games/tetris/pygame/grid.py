@@ -21,18 +21,18 @@ class Grid:
         #         )  # vertical lines
 
         pygame.draw.rect(
-            surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 1
+            surface, (255, 0, 0), (0, 0, play_width, play_height), 1
         )
 
     @classmethod
     def create(cls, locked_positions={}):
-        grid = [[(0, 0, 0) for x in range(10)] for x in range(20)]
+        colors_by_y_x = [[(0, 0, 0) for y in range(10)] for x in range(20)]
 
-        for i in range(len(grid)):
-            for j in range(len(grid[i])):
-                grid[i][j] = locked_positions.get((j, i), grid[i][j])
+        for i in range(len(colors_by_y_x)):
+            for j in range(len(colors_by_y_x[i])):
+                colors_by_y_x[i][j] = locked_positions.get((j, i), colors_by_y_x[i][j])
 
-        return grid
+        return colors_by_y_x
 
     @classmethod
     def is_game_over(cls, positions):

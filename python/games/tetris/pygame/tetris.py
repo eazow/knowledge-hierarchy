@@ -6,10 +6,7 @@ from grid import Grid, valid_space
 from conf import window_width, window_height, play_width, play_height, fall_speed
 from block import Block
 from handler import handler_registry
-from mixins import ScoreRecorder, ClockMixin
-
-top_left_x = 0
-top_left_y = 0
+from mixins import ScoreRecorder, ClockMixin, Drawer
 
 
 def clear_rows(grid, locked):
@@ -35,28 +32,6 @@ def clear_rows(grid, locked):
                 locked[newKey] = locked.pop(key)
 
 
-def draw_next_block(shape, surface):
-    font = pygame.font.SysFont("comicsans", 30)
-    # font = pygame.font.Font(None, 30)
-
-    label = font.render("Next Shape", True, (255, 255, 255))
-
-    sx = top_left_x + play_width + 50
-    sy = top_left_y + play_height / 2 - 100
-    sy = top_left_y + 50
-    format = shape.shape[shape.rotation % len(shape.shape)]
-
-    for i, line in enumerate(format):
-        row = list(line)
-        for j, column in enumerate(row):
-            if column == "0":
-                pygame.draw.rect(
-                    surface, shape.color, (sx + j * 30, sy + i * 30, 30, 30), 0
-                )
-
-    surface.blit(label, (sx + 10, sy - 30))
-
-
 class Game(ClockMixin, ScoreRecorder):
     def __init__(self):
         super(Game, self).__init__()
@@ -64,7 +39,6 @@ class Game(ClockMixin, ScoreRecorder):
         pygame.init()
         pygame.font.init()
         pygame.display.set_caption("Tetris")
-        self.window = pygame.display.set_mode((window_width, window_height))
 
         self.current_block = Block.create()
         self.next_block = Block.create()
@@ -72,6 +46,8 @@ class Game(ClockMixin, ScoreRecorder):
         self.grid = None
         self.fall_time = 0
         self.locked_positions = {}
+
+        self.drawer = Drawer(pygame.display.set_mode((window_width, window_height)))
 
     def start(self):
         while True:
@@ -90,14 +66,21 @@ class Game(ClockMixin, ScoreRecorder):
 
             self.check_rows(shape_pos)
 
-            self.draw_window()
-            draw_next_block(self.next_block, self.window)
+            Drawer.draw_window(self.window, self.grid)
+            Drawer.draw_next_block(self.next_block, self.window)
             pygame.display.update()
 
             if Grid.is_game_over(self.locked_positions):
                 break
 
-        self.draw_text_middle("You Lost", 40, (255, 255, 255))
+        Drawer.draw_text(
+            self.window,
+            "You Lost",
+            40,
+            (255, 255, 255),
+            play_width / 2,
+            play_height / 2,
+        )
         pygame.display.update()
         # pygame.time.delay(2000)
 
@@ -131,30 +114,6 @@ class Game(ClockMixin, ScoreRecorder):
             ):
                 self.current_block.y -= 1
                 self.is_changing = True
-
-    def draw_window(self):
-        for i in range(len(self.grid)):
-            for j in range(len(self.grid[i])):
-                pygame.draw.rect(
-                    self.window,
-                    self.grid[i][j],
-                    (top_left_x + j * 30, top_left_y + i * 30, 30, 30),
-                    0,
-                )
-
-        Grid.draw(self.window, 20, 10, top_left_x, top_left_y)
-
-    def draw_text_middle(self, text, size, color):
-        font = pygame.font.SysFont("comicsans", size, bold=True)
-        label = font.render(text, 1, color)
-
-        self.window.blit(
-            label,
-            (
-                top_left_x + play_width / 2 - (label.get_width() / 2),
-                top_left_y + play_height / 2 - label.get_height() / 2,
-            ),
-        )
 
     def handle_event(self, event):
         if event.type == pygame.QUIT:
