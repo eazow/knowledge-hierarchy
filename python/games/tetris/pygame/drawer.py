@@ -1,6 +1,5 @@
 import pygame
-from conf import play_width
-from grid import Grid
+from conf import play_width, play_height
 
 
 class Drawer:
@@ -17,7 +16,7 @@ class Drawer:
                     0,
                 )
 
-        Grid.draw(self.window, 20, 10)
+        self.draw_grid(20, 10)
 
     def draw_text(self, text, size, color, x, y):
         font = pygame.font.SysFont("comicsans", size, bold=True)
@@ -49,3 +48,8 @@ class Drawer:
                     )
 
         surface.blit(label, (sx + 10, sy - 30))
+
+    def draw_grid(self):
+        pygame.draw.rect(
+            self.window, (255, 0, 0), (0, 0, play_width, play_height), 1
+        )

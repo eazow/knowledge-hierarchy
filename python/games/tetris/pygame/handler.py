@@ -1,4 +1,7 @@
+import sys
+
 import pygame
+
 from grid import valid_space
 
 
@@ -34,6 +37,15 @@ def handle_key_left(current_block, grid):
     current_block.x -= 1
     if not valid_space(current_block, grid):
         current_block.x += 1
+
+
+def handle_event(event, grid, block):
+    if event.type == pygame.QUIT:
+        pygame.display.quit()
+        quit()
+        sys.exit(0)
+    if event.type == pygame.KEYDOWN:
+        handler_registry.get(event.key)(block, grid)
 
 
 handler_registry = {

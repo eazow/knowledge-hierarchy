@@ -1,46 +1,48 @@
-import pygame
-from conf import play_width, play_height
-
-
 class Grid:
-    @classmethod
-    def draw(cls, surface, row, col, top_left_x, top_left_y):
-        # for i in range(row):
-        #     pygame.draw.line(
-        #         surface,
-        #         (128, 128, 128),
-        #         (top_left_x, top_left_y + i * 30),
-        #         (top_left_x + play_width, top_left_y + i * 30),
-        #     )  # horizontal lines
-        #     for j in range(col):
-        #         pygame.draw.line(
-        #             surface,
-        #             (128, 128, 128),
-        #             (top_left_x + j * 30, top_left_y),
-        #             (top_left_x + j * 30, top_left_y + play_height),
-        #         )  # vertical lines
+    def __init__(self, locked_positions):
+        colors_by_yx = [[(0, 0, 0) for y in range(10)] for x in range(20)]
 
-        pygame.draw.rect(
-            surface, (255, 0, 0), (0, 0, play_width, play_height), 1
-        )
+        for i in range(len(colors_by_yx)):
+            for j in range(len(colors_by_yx[i])):
+                colors_by_yx[i][j] = locked_positions.get((j, i), colors_by_yx[i][j])
 
-    @classmethod
-    def create(cls, locked_positions={}):
-        colors_by_y_x = [[(0, 0, 0) for y in range(10)] for x in range(20)]
+        self.colors_by_yx = colors_by_yx
 
-        for i in range(len(colors_by_y_x)):
-            for j in range(len(colors_by_y_x[i])):
-                colors_by_y_x[i][j] = locked_positions.get((j, i), colors_by_y_x[i][j])
-
-        return colors_by_y_x
-
-    @classmethod
-    def is_game_over(cls, positions):
+    def is_game_over(self, positions):
         for pos in positions:
             x, y = pos
             if y < 1:
                 return True
         return False
+
+    def update(self, shape_pos, block_color):
+        for i in range(len(shape_pos)):
+            x, y = shape_pos[i]
+            if y > -1:
+                self.colors_by_yx[y][x] = block_color
+
+    def clear_rows(self, locked):
+        # need to see if row is clear the shift every other row above down one
+        grid = self.colors_by_yx
+
+        inc = 0
+        for i in range(len(grid) - 1, -1, -1):
+            row = grid[i]
+            if (0, 0, 0) not in row:
+                inc += 1
+                # add positions to remove from locked
+                ind = i
+                for j in range(len(row)):
+                    try:
+                        del locked[(j, i)]
+                    except BaseException:
+                        continue
+        if inc > 0:
+            for key in sorted(list(locked), key=lambda x: x[1])[::-1]:
+                x, y = key
+                if y < ind:
+                    newKey = (x, y + inc)
+                    locked[newKey] = locked.pop(key)
 
 
 def valid_space(shape, grid):
