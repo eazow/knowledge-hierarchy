@@ -6,7 +6,8 @@ from grid import Grid, valid_space
 from conf import window_width, window_height, play_width, play_height, fall_speed
 from block import Block
 from handler import handler_registry
-from mixins import ScoreRecorder, ClockMixin, Drawer
+from mixins import ScoreRecorder, ClockMixin, PygameMixin
+from drawer import Drawer
 
 
 def clear_rows(grid, locked):
@@ -32,13 +33,9 @@ def clear_rows(grid, locked):
                 locked[newKey] = locked.pop(key)
 
 
-class Game(ClockMixin, ScoreRecorder):
+class Game(ClockMixin, ScoreRecorder, PygameMixin):
     def __init__(self):
         super(Game, self).__init__()
-
-        pygame.init()
-        pygame.font.init()
-        pygame.display.set_caption("Tetris")
 
         self.current_block = Block.create()
         self.next_block = Block.create()
@@ -66,23 +63,14 @@ class Game(ClockMixin, ScoreRecorder):
 
             self.check_rows(shape_pos)
 
-            Drawer.draw_window(self.window, self.grid)
-            Drawer.draw_next_block(self.next_block, self.window)
+            self.drawer.draw_window(self.grid)
+            self.drawer.draw_next_block(self.next_block)
             pygame.display.update()
 
             if Grid.is_game_over(self.locked_positions):
                 break
 
-        Drawer.draw_text(
-            self.window,
-            "You Lost",
-            40,
-            (255, 255, 255),
-            play_width / 2,
-            play_height / 2,
-        )
-        pygame.display.update()
-        # pygame.time.delay(2000)
+        self.lost()
 
     def update_grid(self, shape_pos):
         for i in range(len(shape_pos)):
@@ -122,6 +110,17 @@ class Game(ClockMixin, ScoreRecorder):
             sys.exit(0)
         if event.type == pygame.KEYDOWN:
             handler_registry.get(event.key)(self.current_block, self.grid)
+
+    def lost(self):
+        self.drawer.draw_text(
+            "You Lost",
+            40,
+            (255, 255, 255),
+            play_width / 2,
+            play_height / 2,
+        )
+        pygame.display.update()
+        # pygame.time.delay(2000)
 
 
 if __name__ == "__main__":
