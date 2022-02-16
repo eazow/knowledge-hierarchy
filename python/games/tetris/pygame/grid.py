@@ -1,18 +1,53 @@
+from block import Block
+from conf import fall_speed
+
+
 class Grid:
     def __init__(self, ):
         self.colors_by_yx = [[(0, 0, 0) for y in range(10)] for x in range(20)]
+
+        self.fall_time = 0
+        self.locked_positions = {}
+        self.is_changing = False
+
+        self.current_block = Block.create()
+        self.next_block = Block.create()
 
     def update_locked(self, locked_positions):
         for i in range(len(self.colors_by_yx)):
             for j in range(len(self.colors_by_yx[i])):
                 self.colors_by_yx[i][j] = locked_positions.get((j, i), self.colors_by_yx[i][j])
 
-    def is_game_over(self, positions):
-        for pos in positions:
+    def is_game_over(self):
+        for pos in self.locked_positions:
             x, y = pos
             if y < 1:
                 return True
         return False
+
+    def check_rows(self, shape_pos):
+        if self.is_changing:
+            for pos in shape_pos:
+                p = (pos[0], pos[1])
+                self.locked_positions[p] = self.current_block.color
+
+            self.is_changing = False
+
+            # call four times to check for multiple clear rows
+            if self.grid.clear_rows(self.locked_positions):
+                self.add_score()
+
+    def fall_piece(self):
+        if self.fall_time >= 1000 * fall_speed:
+            self.fall_time = 0
+
+            self.current_block.y += 1
+            if (
+                not (valid_space(self.current_block, self.grid))
+                and self.current_block.y > 0
+            ):
+                self.current_block.y -= 1
+                self.is_changing = True
 
     def update(self, shape_pos, block_color):
         for i in range(len(shape_pos)):

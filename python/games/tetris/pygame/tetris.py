@@ -12,23 +12,18 @@ class Game(ClockMixin, ScoreRecorder, PygameMixin):
     def __init__(self):
         super(Game, self).__init__()
 
-        self.current_block = Block.create()
-        self.next_block = Block.create()
-        self.is_changing = False
-        self.fall_time = 0
-        self.locked_positions = {}
         self.grid = Grid()
 
         self.drawer = Drawer(pygame.display.set_mode((window_width, window_height)))
 
     def start(self):
-        while self.grid.is_game_over(self.locked_positions):
+        while self.grid.is_game_over():
             self.grid.update_locked(self.locked_positions)
-            self.fall_time += self.clock.get_rawtime()
+            self.grid.fall_time += self.clock.get_rawtime()
 
             self.clock.tick()
 
-            self.fall_piece()
+            self.grid.fall_piece()
 
             [handle_event(event) for event in pygame.event.get()]
 
@@ -37,35 +32,10 @@ class Game(ClockMixin, ScoreRecorder, PygameMixin):
             self.check_rows(shape_pos)
 
             self.drawer.draw_window(self.grid)
-            self.drawer.draw_next_block(self.next_block)
+            self.drawer.draw_next_block(self.grid.next_block)
             pygame.display.update()
 
         self.lost()
-
-    def check_rows(self, shape_pos):
-        if self.is_changing:
-            for pos in shape_pos:
-                p = (pos[0], pos[1])
-                self.locked_positions[p] = self.current_block.color
-            self.current_block = self.next_block
-            self.next_block = Block.create()
-            self.is_changing = False
-
-            # call four times to check for multiple clear rows
-            if self.grid.clear_rows(self.locked_positions):
-                self.add_score()
-
-    def fall_piece(self):
-        if self.fall_time >= 1000 * fall_speed:
-            self.fall_time = 0
-
-            self.current_block.y += 1
-            if (
-                not (valid_space(self.current_block, self.grid))
-                and self.current_block.y > 0
-            ):
-                self.current_block.y -= 1
-                self.is_changing = True
 
     def lost(self):
         self.drawer.draw_text(
