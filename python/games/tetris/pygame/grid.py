@@ -19,8 +19,7 @@ class Grid:
                 self.colors_by_yx[i][j] = locked_positions.get((j, i), self.colors_by_yx[i][j])
 
     def is_game_over(self):
-        for pos in self.locked_positions:
-            x, y = pos
+        for x, y in self.locked_positions:
             if y < 1:
                 return True
         return False

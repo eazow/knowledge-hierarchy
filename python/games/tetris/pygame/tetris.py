@@ -1,8 +1,7 @@
 import pygame
 
-from grid import Grid, valid_space
-from conf import window_width, window_height, play_width, play_height, fall_speed
-from block import Block
+from grid import Grid
+from conf import window_width, window_height, play_width, play_height
 from handler import handle_event
 from mixins import ScoreRecorder, ClockMixin, PygameMixin
 from drawer import Drawer
