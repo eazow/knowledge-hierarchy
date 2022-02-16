@@ -17,13 +17,13 @@ class Game(ClockMixin, ScoreRecorder, PygameMixin):
         self.is_changing = False
         self.fall_time = 0
         self.locked_positions = {}
-        self.grid = Grid(self.locked_positions)
+        self.grid = Grid()
 
         self.drawer = Drawer(pygame.display.set_mode((window_width, window_height)))
 
     def start(self):
         while self.grid.is_game_over(self.locked_positions):
-            self.grid = Grid(self.locked_positions)
+            self.grid.update_locked(self.locked_positions)
             self.fall_time += self.clock.get_rawtime()
 
             self.clock.tick()

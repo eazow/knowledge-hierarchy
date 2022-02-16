@@ -1,12 +1,11 @@
 class Grid:
-    def __init__(self, locked_positions):
-        colors_by_yx = [[(0, 0, 0) for y in range(10)] for x in range(20)]
+    def __init__(self, ):
+        self.colors_by_yx = [[(0, 0, 0) for y in range(10)] for x in range(20)]
 
-        for i in range(len(colors_by_yx)):
-            for j in range(len(colors_by_yx[i])):
-                colors_by_yx[i][j] = locked_positions.get((j, i), colors_by_yx[i][j])
-
-        self.colors_by_yx = colors_by_yx
+    def update_locked(self, locked_positions):
+        for i in range(len(self.colors_by_yx)):
+            for j in range(len(self.colors_by_yx[i])):
+                self.colors_by_yx[i][j] = locked_positions.get((j, i), self.colors_by_yx[i][j])
 
     def is_game_over(self, positions):
         for pos in positions:
