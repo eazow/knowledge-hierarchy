@@ -75,6 +75,7 @@ class Block(ABC):
 
     def rotate(self):
         self.rotation = (self.rotation + 1) % len(self.shapes)
+        return self
 
     @classmethod
     def create(cls, x, y):
