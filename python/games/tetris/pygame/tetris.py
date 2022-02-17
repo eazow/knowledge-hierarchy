@@ -7,13 +7,13 @@ from mixins import ScoreRecorder, ClockMixin, PygameMixin
 from drawer import Drawer
 
 
-class Game(ClockMixin, ScoreRecorder, PygameMixin):
+class Game(PygameMixin, ClockMixin, ScoreRecorder):
     def __init__(self):
         super(Game, self).__init__()
 
         self.grid = Grid()
 
-        self.drawer = Drawer(pygame.display.set_mode((window_width, window_height)))
+        self.drawer = Drawer()
 
     def start(self):
         while self.grid.is_game_over():
@@ -45,7 +45,7 @@ class Game(ClockMixin, ScoreRecorder, PygameMixin):
             play_height / 2,
         )
         pygame.display.update()
-        # pygame.time.delay(2000)
+        pygame.time.delay(2000)
 
 
 if __name__ == "__main__":

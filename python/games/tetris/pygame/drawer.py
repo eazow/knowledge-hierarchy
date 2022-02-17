@@ -1,10 +1,10 @@
 import pygame
-from conf import play_width, play_height
+from conf import play_width, play_height, window_height, window_width
 
 
 class Drawer:
-    def __init__(self, window):
-        self.window = window
+    def __init__(self):
+        self.window = pygame.display.set_mode((window_width, window_height))
 
     def draw_window(self, grid):
         for i in range(len(grid)):
@@ -19,20 +19,20 @@ class Drawer:
         self.draw_grid(20, 10)
 
     def draw_text(self, text, size, color, x, y):
-        font = pygame.font.SysFont("comicsans", size, bold=True)
-        label = font.render(text, 1, color)
+        font = pygame.font.SysFont("comicsansms", size, bold=True)
+        # font = pygame.font.SysFont("arial", 16)
+        print(pygame.font.get_fonts())
 
-        self.window.blit(
-            label,
-            (
-                x - (label.get_width() / 2),
-                y - label.get_height() / 2,
-            ),
+        label = font.render(text, True, (100, 255, 100))
+
+        pos = (
+            x - (label.get_width() / 2),
+            y - label.get_height() / 2,
         )
+        self.window.blit(label, pos)
 
     def draw_next_block(self, shape, surface):
         font = pygame.font.SysFont("comicsans", 30)
-
         label = font.render("Next Shape", True, (255, 255, 255))
 
         sx = play_width + 50
@@ -50,6 +50,4 @@ class Drawer:
         surface.blit(label, (sx + 10, sy - 30))
 
     def draw_grid(self):
-        pygame.draw.rect(
-            self.window, (255, 0, 0), (0, 0, play_width, play_height), 1
-        )
+        pygame.draw.rect(self.window, (255, 0, 0), (0, 0, play_width, play_height), 1)

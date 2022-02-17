@@ -26,9 +26,7 @@ class Grid:
 
     def check_rows(self, shape_pos):
         if self.is_changing:
-            for pos in shape_pos:
-                p = (pos[0], pos[1])
-                self.locked_positions[p] = self.current_block.color
+
 
             self.is_changing = False
 
@@ -47,6 +45,10 @@ class Grid:
             ):
                 self.current_block.y -= 1
                 self.is_changing = True
+
+                for pos in self.current_block.convert_shape_format():
+                    p = (pos[0], pos[1])
+                    self.locked_positions[p] = self.current_block.color
 
     def update(self, shape_pos, block_color):
         for i in range(len(shape_pos)):
