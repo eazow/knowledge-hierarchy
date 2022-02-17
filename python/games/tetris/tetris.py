@@ -22,13 +22,12 @@ class Game(PygameMixin, ClockMixin, ScoreRecorder):
 
             self.clock.tick()
 
-            self.grid.fall_piece()
+            self.grid.fall_block()
 
             [handle_event(event, self.grid, self.grid.current_block) for event in pygame.event.get()]
 
-            shape_pos = self.current_block.coordinates()
-            self.grid.update(shape_pos)
-            self.grid.check_rows(shape_pos)
+            self.grid.update()
+            self.grid.check_rows()
 
             self.drawer.draw_window(self.grid)
             self.drawer.draw_next_block(self.grid.next_block)

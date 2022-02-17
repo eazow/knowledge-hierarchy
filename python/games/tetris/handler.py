@@ -6,15 +6,15 @@ from python.games.tetris.grid import valid_space
 
 
 def handle_key_down(current_block, grid):
-    current_block.y += 1
+    current_block.row += 1
     if not valid_space(current_block, grid):
-        current_block.y -= 1
+        current_block.row -= 1
 
 
 def handle_key_space(current_block, grid):
     while valid_space(current_block, grid):
-        current_block.y += 1
-    current_block.y -= 1
+        current_block.row += 1
+    current_block.row -= 1
 
 
 def handle_key_up(current_block, grid):  # rotate shape
@@ -28,15 +28,15 @@ def handle_key_up(current_block, grid):  # rotate shape
 
 
 def handle_key_right(current_block, grid):
-    current_block.x += 1
+    current_block.col += 1
     if not valid_space(current_block, grid):
-        current_block.x -= 1
+        current_block.col -= 1
 
 
 def handle_key_left(current_block, grid):
-    current_block.x -= 1
+    current_block.col -= 1
     if not valid_space(current_block, grid):
-        current_block.x += 1
+        current_block.col += 1
 
 
 def handle_event(event, grid, block):

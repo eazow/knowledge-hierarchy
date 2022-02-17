@@ -53,9 +53,9 @@ class Block(ABC):
     color = None
     rotation = 0
 
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+    def __init__(self, col, row):
+        self.col = col
+        self.row = row
 
     @property
     def coordinates(self):
@@ -66,7 +66,7 @@ class Block(ABC):
             row = list(line)
             for j, column in enumerate(row):
                 if column == "0":
-                    positions.append((self.x + j, self.y + i))
+                    positions.append((self.col + j, self.row + i))
 
         for i, pos in enumerate(positions):
             positions[i] = (pos[0] - 2, pos[1] - 4)
@@ -77,9 +77,12 @@ class Block(ABC):
         self.rotation = (self.rotation + 1) % len(self.shapes)
         return self
 
+    def fall(self):
+        self.row += 1
+
     @classmethod
-    def create(cls, x, y):
-        return random.choice(cls.__subclasses__())(x, y)
+    def create(cls, row, col):
+        return random.choice(cls.__subclasses__())(row, col)
 
 
 class BlockS(Block):
