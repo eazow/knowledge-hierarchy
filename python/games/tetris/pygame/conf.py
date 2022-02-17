@@ -15,4 +15,4 @@ shape_colors = [
     (128, 0, 128),
 ]
 
-fall_speed = 0.3
+fall_interval = 500  # milliseconds

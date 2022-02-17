@@ -1,5 +1,5 @@
 from block import Block
-from conf import fall_speed
+from conf import fall_interval
 
 
 class Grid:
@@ -37,7 +37,7 @@ class Grid:
                 self.add_score()
 
     def fall_piece(self):
-        if self.fall_time >= 1000 * fall_speed:
+        if self.fall_time >= fall_interval:
             self.fall_time = 0
 
             self.current_block.y += 1
