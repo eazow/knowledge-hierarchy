@@ -10,24 +10,25 @@ from python.games.tetris.drawer import Drawer
 class Game(PygameMixin, ClockMixin, ScoreRecorder):
     def __init__(self):
         super(Game, self).__init__()
+        ClockMixin.__init__(self)
+        ScoreRecorder.__init__(self)
 
         self.grid = Grid()
 
         self.drawer = Drawer()
 
     def start(self):
-        while self.grid.is_game_over():
+        while not self.grid.is_game_over():
             self.grid.update_colors()
 
             if self.can_fall():
                 self.grid.fall_block()
 
-            [handle_event(event, self.grid, self.grid.current_block) for event in pygame.event.get()]
+            [handle_event(event, self.grid) for event in pygame.event.get()]
 
-            self.grid.update()
             self.grid.check_rows()
 
-            self.drawer.draw_window(self.grid)
+            self.drawer.draw_window(self.grid.colors_by_row_col)
             self.drawer.draw_next_block(self.grid.next_block)
             pygame.display.update()
 

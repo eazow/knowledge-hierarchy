@@ -3,17 +3,15 @@ from conf import fall_interval
 
 
 class ScoreRecorder:
-    def __init__(self):
-        self.score = 0
+    score = 0
 
     def add_score(self):
         self.score += 10
 
 
-class ClockMixin:
-    def __init__(self):
-        self.clock = pygame.time.Clock()
-        self.time_passed = 0
+class ClockMixin(object):
+    clock = pygame.time.Clock()
+    time_passed = 0
 
     def can_fall(self):
         self.clock.tick(30)
@@ -25,7 +23,7 @@ class ClockMixin:
         return False
 
 
-class PygameMixin:
+class PygameMixin(object):
     def __init__(self):
         pygame.init()
         pygame.font.init()

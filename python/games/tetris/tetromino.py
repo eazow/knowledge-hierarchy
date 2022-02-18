@@ -60,7 +60,7 @@ class Block(ABC):
     @property
     def coordinates(self):
         positions = []
-        shape = self.shapes[self.rotation % len(self.shapes)]
+        shape = self.shapes[self.rotation]
 
         for i, line in enumerate(shape):
             row = list(line)

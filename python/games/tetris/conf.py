@@ -35,3 +35,4 @@ class Color(Enum):
     ASH = (100, 100, 100)
     CHARCOAL = (40, 40, 40)
     JET = (43, 43, 43)
+    BLACK = (0, 0, 0)

@@ -1,10 +1,10 @@
 from tetromino import Block
-from conf import cols, rows
+from conf import cols, rows, Color
 
 
 class Grid:
     def __init__(self):
-        self.colors_by_row_col = [[(0, 0, 0) for y in range(cols)] for x in range(rows)]
+        self.colors_by_row_col = [[Color.BLACK for y in range(cols)] for x in range(rows)]
 
         self.fall_time = 0
         self.locked_positions = {}
@@ -16,41 +16,39 @@ class Grid:
     def update_colors(self):
         for i in range(len(self.colors_by_row_col)):
             for j in range(len(self.colors_by_row_col[i])):
-                self.colors_by_row_col[i][j] = self.locked_positions.get((j, i), self.colors_by_row_col[i][j])
+                self.colors_by_row_col[i][j] = self.locked_positions.get(
+                    (j, i), self.colors_by_row_col[i][j]
+                )
 
     def is_game_over(self):
-        for x, y in self.locked_positions:
-            if y < 1:
+        print(self.locked_positions)
+        for col, row in self.locked_positions:
+            if row < 1:
                 return True
         return False
 
-    def check_rows(self, shape_pos):
+    def check_rows(self):
         if self.is_changing:
-
-            self.is_changing = False
 
             # call four times to check for multiple clear rows
             if self.grid.clear_rows(self.locked_positions):
                 self.add_score()
 
+            self.is_changing = False
+
     def fall_block(self):
         self.current_block.fall()
-        if (
-            not (valid_space(self.current_block, self.grid))
-            and self.current_block.row > 0
-        ):
+        if not self.valid_space() and self.current_block.row > 0:
             self.current_block.row -= 1
             self.is_changing = True
 
-            for pos in self.current_block.coordinates():
-                p = (pos[0], pos[1])
-                self.locked_positions[p] = self.current_block.color
+            for col, row in self.current_block.coordinates:
+                self.locked_positions[(col, row)] = self.current_block.color
 
-    def update(self):
         coordinates = self.current_block.coordinates
-        for x, y in coordinates:
-            if y > -1:
-                self.colors_by_row_col[y][x] = self.current_block.color
+        for col, row in coordinates:
+            if row > -1:
+                self.colors_by_row_col[row][col] = self.current_block.color
 
     def clear_rows(self, locked):
         # need to see if row is clear the shift every other row above down one
@@ -75,17 +73,19 @@ class Grid:
                     newKey = (x, y + inc)
                     locked[newKey] = locked.pop(key)
 
+    def valid_space(self):
+        accepted_positions = [
+            [
+                (col, row)
+                for col in range(cols)
+                if (col, row) not in self.locked_positions
+            ]
+            for row in range(rows)
+        ]
+        accepted_positions = [j for sub in accepted_positions for j in sub]
 
-def valid_space(shape, grid):
-    accepted_positions = [
-        [(j, i) for j in range(10) if grid[i][j] == (0, 0, 0)] for i in range(20)
-    ]
-    accepted_positions = [j for sub in accepted_positions for j in sub]
-    formatted = shape.coordinates()
-
-    for pos in formatted:
-        if pos not in accepted_positions:
-            if pos[1] > -1:
+        for pos in self.current_block.coordinates:
+            if pos not in accepted_positions and pos[1] > -1:
                 return False
 
-    return True
+        return True
