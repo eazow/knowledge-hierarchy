@@ -17,12 +17,10 @@ class Game(PygameMixin, ClockMixin, ScoreRecorder):
 
     def start(self):
         while self.grid.is_game_over():
-            self.grid.update_locked(self.locked_positions)
-            self.grid.fall_time += self.clock.get_rawtime()
+            self.grid.update_colors()
 
-            self.clock.tick()
-
-            self.grid.fall_block()
+            if self.can_fall():
+                self.grid.fall_block()
 
             [handle_event(event, self.grid, self.grid.current_block) for event in pygame.event.get()]
 

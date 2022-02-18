@@ -1,5 +1,5 @@
 from tetromino import Block
-from conf import fall_interval, cols, rows
+from conf import cols, rows
 
 
 class Grid:
@@ -13,10 +13,10 @@ class Grid:
         self.current_block = Block.create(5, 0)
         self.next_block = Block.create(5, 0)
 
-    def update_locked(self, locked_positions):
+    def update_colors(self):
         for i in range(len(self.colors_by_row_col)):
             for j in range(len(self.colors_by_row_col[i])):
-                self.colors_by_row_col[i][j] = locked_positions.get((j, i), self.colors_by_row_col[i][j])
+                self.colors_by_row_col[i][j] = self.locked_positions.get((j, i), self.colors_by_row_col[i][j])
 
     def is_game_over(self):
         for x, y in self.locked_positions:
@@ -34,20 +34,17 @@ class Grid:
                 self.add_score()
 
     def fall_block(self):
-        if self.fall_time >= fall_interval:
-            self.fall_time = 0
+        self.current_block.fall()
+        if (
+            not (valid_space(self.current_block, self.grid))
+            and self.current_block.row > 0
+        ):
+            self.current_block.row -= 1
+            self.is_changing = True
 
-            self.current_block.fall()
-            if (
-                not (valid_space(self.current_block, self.grid))
-                and self.current_block.row > 0
-            ):
-                self.current_block.row -= 1
-                self.is_changing = True
-
-                for pos in self.current_block.coordinates():
-                    p = (pos[0], pos[1])
-                    self.locked_positions[p] = self.current_block.color
+            for pos in self.current_block.coordinates():
+                p = (pos[0], pos[1])
+                self.locked_positions[p] = self.current_block.color
 
     def update(self):
         coordinates = self.current_block.coordinates
