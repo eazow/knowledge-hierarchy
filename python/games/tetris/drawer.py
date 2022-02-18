@@ -1,25 +1,25 @@
 import pygame
-from python.games.tetris.conf import grid_width, grid_height, window_height, window_width
+
+from conf import grid_width, grid_height, window_height, window_width, rows, cols, cell_size
 
 
 class Drawer:
     def __init__(self):
         self.window = pygame.display.set_mode((window_width, window_height))
 
-    def draw_window(self, grid):
-        for i in range(len(grid)):
-            for j in range(len(grid[i])):
-                print(grid[i][j])
+    def draw_window(self, colors_by_row_col):
+        for row in range(len(rows)):
+            for col in range(len(cols)):
                 pygame.draw.rect(
                     self.window,
-                    grid[i][j].value,
-                    (j * 30, i * 30, 30, 30),
+                    colors_by_row_col[row][col].value,
+                    (col * cell_size, row * cell_size, cell_size, cell_size),
                     0,
                 )
 
         self.draw_grid()
 
-    def draw_text(self, text, size, color, x, y):
+    def draw_text(self, text, size, x, y):
         font = pygame.font.SysFont("comicsansms", size, bold=True)
 
         label = font.render(text, True, (100, 255, 100))

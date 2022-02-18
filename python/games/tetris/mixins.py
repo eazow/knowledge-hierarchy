@@ -14,7 +14,7 @@ class ClockMixin(object):
     time_passed = 0
 
     def can_fall(self):
-        self.clock.tick(30)
+        self.clock.tick(120)
         self.time_passed += self.clock.get_rawtime()
         if self.time_passed >= fall_interval:
             self.time_passed = 0

@@ -9,7 +9,7 @@ grid_height = 600
 rows = 20
 cols = 10
 
-block_size = 30
+cell_size = 30
 
 shape_colors = [
     (0, 255, 0),
@@ -21,7 +21,7 @@ shape_colors = [
     (128, 0, 128),
 ]
 
-fall_interval = 500  # milliseconds
+fall_interval = 300  # milliseconds
 
 
 class Color(Enum):

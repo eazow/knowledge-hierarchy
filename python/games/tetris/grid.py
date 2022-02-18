@@ -4,24 +4,25 @@ from conf import cols, rows, Color
 
 class Grid:
     def __init__(self):
-        self.colors_by_row_col = [[Color.BLACK for y in range(cols)] for x in range(rows)]
+        self.colors_by_row_col = [
+            [Color.BLACK for y in range(cols)] for x in range(rows)
+        ]
 
         self.fall_time = 0
         self.locked_positions = {}
         self.is_changing = False
 
-        self.current_block = Block.create(5, 0)
-        self.next_block = Block.create(5, 0)
+        self.current_block = Block.create(4, 0)
+        self.next_block = Block.create(4, 0)
 
     def update_colors(self):
-        for i in range(len(self.colors_by_row_col)):
-            for j in range(len(self.colors_by_row_col[i])):
-                self.colors_by_row_col[i][j] = self.locked_positions.get(
-                    (j, i), self.colors_by_row_col[i][j]
+        for row in range(len(self.colors_by_row_col)):
+            for col in range(len(self.colors_by_row_col[row])):
+                self.colors_by_row_col[row][col] = self.locked_positions.get(
+                    (col, row), self.colors_by_row_col[row][col]
                 )
 
     def is_game_over(self):
-        print(self.locked_positions)
         for col, row in self.locked_positions:
             if row < 1:
                 return True
@@ -31,7 +32,7 @@ class Grid:
         if self.is_changing:
 
             # call four times to check for multiple clear rows
-            if self.grid.clear_rows(self.locked_positions):
+            if self.clear_rows(self.locked_positions):
                 self.add_score()
 
             self.is_changing = False
@@ -45,6 +46,7 @@ class Grid:
             for col, row in self.current_block.coordinates:
                 self.locked_positions[(col, row)] = self.current_block.color
 
+        self.update_colors()
         coordinates = self.current_block.coordinates
         for col, row in coordinates:
             if row > -1:
