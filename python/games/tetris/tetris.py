@@ -15,7 +15,7 @@ class Game(PygameMixin, ClockMixin, ScoreRecorder):
 
         self.grid = Grid()
 
-        self.drawer = Drawer()
+        self.drawer = Drawer(self.grid)
 
     def start(self):
         while not self.grid.is_game_over():
@@ -28,9 +28,7 @@ class Game(PygameMixin, ClockMixin, ScoreRecorder):
 
             self.grid.check_rows()
 
-            self.drawer.draw_grid(self.grid.colors_by_row_col)
-            self.drawer.draw_next_block(self.grid.next_block)
-            pygame.display.update()
+            self.drawer.draw()
 
         self.lost()
 

@@ -13,7 +13,8 @@ from conf import (
 
 
 class Drawer:
-    def __init__(self):
+    def __init__(self, grid):
+        self.grid = grid
         self.window = pygame.display.set_mode((window_width, window_height))
 
     def draw_grid(self, colors_by_row_col):
@@ -24,7 +25,13 @@ class Drawer:
                     (col * cell_size, row * cell_size, cell_size, cell_size),
                 )
 
-        pygame.draw.line(self.window, Color.CHARCOAL.value, (grid_width, 0), (grid_width, grid_height), 1)
+        pygame.draw.line(
+            self.window,
+            Color.CHARCOAL.value,
+            (grid_width, 0),
+            (grid_width, grid_height),
+            1,
+        )
 
     def draw_rect(self, color, rect):
         pygame.draw.rect(
@@ -50,17 +57,20 @@ class Drawer:
         text = font.render("Next Shape", True, Color.WHITE.value, Color.BLACK.value)
 
         sx = grid_width + 50
-        sy = 50
+        sy = 150
 
         for i, line in enumerate(block.coordinates):
             row = list(line)
             for j, column in enumerate(row):
                 if column == "0":
-                    pygame.draw.rect(
-                        self.window,
+                    self.draw_rect(
                         block.color.value,
                         (sx + j * 30, sy + i * 30, cell_size, cell_size),
-                        0,
                     )
 
         self.window.blit(text, (grid_width + 20, 20))
+
+    def draw(self):
+        self.draw_grid(self.grid.colors_by_row_col)
+        self.draw_next_block(self.grid.next_block)
+        pygame.display.update()
