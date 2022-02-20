@@ -101,7 +101,6 @@ class BlockZ(Block):
     color = Color.TEAL
 
 
-
 class BlockI(Block):
     shapes = [
         ["..0..", "..0..", "..0..", "..0..", "....."],

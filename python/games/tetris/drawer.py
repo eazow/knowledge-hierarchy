@@ -1,6 +1,15 @@
 import pygame
 
-from conf import grid_width, grid_height, window_height, window_width, rows, cols, cell_size
+from conf import (
+    grid_width,
+    grid_height,
+    window_height,
+    window_width,
+    rows,
+    cols,
+    cell_size,
+    Color,
+)
 
 
 class Drawer:
@@ -8,8 +17,8 @@ class Drawer:
         self.window = pygame.display.set_mode((window_width, window_height))
 
     def draw_window(self, colors_by_row_col):
-        for row in range(len(rows)):
-            for col in range(len(cols)):
+        for row in range(rows):
+            for col in range(cols):
                 pygame.draw.rect(
                     self.window,
                     colors_by_row_col[row][col].value,
@@ -31,8 +40,8 @@ class Drawer:
         self.window.blit(label, pos)
 
     def draw_next_block(self, block):
-        font = pygame.font.SysFont("comicsans", 30)
-        label = font.render("Next Shape", True, (255, 255, 255))
+        font = pygame.font.SysFont("comicsansms", 30)
+        text = font.render("Next Shape", True, Color.WHITE.value, Color.BLACK.value)
 
         sx = grid_width + 50
         sy = 50
@@ -42,10 +51,14 @@ class Drawer:
             for j, column in enumerate(row):
                 if column == "0":
                     pygame.draw.rect(
-                        self.window, block.color.value, (sx + j * 30, sy + i * 30, 30, 30), 0
+                        self.window,
+                        block.color.value,
+                        (sx + j * 30, sy + i * 30, cell_size, cell_size),
+                        0,
                     )
 
-        self.window.blit(label, (sx + 10, sy - 30))
+        self.window.blit(text, (grid_width + 20, 20))
 
     def draw_grid(self):
-        pygame.draw.rect(self.window, (255, 0, 0), (0, 0, grid_width, grid_height), 1)
+        # pygame.draw.rect(self.window, (255, 0, 0), (0, 0, grid_width, grid_height), 1)
+        pygame.draw.line(self.window, Color.JET.value, (300, 0), (300, 600), 1)

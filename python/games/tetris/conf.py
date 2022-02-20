@@ -36,3 +36,4 @@ class Color(Enum):
     CHARCOAL = (40, 40, 40)
     JET = (43, 43, 43)
     BLACK = (0, 0, 0)
+    WHITE = (255, 255, 255)
