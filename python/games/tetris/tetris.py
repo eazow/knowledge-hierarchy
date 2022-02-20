@@ -28,7 +28,7 @@ class Game(PygameMixin, ClockMixin, ScoreRecorder):
 
             self.grid.check_rows()
 
-            self.drawer.draw_window(self.grid.colors_by_row_col)
+            self.drawer.draw_grid(self.grid.colors_by_row_col)
             self.drawer.draw_next_block(self.grid.next_block)
             pygame.display.update()
 

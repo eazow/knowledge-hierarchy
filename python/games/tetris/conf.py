@@ -1,15 +1,19 @@
 from enum import Enum
 
-window_width = 600
-window_height = 600
 
-grid_width = 300
-grid_height = 600
+
+
 
 rows = 20
 cols = 10
 
-cell_size = 30
+cell_size = 35
+
+grid_width = cell_size * cols
+grid_height = cell_size * rows
+
+window_width = 600
+window_height = grid_height
 
 shape_colors = [
     (0, 255, 0),

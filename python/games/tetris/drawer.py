@@ -16,19 +16,25 @@ class Drawer:
     def __init__(self):
         self.window = pygame.display.set_mode((window_width, window_height))
 
-    def draw_window(self, colors_by_row_col):
+    def draw_grid(self, colors_by_row_col):
         for row in range(rows):
             for col in range(cols):
-                pygame.draw.rect(
-                    self.window,
+                self.draw_rect(
                     colors_by_row_col[row][col].value,
                     (col * cell_size, row * cell_size, cell_size, cell_size),
-                    0,
                 )
 
-        self.draw_grid()
+        pygame.draw.line(self.window, Color.CHARCOAL.value, (grid_width, 0), (grid_width, grid_height), 1)
 
-    def draw_text(self, text, size, x, y):
+    def draw_rect(self, color, rect):
+        pygame.draw.rect(
+            self.window,
+            color,
+            rect,
+            0,
+        )
+
+    def draw_text(self, text, size, x, y):  # deprecated
         font = pygame.font.SysFont("comicsansms", size, bold=True)
 
         label = font.render(text, True, (100, 255, 100))
@@ -58,7 +64,3 @@ class Drawer:
                     )
 
         self.window.blit(text, (grid_width + 20, 20))
-
-    def draw_grid(self):
-        # pygame.draw.rect(self.window, (255, 0, 0), (0, 0, grid_width, grid_height), 1)
-        pygame.draw.line(self.window, Color.JET.value, (300, 0), (300, 600), 1)
