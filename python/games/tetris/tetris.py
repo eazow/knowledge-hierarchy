@@ -2,7 +2,7 @@ import pygame
 
 from python.games.tetris.grid import Grid
 from python.games.tetris.conf import grid_width, grid_height
-from python.games.tetris.handler import handle_event
+from python.games.tetris.handler import handle_events
 from python.games.tetris.mixins import ScoreRecorder, ClockMixin, PygameMixin
 from python.games.tetris.drawer import Drawer
 
@@ -19,12 +19,10 @@ class Game(PygameMixin, ClockMixin, ScoreRecorder):
 
     def start(self):
         while not self.grid.is_game_over():
-            self.grid.update_colors()
-
             if self.can_fall():
                 self.grid.fall_block()
 
-            [handle_event(event, self.grid) for event in pygame.event.get()]
+            handle_events(self.grid)
 
             self.grid.check_rows()
 

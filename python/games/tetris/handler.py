@@ -42,6 +42,10 @@ def handle_event(event, grid):
         handler_registry.get(event.key)(grid)
 
 
+def handle_events(grid):
+    [handle_event(event, grid) for event in pygame.event.get()]
+
+
 handler_registry = {
     pygame.K_LEFT: handle_key_left,
     pygame.K_RIGHT: handle_key_right,

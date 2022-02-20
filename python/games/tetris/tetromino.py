@@ -80,6 +80,9 @@ class Block(ABC):
     def fall(self):
         self.row += 1
 
+    def rise(self):
+        self.row -= 1
+
     @classmethod
     def create(cls, row, col):
         return random.choice(cls.__subclasses__())(row, col)

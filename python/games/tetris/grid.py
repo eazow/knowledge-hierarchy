@@ -16,6 +16,9 @@ class Grid:
         self.next_block = Block.create(4, 0)
 
     def update_colors(self):
+        self.colors_by_row_col = [
+            [Color.BLACK for y in range(cols)] for x in range(rows)
+        ]
         for row in range(len(self.colors_by_row_col)):
             for col in range(len(self.colors_by_row_col[row])):
                 self.colors_by_row_col[row][col] = self.locked_positions.get(
@@ -30,7 +33,6 @@ class Grid:
 
     def check_rows(self):
         if self.is_changing:
-
             # call four times to check for multiple clear rows
             if self.clear_rows(self.locked_positions):
                 self.add_score()
@@ -40,7 +42,7 @@ class Grid:
     def fall_block(self):
         self.current_block.fall()
         if not self.valid_space() and self.current_block.row > 0:
-            self.current_block.row -= 1
+            self.current_block.rise()
             self.is_changing = True
 
             for col, row in self.current_block.coordinates:
