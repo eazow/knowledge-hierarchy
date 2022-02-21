@@ -12,12 +12,12 @@ def test_key_space():
     handle_key_space(grid)
     grid.update_colors()
 
-    assert grid.colors_by_row_col[rows - 3][4] == Color.BLACK
-    assert grid.colors_by_row_col[rows - 3][5] == Color.BLACK
-    assert grid.colors_by_row_col[rows - 2][5] == BlockO.color
-    assert grid.colors_by_row_col[rows - 2][5] == BlockO.color
-    assert grid.colors_by_row_col[rows - 1][4] == BlockO.color
-    assert grid.colors_by_row_col[rows - 1][5] == BlockO.color
+    assert grid.colors[rows - 3][4] == Color.BLACK
+    assert grid.colors[rows - 3][5] == Color.BLACK
+    assert grid.colors[rows - 2][5] == BlockO.color
+    assert grid.colors[rows - 2][5] == BlockO.color
+    assert grid.colors[rows - 1][4] == BlockO.color
+    assert grid.colors[rows - 1][5] == BlockO.color
 
 
 def test_key_left():
@@ -30,13 +30,13 @@ def test_key_left():
     handle_key_left(grid)
     grid.update_colors()
 
-    assert grid.colors_by_row_col[0][5] == Color.BLACK
-    assert grid.colors_by_row_col[1][5] == Color.BLACK
+    assert grid.colors[0][5] == Color.BLACK
+    assert grid.colors[1][5] == Color.BLACK
 
-    assert grid.colors_by_row_col[0][3] == BlockO.color
-    assert grid.colors_by_row_col[0][4] == BlockO.color
-    assert grid.colors_by_row_col[1][3] == BlockO.color
-    assert grid.colors_by_row_col[1][4] == BlockO.color
+    assert grid.colors[0][3] == BlockO.color
+    assert grid.colors[0][4] == BlockO.color
+    assert grid.colors[1][3] == BlockO.color
+    assert grid.colors[1][4] == BlockO.color
 
 
 def test_key_up():
@@ -49,10 +49,10 @@ def test_key_up():
     handle_key_up(grid)
     grid.update_colors()
 
-    assert grid.colors_by_row_col[0][4] == BlockO.color
-    assert grid.colors_by_row_col[0][5] == BlockO.color
-    assert grid.colors_by_row_col[1][4] == BlockO.color
-    assert grid.colors_by_row_col[1][5] == BlockO.color
+    assert grid.colors[0][4] == BlockO.color
+    assert grid.colors[0][5] == BlockO.color
+    assert grid.colors[1][4] == BlockO.color
+    assert grid.colors[1][5] == BlockO.color
 
 
 def test_key_left():

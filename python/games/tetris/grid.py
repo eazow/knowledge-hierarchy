@@ -6,32 +6,32 @@ from colors import Color
 class Grid:
     def __init__(self):
         self.fall_time = 0
-        self.locked_positions = {}
+        self.locks = {}
         self.is_changing = False
 
         self.current_block = Block.create(4, 0)
         self.next_block = Block.create(4, 0)
 
-        self.colors_by_row_col = {}
+        self.colors = {}
         self.init_colors()
 
     def init_colors(self):
-        self.colors_by_row_col = [[Color.BLACK for _ in range(cols)] for _ in range(rows)]
+        self.colors = [[Color.BLACK for _ in range(cols)] for _ in range(rows)]
 
     def update_colors(self):
         self.init_colors()
         for row in range(rows):
             for col in range(cols):
-                self.colors_by_row_col[row][col] = self.locked_positions.get(
-                    (col, row), self.colors_by_row_col[row][col]
+                self.colors[row][col] = self.locks.get(
+                    (col, row), self.colors[row][col]
                 )
 
         for col, row in self.current_block.coordinates:
             if row > -1:
-                self.colors_by_row_col[row][col] = self.current_block.color
+                self.colors[row][col] = self.current_block.color
 
     def is_game_over(self):
-        for col, row in self.locked_positions:
+        for col, row in self.locks:
             if row < 1:
                 return True
         return False
@@ -44,31 +44,34 @@ class Grid:
 
         return False
 
+    def update_locked(self):
+        for col, row in self.current_block.coordinates:
+            self.locks[(col, row)] = self.current_block.color
+
     def fall_block(self):
         self.current_block.fall()
         if not self.is_valid() and self.current_block.row > 0:
             self.current_block.rise()
             self.is_changing = True
 
-            for col, row in self.current_block.coordinates:
-                self.locked_positions[(col, row)] = self.current_block.color
+            self.update_locked()
 
         self.update_colors()
 
     def clear_rows(self):
         cleared_rows = 0
         for i in range(rows - 1, -1, -1):
-            if Color.BLACK not in self.colors_by_row_col[i]:
+            if Color.BLACK not in self.colors[i]:
                 cleared_rows += 1
                 # add positions to remove from locked
                 min_row = i
                 for j in range(cols):
-                    if (j, i) in self.locked_positions:
-                        del self.locked_positions[(j, i)]
+                    if (j, i) in self.locks:
+                        del self.locks[(j, i)]
         if cleared_rows > 0:
-            for col, row in sorted(list(self.locked_positions), key=lambda x: x[1], reverse=True):
+            for col, row in sorted(list(self.locks), key=lambda x: x[1], reverse=True):
                 if row < min_row:
-                    self.locked_positions[(col, row + cleared_rows)] = self.locked_positions.pop((col, row))
+                    self.locks[(col, row + cleared_rows)] = self.locks.pop((col, row))
 
         return cleared_rows
 
@@ -77,7 +80,7 @@ class Grid:
             (col, row)
             for row in range(rows)
             for col in range(cols)
-            if (col, row) not in self.locked_positions
+            if (col, row) not in self.locks
         ])
 
         for col, row in self.current_block.coordinates:

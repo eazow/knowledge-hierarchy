@@ -17,11 +17,11 @@ class Drawer:
         self.grid = grid
         self.window = pygame.display.set_mode((window_width, window_height))
 
-    def draw_grid(self, colors_by_row_col):
+    def draw_grid(self):
         for row in range(rows):
             for col in range(cols):
                 self.draw_rect(
-                    colors_by_row_col[row][col].value,
+                    self.grid.colors[row][col].value,
                     (col * cell_size, row * cell_size, cell_size, cell_size),
                 )
 
@@ -52,14 +52,14 @@ class Drawer:
         )
         self.window.blit(label, pos)
 
-    def draw_next_block(self, block):
+    def draw_next_block(self):
         font = pygame.font.SysFont("comicsansms", 30)
         text = font.render("Next Shape", True, Color.WHITE.value, Color.BLACK.value)
 
         sx = grid_width + 50
         sy = 150
 
-        for i, line in enumerate(block.coordinates):
+        for i, line in enumerate(self.grid.next_block.coordinates):
             row = list(line)
             for j, column in enumerate(row):
                 if column == "0":
@@ -71,6 +71,6 @@ class Drawer:
         self.window.blit(text, (grid_width + 20, 20))
 
     def draw(self):
-        self.draw_grid(self.grid.colors_by_row_col)
-        self.draw_next_block(self.grid.next_block)
+        self.draw_grid()
+        self.draw_next_block()
         pygame.display.update()
