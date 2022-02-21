@@ -12,7 +12,7 @@ def handle_key_down(grid):
 def handle_key_space(grid):
     while grid.valid_space():
         grid.current_block.row += 1
-    # grid.current_block.row -= 1
+    grid.current_block.row -= 1
 
 
 def handle_key_up(grid):  # rotate shape

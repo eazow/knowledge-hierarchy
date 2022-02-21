@@ -8,8 +8,8 @@ from conf import (
     rows,
     cols,
     cell_size,
-    Color,
 )
+from colors import Color
 
 
 class Drawer:

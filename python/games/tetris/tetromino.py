@@ -4,10 +4,10 @@ shapes: S, Z, I, O, J, L, T
 represented in order by 0 - 6
 """
 import random
-from abc import ABC, abstractproperty, abstractmethod
+from abc import ABC
 from enum import Enum
 
-from conf import shape_colors, Color
+from colors import Color
 
 
 class BlockShapes(Enum):

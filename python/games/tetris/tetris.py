@@ -38,7 +38,7 @@ class Game(PygameMixin, ClockMixin, ScoreRecorder):
             grid_height / 2,
         )
         pygame.display.update()
-        # pygame.time.delay(2000)
+        pygame.time.delay(2000)
 
 
 if __name__ == "__main__":

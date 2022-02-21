@@ -1,12 +1,10 @@
 from tetromino import Block
-from conf import cols, rows, Color
+from conf import cols, rows
+from colors import Color
 
 
 class Grid:
     def __init__(self):
-        self.colors_by_row_col = [
-            [Color.BLACK for y in range(cols)] for x in range(rows)
-        ]
 
         self.fall_time = 0
         self.locked_positions = {}
@@ -15,15 +13,22 @@ class Grid:
         self.current_block = Block.create(4, 0)
         self.next_block = Block.create(4, 0)
 
+        self.colors_by_row_col = self.init_colors()
+
+    def init_colors(self):
+        return [[Color.BLACK for _ in range(cols)] for _ in range(rows)]
+
     def update_colors(self):
-        self.colors_by_row_col = [
-            [Color.BLACK for y in range(cols)] for x in range(rows)
-        ]
-        for row in range(len(self.colors_by_row_col)):
-            for col in range(len(self.colors_by_row_col[row])):
+        self.colors_by_row_col = self.init_colors()
+        for row in range(rows):
+            for col in range(cols):
                 self.colors_by_row_col[row][col] = self.locked_positions.get(
                     (col, row), self.colors_by_row_col[row][col]
                 )
+
+        for col, row in self.current_block.coordinates:
+            if row > -1:
+                self.colors_by_row_col[row][col] = self.current_block.color
 
     def is_game_over(self):
         for col, row in self.locked_positions:
@@ -34,7 +39,7 @@ class Grid:
     def check_rows(self):
         if self.is_changing:
             # call four times to check for multiple clear rows
-            if self.clear_rows(self.locked_positions):
+            if self.clear_rows():
                 self.add_score()
 
             self.is_changing = False
@@ -49,19 +54,16 @@ class Grid:
                 self.locked_positions[(col, row)] = self.current_block.color
 
         self.update_colors()
-        coordinates = self.current_block.coordinates
-        for col, row in coordinates:
-            if row > -1:
-                self.colors_by_row_col[row][col] = self.current_block.color
 
-    def clear_rows(self, locked):
+    def clear_rows(self):
         # need to see if row is clear the shift every other row above down one
+        locked = self.locked_positions
         grid = self.colors_by_row_col
 
         inc = 0
         for i in range(len(grid) - 1, -1, -1):
             row = grid[i]
-            if (0, 0, 0) not in row:
+            if Color.BLACK not in row:
                 inc += 1
                 # add positions to remove from locked
                 ind = i

@@ -7,6 +7,7 @@ class ScoreRecorder:
 
     def add_score(self):
         self.score += 10
+        print(f"Score: {self.score}")
 
 
 class ClockMixin(object):
