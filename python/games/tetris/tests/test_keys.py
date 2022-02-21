@@ -53,3 +53,15 @@ def test_key_up():
     assert grid.colors_by_row_col[0][5] == BlockO.color
     assert grid.colors_by_row_col[1][4] == BlockO.color
     assert grid.colors_by_row_col[1][5] == BlockO.color
+
+
+def test_key_left():
+    grid = Grid()
+    grid.current_block = BlockO(2, 0)
+    grid.fall_block()
+
+    handle_key_left(grid)
+    handle_key_left(grid)
+
+    assert grid.current_block.col == 1
+

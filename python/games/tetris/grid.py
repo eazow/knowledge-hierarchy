@@ -12,13 +12,14 @@ class Grid:
         self.current_block = Block.create(4, 0)
         self.next_block = Block.create(4, 0)
 
-        self.colors_by_row_col = self.init_colors()
+        self.colors_by_row_col = {}
+        self.init_colors()
 
     def init_colors(self):
-        return [[Color.BLACK for _ in range(cols)] for _ in range(rows)]
+        self.colors_by_row_col = [[Color.BLACK for _ in range(cols)] for _ in range(rows)]
 
     def update_colors(self):
-        self.colors_by_row_col = self.init_colors()
+        self.init_colors()
         for row in range(rows):
             for col in range(cols):
                 self.colors_by_row_col[row][col] = self.locked_positions.get(
@@ -45,7 +46,7 @@ class Grid:
 
     def fall_block(self):
         self.current_block.fall()
-        if not self.valid_space() and self.current_block.row > 0:
+        if not self.is_valid() and self.current_block.row > 0:
             self.current_block.rise()
             self.is_changing = True
 
@@ -57,42 +58,33 @@ class Grid:
     def clear_rows(self):
         # need to see if row is clear the shift every other row above down one
         locked = self.locked_positions
-        grid = self.colors_by_row_col
 
-        inc = 0
-        for i in range(len(grid) - 1, -1, -1):
-            row = grid[i]
-            if Color.BLACK not in row:
-                inc += 1
+        cleared_rows = 0
+        for i in range(rows - 1, -1, -1):
+            if Color.BLACK not in self.colors_by_row_col[i]:
+                cleared_rows += 1
                 # add positions to remove from locked
                 ind = i
-                for j in range(len(row)):
-                    try:
+                for j in range(cols):
+                    if (j, i) in locked:
                         del locked[(j, i)]
-                    except BaseException:
-                        continue
-        if inc > 0:
-            for key in sorted(list(locked), key=lambda x: x[1])[::-1]:
-                x, y = key
-                if y < ind:
-                    newKey = (x, y + inc)
-                    locked[newKey] = locked.pop(key)
+        if cleared_rows > 0:
+            for col, row in sorted(list(locked), key=lambda x: x[1])[::-1]:
+                if row < ind:
+                    locked[(col, row + cleared_rows)] = locked.pop((col, row))
 
-        return inc
+        return cleared_rows
 
-    def valid_space(self):
-        accepted_positions = [
-            [
-                (col, row)
-                for col in range(cols)
-                if (col, row) not in self.locked_positions
-            ]
+    def is_valid(self):
+        empty_positions = set([
+            (col, row)
             for row in range(rows)
-        ]
-        accepted_positions = [j for sub in accepted_positions for j in sub]
+            for col in range(cols)
+            if (col, row) not in self.locked_positions
+        ])
 
-        for pos in self.current_block.coordinates:
-            if pos not in accepted_positions and pos[1] > -1:
+        for col, row in self.current_block.coordinates:
+            if (col, row) not in empty_positions and row >= 0:
                 return False
 
         return True
