@@ -5,7 +5,6 @@ from colors import Color
 
 class Grid:
     def __init__(self):
-
         self.fall_time = 0
         self.locked_positions = {}
         self.is_changing = False
@@ -38,11 +37,11 @@ class Grid:
 
     def check_rows(self):
         if self.is_changing:
-            # call four times to check for multiple clear rows
-            if self.clear_rows():
-                self.add_score()
-
             self.is_changing = False
+            # call four times to check for multiple clear rows
+            return self.clear_rows()
+
+        return False
 
     def fall_block(self):
         self.current_block.fall()
@@ -78,6 +77,8 @@ class Grid:
                 if y < ind:
                     newKey = (x, y + inc)
                     locked[newKey] = locked.pop(key)
+
+        return inc
 
     def valid_space(self):
         accepted_positions = [

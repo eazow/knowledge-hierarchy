@@ -24,7 +24,8 @@ class Game(PygameMixin, ClockMixin, ScoreRecorder):
 
             handle_events(self.grid)
 
-            self.grid.check_rows()
+            if self.grid.check_rows():
+                self.add_score()
 
             self.drawer.draw()
 

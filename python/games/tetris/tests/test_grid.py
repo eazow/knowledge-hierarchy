@@ -35,3 +35,27 @@ def test_hit_bottom():
 
     assert grid.locked_positions[(4, rows - 1)]
     assert grid.locked_positions[(5, rows - 1)]
+
+
+def test_clear_rows():
+    grid = Grid()
+    grid.current_block = BlockO(1, 0)
+    [grid.fall_block() for _ in range(rows + 1)]
+
+    grid.current_block = BlockO(3, 0)
+    [grid.fall_block() for _ in range(rows + 1)]
+
+    grid.current_block = BlockO(5, 0)
+    [grid.fall_block() for _ in range(rows + 1)]
+
+    grid.current_block = BlockO(7, 0)
+    [grid.fall_block() for _ in range(rows + 1)]
+
+    grid.current_block = BlockO(9, 0)
+    [grid.fall_block() for _ in range(rows + 1)]
+
+    assert grid.locked_positions != {}
+    assert grid.check_rows() == 2
+
+    assert grid.locked_positions == {}
+
