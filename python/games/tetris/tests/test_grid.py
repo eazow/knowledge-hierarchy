@@ -1,7 +1,8 @@
 from conf import rows
 from colors import Color
 from grid import Grid
-from tetromino import BlockO
+from handler import handle_key_space
+from tetromino import BlockO, BlockL
 
 
 def test_fall():
@@ -51,11 +52,15 @@ def test_clear_rows():
     grid.current_block = BlockO(7, 0)
     [grid.fall_block() for _ in range(rows + 1)]
 
+    grid.current_block = BlockL(5, 0)
+    handle_key_space(grid)
+
     grid.current_block = BlockO(9, 0)
     [grid.fall_block() for _ in range(rows + 1)]
 
+    print(grid.locked_positions)
     assert grid.locked_positions != {}
     assert grid.check_rows() == 2
 
-    assert grid.locked_positions == {}
-
+    print(grid.locked_positions)
+    assert grid.locked_positions.keys() == {(4, 19), (5, 19), (6, 19), (6, 18)}

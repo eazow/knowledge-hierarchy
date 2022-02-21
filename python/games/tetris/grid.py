@@ -56,22 +56,19 @@ class Grid:
         self.update_colors()
 
     def clear_rows(self):
-        # need to see if row is clear the shift every other row above down one
-        locked = self.locked_positions
-
         cleared_rows = 0
         for i in range(rows - 1, -1, -1):
             if Color.BLACK not in self.colors_by_row_col[i]:
                 cleared_rows += 1
                 # add positions to remove from locked
-                ind = i
+                min_row = i
                 for j in range(cols):
-                    if (j, i) in locked:
-                        del locked[(j, i)]
+                    if (j, i) in self.locked_positions:
+                        del self.locked_positions[(j, i)]
         if cleared_rows > 0:
-            for col, row in sorted(list(locked), key=lambda x: x[1])[::-1]:
-                if row < ind:
-                    locked[(col, row + cleared_rows)] = locked.pop((col, row))
+            for col, row in sorted(list(self.locked_positions), key=lambda x: x[1], reverse=True):
+                if row < min_row:
+                    self.locked_positions[(col, row + cleared_rows)] = self.locked_positions.pop((col, row))
 
         return cleared_rows
 
