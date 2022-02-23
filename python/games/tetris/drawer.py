@@ -25,14 +25,6 @@ class Drawer:
                     (col * cell_size, row * cell_size, cell_size, cell_size),
                 )
 
-        pygame.draw.line(
-            self.window,
-            Color.CHARCOAL.value,
-            (grid_width, 0),
-            (grid_width, grid_height),
-            1,
-        )
-
     def draw_rect(self, color, rect):
         pygame.draw.rect(
             self.window,
@@ -46,31 +38,38 @@ class Drawer:
 
         label = font.render(text, True, (100, 255, 100))
 
-        pos = (
-            x - (label.get_width() / 2),
-            y - label.get_height() / 2,
-        )
-        self.window.blit(label, pos)
+        x = x - label.get_width() / 2
+        y = y - label.get_height() / 2
+        self.window.blit(label, (x, y))
 
-    def draw_next_block(self):
+    def draw_side_panel(self):
         font = pygame.font.SysFont("comicsansms", 30)
         text = font.render("Next Shape", True, Color.WHITE.value, Color.BLACK.value)
 
-        sx = grid_width + 50
-        sy = 150
+        x, y = grid_width + 20, 150
 
-        for i, line in enumerate(self.grid.next_block.coordinates):
-            row = list(line)
-            for j, column in enumerate(row):
-                if column == "0":
-                    self.draw_rect(
-                        block.color.value,
-                        (sx + j * 30, sy + i * 30, cell_size, cell_size),
-                    )
+        self.draw_block(self.grid.next_block, x, y)
 
         self.window.blit(text, (grid_width + 20, 20))
 
+    def draw_block(self, block, x, y):
+        for i, line in enumerate(block.shapes[block.rotation]):
+            for j, column in enumerate(list(line)):
+                rect = (x + j * cell_size, y + i * cell_size, cell_size, cell_size)
+                if column == "0":
+                    self.draw_rect(block.color.value, rect)
+
+    def draw_split_line(self):
+        pygame.draw.line(
+            self.window,
+            Color.CHARCOAL.value,
+            (grid_width, 0),
+            (grid_width, grid_height),
+            1,
+        )
+
     def draw(self):
         self.draw_grid()
-        self.draw_next_block()
+        self.draw_split_line()
+        self.draw_side_panel()
         pygame.display.update()
