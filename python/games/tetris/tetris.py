@@ -32,12 +32,9 @@ class Game(PygameMixin, ClockMixin, ScoreRecorder):
         self.lost()
 
     def lost(self):
-        self.drawer.draw_text(
-            "You Lost",
-            40,
-            grid_width / 2,
-            grid_height / 2,
-        )
+        x = grid_width / 2
+        y = grid_height / 2
+        self.drawer.draw_text("You Lost", 40, x, y)
         pygame.display.update()
         pygame.time.delay(2000)
 

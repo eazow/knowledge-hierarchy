@@ -6,17 +6,17 @@ from colors import Color
 class Grid:
     def __init__(self):
         self.fall_time = 0
-        self.locks = {}
         self.is_changing = False
 
         self.current_block = Block.create(4, 0)
         self.next_block = Block.create(4, 0)
 
+        self.locks = {}
         self.colors = {}
         self.init_colors()
 
     def init_colors(self):
-        self.colors = [[Color.BLACK for _ in range(cols)] for _ in range(rows)]
+        self.colors = [[Color.BLACK] * cols] * rows
 
     def update_colors(self):
         self.init_colors()

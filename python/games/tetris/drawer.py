@@ -36,21 +36,19 @@ class Drawer:
     def draw_text(self, text, size, x, y):  # deprecated
         font = pygame.font.SysFont("comicsansms", size, bold=True)
 
-        label = font.render(text, True, (100, 255, 100))
+        label = font.render(text, True, Color.WHITE.value, Color.BLACK.value)
 
         x = x - label.get_width() / 2
         y = y - label.get_height() / 2
         self.window.blit(label, (x, y))
 
     def draw_side_panel(self):
-        font = pygame.font.SysFont("comicsansms", 30)
-        text = font.render("Next Shape", True, Color.WHITE.value, Color.BLACK.value)
+        self.draw_text(
+            "Next Shape", 25, grid_width + (window_width - grid_width) / 2, 10
+        )
 
-        x, y = grid_width + 20, 150
-
+        x, y = grid_width + 20, 50
         self.draw_block(self.grid.next_block, x, y)
-
-        self.window.blit(text, (grid_width + 20, 20))
 
     def draw_block(self, block, x, y):
         for i, line in enumerate(block.shapes[block.rotation]):
