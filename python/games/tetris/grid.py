@@ -16,15 +16,12 @@ class Grid:
         self.init_colors()
 
     def init_colors(self):
-        self.colors = [[Color.BLACK] * cols] * rows
+        self.colors = [[Color.BLACK] * cols for _ in range(rows)]
 
     def update_colors(self):
         self.init_colors()
-        for row in range(rows):
-            for col in range(cols):
-                self.colors[row][col] = self.locks.get(
-                    (col, row), self.colors[row][col]
-                )
+        for col, row in self.locks.keys():
+            self.colors[row][col] = self.locks.get((col, row))
 
         for col, row in self.current_block.coordinates:
             if row > -1:
@@ -76,12 +73,14 @@ class Grid:
         return cleared_rows
 
     def is_valid(self):
-        empty_positions = set([
-            (col, row)
-            for row in range(rows)
-            for col in range(cols)
-            if (col, row) not in self.locks
-        ])
+        empty_positions = set(
+            [
+                (col, row)
+                for row in range(rows)
+                for col in range(cols)
+                if (col, row) not in self.locks
+            ]
+        )
 
         for col, row in self.current_block.coordinates:
             if (col, row) not in empty_positions and row >= 0:

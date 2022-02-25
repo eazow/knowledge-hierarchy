@@ -10,7 +10,6 @@ def test_key_space():
     grid.current_block = BlockO(5, 0)
 
     handle_key_space(grid)
-    grid.update_colors()
 
     assert grid.colors[rows - 3][4] == Color.BLACK
     assert grid.colors[rows - 3][5] == Color.BLACK
