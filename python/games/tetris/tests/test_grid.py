@@ -79,6 +79,8 @@ def test_clear_alternate_rows():
     grid.update_colors()
     grid.check_rows()
 
-    assert grid.locks[(0, 19)] == Color.BLUE
+    for col in range(cols - 1):
+        assert grid.locks[(col, 18)] == Color.BLUE
+        assert grid.locks[(col, 19)] == Color.BLUE
     assert grid.locks[(9, 19)] == Color.BLACK
 
