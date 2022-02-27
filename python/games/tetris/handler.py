@@ -5,31 +5,32 @@ import pygame
 
 def handle_key_down(grid):
     grid.current_block.row += 1
-    if not grid.valid_space():
+    if not grid.is_valid():
         grid.current_block.row -= 1
 
 
 def handle_key_space(grid):
-    while grid.valid_space():
+    while grid.is_valid():
         grid.current_block.row += 1
-    # grid.current_block.row -= 1
+    grid.current_block.row -= 1
+    grid.fall_block()
 
 
 def handle_key_up(grid):  # rotate shape
     grid.current_block.rotation = (grid.current_block.rotation + 1) % len(grid.current_block.shapes)
-    if not grid.valid_space():
+    if not grid.is_valid():
         grid.current_block.rotation = grid.current_block.rotation - 1 % len(grid.current_block.shapes)
 
 
 def handle_key_right(grid):
     grid.current_block.col += 1
-    if not grid.valid_space():
+    if not grid.is_valid():
         grid.current_block.col -= 1
 
 
 def handle_key_left(grid):
     grid.current_block.col -= 1
-    if not grid.valid_space():
+    if not grid.is_valid():
         grid.current_block.col += 1
 
 
@@ -40,6 +41,10 @@ def handle_event(event, grid):
         sys.exit(0)
     if event.type == pygame.KEYDOWN:
         handler_registry.get(event.key)(grid)
+
+
+def handle_events(grid):
+    [handle_event(event, grid) for event in pygame.event.get()]
 
 
 handler_registry = {

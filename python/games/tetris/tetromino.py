@@ -4,10 +4,10 @@ shapes: S, Z, I, O, J, L, T
 represented in order by 0 - 6
 """
 import random
-from abc import ABC, abstractproperty, abstractmethod
+from abc import ABC
 from enum import Enum
 
-from conf import shape_colors, Color
+from colors import Color
 
 
 class BlockShapes(Enum):
@@ -80,6 +80,9 @@ class Block(ABC):
     def fall(self):
         self.row += 1
 
+    def rise(self):
+        self.row -= 1
+
     @classmethod
     def create(cls, row, col):
         return random.choice(cls.__subclasses__())(row, col)
@@ -99,7 +102,6 @@ class BlockZ(Block):
         [".....", "..0..", ".00..", ".0...", "....."],
     ]
     color = Color.TEAL
-
 
 
 class BlockI(Block):
