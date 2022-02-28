@@ -71,16 +71,16 @@ def test_clear_alternate_rows():
         grid.locks[(col, 17)] = Color.BLUE
         grid.locks[(col, 18)] = Color.BLUE
         grid.locks[(col, 19)] = Color.BLUE
-
-    del grid.locks[(8, 16)]
-    del grid.locks[(8, 18)]
+    del grid.locks[(9, 16)]
+    del grid.locks[(9, 18)]
 
     grid.is_changing = True
-    grid.update_colors()
-    grid.check_rows()
+    cleared_rows = grid.check_rows()
 
     for col in range(cols - 1):
         assert grid.locks[(col, 18)] == Color.BLUE
         assert grid.locks[(col, 19)] == Color.BLUE
-    assert grid.locks[(9, 19)] == Color.BLACK
-
+    assert (7, 17) not in grid.locks
+    assert (9, 19) not in grid.locks
+    assert (9, 19) not in grid.locks
+    assert 2 == cleared_rows
