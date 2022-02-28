@@ -2,11 +2,11 @@ import pygame
 from conf import fall_interval
 
 
-class ScoreRecorder:
+class ScoreMixin:
     score = 0
 
-    def add_score(self):
-        self.score += 10
+    def add_score(self, score):
+        self.score += score
         print(f"Score: {self.score}")
 
 

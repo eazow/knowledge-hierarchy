@@ -41,7 +41,7 @@ class Grid:
 
             return self.clear_rows()
 
-        return False
+        return 0
 
     def change_block(self):
         self.current_block = self.next_block

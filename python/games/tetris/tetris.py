@@ -3,15 +3,15 @@ import pygame
 from python.games.tetris.grid import Grid
 from python.games.tetris.conf import grid_width, grid_height
 from python.games.tetris.handler import handle_events
-from python.games.tetris.mixins import ScoreRecorder, ClockMixin, PygameMixin
+from python.games.tetris.mixins import ScoreMixin, ClockMixin, PygameMixin
 from python.games.tetris.drawer import Drawer
 
 
-class Game(PygameMixin, ClockMixin, ScoreRecorder):
+class Game(PygameMixin, ClockMixin, ScoreMixin):
     def __init__(self):
         super(Game, self).__init__()
         ClockMixin.__init__(self)
-        ScoreRecorder.__init__(self)
+        ScoreMixin.__init__(self)
 
         self.grid = Grid()
 
@@ -24,8 +24,7 @@ class Game(PygameMixin, ClockMixin, ScoreRecorder):
 
             handle_events(self.grid)
 
-            if self.grid.check_rows():
-                self.add_score()
+            self.add_score(self.grid.check_rows())
 
             self.drawer.draw()
 
