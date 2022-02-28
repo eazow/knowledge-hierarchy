@@ -7,7 +7,8 @@ class ScoreMixin:
 
     def add_score(self, score):
         self.score += score
-        print(f"Score: {self.score}")
+        if score != 0:
+            print(f"Score: {self.score}")
 
 
 class ClockMixin(object):

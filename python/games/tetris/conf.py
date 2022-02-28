@@ -1,7 +1,7 @@
-rows = 20
+rows = 16
 cols = 10
 
-cell_size = 35
+cell_size = 50
 
 grid_width = cell_size * cols
 grid_height = cell_size * rows
