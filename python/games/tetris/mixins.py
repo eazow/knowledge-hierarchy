@@ -1,5 +1,5 @@
 import pygame
-from conf import fall_interval
+from conf import fall_interval, caption
 
 
 class ScoreMixin:
@@ -29,4 +29,4 @@ class PygameMixin(object):
     def __init__(self):
         pygame.init()
         pygame.font.init()
-        pygame.display.set_caption("Tetris")
+        pygame.display.set_caption(caption)

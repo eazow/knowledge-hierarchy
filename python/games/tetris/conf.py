@@ -1,6 +1,8 @@
 rows = 16
 cols = 10
 
+caption = "Tetris"
+
 cell_size = 50
 
 grid_width = cell_size * cols
