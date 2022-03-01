@@ -19,15 +19,12 @@ class Drawer:
         self.window = pygame.display.set_mode((window_width, window_height))
 
     def draw_grid(self):
-        if self.colors != str(self.grid.colors):
-            for row in range(rows):
-                for col in range(cols):
-                    self.draw_rect(
-                        self.grid.colors[row][col].value,
-                        (col * cell_size, row * cell_size, cell_size, cell_size),
-                    )
-
-            self.colors = str(self.grid.colors)
+        for row in range(rows):
+            for col in range(cols):
+                self.draw_rect(
+                    self.grid.colors[row][col].value,
+                    (col * cell_size, row * cell_size, cell_size, cell_size),
+                )
 
     def draw_rect(self, color, rect):
         pygame.draw.rect(
@@ -56,10 +53,10 @@ class Drawer:
 
     def draw_block(self, block, x, y):
         for i, line in enumerate(block.shapes[block.rotation]):
-            for j, column in enumerate(list(line)):
+            for j, col in enumerate(list(line)):
                 rect = (x + j * cell_size, y + i * cell_size, cell_size, cell_size)
-                if column == "0":
-                    self.draw_rect(block.color.value, rect)
+                color = block.color if col == "0" else Color.BLACK
+                self.draw_rect(color.value, rect)
 
     def draw_split_line(self):
         pygame.draw.line(
@@ -71,7 +68,11 @@ class Drawer:
         )
 
     def draw(self):
-        self.draw_grid()
-        self.draw_split_line()
-        self.draw_side_panel()
-        pygame.display.update()
+        if self.colors != str(self.grid.colors):
+            self.draw_grid()
+            self.draw_split_line()
+            self.draw_side_panel()
+
+            self.colors = str(self.grid.colors)
+
+            pygame.display.update()
