@@ -75,9 +75,15 @@ class Grid:
             for i in range(rows - 1, -1, -1):
                 if self.is_full_row(i):
                     cleared_rows += 1
-                    [self.locks.pop((j, i)) for j in range(cols) if (j, i) in self.locks]
+                    [
+                        self.locks.pop((j, i))
+                        for j in range(cols)
+                        if (j, i) in self.locks
+                    ]
 
-                    for col, row in sorted(list(self.locks), key=lambda x: x[1], reverse=True):
+                    for col, row in sorted(
+                        list(self.locks), key=lambda x: x[1], reverse=True
+                    ):
                         if row < i:
                             self.locks[(col, row + 1)] = self.locks.pop((col, row))
 
@@ -98,3 +104,13 @@ class Grid:
                 return False
 
         return True
+
+    def left(self):
+        self.current_block.col -= 1
+        if not self.is_valid():
+            self.current_block.col += 1
+
+    def right(self):
+        self.current_block.col += 1
+        if not self.is_valid():
+            self.current_block.col -= 1

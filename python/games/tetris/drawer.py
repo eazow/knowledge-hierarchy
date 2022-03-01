@@ -15,15 +15,19 @@ from colors import Color
 class Drawer:
     def __init__(self, grid):
         self.grid = grid
+        self.colors = str(grid.colors)
         self.window = pygame.display.set_mode((window_width, window_height))
 
     def draw_grid(self):
-        for row in range(rows):
-            for col in range(cols):
-                self.draw_rect(
-                    self.grid.colors[row][col].value,
-                    (col * cell_size, row * cell_size, cell_size, cell_size),
-                )
+        if self.colors != str(self.grid.colors):
+            for row in range(rows):
+                for col in range(cols):
+                    self.draw_rect(
+                        self.grid.colors[row][col].value,
+                        (col * cell_size, row * cell_size, cell_size, cell_size),
+                    )
+
+            self.colors = str(self.grid.colors)
 
     def draw_rect(self, color, rect):
         pygame.draw.rect(

@@ -61,26 +61,30 @@ def test_clear_rows():
     assert grid.locks != {}
     assert grid.check_rows() == 2
 
-    assert grid.locks.keys() == {(4, 19), (5, 19), (6, 19), (6, 18)}
+    print(grid.locks.keys())
+    assert grid.locks.keys() == {
+        (4, rows - 1),
+        (5, rows - 1),
+        (6, rows - 1),
+        (6, rows - 2),
+    }
 
 
 def test_clear_alternate_rows():
     grid = Grid()
     for col in range(cols):
-        grid.locks[(col, 16)] = Color.BLUE
-        grid.locks[(col, 17)] = Color.BLUE
-        grid.locks[(col, 18)] = Color.BLUE
-        grid.locks[(col, 19)] = Color.BLUE
-    del grid.locks[(9, 16)]
-    del grid.locks[(9, 18)]
+        for row in range(rows-4, rows):
+            grid.locks[(col, row)] = Color.BLUE
+    del grid.locks[(9, rows-4)]
+    del grid.locks[(9, rows-2)]
 
     grid.is_changing = True
     cleared_rows = grid.check_rows()
 
     for col in range(cols - 1):
-        assert grid.locks[(col, 18)] == Color.BLUE
-        assert grid.locks[(col, 19)] == Color.BLUE
-    assert (7, 17) not in grid.locks
-    assert (9, 19) not in grid.locks
-    assert (9, 19) not in grid.locks
+        assert grid.locks[(col, rows-2)] == Color.BLUE
+        assert grid.locks[(col, rows-1)] == Color.BLUE
+    assert (7, rows-3) not in grid.locks
+    assert (9, rows-2) not in grid.locks
+    assert (9, rows-1) not in grid.locks
     assert 2 == cleared_rows
