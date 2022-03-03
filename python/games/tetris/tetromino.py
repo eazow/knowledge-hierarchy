@@ -19,24 +19,24 @@ class BlockShapes(Enum):
             "....",
         ],
         [
-            "....",
             ".0..",
             ".00.",
             "..0.",
+            "....",
         ],
     ]
     Z = [
         [
             "....",
-            "00..",
             ".00.",
+            "..00",
             "....",
         ],
         [
-            "....",
+            "..0.",
+            ".00.",
             ".0..",
-            "00..",
-            "0...",
+            "....",
         ],
     ]
     I = [
@@ -69,10 +69,10 @@ class BlockShapes(Enum):
             "....",
         ],
         [
-            "....",
             ".00.",
             ".0..",
             ".0..",
+            "....",
         ],
         [
             "....",
@@ -81,10 +81,10 @@ class BlockShapes(Enum):
             "....",
         ],
         [
-            "....",
             "..0.",
             "..0.",
             ".00.",
+            "....",
         ],
     ]
     L = [
@@ -95,36 +95,36 @@ class BlockShapes(Enum):
             "....",
         ],
         [
-            "....",
             ".0..",
             ".0..",
             ".00.",
-        ],
-        [
-            "....",
-            "000.",
-            "0...",
             "....",
         ],
         [
             "....",
+            ".000",
+            ".0..",
+            "....",
+        ],
+        [
             ".00.",
             "..0.",
             "..0.",
+            "....",
         ],
     ]
     T = [
         [
-            ".....",
-            "..0..",
-            ".000.",
-            ".....",
+            "....",
+            ".0..",
+            "000.",
+            "....",
         ],
         [
-            "....",
             ".0..",
             ".00.",
             ".0..",
+            "....",
         ],
         [
             "....",
@@ -139,10 +139,6 @@ class BlockShapes(Enum):
             "....",
         ],
     ]
-
-    @classmethod
-    def list(cls):
-        return [x.value for x in BlockShapes]
 
 
 class Block(ABC):
@@ -156,19 +152,14 @@ class Block(ABC):
 
     @property
     def coordinates(self):
-        positions = []
         shape = self.shapes[self.rotation]
 
-        for i, line in enumerate(shape):
-            row = list(line)
-            for j, column in enumerate(row):
-                if column == "0":
-                    positions.append((self.col + j, self.row + i))
-
-        for i, pos in enumerate(positions):
-            positions[i] = (pos[0] - 2, pos[1] - 4)
-
-        return positions
+        return [
+            (self.col + j - 2, self.row + i - 4)
+            for i, row in enumerate(shape)
+            for j, col in enumerate(row)
+            if col != "."
+        ]
 
     def rotate(self):
         self.rotation = (self.rotation + 1) % len(self.shapes)
