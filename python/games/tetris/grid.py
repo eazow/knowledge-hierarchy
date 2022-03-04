@@ -8,8 +8,8 @@ class Grid:
         self.fall_time = 0
         self.is_changing = False
 
-        self.current_block = Block.create(4, 0)
-        self.next_block = Block.create(4, 0)
+        self.current_block = Block.create(3, -4)
+        self.next_block = Block.create(3, -4)
 
         self.locks = {}
         self.colors = {}

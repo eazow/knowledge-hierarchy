@@ -7,7 +7,7 @@ from tetromino import BlockO, BlockL, BlockI
 
 def test_fall():
     grid = Grid()
-    grid.current_block = BlockO(5, 0)
+    grid.current_block = BlockO(3, -3)
 
     grid.fall_block()
 
@@ -25,7 +25,7 @@ def test_fall():
 
 def test_hit_bottom():
     grid = Grid()
-    grid.current_block = BlockO(5, 0)
+    grid.current_block = BlockO(3, -4)
 
     [grid.fall_block() for _ in range(rows + 1)]
 
