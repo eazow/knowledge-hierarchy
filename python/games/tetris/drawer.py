@@ -34,8 +34,9 @@ class Drawer:
             0,
         )
 
-    def draw_text(self, text, size, x, y):  # deprecated
-        font = pygame.font.SysFont("comicsansms", size, bold=True)
+    def draw_text(self, text, size, x, y):
+        # font = pygame.font.SysFont("comicsansms", size, bold=True)
+        font = pygame.font.SysFont("arial", size, bold=True)
 
         label = font.render(text, True, Color.WHITE.value, Color.BLACK.value)
 
@@ -45,10 +46,10 @@ class Drawer:
 
     def draw_side_panel(self):
         self.draw_text(
-            "Next Shape", 25, grid_width + (window_width - grid_width) / 2, 10
+            "Next Shape", 25, grid_width + (window_width - grid_width) / 2, 20
         )
 
-        x, y = grid_width + 20, 50
+        x, y = grid_width + 30, 40
         self.draw_block(self.grid.next_block, x, y)
 
     def draw_block(self, block, x, y):

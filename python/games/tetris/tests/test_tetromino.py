@@ -1,4 +1,4 @@
-from tetromino import Block, BlockS, BlockZ, BlockI, BlockO
+from tetromino import Block, BlockS, BlockZ, BlockI, BlockO, BlockJ
 
 
 def test_block_s():
@@ -26,6 +26,37 @@ def test_block_o():
     t = BlockO(3, -4)
     assert [(4, -3), (5, -3), (4, -2), (5, -2)] == t.coordinates
     assert [(4, -3), (5, -3), (4, -2), (5, -2)] == t.rotate().coordinates
+
+
+def test_block_j():
+    # [
+    #     "....",
+    #     ".0..",
+    #     " 000",
+    #     "....",
+    # ],
+    # [
+    #     ".00.",
+    #     ".0..",
+    #     ".0..",
+    #     "....",
+    # ],
+    # [
+    #     "....",
+    #     "000.",
+    #     "..0.",
+    #     "....",
+    # ],
+    # [
+    #     "..0.",
+    #     "..0.",
+    #     ".00.",
+    #     "....",
+    # ],
+    t = BlockJ(3, -4)
+    assert [(4, -3), (4, -2), (5, -2), (6, -2)] == t.coordinates
+    assert [(4, -4), (5, -4), (4, -3), (5, -2)] == t.rotate().coordinates
+    assert [(4, -4), (5, -4), (4, -3), (5, -2)] == t.rotate().coordinates
 
 
 def test_create_block():
