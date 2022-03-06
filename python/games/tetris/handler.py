@@ -17,6 +17,7 @@ def handle_key_space(grid):
 
 
 def handle_key_up(grid):  # rotate shape
+    print("key up starts")
     grid.current_block.rotation = (grid.current_block.rotation + 1) % len(
         grid.current_block.shapes
     )
@@ -24,6 +25,8 @@ def handle_key_up(grid):  # rotate shape
         grid.current_block.rotation = grid.current_block.rotation - 1 % len(
             grid.current_block.shapes
         )
+
+    print("key up ends")
 
 
 def handle_key_right(grid):

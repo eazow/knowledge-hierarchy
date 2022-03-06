@@ -11,4 +11,4 @@ grid_height = cell_size * rows
 window_width = grid_width + 300
 window_height = grid_height
 
-fall_interval = 300  # milliseconds
+fall_interval = 1000  # milliseconds
