@@ -27,7 +27,7 @@ def test_hit_bottom():
     grid = Grid()
     grid.current_block = BlockO(3, -4)
 
-    [grid.fall_block() for _ in range(rows + 1)]
+    [grid.fall_block() for _ in range(rows + 2)]
 
     assert grid.colors[rows - 1][4] == BlockO.color
     assert grid.colors[rows - 1][5] == BlockO.color
@@ -40,6 +40,9 @@ def test_hit_bottom():
 
 def test_clear_rows():
     grid = Grid()
+    grid.current_block = BlockO(-1, 0)
+    [grid.fall_block() for _ in range(rows + 1)]
+
     grid.current_block = BlockO(1, 0)
     [grid.fall_block() for _ in range(rows + 1)]
 
@@ -49,19 +52,15 @@ def test_clear_rows():
     grid.current_block = BlockO(5, 0)
     [grid.fall_block() for _ in range(rows + 1)]
 
-    grid.current_block = BlockO(7, 0)
-    [grid.fall_block() for _ in range(rows + 1)]
-
-    grid.current_block = BlockL(5, 0)
+    grid.current_block = BlockL(4, 0)
     handle_key_space(grid)
 
-    grid.current_block = BlockO(9, 0)
+    grid.current_block = BlockO(7, 0)
     [grid.fall_block() for _ in range(rows + 1)]
 
     assert grid.locks != {}
     assert grid.check_rows() == 2
 
-    print(grid.locks.keys())
     assert grid.locks.keys() == {
         (4, rows - 1),
         (5, rows - 1),
