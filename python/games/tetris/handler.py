@@ -48,6 +48,7 @@ def handle_event(event, grid):
         sys.exit(0)
     if event.type == pygame.KEYDOWN:
         handler_registry.get(event.key, handle_other_key)(grid)
+        grid.update_colors()
 
 
 def handle_events(grid):
