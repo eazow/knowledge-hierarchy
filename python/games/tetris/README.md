@@ -9,4 +9,4 @@ Pygame Tetris requires [python3](https://www.python.org/download/releases/3.0/) 
 ## Running Tests
 Unit tests can be run using [pytest](https://docs.pytest.org/en/latest/).
 
-To run all tests recursively, run `env PYTHONPATH="." pytest` at this directory.
+To run all tests recursively, run `env PYTHONPATH="." pytest` or `inv test` at this directory.

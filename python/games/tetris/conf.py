@@ -1,38 +1,14 @@
-from enum import Enum
-
-window_width = 600
-window_height = 600
-
-grid_width = 300
-grid_height = 600
-
-rows = 20
+rows = 16
 cols = 10
 
-cell_size = 30
+caption = "Tetris"
 
-shape_colors = [
-    (0, 255, 0),
-    (255, 0, 0),
-    (0, 255, 255),
-    (255, 255, 0),
-    (255, 165, 0),
-    (0, 0, 255),
-    (128, 0, 128),
-]
+cell_size = 50
 
-fall_interval = 300  # milliseconds
+grid_width = cell_size * cols
+grid_height = cell_size * rows
 
+window_width = grid_width + 300
+window_height = grid_height
 
-class Color(Enum):
-    YELLOW = (244, 197, 36)
-    TEAL = (70, 194, 255)
-    BLUE = (54, 99, 246)
-    ORANGE = (237, 130, 33)
-    GREEN = (124, 227, 22)
-    RED = (245, 61, 102)
-    PURPLE = (227, 72, 192)
-    ASH = (100, 100, 100)
-    CHARCOAL = (40, 40, 40)
-    JET = (43, 43, 43)
-    BLACK = (0, 0, 0)
+fall_interval = 1000  # milliseconds
