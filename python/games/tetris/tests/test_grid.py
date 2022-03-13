@@ -7,7 +7,7 @@ from tetromino import BlockO, BlockL, BlockI
 
 def test_fall():
     grid = Grid()
-    grid.current_block = BlockO(5, 0)
+    grid.current_block = BlockO(3, -3)
 
     grid.fall_block()
 
@@ -25,9 +25,9 @@ def test_fall():
 
 def test_hit_bottom():
     grid = Grid()
-    grid.current_block = BlockO(5, 0)
+    grid.current_block = BlockO(3, -4)
 
-    [grid.fall_block() for _ in range(rows + 1)]
+    [grid.fall_block() for _ in range(rows + 2)]
 
     assert grid.colors[rows - 1][4] == BlockO.color
     assert grid.colors[rows - 1][5] == BlockO.color
@@ -40,6 +40,9 @@ def test_hit_bottom():
 
 def test_clear_rows():
     grid = Grid()
+    grid.current_block = BlockO(-1, 0)
+    [grid.fall_block() for _ in range(rows + 1)]
+
     grid.current_block = BlockO(1, 0)
     [grid.fall_block() for _ in range(rows + 1)]
 
@@ -49,38 +52,38 @@ def test_clear_rows():
     grid.current_block = BlockO(5, 0)
     [grid.fall_block() for _ in range(rows + 1)]
 
-    grid.current_block = BlockO(7, 0)
-    [grid.fall_block() for _ in range(rows + 1)]
-
-    grid.current_block = BlockL(5, 0)
+    grid.current_block = BlockL(4, 0)
     handle_key_space(grid)
 
-    grid.current_block = BlockO(9, 0)
+    grid.current_block = BlockO(7, 0)
     [grid.fall_block() for _ in range(rows + 1)]
 
     assert grid.locks != {}
     assert grid.check_rows() == 2
 
-    assert grid.locks.keys() == {(4, 19), (5, 19), (6, 19), (6, 18)}
+    assert grid.locks.keys() == {
+        (4, rows - 1),
+        (5, rows - 1),
+        (6, rows - 1),
+        (6, rows - 2),
+    }
 
 
 def test_clear_alternate_rows():
     grid = Grid()
     for col in range(cols):
-        grid.locks[(col, 16)] = Color.BLUE
-        grid.locks[(col, 17)] = Color.BLUE
-        grid.locks[(col, 18)] = Color.BLUE
-        grid.locks[(col, 19)] = Color.BLUE
-
-    del grid.locks[(8, 16)]
-    del grid.locks[(8, 18)]
+        for row in range(rows-4, rows):
+            grid.locks[(col, row)] = Color.BLUE
+    del grid.locks[(9, rows-4)]
+    del grid.locks[(9, rows-2)]
 
     grid.is_changing = True
-    grid.update_colors()
-    grid.check_rows()
+    cleared_rows = grid.check_rows()
 
     for col in range(cols - 1):
-        assert grid.locks[(col, 18)] == Color.BLUE
-        assert grid.locks[(col, 19)] == Color.BLUE
-    assert grid.locks[(9, 19)] == Color.BLACK
-
+        assert grid.locks[(col, rows-2)] == Color.BLUE
+        assert grid.locks[(col, rows-1)] == Color.BLUE
+    assert (7, rows-3) not in grid.locks
+    assert (9, rows-2) not in grid.locks
+    assert (9, rows-1) not in grid.locks
+    assert 2 == cleared_rows

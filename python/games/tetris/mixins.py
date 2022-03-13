@@ -1,13 +1,14 @@
 import pygame
-from conf import fall_interval
+from conf import fall_interval, caption
 
 
-class ScoreRecorder:
+class ScoreMixin:
     score = 0
 
-    def add_score(self):
-        self.score += 10
-        print(f"Score: {self.score}")
+    def add_score(self, score):
+        self.score += score
+        if score != 0:
+            print(f"Score: {self.score}")
 
 
 class ClockMixin(object):
@@ -28,4 +29,4 @@ class PygameMixin(object):
     def __init__(self):
         pygame.init()
         pygame.font.init()
-        pygame.display.set_caption("Tetris")
+        pygame.display.set_caption(caption)

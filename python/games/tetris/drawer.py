@@ -15,6 +15,7 @@ from colors import Color
 class Drawer:
     def __init__(self, grid):
         self.grid = grid
+        self.colors = str(grid.colors)
         self.window = pygame.display.set_mode((window_width, window_height))
 
     def draw_grid(self):
@@ -33,8 +34,9 @@ class Drawer:
             0,
         )
 
-    def draw_text(self, text, size, x, y):  # deprecated
-        font = pygame.font.SysFont("comicsansms", size, bold=True)
+    def draw_text(self, text, size, x, y):
+        # font = pygame.font.SysFont("comicsansms", size, bold=True)
+        font = pygame.font.SysFont("arial", size, bold=True)
 
         label = font.render(text, True, Color.WHITE.value, Color.BLACK.value)
 
@@ -44,18 +46,18 @@ class Drawer:
 
     def draw_side_panel(self):
         self.draw_text(
-            "Next Shape", 25, grid_width + (window_width - grid_width) / 2, 10
+            "Next Shape", 25, grid_width + (window_width - grid_width) / 2, 20
         )
 
-        x, y = grid_width + 20, 50
+        x, y = grid_width + 30, 40
         self.draw_block(self.grid.next_block, x, y)
 
     def draw_block(self, block, x, y):
         for i, line in enumerate(block.shapes[block.rotation]):
-            for j, column in enumerate(list(line)):
+            for j, col in enumerate(list(line)):
                 rect = (x + j * cell_size, y + i * cell_size, cell_size, cell_size)
-                if column == "0":
-                    self.draw_rect(block.color.value, rect)
+                color = block.color if col == "0" else Color.BLACK
+                self.draw_rect(color.value, rect)
 
     def draw_split_line(self):
         pygame.draw.line(
@@ -67,7 +69,11 @@ class Drawer:
         )
 
     def draw(self):
-        self.draw_grid()
-        self.draw_split_line()
-        self.draw_side_panel()
-        pygame.display.update()
+        if self.colors != str(self.grid.colors):
+            self.draw_grid()
+            self.draw_split_line()
+            self.draw_side_panel()
+
+            self.colors = str(self.grid.colors)
+
+            pygame.display.update()
