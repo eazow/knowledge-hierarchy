@@ -100,9 +100,9 @@ def kmeans(df):
             kmeans = kmeans.fit(df)  # 拟合模型
             distance_list.append(kmeans.inertia_)  # 创建每个K值的损失
         plt.plot(K, distance_list, "bx-")  # 绘图
-        plt.xlabel("k")  # X轴
-        plt.ylabel("距离均方误差")  # Y轴
-        plt.title("k值手肘图")  # 标题
+        plt.xlabel("k")
+        plt.ylabel("距离均方误差")
+        plt.title("k值手肘图")
 
     show_elbow(df)
 
