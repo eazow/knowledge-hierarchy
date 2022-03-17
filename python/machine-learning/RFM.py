@@ -78,7 +78,7 @@ def get_monetary(df, df_user):
 
 
 def draw_histogram(df):
-    df_user["R值"].plot(kind="hist", bins=20, title="新进度分布直方图").show()  # R值直方图
+    df_user["R值"].plot(kind="hist", bins=20, title="新进度分布直方图") # R值直方图
 
     df_user.query("F值 < 800")["F值"].plot(
         kind="hist", bins=50, title="消费频率分布直方图"
@@ -89,22 +89,7 @@ def draw_histogram(df):
     )  # M值直方图
 
 
-def kmeans(df):
-    from sklearn.cluster import KMeans  # 导入KMeans模块
 
-    def show_elbow(df):  # 定义手肘函数
-        distance_list = []  # 聚质心的距离（损失）
-        K = range(1, 9)  # K值范围
-        for k in K:
-            kmeans = KMeans(n_clusters=k, max_iter=100)  # 创建KMeans模型
-            kmeans = kmeans.fit(df)  # 拟合模型
-            distance_list.append(kmeans.inertia_)  # 创建每个K值的损失
-        plt.plot(K, distance_list, "bx-")  # 绘图
-        plt.xlabel("k")
-        plt.ylabel("距离均方误差")
-        plt.title("k值手肘图")
-
-    show_elbow(df)
 
 
 if __name__ == "__main__":
