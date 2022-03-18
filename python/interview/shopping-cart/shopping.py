@@ -6,9 +6,6 @@ from .utils import TimeUtil, exception_handler
 
 
 class Customer(object):
-    """
-    顾客类
-    """
     def __init__(self):
         # 购物网站
         self.shopping_website = ShoppingWebsite()
