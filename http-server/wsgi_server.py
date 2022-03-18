@@ -13,7 +13,9 @@ class WSGIServer(object):
     request_queue_size = 1
 
     def __init__(self, server_address):
-        self.server_socket = server_socket = socket.socket(self.address_family, self.socket_type)
+        self.server_socket = server_socket = socket.socket(
+            self.address_family, self.socket_type
+        )
         server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         server_socket.bind(server_address)
         server_socket.listen(self.request_queue_size)
@@ -45,7 +47,6 @@ class WSGIServer(object):
                 print(pid)
                 client_connection.close()
 
-
     def parse_request(self, text):
         """
         GET / HTTP/1.1
@@ -64,12 +65,17 @@ class WSGIServer(object):
     def handle_request(self, client_connection):
         request_data = client_connection.recv(1024)
 
-        print("Child PID: {pid}. Parent PID {ppid}".format(pid=os.getpid(), ppid=os.getppid()))
+        print(
+            "Child PID: {pid}. Parent PID {ppid}".format(
+                pid=os.getpid(), ppid=os.getppid()
+            )
+        )
 
-        print("".join(
-            '< {line}\n'.format(line=line)
-            for line in request_data.splitlines()
-        ))
+        print(
+            "".join(
+                "< {line}\n".format(line=line) for line in request_data.splitlines()
+            )
+        )
 
         if request_data:
 
@@ -99,7 +105,7 @@ class WSGIServer(object):
     def start_response(self, status, response_headers, exc_info=None):
         server_headers = [
             ("Date", "Fri, 11 May 2018 18:00:00 GMT"),
-            ("Server", "WSGIServer 0.2")
+            ("Server", "WSGIServer 0.2"),
         ]
         self.headers_set = [status, response_headers + server_headers]
 
@@ -113,14 +119,18 @@ class WSGIServer(object):
             for data in result:
                 response += data
 
-            print("".join("> {line}\n".format(line=line) for line in response.splitlines()))
+            print(
+                "".join(
+                    "> {line}\n".format(line=line) for line in response.splitlines()
+                )
+            )
 
             client_connection.sendall(response)
         finally:
             pass
 
 
-SERVER_ADDRESS = (HOST, PORT) = '', 8888
+SERVER_ADDRESS = (HOST, PORT) = "", 8888
 
 
 def make_server(server_address, app):
@@ -153,6 +163,3 @@ if __name__ == "__main__":
     httpd = make_server(SERVER_ADDRESS, application)
     print("WSGIServer: Serving HTTP on port {port} ...\n".format(port=PORT))
     httpd.serve_forever()
-
-
-
