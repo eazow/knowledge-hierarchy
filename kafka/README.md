@@ -6,6 +6,10 @@ Event streaming is the digital equivalent of the human body's central nervous sy
 
 Technically speaking, event streaming is the practice of capturing data in real-time from event sources like databases, sensors, mobile devices, cloud services, and software applications in the form of streams of events; storing these event streams durably for later retrieval; manipulating, processing, and reacting to the event streams in real-time as well as retrospectively; and routing the event streams to different destination technologies as needed. Event streaming thus ensures a continuous flow and interpretation of data so that the right information is at the right place, at the right time.
 
+
+
+
+
 ## APACHE KAFKA QUICKSTART
 
 ### STEP 1: GET KAFKA
@@ -15,7 +19,10 @@ $ tar -xzf kafka_2.13-3.1.0.tgz
 $ cd kafka_2.13-3.1.0
 ```
 
+
+
 ### STEP 2: START THE KAFKA ENVIRONMENT
+
 `NOTE: Your local environment must have Java 8+ installed.`
 
 Run the following commands in order to start all services in the correct order:
@@ -52,7 +59,10 @@ Topic:quickstart-events  PartitionCount:1    ReplicationFactor:1 Configs:
     Topic: quickstart-events Partition: 0    Leader: 0   Replicas: 0 Isr: 0
 ```
 
+
+
 ### STEP 4: WRITE SOME EVENTS INTO THE TOPIC
+
 A Kafka client communicates with the Kafka brokers via the network for writing (or reading) events. Once received, the brokers will store the events in a durable and fault-tolerant manner for as long as you need—even forever.
 
 Run the console producer client to write a few events into your topic. By default, each line you enter will result in a separate event being written to the topic.
@@ -64,7 +74,9 @@ This is my second event
 You can stop the producer client with `Ctrl-C` at any time.
 
 
+
 ### STEP 5: READ THE EVENTS
+
 Open another terminal session and run the console consumer client to read the events you just created:
 ```
 $ bin/kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092
@@ -80,7 +92,9 @@ Because events are durably stored in Kafka, they can be read as many times and b
 
 
 
+
 ## Web UI
+
 ```
 $ docker run -p 8080:8080 \
 	-e KAFKA_CLUSTERS_0_NAME=local \
