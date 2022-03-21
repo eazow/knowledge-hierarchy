@@ -78,7 +78,7 @@ def get_monetary(df, df_user):
 
 
 def draw_histogram(df):
-    df_user["R值"].plot(kind="hist", bins=20, title="新进度分布直方图") # R值直方图
+    df_user["R值"].plot(kind="hist", bins=20, title="新进度分布直方图")  # R值直方图
 
     df_user.query("F值 < 800")["F值"].plot(
         kind="hist", bins=50, title="消费频率分布直方图"
@@ -87,9 +87,6 @@ def draw_histogram(df):
     df_user.query("M值 < 20000")["M值"].plot(
         kind="hist", bins=50, title="消费金额分布直方图"
     )  # M值直方图
-
-
-
 
 
 if __name__ == "__main__":
