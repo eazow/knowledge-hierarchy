@@ -1,10 +1,10 @@
 import re
 
-from engine import _slots
+from utils import _slots
 
 
 class NotLike:
-    "NotLike(column, pattern, flags=IGNORECASE, advanced=False) -> NotLike"
+    """NotLike(column, pattern, flags=IGNORECASE, advanced=False) -> NotLike"""
 
     __slots__ = _slots("column method")
 

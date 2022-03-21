@@ -4,7 +4,6 @@ The code in this module provides support for running a simple database engine
 that runs completely in memory and allows usage of various concepts available
 in a structured query language to get and set data that may be saved to file."""
 
-################################################################################
 
 import bz2
 import copy
@@ -14,44 +13,34 @@ import sys
 import types
 import _thread
 
-
-def _slots(names=""):
-    "Returns the private version of names for __slots__ on a class."
-    return tuple("__" + name for name in names.split())
-
-
-################################################################################
+from utils import _slots
 
 
 class Database:
-    "Database() -> Database"
+    __slots__ = _slots("path data type view")
 
     @classmethod
     def load(cls, path):
-        "Loads database from path and tests identity."
+        """Loads database from path and tests identity."""
         with open(path, "rb") as file:
             obj = pickle.loads(bz2.decompress(file.read()))
         assert isinstance(obj, cls), "Could not load a database object!"
         obj.__path = path
         return obj
 
-    ########################################################################
-
-    __slots__ = _slots("path data type view")
-
     def __init__(self):
-        "Initializes database object void of tables or views."
+        """Initializes database object void of tables or views."""
         self.__path = None
         self.__setstate__(
             Table(("name", str), ("type", type), ("data", (Table, _View)))
         )
 
     def __repr__(self):
-        "Returns the representation of the database."
+        """Returns the representation of the database."""
         return repr(self.__view.value)
 
     def __iter__(self):
-        "Iterates over the names of the tables and views in the database."
+        """Iterates over the names of the tables and views in the database."""
         for row in rows(self.__data("name")):
             yield self[row[0]]
 
@@ -93,10 +82,8 @@ class Database:
             ("<lambda>(data)", "size"),
         )
 
-    ########################################################################
-
     def save(self, path=None):
-        "Saves the database to path or most recently known path."
+        """Saves the database to path or most recently known path."""
         if path is None:
             assert self.__path is not None, "Path must be provided!"
             path = self.__path
@@ -105,7 +92,7 @@ class Database:
         self.__path = path
 
     def create(self, name, schema_or_table_or_query, *name_changes):
-        "Creates either a table or view for use in the database."
+        """Creates either a table or view for use in the database."""
         assert not self.__data.where(
             ROW.name == name
         ), "Name is already used and may not be overloaded!"
