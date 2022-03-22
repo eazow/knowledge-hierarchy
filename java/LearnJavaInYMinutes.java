@@ -1,4 +1,3 @@
-```
 // Single-line comments start with //
 
 /*
@@ -940,5 +939,3 @@ public class Lambdas {
         // methods.
     }
 }
-```
-
