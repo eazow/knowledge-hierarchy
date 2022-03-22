@@ -93,5 +93,3 @@ if __name__ == "__main__":
     df_user = get_rfm()
 
     draw_histogram(df_user)
-
-    kmeans(df_user)
