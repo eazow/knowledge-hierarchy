@@ -24,7 +24,7 @@ So what should you do? We'll assume that you have sorted out the basics — like
 
 You should then establish your own individual aims. 
 
-These are partly a matter of personal circumstances, partly a matter of **psychology**.
+These are partly a matter of personal circumstances, partly a matter of psychology.
 
  
 
@@ -44,5 +44,5 @@ Once you have decided on your investment aims, you can then decide where to put 
 
 The golden rule here is "spread your risk" — if you put all of your money into Periwigs International, you're setting yourself up as a hostage to fortune.
 
-*"Periwigs" is the name of a fictitious company.
+*"Periwigs" is the name of a **fictitious** company.
 
