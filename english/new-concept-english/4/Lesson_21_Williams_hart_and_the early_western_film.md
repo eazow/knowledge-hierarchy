@@ -2,7 +2,7 @@
 
 
 
-William S. hart was, perhaps, the greatest of all Western stars, for unlike Gary Cooper and John Wayne he appeared in nothing but Westerns. From 1914 to 1924 he was **supreme** and unchallenged. It was Hart who created the basic formula of the Western film, and devised the **protagonist** he played in every film he made, the good-bad man, the **accidental**-**noble** outlaw, or the honest-but-**framed** cowboy, or the **sheriff** made suspect by **vicious** **gossip**; in short, the individual in conflict with himself and his frontier environment.
+William S. hart was, perhaps, the greatest of all Western stars, for unlike Gary Cooper and John Wayne he appeared in nothing but Westerns. From 1914 to 1924 he was **supreme** and unchallenged. It was Hart who created the basic formula of the Western film, and devised the **protagonist** he played in every film he made, the good-bad man, the **accidental**-**noble** **outlaw**, or the honest-but-**framed** cowboy, or the **sheriff** made suspect by **vicious** **gossip**; in short, the individual in conflict with himself and his frontier environment.
 
 
 
