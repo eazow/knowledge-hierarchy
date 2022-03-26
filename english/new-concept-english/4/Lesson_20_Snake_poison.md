@@ -2,11 +2,11 @@
 
 
 
-How it came about that snakes manufactured poison is a mystery. Over the periods their **saliva**, a **mild**, **digestive** juice like our own, was converted into a poison that defies analysis even today. It was not forced upon them by the survival competition; they could have caught and lived on **prey** without using poison, just as the thousands of non-poisonous snakes still do. Poison to a snake is merely a luxury; it enables it to get its food with very little effort, no more effort than one bite. And why only snakes? Cats, for instance, would be greatly helped; no running fights with large, fierce rats or **tussles** with grown rabbits—just a **bite** and no more effort needed. In fact, it would be an assistance to all **carnivores** though it would be a two-edged weapon when they fought each other. But, of the **vertebrates**, unpredictable Nature selected only snakes (and one **lizard**). One wonders also why Nature, with some snakes, **concocted** poison (of such extreme **potency**).
+How it came about that snakes manufactured poison is a mystery. Over the periods their **saliva**, a **mild**, **digestive** juice like our own, was converted into a poison that defies analysis even today. It was not forced upon them by the survival competition; they could have caught and lived on **prey** without using poison, just as the thousands of non-poisonous snakes still do. Poison to a snake is merely a luxury; it enables it to get its food with very little effort, no more effort than one **bite**. And why only snakes? Cats, for instance, would be greatly helped; no running fights with large, **fierce** rats or **tussles** with grown rabbits—just a **bite** and no more effort needed. In fact, it would be an assistance to all **carnivores** though it would be a two-edged weapon when they fought each other. But, of the **vertebrates**, unpredictable Nature selected only snakes (and one **lizard**). One wonders also why Nature, with some snakes, **concocted** poison (of such extreme **potency**).
 
 
 
-In the conversion of saliva into poison, one might suppose that a fixed process took place. It did not; some snakes manufacture a poison different in every respect from that of others, as different as **arsenic** is from **strychnine**, and having different effects. One poison acts on the **nerves**, the other on the blood.
+In the conversion of **saliva** into poison, one might suppose that a fixed process took place. It did not, some snakes manufacture a poison different in every respect from that of others, as different as **arsenic** is from **strychnine**, and having different effects. One poison acts on the **nerves**, the other on the blood.
 
 
 

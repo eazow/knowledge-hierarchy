@@ -8,4 +8,4 @@ Knowledge began to increase as soon as the thoughts of one individual could be c
 
 The problem now facing humanity is: What is going to be done with all this knowledge? As is so often pointed out, knowledge is a two-edged weapon which can be used equally for good or evil. It is now being used indifferently for both. 
 
-Could any **spectacle**, for instance, be more **grimly** **whimsical** than that of gunners using science to shatter men's bodies while, close at hand, surgeons use it to restore them? We have to ask ourselves very seriously what will happen if this twofold use of knowledge, with its ever-increasing power, continues.
+Could any **spectacle**, for instance, be more **grimly** **whimsical** than that of gunners using science to **shatter** men's bodies while, close at hand, surgeons use it to restore them? We have to ask ourselves very seriously what will happen if this twofold use of knowledge, with its ever-increasing power, continues.

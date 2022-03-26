@@ -2,7 +2,7 @@
 
 
 
-It is fairly clear that sleeping period must have some function, and because there is so much of it the function would seem to e important. **Speculations** about its nature have been going on for **literally** thousands of years, and one odd finding that makes the problem puzzling is that it looks very much as if sleeping is not simply a matter of giving the body a rest. 'Rest', in terms of **muscle** relaxation and so on, can be achieved by a brief period lying, or even sitting down. The body's **tissues** are self-repairing and self-restoring to a degree, and function best when more or less continuously active. In fact a basic amount of movement occurs during sleep which is specifically concerned with preventing muscle inactivity.
+It is fairly clear that sleeping period must have some function, and because there is so much of it the function would seem to be important. **Speculations** about its nature have been going on for **literally** thousands of years, and one odd finding that makes the problem puzzling is that it looks very much as if sleeping is not simply a matter of giving the body a rest. 'Rest', in terms of **muscle** relaxation and so on, can be achieved by a brief period lying, or even sitting down. The body's **tissues** are self-repairing and self-restoring to a degree, and function best when more or less continuously active. In fact a basic amount of movement occurs during sleep which is specifically concerned with preventing **muscle** inactivity.
 
 
 
