@@ -29,7 +29,7 @@ def test():
 
 
 def test_basic_sql():
-    "Tests simple statements in SQL."
+    """Tests simple statements in SQL."""
     # Test create table statement.
     persons = Table(
         ("P_Id", int),
