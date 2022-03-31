@@ -2,7 +2,12 @@ import copy
 import pickle
 import sys
 
-from engine import _Columns, _SortedResults, left_join, ROW, _RowAdapter, rows, _Where
+from engine import ROW
+from sorting import _SortedResults
+from where import _Where
+from row import rows, _RowAdapter
+from column import _Columns
+from join import left_join
 from utils import _slots
 
 
