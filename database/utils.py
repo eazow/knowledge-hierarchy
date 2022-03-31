@@ -138,7 +138,7 @@ class datetime(datetime.datetime):
 
 
 class date(datetime.date):
-    "date(year=None, month=None, day=None) -> date"
+    """date(year=None, month=None, day=None) -> date"""
 
     __slots__ = _slots()
 

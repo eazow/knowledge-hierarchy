@@ -1,6 +1,6 @@
+import itertools
 import operator
 
-from engine import _Repr
 from utils import _slots
 
 
@@ -50,6 +50,16 @@ class _RowAdapter:
                 row[name[len(column) :]] = self.__row[name]
         assert row, "Name did not match any known column: " + repr(column)
         return type(self)(row)
+
+
+class _Repr:
+    def __repr__(self):
+        return "{}({})".format(
+            type(self).__name__,
+            ", ".join(
+                itertools.starmap("{!s}={!r}".format, sorted(vars(self).items()))
+            ),
+        )
 
 
 class _Row(_Repr):
