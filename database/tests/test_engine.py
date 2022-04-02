@@ -1,4 +1,5 @@
-from engine import Table, ROW
+from engine import ROW
+from table import Table
 
 
 def test():
