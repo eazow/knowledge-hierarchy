@@ -132,10 +132,8 @@ class Database:
         return full_join(test, **{table_a: self[table_a], table_b: self[table_b]})
 
 
-################################################################################
 
-
-class Database2(Database):
+class TransactionalDatabase(Database):
     "Database2() -> Database2"
 
     @classmethod
@@ -147,8 +145,6 @@ class Database2(Database):
         db_new.save(db_old._Database__path)
         db_old.__init__()
         return db_new
-
-    ########################################################################
 
     __slots__ = _slots("lock locked view")
 
@@ -179,8 +175,6 @@ class Database2(Database):
         return table.first("data")
 
     __getitem__ = __getattr__
-
-    ########################################################################
 
     def begin_transaction(self, table, wait=False):
         "Locks and copies table while optionally waiting for unlock."
