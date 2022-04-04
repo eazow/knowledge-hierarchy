@@ -132,9 +132,7 @@ class Database:
         return full_join(test, **{table_a: self[table_a], table_b: self[table_b]})
 
 
-
 class TransactionalDatabase(Database):
-    "Database2() -> Database2"
 
     @classmethod
     def upgrade(cls, db_old):
@@ -201,8 +199,6 @@ class TransactionalDatabase(Database):
         "Restores table with copy, removes copy, and unlocks the table."
         self.__close_transaction(table, self.__rollback)
 
-    ########################################################################
-
     def __add_transaction_support(self):
         "Add attributes so database can support transactions."
         self.__lock = _thread.allocate_lock()
@@ -253,8 +249,6 @@ class TransactionalDatabase(Database):
             action(table)
         # End Critical Section
 
-    ########################################################################
-
     @staticmethod
     def __commit(table):
         "Deletes the reserve copy of a table."
@@ -273,9 +267,6 @@ class TransactionalDatabase(Database):
         return self._Database__data
 
 
-################################################################################
-
-
 class UniqueDict(dict):
     "UniqueDict(iterable=None, **kwargs) -> UniqueDict"
 
@@ -290,7 +281,6 @@ class UniqueDict(dict):
         "Sets key with value if key already exists."
         assert key in self, "Key does not exist!"
         super().__setitem__(key, value)
-
 
 
 del _slots
