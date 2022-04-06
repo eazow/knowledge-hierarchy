@@ -137,22 +137,22 @@ class datetime(datetime.datetime):
         return date(d.year, d.month, d.day)
 
 
-class date(datetime.date):
-    """date(year=None, month=None, day=None) -> date"""
-
-    __slots__ = _slots()
-
-    def __new__(cls, year=None, month=None, day=None):
-        "Creates a customized date object that does not require arguments."
-        if year is None:
-            year, month, day = cls.max.year, cls.max.month, cls.max.day
-        elif isinstance(year, bytes):
-            year_high, year_low, month, day = year
-            year = (year_high << 8) + year_low
-        return super().__new__(cls, year, month, day)
-
-    def __str__(self):
-        return self.strftime("%d-%b-%Y").upper()
-
-    def __format__(self, length):
-        return str(self).ljust(int(length))
+# class date(datetime.date):
+#     """date(year=None, month=None, day=None) -> date"""
+#
+#     __slots__ = _slots()
+#
+#     def __new__(cls, year=None, month=None, day=None):
+#         "Creates a customized date object that does not require arguments."
+#         if year is None:
+#             year, month, day = cls.max.year, cls.max.month, cls.max.day
+#         elif isinstance(year, bytes):
+#             year_high, year_low, month, day = year
+#             year = (year_high << 8) + year_low
+#         return super().__new__(cls, year, month, day)
+#
+#     def __str__(self):
+#         return self.strftime("%d-%b-%Y").upper()
+#
+#     def __format__(self, length):
+#         return str(self).ljust(int(length))
