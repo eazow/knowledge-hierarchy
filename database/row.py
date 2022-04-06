@@ -136,3 +136,6 @@ class _Comparison(_Repr):
 
     def __or__(self, other):
         return _Comparison(self, lambda a, b: a or b, other)
+
+
+ROW = _Row()

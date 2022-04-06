@@ -6,7 +6,7 @@ Why, you may wonder, should spiders be our friends? Because they destroy so many
 
 
 
-Spiders are not insects, as many people think, not even nearly related to them.  One can tell the difference almost at a **glance**, for a spider always has eight legs and an insect never more than six.
+Spiders are not insects, as many people think, not even nearly related to them. One can tell the difference almost at a **glance**, for a spider always has eight legs and an insect never more than six.
 
 
 

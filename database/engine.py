@@ -13,7 +13,7 @@ import _thread
 
 from join import left_join, inner_join, full_join
 from lock import _Lock
-from row import rows, _Row
+from row import rows, ROW
 from table import Table
 from utils import _slots, datetime
 from view import _View
@@ -349,7 +349,4 @@ NOW = datetime.now
 #       [database level transactions are supported;
 #        table locks are supported in the same way]
 
-################################################################################
 
-
-ROW = _Row()
