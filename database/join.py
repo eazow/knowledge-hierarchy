@@ -4,7 +4,7 @@ from table import Table
 
 
 def inner_join(test, *table_arg, **table_kwarg):
-    "Runs and returns result from inner joining two tables together."
+    """Runs and returns result from inner joining two tables together."""
     pa, pb, ta, tb = _join_args(table_arg, table_kwarg)
     table = _composite_table(pa, pb, ta, tb)
     _join_loop(table, test, pa, pb, ta, tb, True, False)
@@ -12,7 +12,7 @@ def inner_join(test, *table_arg, **table_kwarg):
 
 
 def full_join(test, *table_arg, **table_kwarg):
-    "Runs and returns result from full joining two tables together."
+    """Runs and returns result from full joining two tables together."""
     pa, pb, ta, tb = _join_args(table_arg, table_kwarg)
     table = _composite_table(pa, pb, ta, tb)
     _join_loop(table, test, pa, pb, ta, tb, False, True)
@@ -20,7 +20,7 @@ def full_join(test, *table_arg, **table_kwarg):
 
 
 def left_join(table_a, table_b, test):
-    "Runs and returns result from left joining two tables together."
+    """Runs and returns result from left joining two tables together."""
     assert (
         sum(isinstance(table, tuple) for table in (table_a, table_b)) > 0
     ), "At least one table must be given a name!"
@@ -32,12 +32,12 @@ def left_join(table_a, table_b, test):
 
 
 def right_join(table_a, table_b, test):
-    "Runs and returns result from right joining two tables together."
+    """Runs and returns result from right joining two tables together."""
     return left_join(table_b, table_a, test)
 
 
 def _join_args(table_arg, table_kwarg):
-    "Determines tables and prefixes from given arguments."
+    """Determines tables and prefixes from given arguments."""
     assert len(table_kwarg) > 0, "At least one table name must be given!"
     assert (
         sum(map(len, (table_arg, table_kwarg))) == 2
@@ -51,7 +51,7 @@ def _join_args(table_arg, table_kwarg):
 
 
 def _join_loop(table, test, pa, pb, ta, tb, inner, full):
-    "Joins two tables together into one table based on criteria."
+    """Joins two tables together into one table based on criteria."""
     first = True
     second = dict()
     table_a = tuple(_pre_process(ta, pa))
@@ -77,7 +77,7 @@ def _join_loop(table, test, pa, pb, ta, tb, inner, full):
 
 
 def _composite_table(pa, pb, ta, tb):
-    "Create a new table based on information from tables and prefixes."
+    """Create a new table based on information from tables and prefixes."""
     columns = []
     for table_name, table_obj in zip((pa, pb), (ta, tb)):
         iterator = iter(table_obj)
@@ -91,7 +91,7 @@ def _composite_table(pa, pb, ta, tb):
 
 
 def union(table_a, table_b, all_=False):
-    "Creates a table from two tables that have been combined."
+    """Creates a table from two tables that have been combined."""
     table = Table.from_iter(table_a)
     for row in rows(table_b):
         table.insert(*row)
