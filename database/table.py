@@ -97,10 +97,13 @@ class Table:
 
     def __call__(self, *columns):
         """Returns an iterator over the specified columns."""
-        indexs = tuple(self.__columns[name][1] for name in columns)
+        indexes = tuple(self.__columns[name][1] for name in columns)
         yield columns
         for row in sorted(self.__data_area):
-            yield tuple(self.__data_area[row][index] for index in indexs)
+            yield tuple(self.__data_area[row][index] for index in indexes)
+
+    def __eq__(self, other):
+        return str(self) == str(other)
 
     def first(self, column=None):
         """Returns the first row or column of specified row."""
@@ -125,7 +128,7 @@ class Table:
             yield row
 
     def insert(self, *values, **columns):
-        "Inserts provided data into a new row of the database."
+        """Inserts provided data into a new row of the database."""
         if values:
             assert len(values) == len(self.__columns), "Bad number of columns!"
             assert not columns, "Mixed syntax is not accepted!"
@@ -137,7 +140,7 @@ class Table:
         self.__row_index += 1
 
     def alter_add(self, name, data_type):
-        "Adds a column to the table and populates it."
+        """Adds a column to the table and populates it."""
         index = self.__columns.add(name, data_type)
         started = False
         try:
@@ -151,7 +154,7 @@ class Table:
                 row[index] = data_type
 
     def alter_drop(self, name):
-        "Removes a column from the table and frees memory."
+        """Removes a column from the table and frees memory."""
         index = self.__columns.drop(name)
         for row in self.__data_area.values():
             del row[index]
@@ -342,8 +345,6 @@ class Table:
             tables[key].insert(*row)
         return tables.values()
 
-    ########################################################################
-
     def __get_location(self, function, column):
         "Returns a row or cell based on function and column."
         row = self.__data_area[function(self.__data_area)]
@@ -406,8 +407,6 @@ class Table:
             table.alter_drop(column)
         return table
 
-    ########################################################################
-
     @staticmethod
     def __process_test(test, kw):
         "Ensures that test has been properly formed as necessary."
@@ -416,8 +415,6 @@ class Table:
         else:
             assert callable(test), "Test must be callable!"
         return test
-
-    ########################################################################
 
     @property
     def columns(self):
@@ -449,8 +446,6 @@ class _SortedResults:
         yield title
         for row in sorted(rows, key=ROW[index], reverse=self.__direction):
             yield row
-
-    ########################################################################
 
     def order_by(self, column, desc=False):
         "Returns results that are sorted on an additional level."
