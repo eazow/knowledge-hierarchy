@@ -1,25 +1,48 @@
 from row import ROW
-from table import Table
 
 
-def test_basic_sql():
-    """Tests simple statements in SQL."""
-    # Test create table statement.
-    persons = Table(
-        ("P_Id", int),
-        ("LastName", str),
-        ("FirstName", str),
-        ("Address", str),
-        ("City", str),
+def test_create(persons):
+    assert persons == """\
+P_ID LASTNAME  FIRSTNAME ADDRESS      CITY     
+---- --------- --------- ------------ ---------
+   1 Hansen    Ola       Timoteivn 10 Sandnes  
+   2 Svendson  Tove      Borgvn 23    Sandnes  
+   3 Pettersen Kari      Storgt 20    Stavanger\
+"""
+
+
+def test_repr(persons):  # persons.print()
+    assert (
+        repr(persons)
+        == """\
+'ROW_ID' | 'P_Id' | 'LastName'  | 'FirstName' | 'Address'      | 'City'     
+---------+--------+-------------+-------------+----------------+------------
+1        | 1      | 'Hansen'    | 'Ola'       | 'Timoteivn 10' | 'Sandnes'  
+2        | 2      | 'Svendson'  | 'Tove'      | 'Borgvn 23'    | 'Sandnes'  
+3        | 3      | 'Pettersen' | 'Kari'      | 'Storgt 20'    | 'Stavanger'\
+"""
     )
-    # Populate the table with rows.
-    persons.insert(1, "Hansen", "Ola", "Timoteivn 10", "Sandnes")
-    persons.insert(2, "Svendson", "Tove", "Borgvn 23", "Sandnes")
-    persons.insert(3, "Pettersen", "Kari", "Storgt 20", "Stavanger")
-    persons.print()
-    # Test the select statement.
-    persons.select("LastName", "FirstName").print()
-    persons.select().print()
+
+
+def test_select(persons):
+    assert persons.select("LastName", "FirstName") == """\
+LASTNAME  FIRSTNAME
+--------- ---------
+Hansen    Ola      
+Svendson  Tove     
+Pettersen Kari     \
+"""
+
+    assert persons.select() == """\
+P_ID LASTNAME  FIRSTNAME ADDRESS      CITY     
+---- --------- --------- ------------ ---------
+   1 Hansen    Ola       Timoteivn 10 Sandnes  
+   2 Svendson  Tove      Borgvn 23    Sandnes  
+   3 Pettersen Kari      Storgt 20    Stavanger\
+"""
+
+
+def test_distinct(persons):
     # Test the distinct statement.
     persons.select("City").distinct().print()
     # Test the where clause.
