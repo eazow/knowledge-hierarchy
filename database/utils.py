@@ -156,3 +156,17 @@ class datetime(datetime.datetime):
 #
 #     def __format__(self, length):
 #         return str(self).ljust(int(length))
+class UniqueDict(dict):
+    "UniqueDict(iterable=None, **kwargs) -> UniqueDict"
+
+    __slots__ = ()
+
+    def __setitem__(self, key, value):
+        "Sets key with value if key does not exist."
+        assert key not in self, "Key already exists!"
+        super().__setitem__(key, value)
+
+    def replace(self, key, value):
+        "Sets key with value if key already exists."
+        assert key in self, "Key does not exist!"
+        super().__setitem__(key, value)

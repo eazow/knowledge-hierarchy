@@ -11,10 +11,9 @@ import pickle
 import types
 import _thread
 
-from join import left_join, inner_join, full_join
 from lock import _Lock
 from row import rows, ROW
-from table import Table
+from table import Table, inner_join, full_join, left_join
 from utils import _slots, datetime
 from view import _View
 
@@ -265,22 +264,6 @@ class TransactionalDatabase(Database):
     def __data(self):
         "Aliases internal table from Database class."
         return self._Database__data
-
-
-class UniqueDict(dict):
-    "UniqueDict(iterable=None, **kwargs) -> UniqueDict"
-
-    __slots__ = ()
-
-    def __setitem__(self, key, value):
-        "Sets key with value if key does not exist."
-        assert key not in self, "Key already exists!"
-        super().__setitem__(key, value)
-
-    def replace(self, key, value):
-        "Sets key with value if key already exists."
-        assert key in self, "Key does not exist!"
-        super().__setitem__(key, value)
 
 
 del _slots

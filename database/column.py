@@ -1,5 +1,4 @@
-from engine import UniqueDict
-from utils import _slots
+from utils import _slots, UniqueDict
 
 
 class _Columns:
