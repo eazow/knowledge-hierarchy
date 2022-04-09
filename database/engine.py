@@ -11,10 +11,9 @@ import pickle
 import types
 import _thread
 
-from join import left_join, inner_join, full_join
 from lock import _Lock
 from row import rows, ROW
-from table import Table
+from table import Table, inner_join, full_join, left_join
 from utils import _slots, datetime
 from view import _View
 
@@ -132,11 +131,7 @@ class Database:
         return full_join(test, **{table_a: self[table_a], table_b: self[table_b]})
 
 
-################################################################################
-
-
-class Database2(Database):
-    "Database2() -> Database2"
+class TransactionalDatabase(Database):
 
     @classmethod
     def upgrade(cls, db_old):
@@ -147,8 +142,6 @@ class Database2(Database):
         db_new.save(db_old._Database__path)
         db_old.__init__()
         return db_new
-
-    ########################################################################
 
     __slots__ = _slots("lock locked view")
 
@@ -180,8 +173,6 @@ class Database2(Database):
 
     __getitem__ = __getattr__
 
-    ########################################################################
-
     def begin_transaction(self, table, wait=False):
         "Locks and copies table while optionally waiting for unlock."
         table = self.__data.where(name=table)
@@ -206,8 +197,6 @@ class Database2(Database):
     def rollback_transaction(self, table):
         "Restores table with copy, removes copy, and unlocks the table."
         self.__close_transaction(table, self.__rollback)
-
-    ########################################################################
 
     def __add_transaction_support(self):
         "Add attributes so database can support transactions."
@@ -259,8 +248,6 @@ class Database2(Database):
             action(table)
         # End Critical Section
 
-    ########################################################################
-
     @staticmethod
     def __commit(table):
         "Deletes the reserve copy of a table."
@@ -277,26 +264,6 @@ class Database2(Database):
     def __data(self):
         "Aliases internal table from Database class."
         return self._Database__data
-
-
-################################################################################
-
-
-class UniqueDict(dict):
-    "UniqueDict(iterable=None, **kwargs) -> UniqueDict"
-
-    __slots__ = ()
-
-    def __setitem__(self, key, value):
-        "Sets key with value if key does not exist."
-        assert key not in self, "Key already exists!"
-        super().__setitem__(key, value)
-
-    def replace(self, key, value):
-        "Sets key with value if key already exists."
-        assert key in self, "Key does not exist!"
-        super().__setitem__(key, value)
-
 
 
 del _slots

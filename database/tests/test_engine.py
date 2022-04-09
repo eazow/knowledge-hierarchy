@@ -1,12 +1,10 @@
 from row import ROW
 from table import Table
-from tests.test_basic import test_basic_sql
 
 
-def test():
+def test(persons):
     "Runs several groups of tests of the database engine."
     # Test simple statements in SQL.
-    persons = test_basic_sql()
     # Test various ways to select rows.
     test_row_selection(persons)
     # Test the four different types of joins in SQL.

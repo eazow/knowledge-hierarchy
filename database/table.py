@@ -5,16 +5,15 @@ import sys
 from where import _Where
 from row import rows, _RowAdapter, ROW
 from column import _Columns
-from join import left_join
-from utils import _slots
+from utils import _slots, _pre_process
 
 
 class Table:
-    "Table(*columns) -> Table"
+    """Table(*columns) -> Table"""
 
     @classmethod
     def from_iter(cls, iterator):
-        "Generates a table from a column / rows iterator."
+        """Generates a table from a column / rows iterator."""
         title, test_row, *rows = iterator
         table = cls(*zip(title, map(type, test_row)))
         table.insert(*test_row)
@@ -25,17 +24,17 @@ class Table:
     __slots__ = _slots("columns data_area row_index")
 
     def __init__(self, *columns):
-        "Initializes Table with columns and row storage area."
+        """Initializes Table with columns and row storage area."""
         self.__columns = _Columns(columns)
         self.__data_area = {}
         self.__row_index = 1
 
     def __len__(self):
-        "Returns the number of rows in the table."
+        """Returns the number of rows in the table."""
         return len(self.__data_area)
 
     def __repr__(self):
-        "Creates a complete representation of the table."
+        """Creates a complete representation of the table."""
         buffer = [
             list(
                 map(
@@ -93,32 +92,33 @@ class Table:
         return "\n".join(lines)
 
     def __iter__(self):
-        "Returns an iterator over the table's columns."
+        """Returns an iterator over the table's columns."""
         return self(*self.columns)
 
     def __call__(self, *columns):
-        "Returns an iterator over the specified columns."
-        indexs = tuple(self.__columns[name][1] for name in columns)
+        """Returns an iterator over the specified columns."""
+        indexes = tuple(self.__columns[name][1] for name in columns)
         yield columns
         for row in sorted(self.__data_area):
-            yield tuple(self.__data_area[row][index] for index in indexs)
+            yield tuple(self.__data_area[row][index] for index in indexes)
 
-    ########################################################################
+    def __eq__(self, other):
+        return str(self) == str(other)
 
     def first(self, column=None):
-        "Returns the first row or column of specified row."
+        """Returns the first row or column of specified row."""
         return self.__get_location(min, column)
 
     def last(self, column=None):
-        "Returns the last row or column of specified row."
+        """Returns the last row or column of specified row."""
         return self.__get_location(max, column)
 
     def print(self, end="\n\n", file=None):
-        "Provides a convenient way of printing representation of the table."
+        """Provides a convenient way of printing representation of the table."""
         print(repr(self), end=end, file=sys.stdout if file is None else file)
 
     def top(self, amount):
-        "Iterates over the top rows specified by amount."
+        """Iterates over the top rows specified by amount."""
         if amount == -1:
             amount = len(self.__data_area)
         elif 0 <= amount < 1:
@@ -128,7 +128,7 @@ class Table:
             yield row
 
     def insert(self, *values, **columns):
-        "Inserts provided data into a new row of the database."
+        """Inserts provided data into a new row of the database."""
         if values:
             assert len(values) == len(self.__columns), "Bad number of columns!"
             assert not columns, "Mixed syntax is not accepted!"
@@ -140,7 +140,7 @@ class Table:
         self.__row_index += 1
 
     def alter_add(self, name, data_type):
-        "Adds a column to the table and populates it."
+        """Adds a column to the table and populates it."""
         index = self.__columns.add(name, data_type)
         started = False
         try:
@@ -154,7 +154,7 @@ class Table:
                 row[index] = data_type
 
     def alter_drop(self, name):
-        "Removes a column from the table and frees memory."
+        """Removes a column from the table and frees memory."""
         index = self.__columns.drop(name)
         for row in self.__data_area.values():
             del row[index]
@@ -345,8 +345,6 @@ class Table:
             tables[key].insert(*row)
         return tables.values()
 
-    ########################################################################
-
     def __get_location(self, function, column):
         "Returns a row or cell based on function and column."
         row = self.__data_area[function(self.__data_area)]
@@ -409,8 +407,6 @@ class Table:
             table.alter_drop(column)
         return table
 
-    ########################################################################
-
     @staticmethod
     def __process_test(test, kw):
         "Ensures that test has been properly formed as necessary."
@@ -419,8 +415,6 @@ class Table:
         else:
             assert callable(test), "Test must be callable!"
         return test
-
-    ########################################################################
 
     @property
     def columns(self):
@@ -453,8 +447,6 @@ class _SortedResults:
         for row in sorted(rows, key=ROW[index], reverse=self.__direction):
             yield row
 
-    ########################################################################
-
     def order_by(self, column, desc=False):
         "Returns results that are sorted on an additional level."
         return type(self)(self, column, desc)
@@ -462,3 +454,100 @@ class _SortedResults:
     def table(self):
         "Converts the sorted results into a table object."
         return Table.from_iter(self)
+
+
+def inner_join(test, *table_arg, **table_kwarg):
+    """Runs and returns result from inner joining two tables together."""
+    pa, pb, ta, tb = _join_args(table_arg, table_kwarg)
+    table = _composite_table(pa, pb, ta, tb)
+    _join_loop(table, test, pa, pb, ta, tb, True, False)
+    return table
+
+
+def full_join(test, *table_arg, **table_kwarg):
+    """Runs and returns result from full joining two tables together."""
+    pa, pb, ta, tb = _join_args(table_arg, table_kwarg)
+    table = _composite_table(pa, pb, ta, tb)
+    _join_loop(table, test, pa, pb, ta, tb, False, True)
+    return table
+
+
+def left_join(table_a, table_b, test):
+    """Runs and returns result from left joining two tables together."""
+    assert (
+        sum(isinstance(table, tuple) for table in (table_a, table_b)) > 0
+    ), "At least one table must be given a name!"
+    ta, pa = table_a if isinstance(table_a, tuple) else (table_a, "_")
+    tb, pb = table_b if isinstance(table_b, tuple) else (table_b, "_")
+    table = _composite_table(pa, pb, ta, tb)
+    _join_loop(table, test, pa, pb, ta, tb, False, False)
+    return table
+
+
+def right_join(table_a, table_b, test):
+    """Runs and returns result from right joining two tables together."""
+    return left_join(table_b, table_a, test)
+
+
+def _join_args(table_arg, table_kwarg):
+    """Determines tables and prefixes from given arguments."""
+    assert len(table_kwarg) > 0, "At least one table name must be given!"
+    assert (
+        sum(map(len, (table_arg, table_kwarg))) == 2
+    ), "Two tables must be provided to join!"
+    if len(table_kwarg) == 2:
+        (pa, pb), (ta, tb) = zip(*table_kwarg.items())
+    else:
+        pa, ta = next(iter(table_kwarg.items()))
+        pb, tb = "_", table_arg[0]
+    return pa, pb, ta, tb
+
+
+def _join_loop(table, test, pa, pb, ta, tb, inner, full):
+    """Joins two tables together into one table based on criteria."""
+    first = True
+    second = dict()
+    table_a = tuple(_pre_process(ta, pa))
+    table_b = tuple(_pre_process(tb, pb))
+    for row_cache in table_a:
+        match = False
+        for add in table_b:
+            row = row_cache.copy()
+            row.update(add)
+            if test(_RowAdapter(row)):
+                table.insert(**row)
+                match = True
+                if not first:
+                    second.pop(id(add), None)
+            elif first:
+                second[id(add)] = add
+        if not (inner or match):
+            table.insert(**row_cache)
+        first = False
+    if full:
+        for row in second.values():
+            table.insert(**row)
+
+
+def _composite_table(pa, pb, ta, tb):
+    """Create a new table based on information from tables and prefixes."""
+    columns = []
+    for table_name, table_obj in zip((pa, pb), (ta, tb)):
+        iterator = iter(table_obj)
+        names = next(iterator)
+        types = map(lambda item: item[1], table_obj.schema)
+        for column_name, column_type in zip(names, types):
+            if table_name != "_":
+                column_name = "{}.{}".format(table_name, column_name)
+            columns.append((column_name, column_type))
+    return Table(*columns)
+
+
+def union(table_a, table_b, all_=False):
+    """Creates a table from two tables that have been combined."""
+    table = Table.from_iter(table_a)
+    for row in rows(table_b):
+        table.insert(*row)
+    if all_:
+        return table
+    return table.distinct()
