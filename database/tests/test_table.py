@@ -79,19 +79,37 @@ def test_and(persons):
     assert (
         persons.where((ROW.FirstName == "Tove") & (ROW.LastName == "Svendson"))
         == """\
-P_ID LASTNAME FIRSTNAME ADDRESS      CITY
+P_ID LASTNAME FIRSTNAME ADDRESS   CITY   
+---- -------- --------- --------- -------
+   2 Svendson Tove      Borgvn 23 Sandnes\
+"""
+    )
+
+
+def test_or(persons):
+    assert (
+        persons.where((ROW.FirstName == "Tove") | (ROW.FirstName == "Ola"))
+        == """\
+P_ID LASTNAME FIRSTNAME ADDRESS      CITY   
 ---- -------- --------- ------------ -------
+   1 Hansen   Ola       Timoteivn 10 Sandnes
    2 Svendson Tove      Borgvn 23    Sandnes\
 """
     )
 
-    # Test the or operator.
-    persons.where((ROW.FirstName == "Tove") | (ROW.FirstName == "Ola")).print()
-    # Test both and & or operators.
-    persons.where(
-        (ROW.LastName == "Svendson")
-        & ((ROW.FirstName == "Tove") | (ROW.FirstName == "Ola"))
-    ).print()
+
+def test_and_or(persons):
+    assert (
+        persons.where(
+            (ROW.LastName == "Svendson")
+            & ((ROW.FirstName == "Tove") | (ROW.FirstName == "Ola"))
+        )
+        == """\
+P_ID LASTNAME FIRSTNAME ADDRESS   CITY   
+---- -------- --------- --------- -------
+   2 Svendson Tove      Borgvn 23 Sandnes\
+"""
+    )
 
 
 def test_order_by(persons):
