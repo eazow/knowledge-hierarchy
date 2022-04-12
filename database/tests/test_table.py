@@ -181,7 +181,9 @@ P_ID LASTNAME  FIRSTNAME ADDRESS       CITY
     copy = persons.order_by("P_Id").table()
     copy.update(Address="Nissestien 67", City="Sandnes")
 
-    assert copy == """\
+    assert (
+        copy
+        == """\
 P_ID LASTNAME  FIRSTNAME ADDRESS       CITY   
 ---- --------- --------- ------------- -------
    1 Hansen    Ola       Nissestien 67 Sandnes
@@ -189,6 +191,7 @@ P_ID LASTNAME  FIRSTNAME ADDRESS       CITY
    3 Pettersen Kari      Nissestien 67 Sandnes
    6 Tjessem   Jakob     Nissestien 67 Sandnes\
 """
+    )
 
 
 def test_delete(persons):
@@ -215,22 +218,27 @@ P_ID LASTNAME FIRSTNAME ADDRESS CITY
 
 
 def test_top(persons):
-    assert Table.from_iter(persons.top(2)) == """\
+    assert (
+        Table.from_iter(persons.top(2))
+        == """\
 P_ID LASTNAME FIRSTNAME ADDRESS      CITY   
 ---- -------- --------- ------------ -------
    1 Hansen   Ola       Timoteivn 10 Sandnes
    2 Svendson Tove      Borgvn 23    Sandnes\
 """
+    )
 
-    assert Table.from_iter(persons.top(0.3)) == """\
+    assert (
+        Table.from_iter(persons.top(0.3))
+        == """\
 P_ID LASTNAME FIRSTNAME ADDRESS      CITY   
 ---- -------- --------- ------------ -------
    1 Hansen   Ola       Timoteivn 10 Sandnes\
 """
+    )
 
 
 def test_like(persons):
-    # Test like operator.
     persons.where(Like("City", "s.*")).print()
     persons.where(Like("City", ".*s")).print()
     persons.where(Like("City", ".*tav.*")).print()

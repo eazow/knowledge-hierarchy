@@ -1,5 +1,9 @@
+import sys
+
+from engine import Database, TransactionalDatabase
 from row import ROW
-from table import Table
+from table import Table, inner_join, left_join, right_join, full_join, union
+from utils import MID
 
 """
 def test(persons):
@@ -28,9 +32,6 @@ def test(persons):
     # Allow for interaction at the end of the test.
     globals().update(locals())
 """
-
-
-
 
 
 def test_all_joins(persons):
@@ -282,7 +283,7 @@ def test_generic_column_functions(persons, northwind):
 def test_transactional_database():
     "Tests Database2 instances that support transactions."
     # Create a test database, tables, and dummy data.
-    db2 = Database2()
+    db2 = TransactionalDatabase()
     db2.create("test", Table(("id", int), ("name", str)))
     db2.test.insert(100, "Adam")
     db2.test.print()
