@@ -1,4 +1,6 @@
+from like import Like, NotLike
 from row import ROW
+from table import Table
 
 
 def test_create(persons):
@@ -210,3 +212,44 @@ P_ID LASTNAME FIRSTNAME ADDRESS CITY
 ---- -------- --------- ------- ----\
 """
     )
+
+
+def test_top(persons):
+    assert Table.from_iter(persons.top(2)) == """\
+P_ID LASTNAME FIRSTNAME ADDRESS      CITY   
+---- -------- --------- ------------ -------
+   1 Hansen   Ola       Timoteivn 10 Sandnes
+   2 Svendson Tove      Borgvn 23    Sandnes\
+"""
+
+    assert Table.from_iter(persons.top(0.3)) == """\
+P_ID LASTNAME FIRSTNAME ADDRESS      CITY   
+---- -------- --------- ------------ -------
+   1 Hansen   Ola       Timoteivn 10 Sandnes\
+"""
+
+
+def test_like(persons):
+    # Test like operator.
+    persons.where(Like("City", "s.*")).print()
+    persons.where(Like("City", ".*s")).print()
+    persons.where(Like("City", ".*tav.*")).print()
+    persons.where(NotLike("City", ".*tav.*")).print()
+    # Test wildcard patterns.
+    persons.where(Like("City", "sa.*")).print()
+    persons.where(Like("City", ".*nes.*")).print()
+    persons.where(Like("FirstName", ".la")).print()
+    persons.where(Like("LastName", "S.end.on")).print()
+    persons.where(Like("LastName", "[bsp].*")).print()
+    persons.where(Like("LastName", "[^bsp].*")).print()
+
+
+def test_in(persons):
+    persons.where(ROW.LastName.in_("Hansen", "Pettersen")).print()
+
+
+def test_between(persons):
+    persons.where(("Hansen" < ROW.LastName) < "Pettersen").print()
+    persons.where(("Hansen" <= ROW.LastName) < "Pettersen").print()
+    persons.where(("Hansen" <= ROW.LastName) <= "Pettersen").print()
+    persons.where(("Hansen" < ROW.LastName) <= "Pettersen").print()

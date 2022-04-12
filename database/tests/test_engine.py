@@ -1,10 +1,11 @@
 from row import ROW
 from table import Table
 
-
+"""
 def test(persons):
-    "Runs several groups of tests of the database engine."
+    Runs several groups of tests of the database engine."
     # Test simple statements in SQL.
+    # persons = test_basic_sql()
     # Test various ways to select rows.
     test_row_selection(persons)
     # Test the four different types of joins in SQL.
@@ -26,32 +27,10 @@ def test(persons):
     nw2 = test_transactional_database()
     # Allow for interaction at the end of the test.
     globals().update(locals())
+"""
 
 
-def test_row_selection(persons):
-    "Tests various ways to select rows."
-    # Test top clause.
-    Table.from_iter(persons.top(2)).print()
-    Table.from_iter(persons.top(0.5)).print()
-    # Test like operator.
-    persons.where(Like("City", "s.*")).print()
-    persons.where(Like("City", ".*s")).print()
-    persons.where(Like("City", ".*tav.*")).print()
-    persons.where(NotLike("City", ".*tav.*")).print()
-    # Test wildcard patterns.
-    persons.where(Like("City", "sa.*")).print()
-    persons.where(Like("City", ".*nes.*")).print()
-    persons.where(Like("FirstName", ".la")).print()
-    persons.where(Like("LastName", "S.end.on")).print()
-    persons.where(Like("LastName", "[bsp].*")).print()
-    persons.where(Like("LastName", "[^bsp].*")).print()
-    # Test in operator.
-    persons.where(ROW.LastName.in_("Hansen", "Pettersen")).print()
-    # Test manual between syntax.
-    persons.where(("Hansen" < ROW.LastName) < "Pettersen").print()
-    persons.where(("Hansen" <= ROW.LastName) < "Pettersen").print()
-    persons.where(("Hansen" <= ROW.LastName) <= "Pettersen").print()
-    persons.where(("Hansen" < ROW.LastName) <= "Pettersen").print()
+
 
 
 def test_all_joins(persons):
