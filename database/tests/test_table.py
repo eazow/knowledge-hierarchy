@@ -114,28 +114,99 @@ P_ID LASTNAME FIRSTNAME ADDRESS   CITY
 
 def test_order_by(persons):
     persons.insert(4, "Nilsen", "Tom", "Vingvn 23", "Stavanger")
-    persons.order_by("LastName").table().print()
-    persons.order_by("LastName", True).table().print()
+
+    assert (
+        persons.order_by("LastName").table()
+        == """\
+P_ID LASTNAME  FIRSTNAME ADDRESS      CITY     
+---- --------- --------- ------------ ---------
+   1 Hansen    Ola       Timoteivn 10 Sandnes  
+   4 Nilsen    Tom       Vingvn 23    Stavanger
+   3 Pettersen Kari      Storgt 20    Stavanger
+   2 Svendson  Tove      Borgvn 23    Sandnes  \
+"""
+    )
+
+    assert (
+        persons.order_by("LastName", True).table()
+        == """\
+P_ID LASTNAME  FIRSTNAME ADDRESS      CITY     
+---- --------- --------- ------------ ---------
+   2 Svendson  Tove      Borgvn 23    Sandnes  
+   3 Pettersen Kari      Storgt 20    Stavanger
+   4 Nilsen    Tom       Vingvn 23    Stavanger
+   1 Hansen    Ola       Timoteivn 10 Sandnes  \
+"""
+    )
 
 
 def test_insert(persons):
     persons.insert(5, "Nilsen", "Johan", "Bakken 2", "Stavanger")
-    persons.print()
     persons.insert(P_Id=6, LastName="Tjessem", FirstName="Jakob")
-    persons.print()
+
+    assert (
+        persons
+        == """\
+P_ID LASTNAME  FIRSTNAME ADDRESS      CITY     
+---- --------- --------- ------------ ---------
+   1 Hansen    Ola       Timoteivn 10 Sandnes  
+   2 Svendson  Tove      Borgvn 23    Sandnes  
+   3 Pettersen Kari      Storgt 20    Stavanger
+   5 Nilsen    Johan     Bakken 2     Stavanger
+   6 Tjessem   Jakob                           \
+"""
+    )
 
 
 def test_update(persons):
+    persons.insert(P_Id=6, LastName="Tjessem", FirstName="Jakob")
+
     persons.where((ROW.LastName == "Tjessem") & (ROW.FirstName == "Jakob")).update(
         Address="Nissestien 67", City="Sandnes"
     )
-    persons.print()
+    assert (
+        persons
+        == """\
+P_ID LASTNAME  FIRSTNAME ADDRESS       CITY     
+---- --------- --------- ------------- ---------
+   1 Hansen    Ola       Timoteivn 10  Sandnes  
+   2 Svendson  Tove      Borgvn 23     Sandnes  
+   3 Pettersen Kari      Storgt 20     Stavanger
+   6 Tjessem   Jakob     Nissestien 67 Sandnes  \
+"""
+    )
+
     copy = persons.order_by("P_Id").table()
     copy.update(Address="Nissestien 67", City="Sandnes")
-    copy.print()
+
+    assert copy == """\
+P_ID LASTNAME  FIRSTNAME ADDRESS       CITY   
+---- --------- --------- ------------- -------
+   1 Hansen    Ola       Nissestien 67 Sandnes
+   2 Svendson  Tove      Nissestien 67 Sandnes
+   3 Pettersen Kari      Nissestien 67 Sandnes
+   6 Tjessem   Jakob     Nissestien 67 Sandnes\
+"""
 
 
 def test_delete(persons):
+    persons.insert(P_Id=6, LastName="Tjessem", FirstName="Jakob")
     copy = persons.order_by("P_Id").table()
-    copy.delete((ROW.LastName == "Tjessem") & (ROW.FirstName == "Jakob")).print()
-    copy.truncate().print()
+    assert (
+        copy.delete((ROW.LastName == "Tjessem") & (ROW.FirstName == "Jakob"))
+        == """\
+P_ID LASTNAME  FIRSTNAME ADDRESS      CITY     
+---- --------- --------- ------------ ---------
+   1 Hansen    Ola       Timoteivn 10 Sandnes  
+   2 Svendson  Tove      Borgvn 23    Sandnes  
+   3 Pettersen Kari      Storgt 20    Stavanger\
+"""
+    )
+
+    assert (
+        copy.truncate()
+        == """\
+P_ID LASTNAME FIRSTNAME ADDRESS CITY
+---- -------- --------- ------- ----\
+"""
+    )
