@@ -239,9 +239,13 @@ P_ID LASTNAME FIRSTNAME ADDRESS      CITY
 
 
 def test_like(persons):
-    persons.where(Like("City", "s.*")).print()
+    print(persons.where(Like("City", "s.*")))
     persons.where(Like("City", ".*s")).print()
-    persons.where(Like("City", ".*tav.*")).print()
+    assert persons.where(Like("City", ".*tav.*")) == """\
+P_ID LASTNAME  FIRSTNAME ADDRESS   CITY     
+---- --------- --------- --------- ---------
+   3 Pettersen Kari      Storgt 20 Stavanger\
+"""
     persons.where(NotLike("City", ".*tav.*")).print()
     # Test wildcard patterns.
     persons.where(Like("City", "sa.*")).print()
@@ -253,7 +257,12 @@ def test_like(persons):
 
 
 def test_in(persons):
-    persons.where(ROW.LastName.in_("Hansen", "Pettersen")).print()
+    assert persons.where(ROW.LastName.in_("Hansen", "Pettersen")) == """\
+P_ID LASTNAME  FIRSTNAME ADDRESS      CITY     
+---- --------- --------- ------------ ---------
+   1 Hansen    Ola       Timoteivn 10 Sandnes  
+   3 Pettersen Kari      Storgt 20    Stavanger\
+"""
 
 
 def test_between(persons):
