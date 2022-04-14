@@ -34,15 +34,9 @@ def test(persons):
 """
 
 
-def test_all_joins(persons):
-    "Tests the four different types of joins in SQL."
-    # Create and populate the Orders table.
-    orders = Table(("O_Id", int), ("OrderNo", int), ("P_Id", int))
-    orders.insert(1, 77895, 3)
-    orders.insert(2, 44678, 3)
-    orders.insert(3, 22456, 1)
-    orders.insert(4, 24562, 1)
-    orders.insert(5, 34764, 15)
+def test_all_joins(persons, orders):
+    """Tests the four different types of joins in SQL."""
+
     # Test the inner join function.
     inner_join(
         ROW.Persons.P_Id == ROW.Orders.P_Id, Persons=persons, Orders=orders
@@ -82,8 +76,7 @@ def test_all_joins(persons):
 
 
 def test_table_addition(persons, orders):
-    "Tests unstructured ways of joining tables together."
-    # Create two tables to union together.
+    """Tests unstructured ways of joining tables together."""
     employees_norway = Table(("E_ID", str), ("E_Name", str))
     employees_norway.insert("01", "Hansen, Ola")
     employees_norway.insert("02", "Svendson, Tove")
