@@ -23,7 +23,7 @@ def persons():
 @pytest.fixture
 def orders():
     orders = Table(("O_Id", int), ("OrderNo", int), ("P_Id", int))
-    
+
     orders.insert(1, 77895, 3)
     orders.insert(2, 44678, 3)
     orders.insert(3, 22456, 1)
