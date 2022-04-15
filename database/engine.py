@@ -14,12 +14,12 @@ import _thread
 from lock import _Lock
 from row import rows, ROW
 from table import Table, inner_join, full_join, left_join
-from utils import _slots, datetime
+from utils import slots, datetime
 from view import _View
 
 
 class Database:
-    __slots__ = _slots("path data type view")
+    __slots__ = slots("path data type view")
 
     @classmethod
     def load(cls, path):
@@ -142,7 +142,7 @@ class TransactionalDatabase(Database):
         db_old.__init__()
         return db_new
 
-    __slots__ = _slots("lock locked view")
+    __slots__ = slots("lock locked view")
 
     def __repr__(self):
         "Returns an updated representation of the database."
@@ -263,7 +263,7 @@ class TransactionalDatabase(Database):
         return self._Database__data
 
 
-del _slots
+del slots
 types.StringType = str
 next_ = next
 NOW = datetime.now

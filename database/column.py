@@ -1,10 +1,10 @@
-from utils import _slots, UniqueDict
+from utils import slots, UniqueDict
 
 
 class _Columns:
     """_Columns(columns) -> _Columns"""
 
-    __slots__ = _slots("column_index column_names")
+    __slots__ = slots("column_index column_names")
 
     def __init__(self, columns):
         """Initializes Columns instance with names and data types."""

@@ -1,12 +1,12 @@
 import _thread
 
-from utils import _slots
+from utils import slots
 
 
 class _Lock:
     """_Lock(immediate=False, silent=False) -> _Lock"""
 
-    __slots__ = _slots("lock verbose")
+    __slots__ = slots("lock verbose")
 
     def __init__(self, immediate=False, silent=False):
         """Initializes _Lock instance with internal mechanism."""

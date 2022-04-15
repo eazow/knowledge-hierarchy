@@ -1,7 +1,7 @@
 import datetime
 
 
-def _slots(names=""):
+def slots(names=""):
     """Returns the private version of names for __slots__ on a class."""
     return tuple("__" + name for name in names.split())
 
@@ -9,7 +9,7 @@ def _slots(names=""):
 class _NamedInstance:
     "_NamedInstance(*args, **kwargs) -> _NamedInstance"
 
-    __slots__ = _slots()
+    __slots__ = slots()
 
     def __init__(self, *args, **kwargs):
         "Raises an error since this is an abstract class."
@@ -24,7 +24,7 @@ class _NamedInstance:
 class DatePart(_NamedInstance):
     "DatePart(part, column, name=None) -> DatePart"
 
-    __slots__ = _slots("part column name")
+    __slots__ = slots("part column name")
 
     def __init__(self, part, column, name=None):
         "Initializes DatePart instance usable with 'group_by' method."
@@ -56,7 +56,7 @@ class DatePart(_NamedInstance):
 class MID(_NamedInstance):
     "MID(start, length=None) -> MID"
 
-    __slots__ = _slots("start stop")
+    __slots__ = slots("start stop")
 
     def __init__(self, start, length=None):
         "Intializes MID instance with data to extract a sub-interval."
@@ -73,7 +73,7 @@ class MID(_NamedInstance):
 class FORMAT(_NamedInstance):
     "FORMAT(spec) -> FORMAT"
 
-    __slots__ = _slots("spec")
+    __slots__ = slots("spec")
 
     def __init__(self, spec):
         "Initializes instance with 'spec' for the format function."
@@ -103,7 +103,7 @@ class datetime(datetime.datetime):
     """datetime(year=None, month=None, day=None, hour=0,
     minute=0, second=0, microsecond=0, tzinfo=None) -> datetime"""
 
-    __slots__ = _slots()
+    __slots__ = slots()
 
     def __new__(
         cls,

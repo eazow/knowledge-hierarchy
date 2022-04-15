@@ -2,13 +2,13 @@ import sys
 import types
 
 from table import Table
-from utils import _slots
+from utils import slots
 
 
 class _View:
     """_View(database, query, *name_changes) -> _View"""
 
-    __slots__ = _slots("database query name_changes")
+    __slots__ = slots("database query name_changes")
 
     def __init__(self, database, query, *name_changes):
         """Initializes _View instance with details of saved query."""
