@@ -5,7 +5,7 @@ import sys
 from where import _Where
 from row import rows, _RowAdapter, ROW
 from column import _Columns
-from utils import _slots, _pre_process
+from utils import slots, _pre_process
 
 
 class Table:
@@ -21,7 +21,7 @@ class Table:
             table.insert(*row)
         return table
 
-    __slots__ = _slots("columns data_area row_index")
+    __slots__ = slots("columns data_area row_index")
 
     def __init__(self, *columns):
         """Initializes Table with columns and row storage area."""
@@ -431,7 +431,7 @@ class Table:
 class _SortedResults:
     "_SortedResults(iterable column, desc) -> _SortedResults"
 
-    __slots__ = _slots("iter column direction")
+    __slots__ = slots("iter column direction")
 
     def __init__(self, iterable, column, desc):
         "Initializes sorting adapter with given data."

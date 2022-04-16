@@ -14,12 +14,12 @@ import _thread
 from lock import _Lock
 from row import rows, ROW
 from table import Table, inner_join, full_join, left_join
-from utils import _slots, datetime
+from utils import slots, datetime
 from view import _View
 
 
 class Database:
-    __slots__ = _slots("path data type view")
+    __slots__ = slots("path data type view")
 
     @classmethod
     def load(cls, path):
@@ -132,7 +132,6 @@ class Database:
 
 
 class TransactionalDatabase(Database):
-
     @classmethod
     def upgrade(cls, db_old):
         "Upgrades the base version of a database into the child version."
@@ -143,7 +142,7 @@ class TransactionalDatabase(Database):
         db_old.__init__()
         return db_new
 
-    __slots__ = _slots("lock locked view")
+    __slots__ = slots("lock locked view")
 
     def __repr__(self):
         "Returns an updated representation of the database."
@@ -258,78 +257,13 @@ class TransactionalDatabase(Database):
         "Restores table from copy and deletes the copy."
         table.update(data=table.first("copy"), copy=object())
 
-    ########################################################################
-
     @property
     def __data(self):
         "Aliases internal table from Database class."
         return self._Database__data
 
 
-del _slots
+del slots
 types.StringType = str
 next_ = next
 NOW = datetime.now
-
-# Unsupported Features:
-# =====================
-#   Constraints:
-#   ------------
-#     NOT NULL [forced on all columns]
-#     UNIQUE
-#     PRIMARY KEY
-#     FOREIGN KEY
-#     CHECK
-#     DEFAULT [constructed from type]
-#   Indexes:
-#   --------
-#     CREATE
-#     DROP
-#   Increment:
-#   ----------
-#     AUTO INCREMENT
-#     Starting Value
-#     Increment by X
-#       ["ROW_ID" starts at and increments by 1 but is not accessible]
-#   Dates:
-#   ------
-#     NOW()
-#     CURDATE()
-#     CURTIME()
-#     EXTRACT()
-#     DATE_ADD()
-#     DATE_SUB()
-#     DATEDIFF()
-#     DATE_FORMAT()
-#     GETDATE()
-#     CONVERT()
-#       ["DatePart" and "date" are supported and may
-#        be supplemented with the "datetime" module]
-#   Nulls:
-#   ------
-#     ISNULL()
-#     NVL()
-#     IFNULL()
-#     COALESCE()
-#       [the NOT NULL constraint is forced on all columns]
-#   Data Types:
-#   -----------
-#     Data types that cannot be initialized with a
-#     parameterless call are not directly supported.
-#   Functions:
-#   ----------
-#     max() [use "table.max_(column)" instead]
-#     min() [use "table.min_(column)" instead]
-#     sum() [use "table.sum_(column)" instead]
-#     Having Statement
-#     ucase() or upper() [use "(str.upper, 'column')" instead]
-#     lcase() or lower() [use "(str.lower, 'column')" instead)
-#     Virtual Columns [Function Based]
-#     Materialized Views [Cached Functions]
-#   Transactions:
-#   -------------
-#     Table Level Transactions
-#       [database level transactions are supported;
-#        table locks are supported in the same way]
-
-

@@ -1,12 +1,12 @@
 import re
 
-from utils import _slots
+from utils import slots
 
 
 class NotLike:
     """NotLike(column, pattern, flags=IGNORECASE, advanced=False) -> NotLike"""
 
-    __slots__ = _slots("column method")
+    __slots__ = slots("column method")
 
     def __init__(self, column, pattern, flags=re.IGNORECASE, advanced=False):
         "Initializes comparison object for specified column."
@@ -23,7 +23,7 @@ class NotLike:
 class Like(NotLike):
     "Like(column, pattern, flags=IGNORECASE, advanced=False) -> Like"
 
-    __slots__ = _slots()
+    __slots__ = slots()
 
     def __call__(self, row):
         """Reverses the result from calling a NotLike instance."""

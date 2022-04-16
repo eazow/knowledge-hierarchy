@@ -1,10 +1,15 @@
+import sys
+
+from engine import Database
 from row import ROW
-from table import Table
+from table import Table, inner_join, left_join, right_join, full_join, union
+from utils import MID
 
-
+"""
 def test(persons):
-    "Runs several groups of tests of the database engine."
+    Runs several groups of tests of the database engine."
     # Test simple statements in SQL.
+    # persons = test_basic_sql()
     # Test various ways to select rows.
     test_row_selection(persons)
     # Test the four different types of joins in SQL.
@@ -26,43 +31,12 @@ def test(persons):
     nw2 = test_transactional_database()
     # Allow for interaction at the end of the test.
     globals().update(locals())
+"""
 
 
-def test_row_selection(persons):
-    "Tests various ways to select rows."
-    # Test top clause.
-    Table.from_iter(persons.top(2)).print()
-    Table.from_iter(persons.top(0.5)).print()
-    # Test like operator.
-    persons.where(Like("City", "s.*")).print()
-    persons.where(Like("City", ".*s")).print()
-    persons.where(Like("City", ".*tav.*")).print()
-    persons.where(NotLike("City", ".*tav.*")).print()
-    # Test wildcard patterns.
-    persons.where(Like("City", "sa.*")).print()
-    persons.where(Like("City", ".*nes.*")).print()
-    persons.where(Like("FirstName", ".la")).print()
-    persons.where(Like("LastName", "S.end.on")).print()
-    persons.where(Like("LastName", "[bsp].*")).print()
-    persons.where(Like("LastName", "[^bsp].*")).print()
-    # Test in operator.
-    persons.where(ROW.LastName.in_("Hansen", "Pettersen")).print()
-    # Test manual between syntax.
-    persons.where(("Hansen" < ROW.LastName) < "Pettersen").print()
-    persons.where(("Hansen" <= ROW.LastName) < "Pettersen").print()
-    persons.where(("Hansen" <= ROW.LastName) <= "Pettersen").print()
-    persons.where(("Hansen" < ROW.LastName) <= "Pettersen").print()
+def test_all_joins(persons, orders):
+    """Tests the four different types of joins in SQL."""
 
-
-def test_all_joins(persons):
-    "Tests the four different types of joins in SQL."
-    # Create and populate the Orders table.
-    orders = Table(("O_Id", int), ("OrderNo", int), ("P_Id", int))
-    orders.insert(1, 77895, 3)
-    orders.insert(2, 44678, 3)
-    orders.insert(3, 22456, 1)
-    orders.insert(4, 24562, 1)
-    orders.insert(5, 34764, 15)
     # Test the inner join function.
     inner_join(
         ROW.Persons.P_Id == ROW.Orders.P_Id, Persons=persons, Orders=orders
@@ -102,8 +76,7 @@ def test_all_joins(persons):
 
 
 def test_table_addition(persons, orders):
-    "Tests unstructured ways of joining tables together."
-    # Create two tables to union together.
+    """Tests unstructured ways of joining tables together."""
     employees_norway = Table(("E_ID", str), ("E_Name", str))
     employees_norway.insert("01", "Hansen, Ola")
     employees_norway.insert("02", "Svendson, Tove")
@@ -136,16 +109,17 @@ def test_table_addition(persons, orders):
 
 
 def test_database_support():
-    "Tests creation and manipulation of databases."
-    # Test ability to create database.
+    """Tests creation and manipulation of databases."""
     db = Database()
     # Test creating and retrieving database tables.
     db.create("persons", Table(("Name", str), ("Credit", int)))
-    db.create("mapdata", (("time", float), ("place", complex)))
-    db.print()
+    db.create("map_data", (("time", float), ("place", complex)))
+
     db.persons.insert("Marty", 7 ** 4)
     db.persons.insert(Name="Haddock")
-    db.persons.print()
+
+    assert len(db.persons) == 2
+    assert len(db.map_data) == 0
 
 
 def test_northwind():
@@ -300,48 +274,3 @@ def test_generic_column_functions(persons, northwind):
     ).as_(("FORMAT(PerDate)", "PerDate")).print()
 
 
-def test_transactional_database():
-    "Tests Database2 instances that support transactions."
-    # Create a test database, tables, and dummy data.
-    db2 = Database2()
-    db2.create("test", Table(("id", int), ("name", str)))
-    db2.test.insert(100, "Adam")
-    db2.test.print()
-    # Test the rollback transaction support added in Database2.
-    test = db2.begin_transaction("test")
-    test.insert(101, "Eve")
-    test.print()
-    db2.rollback_transaction("test")
-    db2.test.print()
-    # Test the commit transaction support added in Database2.
-    test = db2.begin_transaction("test")
-    test.insert(102, "Seth")
-    test.print()
-    db2.commit_transaction("test")
-    db2.test.print()
-    # Prepare some supports for the test that follows.
-    import time
-
-    def delay(seconds, handler, table):
-        time.sleep(seconds)
-        handler(table)
-
-    def async_commit(db, action, table, wait):
-        _thread.start_new_thread(
-            delay, (wait, getattr(db, action + "_transaction"), table)
-        )
-
-    try:
-        nw2 = Database2.load("northwind2.db")
-    except IOError:
-        return
-    # Test waiting on a locked table before transaction.
-    print("Starting transaction ...")
-    categories = nw2.begin_transaction("Categories")
-    print("Simulating processing ...")
-    async_commit(nw2, "commit", "Categories", 2)
-    print("Holding for release ...")
-    categories = nw2.begin_transaction("Categories", True)
-    print("Rolling back the table ...")
-    nw2.rollback_transaction("Categories")
-    return nw2

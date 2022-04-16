@@ -1,7 +1,7 @@
 import itertools
 import operator
 
-from utils import _slots
+from utils import slots
 
 
 def rows(iterable):
@@ -14,7 +14,7 @@ def rows(iterable):
 class _RowAdapter:
     "_RowAdapter(row, column_map=None) -> _RowAdapter"
 
-    __slots__ = _slots("row map")
+    __slots__ = slots("row map")
 
     def __init__(self, row, column_map=None):
         "Initializes _RowAdapter with data and mapping information."

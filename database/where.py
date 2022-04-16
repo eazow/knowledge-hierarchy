@@ -1,10 +1,10 @@
-from utils import _slots
+from utils import slots
 
 
 class _Where:
     """_Where(mode, condition) -> _Where"""
 
-    __slots__ = _slots("call rows")
+    __slots__ = slots("call rows")
 
     def __init__(self, mode, condition):
         """Initializes _Where support object for simple selections."""
