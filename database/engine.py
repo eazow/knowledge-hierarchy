@@ -249,17 +249,17 @@ class TransactionalDatabase(Database):
 
     @staticmethod
     def __commit(table):
-        "Deletes the reserve copy of a table."
+        """Deletes the reserve copy of a table."""
         table.update(copy=object())
 
     @staticmethod
     def __rollback(table):
-        "Restores table from copy and deletes the copy."
+        """Restores table from copy and deletes the copy."""
         table.update(data=table.first("copy"), copy=object())
 
     @property
     def __data(self):
-        "Aliases internal table from Database class."
+        """Aliases internal table from Database class."""
         return self._Database__data
 
 
