@@ -47,7 +47,7 @@ class Database:
             yield self[row[0]]
 
     def __getattr__(self, name):
-        "Allows getting table or view via attribute lookup or index notation."
+        """Allows getting table or view via attribute lookup or index notation."""
         t = tuple(self.__data.where(ROW.name == name)("data"))
         assert len(t) < 3, "Name is ambiguous!"
         assert len(t) > 1, "Object was not found!"
@@ -59,11 +59,11 @@ class Database:
     __getitem__ = __getattr__
 
     def __getstate__(self):
-        "Provides support for pickling and saving the database."
+        """Provides support for pickling and saving the database."""
         return self.__data
 
     def __setstate__(self, state):
-        "Helps with unpickling and adding needed instance variables."
+        """Helps with unpickling and adding needed instance variables."""
         self.__data = state
         self.__type = Table(("type", type), ("name", str))
         self.__type.insert(Table, "table")
@@ -110,31 +110,31 @@ class Database:
         return data
 
     def drop(self, name):
-        "Deletes a table or view from the database."
+        """Deletes a table or view from the database."""
         self.__data.delete(ROW.name == name)
 
     def print(self, end="\n\n", file=None):
-        "Provides a simple way of showing a representation of the database."
+        """Provides a simple way of showing a representation of the database."""
         self.__view.value.print(end, file)
 
     def create_or_replace(self, name, schema_or_table_or_query, *name_changes):
-        "Drops table or view before creating one with the same name."
+        """Drops table or view before creating one with the same name."""
         self.drop(name)
         self.create(name, schema_or_table_or_query, *name_changes)
 
     def inner_join(self, table_a, table_b, test):
-        "Inner joins tables and views by name using test."
+        """Inner joins tables and views by name using test."""
         return inner_join(test, **{table_a: self[table_a], table_b: self[table_b]})
 
     def full_join(self, table_a, table_b, test):
-        "Full joins tables and views by name using test."
+        """Full joins tables and views by name using test."""
         return full_join(test, **{table_a: self[table_a], table_b: self[table_b]})
 
 
 class TransactionalDatabase(Database):
     @classmethod
     def upgrade(cls, db_old):
-        "Upgrades the base version of a database into the child version."
+        """Upgrades the base version of a database into the child version."""
         assert isinstance(db_old, cls.__base__), "Can only upgrade Database objects!"
         db_new = cls()
         db_new.__setstate__(db_old.__getstate__())
@@ -145,23 +145,23 @@ class TransactionalDatabase(Database):
     __slots__ = slots("lock locked view")
 
     def __repr__(self):
-        "Returns an updated representation of the database."
+        """Returns an updated representation of the database."""
         return repr(self.__view.value)
 
     def __setstate__(self, state):
-        "Sets up remaining attributes and prepares for transactions."
+        """Sets up remaining attributes and prepares for transactions."""
         super().__setstate__(state)
         self.__add_transaction_support()
 
     def __getstate__(self):
-        "Reduces internal table to required columns and returns copy."
+        """Reduces internal table to required columns and returns copy."""
         self.__del_transaction_support()
         data = self.__data.copy()
         self.__extend_data()
         return data
 
     def __getattr__(self, name):
-        "Allows contents to be accessed only if not in transaction."
+        """Allows contents to be accessed only if not in transaction."""
         table = self.__data.where(name=name)
         assert len(table) < 2, "Name is abmiguous!"
         assert len(table) > 0, "Object was not found!"
@@ -173,7 +173,7 @@ class TransactionalDatabase(Database):
     __getitem__ = __getattr__
 
     def begin_transaction(self, table, wait=False):
-        "Locks and copies table while optionally waiting for unlock."
+        """Locks and copies table while optionally waiting for unlock."""
         table = self.__data.where(name=table)
         assert table.first("type") is not _View, "Views are not supported!"
         lock = table.first("lock")
@@ -190,15 +190,15 @@ class TransactionalDatabase(Database):
         return data
 
     def commit_transaction(self, table):
-        "Deletes reserve copy and unlocks the table."
+        """Deletes reserve copy and unlocks the table."""
         self.__close_transaction(table, self.__commit)
 
     def rollback_transaction(self, table):
-        "Restores table with copy, removes copy, and unlocks the table."
+        """Restores table with copy, removes copy, and unlocks the table."""
         self.__close_transaction(table, self.__rollback)
 
     def __add_transaction_support(self):
-        "Add attributes so database can support transactions."
+        """Add attributes so database can support transactions."""
         self.__lock = _thread.allocate_lock()
         self.__extend_data()
         self.__locked = _View(
@@ -216,7 +216,7 @@ class TransactionalDatabase(Database):
         )
 
     def __extend_data(self):
-        "Adds columns to internal table as necessary."
+        """Adds columns to internal table as necessary."""
         if ("type", type) not in self.__data.schema:
             self.__data.alter_add("type", type)
             for name, data in rows(self.__data("name", "data")):
@@ -225,7 +225,7 @@ class TransactionalDatabase(Database):
         self.__data.alter_add("copy", object)
 
     def __del_transaction_support(self):
-        "Ensures no pending transactions and removes unsaved columns."
+        """Ensures no pending transactions and removes unsaved columns."""
         assert not self.__locked.value.where(
             locked=True
         ), "You must commit all transactions before pickling!"
@@ -234,7 +234,7 @@ class TransactionalDatabase(Database):
         self.__data.alter_drop("copy")
 
     def __close_transaction(self, table, action):
-        "Finishes taking care of a transaction's end."
+        """Finishes taking care of a transaction's end."""
         table = self.__data.where(name=table)
         assert table.first("type") is not _View, "Views are not supported!"
         lock = table.first("lock")
