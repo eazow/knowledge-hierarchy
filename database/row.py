@@ -5,24 +5,24 @@ from utils import slots
 
 
 def rows(iterable):
-    "Skips the first row (column names) from a table-style iterator."
+    """Skips the first row (column names) from a table-style iterator."""
     iterator = iter(iterable)
     next(iterator)
     return iterator
 
 
 class _RowAdapter:
-    "_RowAdapter(row, column_map=None) -> _RowAdapter"
+    """_RowAdapter(row, column_map=None) -> _RowAdapter"""
 
     __slots__ = slots("row map")
 
     def __init__(self, row, column_map=None):
-        "Initializes _RowAdapter with data and mapping information."
+        """Initializes _RowAdapter with data and mapping information."""
         self.__row = row
         self.__map = column_map
 
     def __getattr__(self, column):
-        "Returns a column from the row this instance in adapting."
+        """Returns a column from the row this instance in adapting."""
         if self.__map is None:
             return self.__unmapped(column)
         if column in self.__map:
@@ -37,10 +37,8 @@ class _RowAdapter:
 
     __getitem__ = __getattr__
 
-    ########################################################################
-
     def __unmapped(self, column):
-        "Processes a row with column names already filled in."
+        """Processes a row with column names already filled in."""
         if column in self.__row:
             return self.__row[column]
         row = {}
