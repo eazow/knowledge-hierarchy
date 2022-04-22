@@ -272,7 +272,7 @@ P_ID LASTNAME  FIRSTNAME ADDRESS      CITY
 
 
 def test_between(persons):
-    assert len(persons.where(("Hansen" < ROW.LastName) < "Pettersen")) == 1
-    assert len(persons.where(("Hansen" <= ROW.LastName) < "Pettersen")) == 2
-    assert len(persons.where(("Hansen" <= ROW.LastName) <= "Pettersen")) == 3
-    assert len(persons.where(("Hansen" < ROW.LastName) <= "Pettersen")) == 2
+    assert len(persons.where(("Hansen" < ROW.LastName) < "Svendson")) == 1
+    assert len(persons.where(("Hansen" <= ROW.LastName) < "Svendson")) == 2
+    assert len(persons.where(("Hansen" <= ROW.LastName) <= "Svendson")) == 3
+    assert len(persons.where(("Hansen" < ROW.LastName) <= "Svendson")) == 2
