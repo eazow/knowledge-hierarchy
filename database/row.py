@@ -11,13 +11,13 @@ def rows(iterable):
     return iterator
 
 
-class _RowAdapter:
-    """_RowAdapter(row, column_map=None) -> _RowAdapter"""
+class RowAdapter:
+    """RowAdapter(row, column_map=None) -> RowAdapter"""
 
     __slots__ = slots("row map")
 
     def __init__(self, row, column_map=None):
-        """Initializes _RowAdapter with data and mapping information."""
+        """Initializes RowAdapter with data and mapping information."""
         self.__row = row
         self.__map = column_map
 
@@ -50,7 +50,7 @@ class _RowAdapter:
         return type(self)(row)
 
 
-class _Repr:
+class Repr:
     def __repr__(self):
         return "{}({})".format(
             type(self).__name__,
@@ -60,15 +60,15 @@ class _Repr:
         )
 
 
-class _Row(_Repr):
+class _Row(Repr):
     def __getattr__(self, name):
-        return _Column(name)
+        return Column(name)
 
     def __getitem__(self, key):
         return lambda row: row[key]
 
 
-class _Column(_Row):
+class Column(_Row):
     def __init__(self, name):
         self.__name = name
 
@@ -102,12 +102,14 @@ class _Column(_Row):
         return Comparison(self, lambda a, b: a in b, items)
 
 
-class Comparison(_Repr):
+class Comparison(Repr):
     def __init__(self, column, op, other):
         self.__column, self.__op, self.__other = column, op, other
 
     def __call__(self, row):
-        if isinstance(self.__other, _Column):
+        if isinstance(self.__other, Column):
+            return self.__op(self.__column(row), self.__other(row))
+        if isinstance(self.__other, Comparison) and isinstance(self.__column, Comparison):
             return self.__op(self.__column(row), self.__other(row))
         return self.__op(self.__column(row), self.__other)
 
