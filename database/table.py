@@ -160,23 +160,23 @@ class Table:
             del row[index]
 
     def alter_column(self, name, data_type):
-        "Changes the data-type of a column and refreshes it."
+        """Changes the data-type of a column and refreshes it."""
         index = self.__columns.alter(name, data_type)
         for row in self.__data_area.values():
             row[index] = data_type()
 
     def alter_name(self, old, new):
-        "Renames a column without altering the rows."
+        """Renames a column without altering the rows."""
         self.__columns.rename(old, new)
 
     def as_(self, *pairs):
-        "Changes the name of multiple columns at a time."
+        """Changes the name of multiple columns at a time."""
         for old, new in pairs:
             self.alter_name(old, new)
         return self
 
     def copy(self):
-        "Copies a table while sharing cell instances."
+        """Copies a table while sharing cell instances."""
         copy = type(self)()
         copy.__columns = self.__columns.copy()
         copy.__data_area = {}
@@ -186,7 +186,7 @@ class Table:
         return copy
 
     def select(self, *column_names):
-        "Select columns and process them with any given functions."
+        """Select columns and process them with any given functions."""
         if not column_names:
             return self
         columns, functions = [], []
@@ -210,7 +210,7 @@ class Table:
         return copy
 
     def distinct(self):
-        "Return copy of table having only distinct rows."
+        """Return copy of table having only distinct rows."""
         copy = type(self)()
         copy.__columns = self.__columns
         copy.__data_area = self.__data_area.copy()
@@ -233,7 +233,7 @@ class Table:
         return copy
 
     def update(self, **assignments):
-        "Changes all present rows with given assignments."
+        """Changes all present rows with given assignments."""
         assign = []
         for name, value in assignments.items():
             data_type, index = self.__columns[name]
@@ -246,7 +246,7 @@ class Table:
                 row[index] = value
 
     def where(self, test="and", **kw):
-        "Select rows that fit criteria given by the test."
+        """Select rows that fit criteria given by the test."""
         test = self.__process_test(test, kw)
         copy = type(self)()
         copy.__columns = self.__columns
@@ -256,33 +256,33 @@ class Table:
         return copy
 
     def delete(self, test="and", **kw):
-        "Delete rows that fit criteria given by the test."
+        """Delete rows that fit criteria given by the test."""
         test = self.__process_test(test, kw)
         self.__remove(self.__data_area, True, test)
         return self
 
     def truncate(self):
-        "Deletes all of the rows in the table."
+        """Deletes all of the rows in the table."""
         self.__data_area.clear()
         return self
 
     def order_by(self, column, desc=False):
-        "Returns a sorted result of the table."
+        """Returns a sorted result of the table."""
         return _SortedResults(self, column, desc)
 
     def into(self, table):
-        "Inserts external table into this table by column name."
+        """Inserts external table into this table by column name."""
         self_iter = iter(self)
         self_colu = next(self_iter)
         for row in self_iter:
             table.insert(**{name: data for name, data in zip(self_colu, row)})
 
     def left_join(self, table, name, test):
-        "Returns result of a left join on the given table using test."
+        """Returns result of a left join on the given table using test."""
         return left_join(self, (table, name), test)
 
     def sum_(self, column):
-        "Adds up all of the cells in a particular column of the table."
+        """Adds up all of the cells in a particular column of the table."""
         data_type, index = self.__columns[column]
         total = data_type()
         for row in self.__data_area:
@@ -290,22 +290,22 @@ class Table:
         return total
 
     def avg(self, column):
-        "Averages the cells in the given column of the table."
+        """Averages the cells in the given column of the table."""
         size = len(self.__data_area)
         return self.sum_(column) / size if size else size
 
     def max_(self, column):
-        "Finds the largest cell value from the column in the table."
+        """Finds the largest cell value from the column in the table."""
         index = self.__columns[column][1]
         return max(map(ROW[index], self.__data_area.values()))
 
     def min_(self, column):
-        "Finds the smallest cell value from the column in the table."
+        """Finds the smallest cell value from the column in the table."""
         index = self.__columns[column][1]
         return min(map(ROW[index], self.__data_area.values()))
 
     def count(self, column=None):
-        "Counts the total number of 'non-null' cells in the given column."
+        """Counts the total number of 'non-null' cells in the given column."""
         if column is None:
             return len(self.__data_area)
         data_type, index = self.__columns[column]
@@ -316,7 +316,7 @@ class Table:
         return total
 
     def group_by(self, *columns):
-        "Creates new tables from this table on matching columns."
+        """Creates new tables from this table on matching columns."""
         column_map = {name: index for index, name, data_type in self.__columns}
         index_list = tuple(sorted(column_map.values()))
         schema = list(self.schema)
@@ -346,14 +346,14 @@ class Table:
         return tables.values()
 
     def __get_location(self, function, column):
-        "Returns a row or cell based on function and column."
+        """Returns a row or cell based on function and column."""
         row = self.__data_area[function(self.__data_area)]
         if column is None:
             return tuple(row[index] for index in sorted(row))
         return row[self.__columns[column][1]]
 
     def __insert_across(self, values):
-        "Inserts values into new row while checking data types."
+        """Inserts values into new row while checking data types."""
         row = {}
         for value, (index, name, data_type) in zip(values, self.__columns):
             assert isinstance(
@@ -363,7 +363,7 @@ class Table:
         return row
 
     def __insert_select(self, values):
-        "Inserts values into new row and fills in blank cells."
+        """Inserts values into new row and fills in blank cells."""
         row = {}
         for name, value in values.items():
             data_type, index = self.__columns[name]
@@ -377,7 +377,7 @@ class Table:
         return row
 
     def __remove(self, data_area, delete, test):
-        "Removes rows from data area according to criteria."
+        """Removes rows from data area according to criteria."""
         column_map = {name: index for index, name, data_type in self.__columns}
         for row in tuple(data_area):
             value = test(_RowAdapter(data_area[row], column_map))
@@ -386,7 +386,7 @@ class Table:
                 del data_area[row]
 
     def __select_with_function(self, excess, functions):
-        "Creates virtual rows formed by calling functions on columns."
+        """Creates virtual rows formed by calling functions on columns."""
         table = self.copy()
         for code, data in functions:
             if data in table.__columns:
@@ -409,7 +409,7 @@ class Table:
 
     @staticmethod
     def __process_test(test, kw):
-        "Ensures that test has been properly formed as necessary."
+        """Ensures that test has been properly formed as necessary."""
         if kw:
             test = _Where(test, kw)
         else:
@@ -418,13 +418,13 @@ class Table:
 
     @property
     def columns(self):
-        "Returns a list of column names from the table."
+        """Returns a list of column names from the table."""
         columns = sorted(self.__columns, key=lambda info: info[0])
         return tuple(map(lambda info: info[1], columns))
 
     @property
     def schema(self):
-        "Returns table's schema that can be used to create another table."
+        """Returns table's schema that can be used to create another table."""
         return tuple((name, self.__columns[name][0]) for name in self.columns)
 
 
@@ -434,13 +434,13 @@ class _SortedResults:
     __slots__ = slots("iter column direction")
 
     def __init__(self, iterable, column, desc):
-        "Initializes sorting adapter with given data."
+        """Initializes sorting adapter with given data."""
         self.__iter = iterable
         self.__column = column
         self.__direction = desc
 
     def __iter__(self):
-        "Iterates over internal data in the order requested."
+        """Iterates over internal data in the order requested."""
         title, *rows = tuple(self.__iter)
         index = title.index(self.__column)
         yield title
@@ -448,11 +448,11 @@ class _SortedResults:
             yield row
 
     def order_by(self, column, desc=False):
-        "Returns results that are sorted on an additional level."
+        """Returns results that are sorted on an additional level."""
         return type(self)(self, column, desc)
 
     def table(self):
-        "Converts the sorted results into a table object."
+        """Converts the sorted results into a table object."""
         return Table.from_iter(self)
 
 

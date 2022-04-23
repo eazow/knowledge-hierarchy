@@ -5,24 +5,24 @@ from utils import slots
 
 
 def rows(iterable):
-    "Skips the first row (column names) from a table-style iterator."
+    """Skips the first row (column names) from a table-style iterator."""
     iterator = iter(iterable)
     next(iterator)
     return iterator
 
 
 class _RowAdapter:
-    "_RowAdapter(row, column_map=None) -> _RowAdapter"
+    """_RowAdapter(row, column_map=None) -> _RowAdapter"""
 
     __slots__ = slots("row map")
 
     def __init__(self, row, column_map=None):
-        "Initializes _RowAdapter with data and mapping information."
+        """Initializes _RowAdapter with data and mapping information."""
         self.__row = row
         self.__map = column_map
 
     def __getattr__(self, column):
-        "Returns a column from the row this instance in adapting."
+        """Returns a column from the row this instance in adapting."""
         if self.__map is None:
             return self.__unmapped(column)
         if column in self.__map:
@@ -37,10 +37,8 @@ class _RowAdapter:
 
     __getitem__ = __getattr__
 
-    ########################################################################
-
     def __unmapped(self, column):
-        "Processes a row with column names already filled in."
+        """Processes a row with column names already filled in."""
         if column in self.__row:
             return self.__row[column]
         row = {}
@@ -79,32 +77,32 @@ class _Column(_Row):
 
     def __getattr__(self, name):
         if name == "NOT":
-            return _Comparison(self, lambda a, b: (not a, b)[0], None)
+            return Comparison(self, lambda a, b: (not a, b)[0], None)
         return super().__getattr__(self.__name + "." + name)
 
     def __lt__(self, other):
-        return _Comparison(self, operator.lt, other)
+        return Comparison(self, operator.lt, other)
 
     def __le__(self, other):
-        return _Comparison(self, operator.le, other)
+        return Comparison(self, operator.le, other)
 
     def __eq__(self, other):
-        return _Comparison(self, operator.eq, other)
+        return Comparison(self, operator.eq, other)
 
     def __ne__(self, other):
-        return _Comparison(self, operator.ne, other)
+        return Comparison(self, operator.ne, other)
 
     def __gt__(self, other):
-        return _Comparison(self, operator.gt, other)
+        return Comparison(self, operator.gt, other)
 
     def __ge__(self, other):
-        return _Comparison(self, operator.ge, other)
+        return Comparison(self, operator.ge, other)
 
     def in_(self, *items):
-        return _Comparison(self, lambda a, b: a in b, items)
+        return Comparison(self, lambda a, b: a in b, items)
 
 
-class _Comparison(_Repr):
+class Comparison(_Repr):
     def __init__(self, column, op, other):
         self.__column, self.__op, self.__other = column, op, other
 
@@ -132,10 +130,10 @@ class _Comparison(_Repr):
         return self & (self.__column >= other)
 
     def __and__(self, other):
-        return _Comparison(self, lambda a, b: a and b, other)
+        return Comparison(self, lambda a, b: a and b, other)
 
     def __or__(self, other):
-        return _Comparison(self, lambda a, b: a or b, other)
+        return Comparison(self, lambda a, b: a or b, other)
 
 
 ROW = _Row()

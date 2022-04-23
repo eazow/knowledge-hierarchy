@@ -45,8 +45,6 @@ class DatePart(_NamedInstance):
             return date.month
         raise ValueError("DatePart code cannot be processed!")
 
-    ########################################################################
-
     @property
     def name(self):
         "Provides a name for us in the 'group_by' method."
@@ -99,6 +97,28 @@ def _pre_process(table, prefix):
             }
 
 
+class date(datetime.date):
+    """date(year=None, month=None, day=None) -> date"""
+
+    __slots__ = slots()
+
+    def __new__(cls, year=None, month=None, day=None):
+        """Creates a customized date object that does not require arguments."""
+        if year is None:
+            year, month, day = cls.max.year, cls.max.month, cls.max.day
+        elif isinstance(year, bytes):
+            year_high, year_low, month, day = year
+            year = (year_high << 8) + year_low
+        return super().__new__(cls, year, month, day)
+
+    def __str__(self):
+        return self.strftime("%d-%b-%Y").upper()
+
+    def __format__(self, length):
+        return str(self).ljust(int(length))
+
+
+
 class datetime(datetime.datetime):
     """datetime(year=None, month=None, day=None, hour=0,
     minute=0, second=0, microsecond=0, tzinfo=None) -> datetime"""
@@ -137,25 +157,6 @@ class datetime(datetime.datetime):
         return date(d.year, d.month, d.day)
 
 
-# class date(datetime.date):
-#     """date(year=None, month=None, day=None) -> date"""
-#
-#     __slots__ = _slots()
-#
-#     def __new__(cls, year=None, month=None, day=None):
-#         "Creates a customized date object that does not require arguments."
-#         if year is None:
-#             year, month, day = cls.max.year, cls.max.month, cls.max.day
-#         elif isinstance(year, bytes):
-#             year_high, year_low, month, day = year
-#             year = (year_high << 8) + year_low
-#         return super().__new__(cls, year, month, day)
-#
-#     def __str__(self):
-#         return self.strftime("%d-%b-%Y").upper()
-#
-#     def __format__(self, length):
-#         return str(self).ljust(int(length))
 class UniqueDict(dict):
     "UniqueDict(iterable=None, **kwargs) -> UniqueDict"
 

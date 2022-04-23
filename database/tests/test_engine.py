@@ -1,9 +1,9 @@
 import sys
 
-from engine import Database
+from engine import Database, NOW
 from row import ROW
 from table import Table, inner_join, left_join, right_join, full_join, union
-from utils import MID
+from utils import MID, date, datetime, FORMAT
 
 """
 def test(persons):
@@ -251,26 +251,24 @@ def test_column_functions():
     result.print()
 
 
-def test_generic_column_functions(persons, northwind):
-    "Tests ability to select columns with function processing."
-    # Test as_ and select with functions run on columns.
-    persons.select((str.upper, "LastName"), "FirstName").as_(
-        ("upper(LastName)", "LastName")
-    ).print()
-    persons.select((str.lower, "LastName"), "FirstName").as_(
-        ("lower(LastName)", "LastName")
-    ).print()
-    persons.select((MID(1, 4), "City")).as_(("MID(City)", "SmallCity")).print()
-    persons.select((len, "Address")).as_(("len(Address)", "LengthOfAddress")).print()
-    northwind["Products"].select("ProductName", (round, "UnitPrice")).as_(
-        ("round(UnitPrice)", "UnitPrice")
-    ).print()
-    current_products = northwind["Products"].select(
-        "ProductName", "UnitPrice", (NOW, "PerDate")
-    )
-    current_products.print()
-    current_products.select(
-        "ProductName", "UnitPrice", (FORMAT("%Y-%m-%d"), "PerDate")
-    ).as_(("FORMAT(PerDate)", "PerDate")).print()
-
-
+# def test_generic_column_functions(persons, northwind):
+#     "Tests ability to select columns with function processing."
+#     # Test as_ and select with functions run on columns.
+#     persons.select((str.upper, "LastName"), "FirstName").as_(
+#         ("upper(LastName)", "LastName")
+#     ).print()
+#     persons.select((str.lower, "LastName"), "FirstName").as_(
+#         ("lower(LastName)", "LastName")
+#     ).print()
+#     persons.select((MID(1, 4), "City")).as_(("MID(City)", "SmallCity")).print()
+#     persons.select((len, "Address")).as_(("len(Address)", "LengthOfAddress")).print()
+#     northwind["Products"].select("ProductName", (round, "UnitPrice")).as_(
+#         ("round(UnitPrice)", "UnitPrice")
+#     ).print()
+#     current_products = northwind["Products"].select(
+#         "ProductName", "UnitPrice", (NOW, "PerDate")
+#     )
+#     current_products.print()
+#     current_products.select(
+#         "ProductName", "UnitPrice", (FORMAT("%Y-%m-%d"), "PerDate")
+#     ).as_(("FORMAT(PerDate)", "PerDate")).print()
