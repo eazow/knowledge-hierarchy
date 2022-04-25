@@ -29,7 +29,7 @@ class _View:
 
     @property
     def value(self):
-        """Caculates and returns the value of view's query."""
+        """Calculates and returns the value of view's query."""
         data = self.__query(self.__database)
         table = data if isinstance(data, Table) else Table.from_iter(data)
         for old, new in self.__name_changes:
