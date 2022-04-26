@@ -16,7 +16,7 @@ P_ID LASTNAME  FIRSTNAME ADDRESS      CITY
     )
 
 
-def test_repr(persons):  # persons.print()
+def test_repr(persons):
     assert (
         repr(persons)
         == """\

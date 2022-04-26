@@ -34,15 +34,26 @@ def test(persons):
 """
 
 
+def test_inner_join(persons, orders):
+    assert (
+        inner_join(ROW.Persons.P_Id == ROW.Orders.P_Id, Persons=persons, Orders=orders)
+        .select("Persons.LastName", "Persons.FirstName", "Orders.OrderNo")
+        .order_by("Persons.LastName")
+        .table()
+        == """\
+PERSONS.LASTNAME PERSONS.FIRSTNAME ORDERS.ORDERNO
+---------------- ----------------- --------------
+Hansen           Ola                        22456
+Hansen           Ola                        24562
+Pettersen        Kari                       77895
+Pettersen        Kari                       44678\
+"""
+    )
+
+
 def test_all_joins(persons, orders):
     """Tests the four different types of joins in SQL."""
 
-    # Test the inner join function.
-    inner_join(
-        ROW.Persons.P_Id == ROW.Orders.P_Id, Persons=persons, Orders=orders
-    ).select("Persons.LastName", "Persons.FirstName", "Orders.OrderNo").order_by(
-        "Persons.LastName"
-    ).table().print()
     # Test inner join with alias.
     inner_join(ROW.p.P_Id == ROW.po.P_Id, p=persons, po=orders).select(
         "po.OrderNo", "p.LastName", "p.FirstName"
@@ -72,7 +83,6 @@ def test_all_joins(persons, orders):
     full_join(ROW.p.P_Id == ROW.o.P_Id, p=persons, o=orders).select(
         "p.LastName", "p.FirstName", "o.OrderNo"
     ).order_by("p.LastName").table().print()
-    return orders
 
 
 def test_table_addition(persons, orders):
