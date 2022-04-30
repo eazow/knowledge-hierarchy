@@ -3,7 +3,7 @@ import pickle
 import sys
 
 from where import _Where
-from row import rows, _RowAdapter, ROW
+from row import rows, RowAdapter, ROW
 from column import _Columns
 from utils import slots, _pre_process
 
@@ -329,7 +329,7 @@ class Table:
                 if isinstance(name, str):
                     interest.append(row_dict[column_map[name]])
                 else:
-                    interest.append(name(_RowAdapter(row_dict, column_map)))
+                    interest.append(name(RowAdapter(row_dict, column_map)))
                     name = name.name
                     if name is not None:
                         data = interest[-1]
@@ -380,8 +380,8 @@ class Table:
         """Removes rows from data area according to criteria."""
         column_map = {name: index for index, name, data_type in self.__columns}
         for row in tuple(data_area):
-            value = test(_RowAdapter(data_area[row], column_map))
-            assert not isinstance(value, _RowAdapter), "Test improperly formed!"
+            value = test(RowAdapter(data_area[row], column_map))
+            assert not isinstance(value, RowAdapter), "Test improperly formed!"
             if bool(value) == delete:
                 del data_area[row]
 
@@ -514,7 +514,7 @@ def _join_loop(table, test, pa, pb, ta, tb, inner, full):
         for add in table_b:
             row = row_cache.copy()
             row.update(add)
-            if test(_RowAdapter(row)):
+            if test(RowAdapter(row)):
                 table.insert(**row)
                 match = True
                 if not first:
