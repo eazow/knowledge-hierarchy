@@ -15,13 +15,17 @@ Pettersen        Kari                       44678\
     )
 
 
-def test_all_joins(persons, orders):
-    """Tests the four different types of joins in SQL."""
-
+def test_inner_join(persons, orders):
     # Test inner join with alias.
     inner_join(ROW.p.P_Id == ROW.po.P_Id, p=persons, po=orders).select(
         "po.OrderNo", "p.LastName", "p.FirstName"
     ).where((ROW.p.LastName == "Hansen") & (ROW.p.FirstName == "Ola")).print()
+
+
+def test_all_joins(persons, orders):
+    """Tests the four different types of joins in SQL."""
+
+
     # Test left join with and without alias.
     left_join(
         (persons, "Persons"), (orders, "Orders"), ROW.Persons.P_Id == ROW.Orders.P_Id
