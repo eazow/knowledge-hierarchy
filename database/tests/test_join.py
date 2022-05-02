@@ -1,3 +1,7 @@
+from row import ROW
+from table import inner_join, left_join, right_join, full_join
+
+
 def test_inner_join(persons, orders):
     assert (
         inner_join(ROW.Persons.P_Id == ROW.Orders.P_Id, Persons=persons, Orders=orders)
@@ -22,11 +26,7 @@ def test_inner_join(persons, orders):
     ).where((ROW.p.LastName == "Hansen") & (ROW.p.FirstName == "Ola")).print()
 
 
-def test_all_joins(persons, orders):
-    """Tests the four different types of joins in SQL."""
-
-
-    # Test left join with and without alias.
+def test_left_join(persons, orders):
     left_join(
         (persons, "Persons"), (orders, "Orders"), ROW.Persons.P_Id == ROW.Orders.P_Id
     ).select("Persons.LastName", "Persons.FirstName", "Orders.OrderNo").order_by(
@@ -35,7 +35,9 @@ def test_all_joins(persons, orders):
     left_join((persons, "p"), (orders, "o"), ROW.p.P_Id == ROW.o.P_Id).select(
         "p.LastName", "p.FirstName", "o.OrderNo"
     ).order_by("p.LastName").table().print()
-    # Test right join with and without alias.
+
+
+def test_right_join(persons, orders):
     right_join(
         (persons, "Persons"), (orders, "Orders"), ROW.Persons.P_Id == ROW.Orders.P_Id
     ).select("Persons.LastName", "Persons.FirstName", "Orders.OrderNo").order_by(
@@ -44,7 +46,9 @@ def test_all_joins(persons, orders):
     right_join((persons, "p"), (orders, "o"), ROW.p.P_Id == ROW.o.P_Id).select(
         "p.LastName", "p.FirstName", "o.OrderNo"
     ).order_by("p.LastName").table().print()
-    # Test full join with and without alias.
+
+
+def test_full_join(persons, orders):
     full_join(
         ROW.Persons.P_Id == ROW.Orders.P_Id, Persons=persons, Orders=orders
     ).order_by("Persons.LastName").table().print()
