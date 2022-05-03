@@ -18,12 +18,14 @@ Pettersen        Kari                       44678\
 """
     )
 
-
-def test_inner_join(persons, orders):
-    # Test inner join with alias.
-    inner_join(ROW.p.P_Id == ROW.po.P_Id, p=persons, po=orders).select(
+    assert inner_join(ROW.p.P_Id == ROW.po.P_Id, p=persons, po=orders).select(
         "po.OrderNo", "p.LastName", "p.FirstName"
-    ).where((ROW.p.LastName == "Hansen") & (ROW.p.FirstName == "Ola")).print()
+    ).where((ROW.p.LastName == "Hansen") & (ROW.p.FirstName == "Ola")) == """\
+PERSONS.LASTNAME PERSONS.FIRSTNAME ORDERS.ORDERNO
+---------------- ----------------- --------------
+Hansen           Ola                        22456
+Hansen           Ola                        24562\
+"""
 
 
 def test_left_join(persons, orders):
