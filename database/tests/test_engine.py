@@ -81,62 +81,62 @@ def test_database_support():
     assert len(db.map_data) == 0
 
 
-def test_northwind():
-    "Loads and runs some test on the sample Northwind database."
-    import os, imp
-
-    # Patch the module namespace to recognize this file.
-    name = os.path.splitext(os.path.basename(sys.argv[0]))[0]
-    module = imp.new_module(name)
-    vars(module).update(globals())
-    sys.modules[name] = module
-    # Load a Northwind database for various testing purposes.
-    try:
-        northwind = Database.load("northwind.db")
-    except IOError:
-        return
-    # Create and test a current product list view.
-    northwind.create(
-        "Current Product List",
-        lambda db: db.Products.where(ROW.Discontinued.NOT).select(
-            "ProductID", "ProductName"
-        ),
-    )
-    northwind["Current Product List"].print()
-
-    # Find all products having an above-average price.
-    def above_average_price(db):
-        return db.Products.where(ROW.UnitPrice > db.Products.avg("UnitPrice")).select(
-            "ProductName", "UnitPrice"
-        )
-
-    northwind.create("Products Above Average Price", above_average_price)
-    northwind["Products Above Average Price"].print()
-
-    # Calculate total sale per category in 1997.
-    def category_sales_for_1997(db):
-        result = Table(("CategoryName", str), ("CategorySales", decimal.Decimal))
-        for table in db["Product Sales For 1997"].group_by("Categories.CategoryName"):
-            name = next(rows(table.select("Categories.CategoryName")))[0]
-            total = table.sum_("ProductSales")
-            result.insert(name, total)
-        return result
-
-    northwind.create("Category Sales For 1997", category_sales_for_1997)
-    northwind["Category Sales For 1997"].print()
-    # Show just the Beverages Category from the previous view.
-    northwind["Category Sales For 1997"].where(ROW.CategoryName == "Beverages").print()
-    # Add the Category column to the Current Product List view.
-    northwind.create_or_replace(
-        "Current Product List",
-        lambda db: db["Products View"]
-        .where(ROW.Discontinued.NOT)
-        .select("ProductID", "ProductName", "Category"),
-    )
-    northwind["Current Product List"].print()
-    # Drop the Category Sales For 1997 view.
-    northwind.drop("Category Sales For 1997")
-    return northwind
+# def test_northwind():
+#     "Loads and runs some test on the sample Northwind database."
+#     import os, imp
+#
+#     # Patch the module namespace to recognize this file.
+#     name = os.path.splitext(os.path.basename(sys.argv[0]))[0]
+#     module = imp.new_module(name)
+#     vars(module).update(globals())
+#     sys.modules[name] = module
+#     # Load a Northwind database for various testing purposes.
+#     try:
+#         northwind = Database.load("northwind.db")
+#     except IOError:
+#         return
+#     # Create and test a current product list view.
+#     northwind.create(
+#         "Current Product List",
+#         lambda db: db.Products.where(ROW.Discontinued.NOT).select(
+#             "ProductID", "ProductName"
+#         ),
+#     )
+#     northwind["Current Product List"].print()
+#
+#     # Find all products having an above-average price.
+#     def above_average_price(db):
+#         return db.Products.where(ROW.UnitPrice > db.Products.avg("UnitPrice")).select(
+#             "ProductName", "UnitPrice"
+#         )
+#
+#     northwind.create("Products Above Average Price", above_average_price)
+#     northwind["Products Above Average Price"].print()
+#
+#     # Calculate total sale per category in 1997.
+#     def category_sales_for_1997(db):
+#         result = Table(("CategoryName", str), ("CategorySales", decimal.Decimal))
+#         for table in db["Product Sales For 1997"].group_by("Categories.CategoryName"):
+#             name = next(rows(table.select("Categories.CategoryName")))[0]
+#             total = table.sum_("ProductSales")
+#             result.insert(name, total)
+#         return result
+#
+#     northwind.create("Category Sales For 1997", category_sales_for_1997)
+#     northwind["Category Sales For 1997"].print()
+#     # Show just the Beverages Category from the previous view.
+#     northwind["Category Sales For 1997"].where(ROW.CategoryName == "Beverages").print()
+#     # Add the Category column to the Current Product List view.
+#     northwind.create_or_replace(
+#         "Current Product List",
+#         lambda db: db["Products View"]
+#         .where(ROW.Discontinued.NOT)
+#         .select("ProductID", "ProductName", "Category"),
+#     )
+#     northwind["Current Product List"].print()
+#     # Drop the Category Sales For 1997 view.
+#     northwind.drop("Category Sales For 1997")
+#     return northwind
 
 
 def test_date_functionality():
