@@ -54,70 +54,73 @@ def test_database_support():
 
 
 def test_date_functionality():
-    "Tests different date operations that can be performed."
-    # Create an orderz table to test the date type.
-    orderz = Table(("OrderId", int), ("ProductName", str), ("OrderDate", date))
-    orderz.insert(1, "Geitost", date(2008, 11, 11))
-    orderz.insert(2, "Camembert Pierrot", date(2008, 11, 9))
-    orderz.insert(3, "Mozzarella di Giovanni", date(2008, 11, 11))
-    orderz.insert(4, "Mascarpone Fabioloi", date(2008, 10, 29))
+    """Tests different date operations that can be performed."""
+    orders = Table(("OrderId", int), ("ProductName", str), ("OrderDate", date))
+    orders.insert(1, "Geitost", date(2008, 11, 11))
+    orders.insert(2, "Camembert Pierrot", date(2008, 11, 9))
+    orders.insert(3, "Mozzarella di Giovanni", date(2008, 11, 11))
+    orders.insert(4, "Mascarpone Fabioloi", date(2008, 10, 29))
+
     # Query the table for a specific date.
-    orderz.where(ROW.OrderDate == date(2008, 11, 11)).print()
-    # Update the orderz table so that times are present with the dates.
-    orderz.alter_column("OrderDate", datetime)
-    orderz.where(ROW.OrderId == 1).update(OrderDate=datetime(2008, 11, 11, 13, 23, 44))
-    orderz.where(ROW.OrderId == 2).update(OrderDate=datetime(2008, 11, 9, 15, 45, 21))
-    orderz.where(ROW.OrderId == 3).update(OrderDate=datetime(2008, 11, 11, 11, 12, 1))
-    orderz.where(ROW.OrderId == 4).update(OrderDate=datetime(2008, 10, 29, 14, 56, 59))
-    # Query the table with a datetime object this time.
-    orderz.where(ROW.OrderDate == datetime(2008, 11, 11)).print()
+    assert len(orders.where(ROW.OrderDate == date(2008, 11, 11))) == 2
+
+    # Update the orders table so that times are present with the dates.
+    orders.alter_column("OrderDate", datetime)
+    orders.where(ROW.OrderId == 1).update(OrderDate=datetime(2008, 11, 11, 13, 23, 44))
+    orders.where(ROW.OrderId == 2).update(OrderDate=datetime(2008, 11, 9, 15, 45, 21))
+    orders.where(ROW.OrderId == 3).update(OrderDate=datetime(2008, 11, 11, 11, 12, 1))
+    orders.where(ROW.OrderId == 4).update(OrderDate=datetime(2008, 10, 29, 14, 56, 59))
+
+    assert len(orders.where(ROW.OrderDate == datetime(2008, 11, 11))) == 0
+    assert len(orders.where(ROW.OrderDate == datetime(2008, 11, 11, 13, 23, 44))) == 1
 
 
 def test_column_functions():
-    "Tests various functions that operate on specified column."
-    # Create an order table to test various functions on.
-    order = Table(
+    """Tests various functions that operate on specified column."""
+    orders = Table(
         ("O_Id", int), ("OrderDate", date), ("OrderPrice", int), ("Customer", str)
     )
-    order.insert(1, date(2008, 11, 12), 1000, "Hansen")
-    order.insert(2, date(2008, 10, 23), 1600, "Nilsen")
-    order.insert(3, date(2008, 9, 2), 700, "Hansen")
-    order.insert(4, date(2008, 9, 3), 300, "Hansen")
-    order.insert(5, date(2008, 9, 30), 2000, "Jensen")
-    order.insert(6, date(2008, 10, 4), 100, "Nilsen")
-    # Test the "avg" function.
-    order_average = order.avg("OrderPrice")
-    print("OrderAverage =", order_average, "\n")
-    order.where(ROW.OrderPrice > order_average).select("Customer").print()
+    orders.insert(1, date(2008, 11, 12), 1000, "Hansen")
+    orders.insert(2, date(2008, 10, 23), 1600, "Nilsen")
+    orders.insert(3, date(2008, 9, 2), 700, "Hansen")
+    orders.insert(4, date(2008, 9, 3), 300, "Hansen")
+    orders.insert(5, date(2008, 9, 30), 2000, "Jensen")
+    orders.insert(6, date(2008, 10, 4), 100, "Nilsen")
+
+    order_average = orders.avg("OrderPrice")
+    assert order_average == 950
+    assert len(orders.where(ROW.OrderPrice > order_average)) == 3
+
     # Test the "count" function.
-    print("CustomerNilsen =", order.where(ROW.Customer == "Nilsen").count("Customer"))
-    print("NumberOfOrders =", order.count())
-    print("NumberOfCustomers =", order.select("Customer").distinct().count("Customer"))
+    assert orders.where(ROW.Customer == "Nilsen").count("Customer") == 2
+    assert orders.count() == 6
+    assert orders.select("Customer").distinct().count("Customer") == 3
+
     # Test the "first" function.
-    print("FirstOrderPrice =", order.first("OrderPrice"))
+    print("FirstOrderPrice =", orders.first("OrderPrice"))
     # Test the "last" function.
-    print("LastOrderPrice =", order.last("OrderPrice"))
+    print("LastOrderPrice =", orders.last("OrderPrice"))
     # Test the "max_" function.
-    print("LargestOrderPrice =", order.max_("OrderPrice"))
+    print("LargestOrderPrice =", orders.max_("OrderPrice"))
     # Test the "min_" function.
-    print("SmallestOrderPrice =", order.min_("OrderPrice"))
+    print("SmallestOrderPrice =", orders.min_("OrderPrice"))
     # Test the "sum_" function.
-    print("OrderTotal =", order.sum_("OrderPrice"), "\n")
+    print("OrderTotal =", orders.sum_("OrderPrice"), "\n")
     # Test the "group_by" statement.
     result = Table(("Customer", str), ("OrderPrice", int))
-    for table in order.group_by("Customer"):
+    for table in orders.group_by("Customer"):
         result.insert(table.first("Customer"), table.sum_("OrderPrice"))
     result.print()
     # Add some more orders to the table.
-    order.insert(7, date(2008, 11, 12), 950, "Hansen")
-    order.insert(8, date(2008, 10, 23), 1900, "Nilsen")
-    order.insert(9, date(2008, 9, 2), 2850, "Hansen")
-    order.insert(10, date(2008, 9, 3), 3800, "Hansen")
-    order.insert(11, date(2008, 9, 30), 4750, "Jensen")
-    order.insert(12, date(2008, 10, 4), 5700, "Nilsen")
+    orders.insert(7, date(2008, 11, 12), 950, "Hansen")
+    orders.insert(8, date(2008, 10, 23), 1900, "Nilsen")
+    orders.insert(9, date(2008, 9, 2), 2850, "Hansen")
+    orders.insert(10, date(2008, 9, 3), 3800, "Hansen")
+    orders.insert(11, date(2008, 9, 30), 4750, "Jensen")
+    orders.insert(12, date(2008, 10, 4), 5700, "Nilsen")
     # Test ability to group by several columns.
     result.truncate().alter_add("OrderDate", date)
-    for table in order.group_by("Customer", "OrderDate"):
+    for table in orders.group_by("Customer", "OrderDate"):
         result.insert(
             table.first("Customer"), table.sum_("OrderPrice"), table.first("OrderDate")
         )
