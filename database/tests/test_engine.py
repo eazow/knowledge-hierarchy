@@ -42,7 +42,7 @@ def test_table_addition(persons, orders):
 def test_database_support():
     """Tests creation and manipulation of databases."""
     db = Database()
-    # Test creating and retrieving database tables.
+
     db.create("persons", Table(("Name", str), ("Credit", int)))
     db.create("map_data", (("time", float), ("place", complex)))
 
@@ -61,10 +61,9 @@ def test_date_functionality():
     orders.insert(3, "Mozzarella di Giovanni", date(2008, 11, 11))
     orders.insert(4, "Mascarpone Fabioloi", date(2008, 10, 29))
 
-    # Query the table for a specific date.
     assert len(orders.where(ROW.OrderDate == date(2008, 11, 11))) == 2
 
-    # Update the orders table so that times are present with the dates.
+
     orders.alter_column("OrderDate", datetime)
     orders.where(ROW.OrderId == 1).update(OrderDate=datetime(2008, 11, 11, 13, 23, 44))
     orders.where(ROW.OrderId == 2).update(OrderDate=datetime(2008, 11, 9, 15, 45, 21))
