@@ -110,14 +110,14 @@ def test_column_functions():
     for table in orders.group_by("Customer"):
         result.insert(table.first("Customer"), table.sum_("OrderPrice"))
     result.print()
-    # Add some more orders to the table.
+
     orders.insert(7, date(2008, 11, 12), 950, "Hansen")
     orders.insert(8, date(2008, 10, 23), 1900, "Nilsen")
     orders.insert(9, date(2008, 9, 2), 2850, "Hansen")
     orders.insert(10, date(2008, 9, 3), 3800, "Hansen")
     orders.insert(11, date(2008, 9, 30), 4750, "Jensen")
     orders.insert(12, date(2008, 10, 4), 5700, "Nilsen")
-    # Test ability to group by several columns.
+
     result.truncate().alter_add("OrderDate", date)
     for table in orders.group_by("Customer", "OrderDate"):
         result.insert(
