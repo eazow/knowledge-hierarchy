@@ -1,4 +1,3 @@
-```
 // Single-line comments start with //
 
 /*
@@ -17,7 +16,7 @@ Multi-line comments look like this.
  * @return        For describing what the method returns.
  * @deprecated  For showing the code is outdated or shouldn't be used.
  * @see         Links to another part of documentation.
-*/
+ */
 
 // Import ArrayList class inside of the java.util package
 import java.util.ArrayList;
@@ -30,20 +29,20 @@ public class LearnJava {
     // point.
     public static void main(String[] args) {
 
-    ///////////////////////////////////////
-    // Input/Output
-    ///////////////////////////////////////
+        ///////////////////////////////////////
+        // Input/Output
+        ///////////////////////////////////////
 
         /*
-        * Output
-        */
+         * Output
+         */
 
         // Use System.out.println() to print lines.
         System.out.println("Hello World!");
         System.out.println(
-            "Integer: " + 10 +
-            " Double: " + 3.14 +
-            " Boolean: " + true);
+                "Integer: " + 10 +
+                        " Double: " + 3.14 +
+                        " Boolean: " + true);
 
         // To print without a newline, use System.out.print().
         System.out.print("Hello ");
@@ -83,8 +82,8 @@ public class LearnJava {
         ///////////////////////////////////////
 
         /*
-        *  Variable Declaration
-        */
+         *  Variable Declaration
+         */
         // Declare a variable using <type> <name>
         int fooInt;
         // Declare multiple variables of the same
@@ -92,8 +91,8 @@ public class LearnJava {
         int fooInt1, fooInt2, fooInt3;
 
         /*
-        *  Variable Initialization
-        */
+         *  Variable Initialization
+         */
 
         // Initialize a variable using <type> <name> = <val>
         int barInt = 1;
@@ -104,8 +103,8 @@ public class LearnJava {
         barInt1 = barInt2 = barInt3 = 1;
 
         /*
-        *  Variable types
-        */
+         *  Variable types
+         */
         // Byte - 8-bit signed two's complement integer
         // (-128 <= byte <= 127)
         byte fooByte = 100;
@@ -376,12 +375,12 @@ public class LearnJava {
         // Nested For Loop Exit with Label
         outer:
         for (int i = 0; i < 10; i++) {
-          for (int j = 0; j < 10; j++) {
-            if (i == 5 && j ==5) {
-              break outer;
-              // breaks out of outer loop instead of only the inner one
+            for (int j = 0; j < 10; j++) {
+                if (i == 5 && j ==5) {
+                    break outer;
+                    // breaks out of outer loop instead of only the inner one
+                }
             }
-          }
         }
 
         // For Each Loop
@@ -408,13 +407,13 @@ public class LearnJava {
         String monthString;
         switch (month) {
             case 1: monthString = "January";
-                    break;
+                break;
             case 2: monthString = "February";
-                    break;
+                break;
             case 3: monthString = "March";
-                    break;
+                break;
             default: monthString = "Some other month";
-                     break;
+                break;
         }
         System.out.println("Switch Case Result: " + monthString);
 
@@ -489,25 +488,27 @@ public class LearnJava {
 
         // toString returns this Object's string representation.
         System.out.println("trek info: " + trek.toString());
+    } // End main method
 
+    private static class TestInitialization {
         // Double Brace Initialization
-        // The Java Language has no syntax for how to create static Collections
-        // in an easy way. Usually you end up in the following way:
+        // Before Java 11, the Java Language had no syntax for how to create
+        // static Collections in an easy way. Usually you end up like this:
         private static final Set<String> COUNTRIES = new HashSet<String>();
         static {
-           COUNTRIES.add("DENMARK");
-           COUNTRIES.add("SWEDEN");
-           COUNTRIES.add("FINLAND");
+            COUNTRIES.add("DENMARK");
+            COUNTRIES.add("SWEDEN");
+            COUNTRIES.add("FINLAND");
         }
 
-        // But there's a nifty way to achieve the same thing in an
-        // easier way, by using something that is called Double Brace
-        // Initialization.
-        private static final Set<String> COUNTRIES = new HashSet<String>() {{
-            add("DENMARK");
-            add("SWEDEN");
-            add("FINLAND");
-        }}
+        // There's a nifty way to achieve the same thing,
+        // by using something that is called Double Brace Initialization.
+        private static final Set<String> COUNTRIES_DOUBLE_BRACE =
+                new HashSet<String>() {{
+                    add("DENMARK");
+                    add("SWEDEN");
+                    add("FINLAND");
+                }};
 
         // The first brace is creating a new AnonymousInnerClass and the
         // second one declares an instance initializer block. This block
@@ -515,7 +516,44 @@ public class LearnJava {
         // This does not only work for Collections, it works for all
         // non-final classes.
 
-    } // End main method
+
+        // Another option was to initialize the Collection from an array,
+        // using Arrays.asList() method:
+        private static final List<String> COUNTRIES_AS_LIST =
+                Arrays.asList("SWEDEN", "DENMARK", "NORWAY");
+        // This has one catch: the list we get is internally backed by the array,
+        // and since arrays can't change their size, the list backed by the array
+        // is not resizeable, which means we can't add new elements to it:
+        public static void main(String[] args) {
+            COUNTRIES.add("FINLAND"); // throws UnsupportedOperationException!
+            // However, we can replace elements by index, just like in array:
+            COUNTRIES.set(1, "FINLAND");
+            System.out.println(COUNTRIES); // prints [SWEDEN, FINLAND, NORWAY]
+        }
+        // The resizing problem can be circumvented
+        // by creating another Collection from the List:
+        private static final Set<String> COUNTRIES_SET =
+                new HashSet<>(Arrays.asList("SWEDEN", "DENMARK", "NORWAY"));
+        // It's perfectly fine to add anything to the Set of COUNTRIES now.
+    } // End TestInitialization class
+
+    private static class TestJava11Initialization {
+        // Since Java 11, there is a convenient option to initialize Collections:
+        // Set.of() and List.of() methods.
+        private static final Set<String> COUNTRIES =
+                Set.of("SWEDEN", "DENMARK", "NORWAY");
+        // There is a massive catch, though: Lists and Sets initialized like this
+        // 1) are immutable
+        // 2) can't contain null elements (even check for null elements fails)!
+        public static void main(String[] args) {
+            COUNTRIES.add("FINLAND"); // throws UnsupportedOperationException
+            COUNTRIES.remove("NORWAY"); // throws UnsupportedOperationException
+            COUNTRIES.contains(null); // throws NullPointerException
+        }
+        private static final Set<String> COUNTRIES_WITH_NULL =
+                Set.of("SWEDEN", null, "NORWAY"); // throws NullPointerException
+
+    } // End TestJava11Initialization class
 } // End LearnJava class
 
 // You can include other, non-public outer-level classes in a .java file,
@@ -557,7 +595,7 @@ class Bicycle {
     }
     // This is a constructor that takes arguments
     public Bicycle(int startCadence, int startSpeed, int startGear,
-        String name) {
+                   String name) {
         this.gear = startGear;
         this.cadence = startCadence;
         this.speed = startSpeed;
@@ -599,7 +637,7 @@ class Bicycle {
     @Override // Inherited from the Object class.
     public String toString() {
         return "gear: " + gear + " cadence: " + cadence + " speed: " + speed +
-            " name: " + name;
+                " name: " + name;
     }
 } // end class Bicycle
 
@@ -640,7 +678,7 @@ class PennyFarthing extends Bicycle {
 // Example - Food:
 public interface Edible {
     public void eat(); // Any class that implements this interface, must
-                       // implement this method.
+    // implement this method.
 }
 
 public interface Digestible {
@@ -667,7 +705,7 @@ public class Fruit implements Edible, Digestible {
 // In Java, you can extend only one class, but you can implement many
 // interfaces. For example:
 public class ExampleClass extends ExampleClassParent implements InterfaceOne,
-    InterfaceTwo {
+        InterfaceTwo {
     @Override
     public void InterfaceOneMethod() {
     }
@@ -860,18 +898,18 @@ import java.security.SecureRandom;
 public class Lambdas {
     public static void main(String[] args) {
         // Lambda declaration syntax:
-    // <zero or more parameters> -> <expression body or statement block>
+        // <zero or more parameters> -> <expression body or statement block>
 
         // We will use this hashmap in our examples below.
         Map<String, String> planets = new HashMap<>();
-            planets.put("Mercury", "87.969");
-            planets.put("Venus", "224.7");
-            planets.put("Earth", "365.2564");
-            planets.put("Mars", "687");
-            planets.put("Jupiter", "4,332.59");
-            planets.put("Saturn", "10,759");
-            planets.put("Uranus", "30,688.5");
-            planets.put("Neptune", "60,182");
+        planets.put("Mercury", "87.969");
+        planets.put("Venus", "224.7");
+        planets.put("Earth", "365.2564");
+        planets.put("Mars", "687");
+        planets.put("Jupiter", "4,332.59");
+        planets.put("Saturn", "10,759");
+        planets.put("Uranus", "30,688.5");
+        planets.put("Neptune", "60,182");
 
         // Lambda with zero parameters using the Supplier functional interface
         // from java.util.function.Supplier. The actual lambda expression is
@@ -940,5 +978,4 @@ public class Lambdas {
         // methods.
     }
 }
-```
 
