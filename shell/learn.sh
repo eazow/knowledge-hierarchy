@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 # First line of the script is the shebang which tells the system how to execute
 # the script: https://en.wikipedia.org/wiki/Shebang_(Unix)
@@ -282,7 +281,7 @@ wc -l output.out error.err
 
 # Run a command and print its file descriptor (e.g. /dev/fd/123)
 # see: man fd
-echo <(echo "#helloworld")
+echo < (echo "#helloworld")
 
 # Overwrite output.out with "#helloworld":
 cat > output.out <(echo "#helloworld")
