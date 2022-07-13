@@ -85,3 +85,47 @@ echo ${array0[@]:3:2} # => "four five"
 for i in "${array0[@]}"; do
     echo "$i"
 done
+
+# Brace Expansion { }
+# Used to generate arbitrary strings
+echo {1..10} # => 1 2 3 4 5 6 7 8 9 10
+echo {a..z} # => a b c d e f g h i j k l m n o p q r s t u v w x y z
+# This will output the range from the start value to the end value
+
+# Built-in variables:
+# There are some useful built-in variables, like
+echo "Last program's return value: $?"
+echo "Script's PID: $$"
+echo "Number of arguments passed to script: $#"
+echo "All arguments passed to script: $@"
+echo "Script's arguments separated into different variables: $1 $2..."
+
+# Now that we know how to echo and use variables,
+# let's learn some of the other basics of bash!
+
+# Our current directory is available through the command `pwd`.
+# `pwd` stands for "print working directory".
+# We can also use the built-in variable `$PWD`.
+# Observe that the following are equivalent:
+echo "I'm in $(pwd)" # execs `pwd` and interpolates output
+echo "I'm in $PWD" # interpolates the variable
+
+# If you get too much output in your terminal, or from a script, the command
+# `clear` clears your screen
+clear
+# Ctrl-L also works for clearing output
+
+# Reading a value from input:
+echo "What's your name?"
+read Name # Note that we didn't need to declare a new variable
+echo Hello, $Name!
+
+# We have the usual if structure:
+# use `man test` for more info about conditionals
+if [ $Name != $USER ]
+then
+    echo "Your name isn't your username"
+else
+    echo "Your name is your username"
+fi
+# True if the value of $Name is not equal to the current user's login username
