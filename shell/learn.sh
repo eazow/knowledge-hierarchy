@@ -129,3 +129,22 @@ else
     echo "Your name is your username"
 fi
 # True if the value of $Name is not equal to the current user's login username
+
+# NOTE: if $Name is empty, bash sees the above condition as:
+#if [ != $USER ]
+# which is invalid syntax
+# so the "safe" way to use potentially empty variables in bash is:
+#if [ "$Name" != $USER ] ...
+# which, when $Name is empty, is seen by bash as:
+#if [ "" != $USER ] ...
+# which works as expected
+
+# There is also conditional execution
+echo "Always executed" || echo "Only executed if first command fails"
+# => Always executed
+echo "Always executed" && echo "Only executed if first command does NOT fail"
+# => Always executed
+# => Only executed if first command does NOT fail
+
+# A single ampersand & after a command runs it in the background. A background
+
