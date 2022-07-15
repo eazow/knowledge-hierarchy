@@ -146,5 +146,44 @@ echo "Always executed" && echo "Only executed if first command does NOT fail"
 # => Always executed
 # => Only executed if first command does NOT fail
 
-# A single ampersand & after a command runs it in the background. A background
+# A single ampersand & after a command runs it in the background. A background command's
+# output is printed to the terminal, but it cannot read from the input.
+sleep 30 &
+# List background jobs
+jobs # => [1]+  Running                 sleep 30 &
+# Bring the background job to the foreground
+fg
+# Ctrl-C to kill the process, or Ctrl-Z to pause it
+# Resume a background process after it has been paused with Ctrl-Z
+bg
+# Kill job number 2
+kill %2
+# %1, %2, etc. can be used for fg and bg as well
 
+# To use && and || with if statements, you need multiple pairs of square brackets:
+if [ "$Name" == "Steve" ] && [ "$Age" -eq 15 ]
+then
+    echo "This will run if $Name is Steve AND $Age is 15."
+fi
+
+if [ "$Name" == "Daniya" ] || [ "$Name" == "Zach" ]
+then
+    echo "This will run if $Name is Daniya OR Zach."
+fi
+
+# There is also the `=~` operator, which tests a string against a Regex pattern:
+Email=me@example.com
+if [[ "$Email" =~ [a-z]+@[a-z]{2,}\.(com|net|org) ]]
+then
+    echo "Valid email!"
+fi
+# Note that =~ only works within double [[ ]] square brackets,
+# which are subtly different from single [ ].
+# See https://www.gnu.org/software/bash/manual/bashref.html#Conditional-Constructs for more on this.
+
+# Redefine command `ping` as alias to send only 5 packets
+alias ping='ping -c 5'
+# Escape the alias and use command with this name instead
+\ping 192.168.1.1
+# Print all aliases
+alias -p
