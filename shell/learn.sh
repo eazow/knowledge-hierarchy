@@ -187,3 +187,50 @@ alias ping='ping -c 5'
 \ping 192.168.1.1
 # Print all aliases
 alias -p
+
+# Expressions are denoted with the following format:
+echo $(( 10 + 5 )) # => 15
+
+# Unlike other programming languages, bash is a shell so it works in the context
+# of a current directory. You can list files and directories in the current
+# directory with the ls command:
+ls # Lists the files and subdirectories contained in the current directory
+
+# This command has options that control its execution:
+ls -l # Lists every file and directory on a separate line
+ls -t # Sorts the directory contents by last-modified date (descending)
+ls -R # Recursively `ls` this directory and all of its subdirectories
+
+# Results (stdout) of the previous command can be passed as input (stdin) to the next command
+# using a pipe |. Commands chained in this way are called a "pipeline", and are run concurrently.
+# The `grep` command filters the input with provided patterns.
+# That's how we can list .txt files in the current directory:
+ls -l | grep "\.txt"
+
+# Use `cat` to print files to stdout:
+cat file.txt
+
+# We can also read the file using `cat`:
+Contents=$(cat file.txt)
+# "\n" prints a new line character
+# "-e" to interpret the newline escape characters as escape characters
+echo -e "START OF FILE\n$Contents\nEND OF FILE"
+# => START OF FILE
+# => [contents of file.txt]
+# => END OF FILE
+
+# Use `cp` to copy files or directories from one place to another.
+# `cp` creates NEW versions of the sources,
+# so editing the copy won't affect the original (and vice versa).
+# Note that it will overwrite the destination if it already exists.
+cp srcFile.txt clone.txt
+cp -r srcDirectory/ dst/ # recursively copy
+
+# Look into `scp` or `sftp` if you plan on exchanging files between computers.
+# `scp` behaves very similarly to `cp`.
+# `sftp` is more interactive.
+
+# Use `mv` to move files or directories from one place to another.
+# `mv` is similar to `cp`, but it deletes the source.
+# `mv` is also useful for renaming files!
+mv s0urc3.txt dst.txt # sorry, l33t hackers...
