@@ -234,3 +234,43 @@ cp -r srcDirectory/ dst/ # recursively copy
 # `mv` is similar to `cp`, but it deletes the source.
 # `mv` is also useful for renaming files!
 mv s0urc3.txt dst.txt # sorry, l33t hackers...
+
+# Since bash works in the context of a current directory, you might want to
+# run your command in some other directory. We have cd for changing location:
+cd ~    # change to home directory
+cd      # also goes to home directory
+cd ..   # go up one directory
+        # (^^say, from /home/username/Downloads to /home/username)
+cd /home/username/Documents   # change to specified directory
+cd ~/Documents/..    # now in home directory (if ~/Documents exists)
+cd -    # change to last directory
+# => /home/username/Documents
+
+# Use subshells to work across directories
+(echo "First, I'm here: $PWD") && (cd someDir; echo "Then, I'm here: $PWD")
+pwd # still in first directory
+
+# Use `mkdir` to create new directories.
+mkdir myNewDir
+# The `-p` flag causes new intermediate directories to be created as necessary.
+mkdir -p myNewDir/with/intermediate/directories
+# if the intermediate directories didn't already exist, running the above
+# command without the `-p` flag would return an error
+
+# You can redirect command input and output (stdin, stdout, and stderr)
+# using "redirection operators". Unlike a pipe, which passes output to a command,
+# a redirection operator has a command's input come from a file or stream, or
+# sends its output to a file or stream.
+
+# Read from stdin until ^EOF$ and overwrite hello.py with the lines
+# between "EOF" (which are called a "here document"):
+cat > hello.py << EOF
+#!/usr/bin/env python
+from __future__ import print_function
+import sys
+print("#stdout", file=sys.stdout)
+print("#stderr", file=sys.stderr)
+for line in sys.stdin:
+    print(line, file=sys.stdout)
+EOF
+# Variables will be expanded if the first "EOF" is not quoted
