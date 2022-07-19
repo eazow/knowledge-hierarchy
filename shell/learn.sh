@@ -274,3 +274,27 @@ for line in sys.stdin:
     print(line, file=sys.stdout)
 EOF
 # Variables will be expanded if the first "EOF" is not quoted
+
+# Run the hello.py Python script with various stdin, stdout, and
+# stderr redirections:
+python hello.py < "input.in" # pass input.in as input to the script
+
+python hello.py > "output.out" # redirect output from the script to output.out
+
+python hello.py 2> "error.err" # redirect error output to error.err
+
+python hello.py > "output-and-error.log" 2>&1
+# redirect both output and errors to output-and-error.log
+# &1 means file descriptor 1 (stdout), so 2>&1 redirects stderr (2) to the current
+# destination of stdout (1), which has been redirected to output-and-error.log.
+
+python hello.py > /dev/null 2>&1
+# redirect all output and errors to the black hole, /dev/null, i.e., no output
+
+# The output error will overwrite the file if it exists,
+# if you want to append instead, use ">>":
+python hello.py >> "output.out" 2>> "error.err"
+
+# Overwrite output.out, append to error.err, and count lines:
+info bash 'Basic Shell Features' 'Redirections' > output.out 2>> error.err
+wc -l output.out error.err
