@@ -298,3 +298,13 @@ python hello.py >> "output.out" 2>> "error.err"
 # Overwrite output.out, append to error.err, and count lines:
 info bash 'Basic Shell Features' 'Redirections' > output.out 2>> error.err
 wc -l output.out error.err
+
+# Run a command and print its file descriptor (e.g. /dev/fd/123)
+# see: man fd
+echo <(echo "#helloworld")
+
+# Overwrite output.out with "#helloworld":
+cat > output.out <(echo "#helloworld")
+echo "#helloworld" > output.out
+echo "#helloworld" | cat > output.out
+echo "#helloworld" | tee output.out >/dev/null
