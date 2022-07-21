@@ -308,3 +308,38 @@ cat > output.out <(echo "#helloworld")
 echo "#helloworld" > output.out
 echo "#helloworld" | cat > output.out
 echo "#helloworld" | tee output.out >/dev/null
+
+# Cleanup temporary files verbosely (add '-i' for interactive)
+# WARNING: `rm` commands cannot be undone
+rm -v output.out error.err output-and-error.log
+rm -r tempDir/ # recursively delete
+# You can install the `trash-cli` Python package to have `trash`
+# which puts files in the system trash and doesn't delete them directly
+# see https://pypi.org/project/trash-cli/ if you want to be careful
+
+# Commands can be substituted within other commands using $( ):
+# The following command displays the number of files and directories in the
+# current directory.
+echo "There are $(ls | wc -l) items here."
+
+# The same can be done using backticks `` but they can't be nested -
+# the preferred way is to use $( ).
+echo "There are `ls | wc -l` items here."
+
+# Bash uses a `case` statement that works similarly to switch in Java and C++:
+case "$Variable" in
+    # List patterns for the conditions you want to meet
+    0) echo "There is a zero.";;
+    1) echo "There is a one.";;
+    *) echo "It is not null.";;  # match everything
+esac
+
+# `for` loops iterate for as many arguments given:
+# The contents of $Variable is printed three times.
+for Variable in {1..3}
+do
+    echo "$Variable"
+done
+# => 1
+# => 2
+# => 3
