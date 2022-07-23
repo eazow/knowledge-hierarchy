@@ -343,3 +343,41 @@ done
 # => 1
 # => 2
 # => 3
+
+# Or write it the "traditional for loop" way:
+for ((a=1; a <= 3; a++))
+do
+    echo $a
+done
+# => 1
+# => 2
+# => 3
+
+# They can also be used to act on files..
+# This will run the command `cat` on file1 and file2
+for Variable in file1 file2
+do
+    cat "$Variable"
+done
+
+# ..or the output from a command
+# This will `cat` the output from `ls`.
+for Output in $(ls)
+do
+    cat "$Output"
+done
+
+# Bash can also accept patterns, like this to `cat`
+# all the Markdown files in current directory
+for Output in ./*.markdown
+do
+    cat "$Output"
+done
+
+# while loop:
+while [ true ]
+do
+    echo "loop body here..."
+    break
+done
+# => loop body here...
