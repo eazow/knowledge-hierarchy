@@ -381,3 +381,68 @@ do
     break
 done
 # => loop body here...
+
+# You can also define functions
+# Definition:
+function foo ()
+{
+    echo "Arguments work just like script arguments: $@"
+    echo "And: $1 $2..."
+    echo "This is a function"
+    returnValue=0    # Variable values can be returned
+    return $returnValue
+}
+# Call the function `foo` with two arguments, arg1 and arg2:
+foo arg1 arg2
+# => Arguments work just like script arguments: arg1 arg2
+# => And: arg1 arg2...
+# => This is a function
+# Return values can be obtained with $?
+resultValue=$?
+# More than 9 arguments are also possible by using braces, e.g. ${10}, ${11}, ...
+
+# or simply
+bar ()
+{
+    echo "Another way to declare functions!"
+    return 0
+}
+# Call the function `bar` with no arguments:
+bar # => Another way to declare functions!
+
+# Calling your function
+foo "My name is" $Name
+
+# There are a lot of useful commands you should learn:
+# prints last 10 lines of file.txt
+tail -n 10 file.txt
+
+# prints first 10 lines of file.txt
+head -n 10 file.txt
+
+# print file.txt's lines in sorted order
+sort file.txt
+
+# report or omit repeated lines, with -d it reports them
+uniq -d file.txt
+
+# prints only the first column before the ',' character
+cut -d ',' -f 1 file.txt
+
+# replaces every occurrence of 'okay' with 'great' in file.txt
+# (regex compatible)
+sed -i 's/okay/great/g' file.txt
+# be aware that this -i flag means that file.txt will be changed
+# -i or --in-place erase the input file (use --in-place=.backup to keep a back-up)
+
+# print to stdout all lines of file.txt which match some regex
+# The example prints lines which begin with "foo" and end in "bar"
+grep "^foo.*bar$" file.txt
+
+# pass the option "-c" to instead print the number of lines matching the regex
+grep -c "^foo.*bar$" file.txt
+
+# Other useful options are:
+grep -r "^foo.*bar$" someDir/ # recursively `grep`
+grep -n "^foo.*bar$" file.txt # give line numbers
+grep -rI "^foo.*bar$" someDir/ # recursively `grep`, but ignore binary files
