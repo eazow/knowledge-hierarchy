@@ -446,3 +446,34 @@ grep -c "^foo.*bar$" file.txt
 grep -r "^foo.*bar$" someDir/ # recursively `grep`
 grep -n "^foo.*bar$" file.txt # give line numbers
 grep -rI "^foo.*bar$" someDir/ # recursively `grep`, but ignore binary files
+
+# perform the same initial search, but filter out the lines containing "baz"
+grep "^foo.*bar$" file.txt | grep -v "baz"
+
+# if you literally want to search for the string,
+# and not the regex, use `fgrep` (or `grep -F`)
+fgrep "foobar" file.txt
+
+# The `trap` command allows you to execute a command whenever your script
+# receives a signal. Here, `trap` will execute `rm` if it receives any of the
+# three listed signals.
+trap "rm $TEMP_FILE; exit" SIGHUP SIGINT SIGTERM
+
+# `sudo` is used to perform commands as the superuser
+# usually it will ask interactively the password of superuser
+NAME1=$(whoami)
+NAME2=$(sudo whoami)
+echo "Was $NAME1, then became more powerful $NAME2"
+
+# Read Bash shell built-ins documentation with the bash `help` built-in:
+help
+help help
+help for
+help return
+help source
+help .
+
+# Read Bash manpage documentation with `man`
+apropos bash
+man 1 bash
+man bash
