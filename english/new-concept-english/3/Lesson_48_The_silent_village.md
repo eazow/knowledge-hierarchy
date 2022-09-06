@@ -1,10 +1,16 @@
+> Why was the village silent?
+
+
+
 In this much-travelled world, there are still thousands of places which are inaccessible to tourists.
 
 We always assume that villagers in remote places are friendly and **hospitable**.
 
 But people who are cut off not only from foreign tourists, but even from their own countrymen can be **hostile** to travellers.
 
-Visits to really remote villages are seldom enjoyable -- as my wife and I discovered during a tour through the Balkans.
+Visits to really remote villages are seldom enjoyable — as my wife and I discovered during a tour through the Balkans.
+
+
 
 We had spent several days in a small town and visited a number of old churches in the **vicinity**.
 
@@ -30,6 +36,8 @@ We gently woke him up and asked him to **ferry** us to the other side.
 
 Though he was reluctant to do so at first, we eventually persuaded him to take us.
 
+
+
 The path led to a tiny village **perched** on the steep sides of a mountain.
 
 The place consisted of a **straggling** unmade road which was lined on either side by small houses.
@@ -54,7 +62,7 @@ The village which had seemed deserted, immediately came to life.
 
 Faces appeared at windows.
 
-Men in shirt **sleeves** stood outside their houses and glared at us.
+Men in shirt **sleeves** stood outside their houses and **glared** at us.
 
 Old women in black **shawls peered** at us from doorways.
 

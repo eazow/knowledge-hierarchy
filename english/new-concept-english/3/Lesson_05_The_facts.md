@@ -1,6 +1,10 @@
+> What was the consequence of the editor's insistence on facts and statistics?
+
+
+
 Editors of newspapers and magazines often go to extremes to provide their readers with unimportant facts and statistics. 
 
-Last year a journalist had been instructed by a well-known magazine to write an article on the president's palace in a new African **republic**. 
+Last year a journalist had been instructed by a well-known magazine to write an article on the president's palace in a new African republic. 
 
 When the article arrived, the editor read the first sentence and then refused to publish it. 
 
@@ -10,13 +14,11 @@ The editor at once sent the journalist a **fax** instructing him to find out the
 
 
 
-
-
 The journalist immediately set out to obtain these important facts, but he took a long time to send them. 
 
 Meanwhile, the editor was getting impatient, for the magazine would soon go to press. 
 
-He sent the journalist two urgent **telegrams**, but received no reply. 
+He sent the journalist two urgent telegrams, but received no reply. 
 
 He sent yet another telegram informing the journalist that if he did not reply soon he would be fired. 
 
@@ -26,5 +28,5 @@ A week later, the editor at last received a telegram from the journalist.
 
 Not only had the poor man been arrested, but he had been sent to prison as well. 
 
-However, he had at last been allowed to send a **cable** in which he informed the editor that he had been arrested while counting the 1084 steps leading to the 15-foot wall which surrounded the president's palace.
+However, he had at last been allowed to send a **cable** in which he informed the editor that he had been arrested while counting the 1084 steps leading to the fifteen-foot wall which surrounded the president's palace.
 

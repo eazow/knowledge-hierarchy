@@ -21,8 +21,10 @@ class SimpleCommand(Command):
         self._payload = payload
 
     def execute(self) -> None:
-        print(f"SimpleCommand: See, I can do simple things like printing"
-              f"({self._payload})")
+        print(
+            f"SimpleCommand: See, I can do simple things like printing"
+            f"({self._payload})"
+        )
 
 
 class ComplexCommand(Command):
@@ -46,7 +48,9 @@ class ComplexCommand(Command):
         Commands can delegate to any methods of a receiver.
         """
 
-        print("ComplexCommand: Complex stuff should be done by a receiver object", end="")
+        print(
+            "ComplexCommand: Complex stuff should be done by a receiver object", end=""
+        )
         self._receiver.do_something(self._a)
         self._receiver.do_something_else(self._b)
 
@@ -110,7 +114,6 @@ if __name__ == "__main__":
     invoker = Invoker()
     invoker.set_on_start(SimpleCommand("Say Hi!"))
     receiver = Receiver()
-    invoker.set_on_finish(ComplexCommand(
-        receiver, "Send email", "Save report"))
+    invoker.set_on_finish(ComplexCommand(receiver, "Send email", "Save report"))
 
     invoker.do_something_important()

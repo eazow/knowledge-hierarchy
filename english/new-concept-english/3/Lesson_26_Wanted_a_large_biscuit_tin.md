@@ -1,3 +1,7 @@
+> Who won the prize for the biggest **biscuit**?
+
+
+
 No one can avoid being influenced by advertisements. 
 
 Much as we may pride ourselves on our good taste, we are no longer free to choose the things we want, for advertising exerts a **subtle** influence on us. 
@@ -36,7 +40,7 @@ The largest was 713 pounds.
 
 It seemed certain that this would win the prize. 
 
-But just before the competition closed, a lorry arrived at the factory with a truly colossal biscuit which weighed 2400 pounds. 
+But just before the competition closed, a lorry arrived at the factory with a truly **colossal** biscuit which weighed 2400 pounds. 
 
 It had been baked by a college student who had used over 1000 pounds of **flour**, 800 pounds of sugar, 200 pounds of fat, and 400 pounds of various other **ingredients**. 
 

@@ -1,3 +1,7 @@
+> What was the happy discovery?
+
+
+
 Antique shops **exert** a **peculiar** fascination on a great many people. 
 
 The more expensive kind of antique shop where rare objects are beautifully displayed in glass cases to keep them free from dust is usually a forbidding place. 
@@ -6,13 +10,17 @@ But no one has to **muster** up courage to enter a less **pretentious** antique 
 
 There is always hope that in its **labyrinth** of **musty**, dark, disordered rooms a real rarity will be found amongst the piles of **assorted junk** that litter the floors.
 
+
+
 No one discovers a rarity by chance. 
 
-A truly **dedicated** bargain hunter must have patience, and above all, the ability to recognize the worth of something when he sees it. 
+A truly **dedicated** **bargain** hunter must have patience, and above all, the ability to recognize the worth of something when he sees it. 
 
 To do this, he must be at least as knowledgeable as the dealer. 
 
-Like a scientist bent on making a discovery, he must cherish the hope that one day he will be **amply** rewarded.
+Like a scientist **bent** on making a discovery, he must cherish the hope that one day he will be **amply** rewarded.
+
+
 
 My old friend, Frank Halliday, is just such a person. 
 
@@ -26,7 +34,7 @@ The morning passed rapidly and Frank was about to leave when he noticed a large 
 
 The dealer told him that it had just come in, but that he could not be **bothered** to open it. 
 
-Frank begged him to do so and the dealer **reluctantly prised** it open. 
+Frank begged him to do so and the dealer reluctantly **prised** it open. 
 
 The contents were disappointing. 
 

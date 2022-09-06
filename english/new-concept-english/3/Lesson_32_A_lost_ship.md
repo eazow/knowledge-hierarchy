@@ -1,3 +1,7 @@
+> Did the crew of the Elkor find what they were looking for? Why?
+
+
+
 The **salvage** operation had been a complete failure. 
 
 The small ship, Elkor, which had been searching the Barents Sea for weeks, was on its way home. 
@@ -5,6 +9,8 @@ The small ship, Elkor, which had been searching the Barents Sea for weeks, was o
 A radio message from the mainland had been received by the ship's captain instructing him to give up the search. 
 
 The captain knew that another attempt would be made later, for the sunken ship he was trying to find had been carrying a precious **cargo** of gold **bullion**.
+
+
 
 Despite the message, the captain of the Elkor decided to try once more. 
 
@@ -14,6 +20,8 @@ Though the crew were at first under the impression that the lost ship had been f
 
 What they had in fact found was a ship which had been **sunk** many years before.
 
+
+
 The chest contained the personal belongings of a seaman, Alan Fielding. 
 
 There were books, clothing and photographs, together with letters which the seaman had once received from his wife. 
@@ -22,7 +30,7 @@ The captain of the Elkor ordered his men to salvage as much as possible from the
 
 Nothing of value was found, but the **numerous** items which were brought to the surface proved to be of great interest. 
 
-From a heavy gun that was raised, the captain realized that the ship must have been a cruiser. 
+From a heavy gun that was raised, the captain realized that the ship must have been a **cruiser**. 
 
 In another chest, which contained the belongings of a ship's officer, there was an unfinished letter which had been written on March 14th, 1943. 
 

@@ -1,3 +1,7 @@
+> Who owned the pie dish and why?
+
+
+
 Insurance companies are normally willing to insure anything.
 
 Insuring public or private property is a standard practice in most countries in the world.
@@ -10,6 +14,8 @@ It is not uncommon to hear that a shipping company has made a claim for the cost
 
 But the claim made by a local authority to **recover** the cost of salvaging a sunken pie dish must surely be unique.
 
+
+
 Admittedly it was an unusual pie dish, for it was eighteen feet long and six feet wide.
 
 It had been **purchased** by a local authority so that an enormous pie could be baked for anannual **fair**.
@@ -21,6 +27,8 @@ Shortly after it was launched, the pie committee went to a local **inn** to cele
 At the same time, a number of teenagers climbed on to the dish and held a little party of their own.
 
 Dancing proved to be more than the dish could bear, for during the party it **capsized** and sank in seven feet of water.
+
+
 
 The pie committee telephoned a local **garage** owner who arrived in a recovery truck to salvage the pie dish.
 
@@ -46,7 +54,7 @@ The **winch** was again put into operation and one of the men started up the tru
 
 Several minutes later, the dish was successfully **hauled** above the surface of the water.
 
-Water streamed in torrents over its sides with such force that it set up a huge wave in the canal.
+Water streamed in **torrents** over its sides with such force that it set up a huge wave in the canal.
 
 There was a danger that the wave would **rebound** off the other side of the bank and send the dish **plunging** into the water again.
 
