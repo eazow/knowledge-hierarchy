@@ -1,98 +1,78 @@
-
-INTEGER, PLUS, MINUS, EOF = 'INTEGER', 'PLUS', 'MINUS', 'EOF'
-
-
-class Token(object):
-
-    def __init__(self, type, value):
-        # token type: INTEGER | PLUS | EOF
-        self.type = type
-        self.value = value
-
-    def __str__(self):
-        """
-        Examples:
-            Token(INTEGER, 6)
-        :return:
-        """
-        return "Token({type}, {value})".format(type=self.type, value=self.value)
-
-    def __repr__(self):
-        return self.__str__()
+from analyzer import NodeVisitor, SemanticAnalyzer
+from stack import CallStack
+from activation_record import ARType, ActivationRecord
+from tokens import TokenType
 
 
-class Interpreter(object):
+class Interpreter(NodeVisitor):
+    def __init__(self, parser):
+        self.parser = parser
+        self.semantic_analyzer = SemanticAnalyzer()
+        self.call_stack = CallStack()
 
-    def __init__(self, text):
-        self.text = text
-        self.position = 0
-        self.current_token = None
-        self.current_char = self.text[self.position]
+    def interpret(self):
+        tree = self.parser.parse()
+        self.semantic_analyzer.visit(tree)
 
-    def error(self):
-        raise Exception('Error parsing input')
+        self.visit(tree)
 
-    def skip_whitespace(self):
-        while self.current_char is not None and self.current_char.isspace():
-            self.advance()
+    def visit_program(self, node):
+        program_name = node.name
 
-    def get_next_token(self):
-        text = self.text
-        if self.position > len(text) - 1:
-            return Token(EOF, None)
+        ar = ActivationRecord(name=program_name, type=ARType.PROGRAM, nesting_level=1)
+        self.call_stack.push(ar)
 
-        current_char = text[self.position]
+        self.visit(node.block)
 
-        if current_char.isdigit():
-            token = Token(INTEGER, int(current_char))
-            self.position += 1
-            return token
+        # self.call_stack.pop()
 
-        if current_char == '+':
-            token = Token(PLUS, current_char)
-            self.position += 1
-            return token
+    def visit_assign(self, node):
+        var_name = node.left.value
+        var_value = self.visit(node.right)
+        ar = self.call_stack.peek()
+        ar[var_name] = var_value
 
-        self.error()
+    def visit_var(self, node):
+        var_name = node.value
+        ar = self.call_stack.peek()
+        return ar.get(var_name)
 
-    def eat(self, token_type):
-        if self.current_token.type == token_type:
-            self.current_token = self.get_next_token()
-        else:
-            self.error()
+    def visit_procedure_call(self, node):
+        proc_name = node.proc_name
 
-    def expr(self):
-        self.current_token = self.get_next_token()
+        ar = ActivationRecord(name=proc_name, type=ARType.PROCEDURE, nesting_level=2)
 
-        left = self.current_token
-        self.eat(INTEGER)
+        procedure_symbol = node.procedure_symbol
 
-        op = self.current_token
-        if op.type == PLUS:
-            self.eat(PLUS)
-        else:
-            self.eat(MINUS)
+        formal_param_symbols = procedure_symbol.formal_params
+        actual_params = node.actual_params
 
-        right = self.current_token
-        self.eat(INTEGER)
+        for formal_param_symbol, actual_param in zip(formal_param_symbols, actual_params):
+            ar[formal_param_symbol.name] = self.visit(actual_param)
 
-        result = left.value + right.value
+        self.call_stack.push(ar)
+
+        result = self.visit(procedure_symbol.block_node)
+
+        self.call_stack.pop()
+
         return result
 
+    def visit_bin_op(self, node):
+        if node.op.type == TokenType.PLUS:
+            return self.visit(node.left) + self.visit(node.right)
+        elif node.op.type == TokenType.MINUS:
+            return self.visit(node.left) - self.visit(node.right)
+        elif node.op.type == TokenType.MUL:
+            return self.visit(node.left) * self.visit(node.right)
+        elif node.op.type == TokenType.INTEGER_DIV:
+            return self.visit(node.left) // self.visit(node.right)
+        elif node.op.type == TokenType.FLOAT_DIV:
+            return self.visit(node.left) / float(self.visit(node.right))
 
-def main():
-    while True:
-        try:
-            text = input('calc> ')
-        except EOFError:
-            break
-        if not text:
-            continue
-
-        interpreter = Interpreter(text)
-        result = interpreter.expr()
-        print(result)
-
-
-if __name__ == '__main__':
-    main()
+    def visit_unary_op(self, node):
+        op = node.token.type
+        if op == TokenType.PLUS:
+            return self.visit(node.node)
+        elif op == TokenType.MINUS:
+            return -self.visit(node.node)
