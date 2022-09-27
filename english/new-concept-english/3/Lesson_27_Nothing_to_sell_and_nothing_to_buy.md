@@ -1,3 +1,7 @@
+> What is the most important thing for a tramp?
+
+
+
 It has been said that everyone lives by selling something. 
 
 **In the light of** this statement, teachers live by selling knowledge, **philosophers** by selling wisdom and **priests** by selling **spiritual** comfort. 
@@ -14,17 +18,19 @@ Everyone has something to sell.
 
 **Tramps** seem to be the only exception to this general rule. 
 
-**Beggars** almost sell themselves as human beings to **arouse** the pity of passers-by. 
+Beggars almost sell themselves as human beings to **arouse** the pity of passers-by. 
 
 But real tramps are not beggars. 
 
 They have nothing to sell and require nothing from others. 
 
-In **seeking** independence, they do not sacrifice their human **dignity**.
+In seeking independence, they do not sacrifice their human dignity.
 
 A tramp may ask you for money, but he will never ask you to feel sorry for him. 
 
-He has **deliberately** chosen to lead the life he leads and is fully aware of the **consequences.** He may never be sure where the next meal is coming from, but he is free from the thousands of **anxieties** which **afflict** other people. 
+He has **deliberately** chosen to lead the life he leads and is fully aware of the **consequences.** 
+
+He may never be sure where the next meal is coming from, but he is free from the thousands of anxieties which afflict other people. 
 
 His few **material** possessions make it possible for him to move from place to place with ease. 
 

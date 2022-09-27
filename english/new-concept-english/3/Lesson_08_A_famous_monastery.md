@@ -1,18 +1,20 @@
-The Great St Bernard Pass connects Switzerland to Italy. 
+> What are the St. Bernard dogs used for?
+
+
+
+The Great St. Bernard Pass connects Switzerland to Italy. 
 
 At 2470 metres, it is the highest mountain pass in Europe. 
 
-The famous **monastery** of St Bernard, which was founded in the eleventh century, lies about a mile away. 
+The famous **monastery** of St. Bernard, which was founded in the eleventh century, lies about a mile away. 
 
-For hundreds of years, St Bernard dogs have saved the lives of travellers crossing the dangerous Pass. 
+For hundreds of years, St. Bernard dogs have saved the lives of travellers crossing the dangerous Pass. 
 
-These friendly dogs, which were first brought from Asia, were used as watch-dogs even in Roman times. 
+These friendly dogs, which were first brought from Asia, were used as watchdogs even in Roman times. 
 
 Now that a tunnel has been built through the mountains, the Pass is less dangerous, but each year, the dogs are still sent out into the snow whenever a traveller is in difficulty. 
 
 Despite the new tunnel, there are still a few people who **rashly** attempt to cross the Pass on foot.
-
-
 
 
 
@@ -30,4 +32,4 @@ The dogs have greater freedom, too, for they are allowed to **wander** outside t
 
 The only regular visitors to the monastery in winter are parties of skiers who go there at Christmas and Easter. 
 
-These young people, who love the peace of the mountains, always receive a warm welcome at St Bernard's monastery.
+These young people, who love the peace of the mountains, always receive a warm welcome at St. Bernard's monastery.

@@ -1,3 +1,7 @@
+> What was the mistake the author made?
+
+
+
 We have learnt to expect that trains will be **punctual**. 
 
 After years of **conditioning**, most of us have developed an unshakable faith in railway timetables. 
@@ -10,7 +14,9 @@ It is all too easy to blame the railway authorities when something does go wrong
 
 The truth is that when mistakes occur, they are more likely to be ours than theirs.
 
-After consulting my railway timetable, I noted with satisfaction that there was an express train to Westhaven. 
+
+
+After **consulting** my railway timetable, I noted with satisfaction that there was an express train to Westhaven. 
 
 It went direct from my local station and the journey lasted a mere hour and 17 minutes. 
 

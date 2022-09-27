@@ -1,6 +1,10 @@
-True **eccentrics** never **deliberately** set out to draw attention to themselves. 
+> Why did the shop assistant refuse to serve Dickie?
 
-They disregard social **conventions** without being **conscious** that they are doing anything extraordinary. 
+
+
+True **eccentrics** never deliberately set out to draw attention to themselves. 
+
+They **disregard** social **conventions** without being conscious that they are doing anything extraordinary. 
 
 This **invariably** wins them the love and respect of others, for they add colour to the dull routine of everyday life.
 
@@ -11,6 +15,8 @@ Up to the time of his death, Richard Colson was one of the most **notable** figu
 He was a **shrewd** and wealthy businessman, but most people in the town hardly knew anything about this side of his life. 
 
 He was known to us all as Dickie and his eccentricity had become **legendary** long before he died.
+
+
 
 Dickie disliked **snobs intensely**. 
 
@@ -24,7 +30,7 @@ He wanted to buy a £300 watch for his wife, but he was in such a **bedraggled**
 
 Dickie left the shop without a word and returned carrying a large cloth bag. 
 
-As it was extremely heavy, he dumped it on the counter. 
+As it was extremely heavy, he **dumped** it on the counter. 
 
 The assistant asked him to leave, but Dickie paid no attention to him and requested to see the manager. 
 
@@ -34,7 +40,7 @@ When Dickie was given the watch, he presented the assistant with the cloth bag.
 
 It contained £300 in pennies. 
 
-He insisted on the assistant's counting the money before he left -- 30,000 pennies in all! 
+He insisted on the assistant's counting the money before he left — 30,000 pennies in all! 
 
 On another occasion, he invited a number of important critics to see his private collection of modern paintings. 
 

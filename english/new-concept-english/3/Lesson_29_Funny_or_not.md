@@ -1,3 +1,7 @@
+> What is the basis of 'sick' humour?
+
+
+
 Whether we find a joke funny or not largely depends on where we have been brought up. 
 
 The sense of humour is mysteriously **bound up** with national **characteristics**. 
@@ -10,7 +14,7 @@ In the same way, a Russian might fail to see anything amusing in a joke which wo
 
 Most funny stories are based on **comic** situations. 
 
-In spite of national differences, certain funny situations have a **universal** appeal. 
+In spite of national differences, certain funny situations have a universal appeal. 
 
 No matter where you live, you would find it difficult not to laugh at, say, Charlie Chaplin's early films. 
 
@@ -44,4 +48,4 @@ To compensate for his unpleasant experiences in hospital, the man drank a little
 
 In the process, he enjoyed himself **thoroughly** and kept telling everybody how much he hated hospitals. 
 
-He was still **mumbling** something about hospitals at the end of the party when he **slipped** on a piece of ice and broke his left.
+He was still **mumbling** something about hospitals at the end of the party when he slipped on a piece of ice and broke his left leg.

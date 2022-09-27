@@ -1,8 +1,12 @@
+> What is the importance of the dots, lines, and symbols **engraved** on some, bones and **ivory**?
+
+
+
 Future historians will be in a unique position when they come to record the history of our own times. 
 
 They will hardly know which facts to select from the great mass of evidence that **steadily** accumulates. 
 
-What is more, they will not have to rely solely on the written word. 
+What is more, they will not have to **rely** solely on the written word. 
 
 Films, videos, CDs and CD-ROMS are just some of the **bewildering** amount of information they will have. 
 
@@ -10,13 +14,17 @@ They will be able, as it were, to see and hear us in action.
 
 But the historian attempting to reconstruct the distant past is always faced with a difficult task. 
 
-He has to **deduce** what he can from the few scanty clues available. 
+He has to deduce what he can from the few **scanty** clues available. 
 
 Even seemingly insignificant remains can shed interesting light on the history of early man.
+
+
 
 Up to now, historians have assumed that calendars came into being with the advent of agriculture, for then man was faced with a real need to understand something about the seasons.
 
 Recent scientific evidence seems to indicate that this assumption is incorrect.
+
+
 
 Historians have long been puzzled by dots, lines and symbols which have been **engraved** on walls, bones, and the **ivory tusks** of mammoths. 
 
@@ -26,7 +34,7 @@ By correlating markings made in various parts of the world, historians have been
 
 They have found that it is connected with the passage of days and the phases of the moon. 
 
-It is, in fact, a primitive type of calendar. 
+It is, in fact, a **primitive** type of calendar. 
 
 It has long been known that the hunting scenes **depicted** on walls were not simply a form of artistic expression. 
 

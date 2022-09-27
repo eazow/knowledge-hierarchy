@@ -1,3 +1,7 @@
+> How might some of the exhibits have been dangerous?
+
+
+
 Modern **sculpture** rarely surprises us any more. 
 
 The idea that modern art can only be seen in museums is mistaken. 
@@ -20,7 +24,7 @@ The first thing I saw when I entered the art **gallery** was a notice which said
 
 The objects on display were pieces of moving sculpture.
 
-Oddly shaped forms that are suspended from the ceiling and move in response to a gust of wind are quite familiar to everybody. 
+**Oddly** shaped forms that are suspended from the ceiling and move in response to a gust of wind are quite familiar to everybody. 
 
 These objects, however, were different. 
 

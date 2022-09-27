@@ -1,8 +1,12 @@
+> Does the writer repair his **lawn** **mower** in the end? Why/Why not?
+
+
+
 So great is our passion for doing things for ourselves, that we are becoming increasingly less dependent on specialized labour.
 
 No one can **plead** ignorance of a subject any longer, for there are countless do-it-yourself publications.
 
-Armed with the right tools and materials, newlyweds **gaily embark** on the task of decorating their own homes.
+Armed with the right tools and materials, **newlyweds** **gaily embark** on the task of decorating their own homes.
 
 Men, particularly, spend hours of their leisure time installing their own fireplaces, laying out their own gardens, building garages and making furniture.
 
@@ -11,6 +15,8 @@ Some really **keen** enthusiasts go so far as to build their own computers.
 Shops **cater** for the do-it-yourself **craze** not only by running special **advisory** services for **novices**, but by offering consumers bits and pieces which they can assemble at home.
 
 Such things provide an excellent **outlet** for **pent** up creative energy, but unfortunately not all of us are born handymen.
+
+
 
 Some wives tend to believe that their husbands are infinitely **resourceful** and can fix anything.
 
@@ -22,6 +28,8 @@ The worst thing about the do-it-yourself game is that sometimes even men live un
 
 It is a question of **pride** as much as anything else.
 
+
+
 Last spring my wife suggested that I call in a man to look at our lawn mower.
 
 It had broken down the previous summer, and though I promised to repair it, I had never got round to it.
@@ -30,7 +38,7 @@ I would not hear of the suggestion and said that I would fix it myself.
 
 One Saturday afternoon, I **hauled** the machine into the garden and had a close look at it.
 
-As far as I could see, it needed only a **minor** adjustment: a turn of a screw here, a little **tightening** up there, a drop of oil and it would be as good as new.
+As far as I could see, it needed only a minor adjustment: a turn of a screw here, a little **tightening** up there, a drop of oil and it would be as good as new.
 
 **Inevitably** the repair job was not quite so simple.
 

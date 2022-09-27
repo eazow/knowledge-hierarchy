@@ -13,8 +13,10 @@ class Abstraction:
         self.implementation = implementation
 
     def operation(self) -> str:
-        return (f"Abstraction: Base operation with:\n"
-                f"{self.implementation.operation_implementation()}")
+        return (
+            f"Abstraction: Base operation with:\n"
+            f"{self.implementation.operation_implementation()}"
+        )
 
 
 class ExtendedAbstraction(Abstraction):
@@ -23,8 +25,10 @@ class ExtendedAbstraction(Abstraction):
     """
 
     def operation(self) -> str:
-        return (f"ExtendedAbstraction: Extended operation with:\n"
-                f"{self.implementation.operation_implementation()}")
+        return (
+            f"ExtendedAbstraction: Extended operation with:\n"
+            f"{self.implementation.operation_implementation()}"
+        )
 
 
 class Implementation(ABC):
@@ -64,12 +68,7 @@ def client_code(abstraction: Abstraction) -> None:
     the Abstraction class. This way the client code can support any abstraction-
     implementation combination.
     """
-
-    # ...
-
     print(abstraction.operation(), end="")
-
-    # ...
 
 
 if __name__ == "__main__":
