@@ -23,6 +23,21 @@ public class DynamicProxy {
     }
 }
 
+
 interface Hello {
     void morning(String name);
+}
+
+
+public class HelloDynamicProxy implements Hello {
+    InvocationHandler handler;
+    public HelloDynamicProxy(InvocationHandler handler) {
+        this.handler = handler;
+    }
+    public void morning(String name) {
+        handler.invoke(
+           this,
+           Hello.class.getMethod("morning", String.class),
+           new Object[] { name });
+    }
 }
