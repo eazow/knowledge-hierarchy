@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+  mysql-master:
+    container_name: mysql-master 
+    image: mysql:5.7.31
+    restart: always
+    ports:
+      - 3340:3306 
+    privileged: true
+    volumes:
+      - $PWD/master/volumes/log:/var/log/mysql  
+      - $PWD/master/volumes/conf/my.cnf:/etc/mysql/my.cnf
+      - $PWD/master/volumes/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+    command: [
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_general_ci',
+        '--max_connections=3000'
+    ]
+    networks:
+      - mysql-network
+      
+  mysql-slave:
+    container_name: mysql-slave 
+    image: mysql:5.7.31
+    restart: always
+    ports:
+      - 3341:3306 
+    privileged: true
+    volumes:
+      - $PWD/slave/volumes/log:/var/log/mysql  
+      - $PWD/slave/volumes/conf/my.cnf:/etc/mysql/my.cnf
+      - $PWD/slave/volumes/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+    command: [
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_general_ci',
+        '--max_connections=3000'
+    ]
+    networks:
+      - mysql-network   
+
+networks:
+  mysql-network:
+    driver: bridge
+

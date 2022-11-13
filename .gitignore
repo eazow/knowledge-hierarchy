@@ -12,3 +12,6 @@ venv
 .ipynb_checkpoints
 *.log
 node_modules
+
+**/volumes/data
+**/volumes/log
