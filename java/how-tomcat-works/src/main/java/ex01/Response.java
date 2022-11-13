@@ -35,7 +35,7 @@ public class Response {
 				// file not found
 				String errorMessage = "HTTP/1.1 404 File Not Found\r\n"
 						+ "Content-Type: text/html\r\n"
-						+ "Content-Length: 23\r\n" + "\r\n" 
+						+ "Content-Length: 23\r\n" + "\r\n"
 						+ "<h1>File Not Found</h1>";
 				output.write(errorMessage.getBytes());
 			}
