@@ -7,3 +7,14 @@
 .idea/vcs.xml
 .idea/
 .DS_Store
+__pycache__
+venv
+.ipynb_checkpoints
+*.log
+node_modules
+
+**/volumes/data
+**/volumes/log
+
+
+*.class

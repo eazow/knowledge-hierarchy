@@ -11,4 +11,3 @@ But the first people who were like ourselves lived so long ago that even their s
 
 
 Fortunately, however, ancient men made tools of stone, especially **flint**, because this is easier to shape than other kinds. They may also have used wood and skins, but these have **rotted** away. Stone does not **decay**, and so the tools of lone ago have remained when even the bones of the men who made them have disappeared without **trace**.
-
