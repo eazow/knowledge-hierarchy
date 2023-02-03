@@ -1,5 +1,4 @@
 ### Java
-
 - Effective Java
 - Java编程思想
 - Java并发编程之美
@@ -9,29 +8,20 @@
 - Java并发编程实践
 
 
-
 ## C
 - C和指针
-
 - C专家编程
-
 - C陷阱与缺陷
-
 - C程序设计语言
-
 - C语言接口与实现
-
-  
 
 
 ## C++
-
 - C++ Primer Plus
 - C++编程思想
 
 
 ## Golang
-
 - Go学习笔记
 - Go源码剖析
 - Go程序设计语言
@@ -47,7 +37,6 @@
 
 
 ## JavaScript
-
 - 你不知道的JavaScript
 - JavaScript高级程序设计
 - JavaScript权威指南
@@ -60,9 +49,7 @@
 - JavaScript DOM编程艺术
 
 
-
 ## Node.js
-
 - 深入浅出node.js
 - Node.js实战
 - Node学习指南
@@ -72,9 +59,7 @@
 - Node即学即用
 
 
-
 ## Computer System
-
 - 深入理解计算机系统
 - 现代操作系统
 - 编码：隐匿在计算机软硬件背后的语言
@@ -83,9 +68,7 @@
 - 编译原理
 
 
-
 ## Linux / Unix
-
 - UNIX编程艺术
 - UNIX环境高级编程
 - UNIX网络编程卷1: 套接字API
@@ -97,25 +80,19 @@
 - 跟我一起写makefile
 
 
-
 ## TCP
-
 - TCP/IP详解 卷1：协议
 - TCP/IP详解 卷2：实现
 - TCP/IP详解 卷3：TCP事务协议，HTTP，NNTP和UNIX域协议
 
 
-
 ## HTTP
-
 - HTTP权威指南
 - Web性能权威指南
 - 图解HTTP
 
 
-
 ## Clean code
-
 - 代码整洁之道
 - 编写可读代码的艺术
 - 修改代码的艺术
@@ -127,7 +104,6 @@
 
 
 ## Design pattern
-
 - Head First 设计模式
 - 设计模式：可复用面向对象软件的基础
 - 设计模式之禅
@@ -135,7 +111,6 @@
 
 
 ## Algorithms
-
 - 算法
 - 算法导论
 - 算法设计与分析
@@ -147,9 +122,7 @@
 - 剑指offer名企面试官精讲典型编程题
 
 
-
 ## Architecture
-
 - 高性能网站建设指南
 - 大型网站技术架构：核心原理与案例分析
 - 企业应用架构模式
@@ -159,17 +132,12 @@
 - 架构整洁之道
 
 
-
 ## Microservice
-
 - 微服务设计
 
 
-
 ## Test
-
-- [x]  测试驱动开发
-
+- [x] 测试驱动开发
 
 
 ## Git
@@ -205,7 +173,6 @@
 ## Redis
 
 - Redis入门指南
-
 - Redis实战
 - Redis设计与实现
 - Redis开发与运维
@@ -233,7 +200,6 @@
 - [ ] 程序员的职业素养
 - [ ] 程序员的自我修养：链接、装载与库
 - [x] 人性的弱点
-
 - [x] 追风筝的人
 - [x] 高效程序员的45个习惯 
 - [x] 代码整洁之道
