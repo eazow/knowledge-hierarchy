@@ -13,5 +13,6 @@ venv
 *.log
 node_modules
 
+.env
 **/volumes/data
 **/volumes/log
