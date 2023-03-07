@@ -10,6 +10,7 @@
 __pycache__
 venv
 .ipynb_checkpoints
+.vscode
 *.log
 node_modules
 
