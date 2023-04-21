@@ -12,6 +12,7 @@ venv
 .ipynb_checkpoints
 *.log
 node_modules
+.vscode
 
 **/volumes/data
 **/volumes/log
