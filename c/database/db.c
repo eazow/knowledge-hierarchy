@@ -23,6 +23,9 @@ typedef struct
     ssize_t input_length;
 } InputBuffer;
 
+typedef enum { EXECUTE_SUCCESS, EXECUTE_TABLE_FULL } ExecuteResult;
+
+
 typedef struct
 {
     uint32_t id;
@@ -134,7 +137,7 @@ PrepareResult prepare_statement(InputBuffer *input_buffer, Statement *statement)
     return PREPARE_UNRECOGNIZED_STATEMENT;
 }
 
-void execute_statement(Statement *statement)
+ExecuteResult execute_statement(Statement *statement)
 {
     switch (statement->type)
     {
@@ -231,6 +234,7 @@ void *row_slot(Table *table, uint32_t row_num)
 
 int main(int argc, char *argv[])
 {
+    Table *table = new_table();
     InputBuffer *input_buffer = new_input_buffer();
     while (true)
     {
@@ -259,12 +263,22 @@ int main(int argc, char *argv[])
         {
         case (PREPARE_SUCCESS):
             break;
+        case (PREPARE_SYNTAX_ERROR):
+            printf("Syntax error. Could not parse statement.\n");
+            continue;
         case (PREPARE_UNRECOGNIZED_STATEMENT):
             printf("Unrecognized keyword at start of '%s'.\n", input_buffer->buffer);
             continue;
         }
 
-        execute_statement(&statement);
-        printf("Executed.\n");
+        switch (execute_statement(&statement, table))
+        {
+        case (EXECUTE_SUCCESS):
+            printf("Executed.\n");
+            break;
+        case (EXECUTE_TABLE_FULL):
+            printf("Error: Table full.\n");
+            break;
+        }
     }
 }
