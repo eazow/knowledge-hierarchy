@@ -160,7 +160,7 @@ PrepareResult prepare_statement(InputBuffer *input_buffer, Statement *statement)
     return PREPARE_UNRECOGNIZED_STATEMENT;
 }
 
-ExecuteResult execute_statement(Statement *statement)
+ExecuteResult execute_statement(Statement *statement, Table *table)
 {
     switch (statement->type)
     {
