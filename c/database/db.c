@@ -91,6 +91,20 @@ void deserialize_row(void *source, Row *destination)
     memcpy(&(destination->email), source + EMAIL_OFFSET, EMAIL_SIZE);
 }
 
+void *row_slot(Table *table, uint32_t row_num)
+{
+    uint32_t page_num = row_num / ROWS_PER_PAGE;
+    void *page = table->pages[page_num];
+    if (page == NULL)
+    {
+        // Allocate memory only when we try to access page
+        page = table->pages[page_num] = malloc(PAGE_SIZE);
+    }
+    uint32_t row_offset = row_num % ROWS_PER_PAGE;
+    uint32_t byte_offset = row_offset * ROW_SIZE;
+    return page + byte_offset;
+}
+
 InputBuffer *new_input_buffer()
 {
     InputBuffer *input_buffer = malloc(sizeof(InputBuffer));
@@ -160,19 +174,6 @@ PrepareResult prepare_statement(InputBuffer *input_buffer, Statement *statement)
     return PREPARE_UNRECOGNIZED_STATEMENT;
 }
 
-ExecuteResult execute_statement(Statement *statement, Table *table)
-{
-    switch (statement->type)
-    {
-    case (STATEMENT_INSERT):
-        printf("This is where we would do an insert.\n");
-        return execute_insert(statement, table);
-    case (STATEMENT_SELECT):
-        printf("This is where we would do a select.\n");
-        return execute_select(statement, table);
-    }
-}
-
 ExecuteResult execute_insert(Statement *statement, Table *table)
 {
     if (table->num_rows >= TABLE_MAX_ROWS)
@@ -197,6 +198,19 @@ ExecuteResult execute_select(Statement *statement, Table *table)
         print_row(&row);
     }
     return EXECUTE_SUCCESS;
+}
+
+ExecuteResult execute_statement(Statement *statement, Table *table)
+{
+    switch (statement->type)
+    {
+    case (STATEMENT_INSERT):
+        printf("This is where we would do an insert.\n");
+        return execute_insert(statement, table);
+    case (STATEMENT_SELECT):
+        printf("This is where we would do a select.\n");
+        return execute_select(statement, table);
+    }
 }
 
 Table *new_table()
@@ -226,20 +240,6 @@ username 32          4
 email    255         36
 total    291
 */
-
-void *row_slot(Table *table, uint32_t row_num)
-{
-    uint32_t page_num = row_num / ROWS_PER_PAGE;
-    void *page = table->pages[page_num];
-    if (page == NULL)
-    {
-        // Allocate memory only when we try to access page
-        page = table->pages[page_num] = malloc(PAGE_SIZE);
-    }
-    uint32_t row_offset = row_num % ROWS_PER_PAGE;
-    uint32_t byte_offset = row_offset * ROW_SIZE;
-    return page + byte_offset;
-}
 
 int main(int argc, char *argv[])
 {
