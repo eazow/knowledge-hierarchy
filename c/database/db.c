@@ -205,10 +205,10 @@ ExecuteResult execute_statement(Statement *statement, Table *table)
     switch (statement->type)
     {
     case (STATEMENT_INSERT):
-        printf("This is where we would do an insert.\n");
+        // printf("This is where we would do an insert.\n");
         return execute_insert(statement, table);
     case (STATEMENT_SELECT):
-        printf("This is where we would do a select.\n");
+        // printf("This is where we would do a select.\n");
         return execute_select(statement, table);
     }
 }
