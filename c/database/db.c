@@ -26,6 +26,7 @@ typedef enum
 {
     PREPARE_SUCCESS,
     PREPARE_STRING_TOO_LONG,
+    PREPARE_NEGATIVE_ID,
     PREPARE_SYNTAX_ERROR,
     PREPARE_UNRECOGNIZED_STATEMENT
 } PrepareResult;
@@ -152,25 +153,32 @@ MetaCommandResult do_meta_command(InputBuffer *input_buffer)
     }
 }
 
-PrepareResult prepare_insert(InputBuffer* input_buffer, Statement* statement)
+PrepareResult prepare_insert(InputBuffer *input_buffer, Statement *statement)
 {
     statement->type = STATEMENT_INSERT;
-    
-    char* keyword = strtok(input_buffer->buffer, " ");
 
-    char* id_string = strtok(NULL, " ");
-    char* username = strtok(NULL, " ");
-    char* email = strtok(NULL, " ");
+    char *keyword = strtok(input_buffer->buffer, " ");
 
-    if (id_string == NULL || username == NULL || email == NULL) {
+    char *id_string = strtok(NULL, " ");
+    char *username = strtok(NULL, " ");
+    char *email = strtok(NULL, " ");
+
+    if (id_string == NULL || username == NULL || email == NULL)
+    {
         return PREPARE_SYNTAX_ERROR;
     }
 
     int id = atoi(id_string);
-    if (strlen(username) > COLUMN_USERNAME_SIZE) {
+    if (id < 0)
+    {
+        return PREPARE_NEGATIVE_ID;
+    }
+    if (strlen(username) > COLUMN_USERNAME_SIZE)
+    {
         return PREPARE_STRING_TOO_LONG;
     }
-    if (strlen(email) > COLUMN_EMAIL_SIZE) {
+    if (strlen(email) > COLUMN_EMAIL_SIZE)
+    {
         return PREPARE_STRING_TOO_LONG;
     }
 
@@ -292,6 +300,9 @@ int main(int argc, char *argv[])
         {
         case (PREPARE_SUCCESS):
             break;
+        case (PREPARE_NEGATIVE_ID):
+            printf("ID must be positive.\n");
+            continue;
         case (PREPARE_STRING_TOO_LONG):
             printf("String is too long.\n");
             continue;
