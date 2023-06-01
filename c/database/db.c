@@ -39,6 +39,7 @@ typedef enum
 
 #define COLUMN_USERNAME_SIZE 32
 #define COLUMN_EMAIL_SIZE 255
+#define TABLE_MAX_PAGES 255
 
 typedef struct
 {
@@ -46,6 +47,12 @@ typedef struct
     char username[COLUMN_USERNAME_SIZE + 1];
     char email[COLUMN_EMAIL_SIZE + 1];
 } Row;
+
+typedef struct {
+    int file_descriptor;
+    uint32_t file_length;
+    void* pages[TABLE_MAX_PAGES];
+} Pager;
 
 typedef struct
 {
