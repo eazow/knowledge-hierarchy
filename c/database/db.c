@@ -357,18 +357,6 @@ ExecuteResult execute_statement(Statement *statement, Table *table)
     }
 }
 
-Table *db_open(const char *filename)
-{
-    Pager *pager = pager_open(filename);
-    uint32_t num_rows = pager->file_length / ROW_SIZE;
-
-    Table *table = (Table *)malloc(sizeof(Table));
-    table->pager = pager;
-    table->num_rows = num_rows;
-
-    return table;
-}
-
 Pager *pager_open(const char *filename)
 {
     int fd = open(filename,
@@ -396,6 +384,18 @@ Pager *pager_open(const char *filename)
     }
 
     return pager;
+}
+
+Table *db_open(const char *filename)
+{
+    Pager *pager = pager_open(filename);
+    uint32_t num_rows = pager->file_length / ROW_SIZE;
+
+    Table *table = (Table *)malloc(sizeof(Table));
+    table->pager = pager;
+    table->num_rows = num_rows;
+
+    return table;
 }
 
 void free_table(Table *table)
