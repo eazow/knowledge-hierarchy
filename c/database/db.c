@@ -362,6 +362,8 @@ ExecuteResult execute_insert(Statement *statement, Table *table)
 
 ExecuteResult execute_select(Statement *statement, Table *table)
 {
+    Cursor* cursor = table_start(table);
+
     Row row;
     for (uint32_t i = 0; i < table->num_rows; i++)
     {
