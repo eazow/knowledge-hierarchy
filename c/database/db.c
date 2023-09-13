@@ -78,6 +78,8 @@ typedef struct
     bool end_of_table; // Indicates a position one past the last element
 } Cursor;
 
+typedef enum { NODE_INTERNAL, NODE_LEAF } NodeType;
+
 const uint32_t ID_SIZE = size_of_attribute(Row, id);
 const uint32_t USERNAME_SIZE = size_of_attribute(Row, username);
 const uint32_t EMAIL_SIZE = size_of_attribute(Row, email);
@@ -166,6 +168,26 @@ void cursor_advance(Cursor *cursor)
     {
         cursor->end_of_table = true;
     }
+}
+
+Cursor *table_start(Table *table)
+{
+    Cursor *cursor = malloc(sizeof(Cursor));
+    cursor->table = table;
+    cursor->row_num = 0;
+    cursor->end_of_table = (table->num_rows == 0);
+
+    return cursor;
+}
+
+Cursor *table_end(Table *table)
+{
+    Cursor *cursor = malloc(sizeof(Cursor));
+    cursor->table = table;
+    cursor->row_num = table->num_rows;
+    cursor->end_of_table = true;
+
+    return cursor;
 }
 
 InputBuffer *new_input_buffer()
@@ -347,8 +369,7 @@ ExecuteResult execute_insert(Statement *statement, Table *table)
     }
 
     Row *row_to_insert = &(statement->row_to_insert);
-    Cursor* cursor = table_end(table);
-
+    Cursor *cursor = table_end(table);
 
     // serialize_row(row_to_insert, row_slot(table, table->num_rows));
     serialize_row(row_to_insert, cursor_value(cursor));
@@ -362,7 +383,7 @@ ExecuteResult execute_insert(Statement *statement, Table *table)
 
 ExecuteResult execute_select(Statement *statement, Table *table)
 {
-    Cursor* cursor = table_start(table);
+    Cursor *cursor = table_start(table);
 
     Row row;
     // for (uint32_t i = 0; i < table->num_rows; i++)
@@ -370,7 +391,8 @@ ExecuteResult execute_select(Statement *statement, Table *table)
     //     deserialize_row(row_slot(table, i), &row);
     //     print_row(&row);
     // }
-    while (!(cursor->end_of_table)) {
+    while (!(cursor->end_of_table))
+    {
         deserialize_row(cursor_value(cursor), &row);
         print_row(&row);
         cursor_advance(cursor);
@@ -428,26 +450,6 @@ Table *db_open(const char *filename)
     table->num_rows = num_rows;
 
     return table;
-}
-
-Cursor *table_start(Table *table)
-{
-    Cursor *cursor = malloc(sizeof(Cursor));
-    cursor->table = table;
-    cursor->row_num = 0;
-    cursor->end_of_table = (table->num_rows == 0);
-
-    return cursor;
-}
-
-Cursor *table_end(Table *table)
-{
-    Cursor *cursor = malloc(sizeof(Cursor));
-    cursor->table = table;
-    cursor->row_num = table->num_rows;
-    cursor->end_of_table = true;
-
-    return cursor;
 }
 
 /**
