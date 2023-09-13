@@ -78,6 +78,8 @@ typedef struct
     bool end_of_table; // Indicates a position one past the last element
 } Cursor;
 
+typedef enum { NODE_INTERNAL, NODE_LEAF } NodeType;
+
 const uint32_t ID_SIZE = size_of_attribute(Row, id);
 const uint32_t USERNAME_SIZE = size_of_attribute(Row, username);
 const uint32_t EMAIL_SIZE = size_of_attribute(Row, email);
