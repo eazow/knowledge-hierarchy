@@ -68,8 +68,9 @@ typedef struct
 
 typedef struct
 {
-    uint32_t num_rows;
+    // uint32_t num_rows;
     Pager *pager;
+    uint32_t root_page_num;
 } Table;
 
 typedef struct
