@@ -80,7 +80,11 @@ typedef struct
     bool end_of_table; // Indicates a position one past the last element
 } Cursor;
 
-typedef enum { NODE_INTERNAL, NODE_LEAF } NodeType;
+typedef enum
+{
+    NODE_INTERNAL,
+    NODE_LEAF
+} NodeType;
 
 /*
  * Common Node Header Layout
@@ -174,6 +178,10 @@ void *get_page(Pager *pager, uint32_t page_num)
         }
 
         pager->pages[page_num] = page;
+
+        if (page_num >= pager->num_pages) {
+            pager->num_pages = page_num + 1;
+        }
     }
 
     return pager->pages[page_num];
@@ -483,24 +491,27 @@ Table *db_open(const char *filename)
     return table;
 }
 
-uint32_t* leaf_node_num_cells(void* node) {
+uint32_t *leaf_node_num_cells(void *node)
+{
     return node + LEAF_NODE_NUM_CELLS_OFFSET;
 }
 
-void* leaf_node_cell(void* node, uint32_t cell_num) {
+void *leaf_node_cell(void *node, uint32_t cell_num)
+{
     return node + LEAF_NODE_HEADER_SIZE + cell_num * LEAF_NODE_CELL_SIZE;
 }
 
-uint32_t* leaf_node_key(void* node, uint32_t cell_num) {
+uint32_t *leaf_node_key(void *node, uint32_t cell_num)
+{
     return leaf_node_cell(node, cell_num);
 }
 
-void* leaf_node_value(void* node, uint32_t cell_num) {
+void *leaf_node_value(void *node, uint32_t cell_num)
+{
     return leaf_node_cell(node, cell_num) + LEAF_NODE_KEY_SIZE;
 }
 
-void initialize_leaf_node(void* node) { *leaf_node_num_cells(node) = 0; }
-
+void initialize_leaf_node(void *node) { *leaf_node_num_cells(node) = 0; }
 
 /**
 column   size(bytes) offset
