@@ -470,6 +470,7 @@ Pager *pager_open(const char *filename)
     Pager *pager = malloc(sizeof(Pager));
     pager->file_descriptor = fd;
     pager->file_length = file_length;
+    pager->num_pages = (file_length / PAGE_SIZE);
 
     for (uint32_t i = 0; i < TABLE_MAX_PAGES; i++)
     {
