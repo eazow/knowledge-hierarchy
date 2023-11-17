@@ -56,6 +56,7 @@ typedef struct
 {
     int file_descriptor;
     uint32_t file_length;
+    uint32_t num_pages;
     void *pages[TABLE_MAX_PAGES];
 } Pager;
 
@@ -67,8 +68,9 @@ typedef struct
 
 typedef struct
 {
-    uint32_t num_rows;
+    // uint32_t num_rows;
     Pager *pager;
+    uint32_t root_page_num;
 } Table;
 
 typedef struct
@@ -78,7 +80,40 @@ typedef struct
     bool end_of_table; // Indicates a position one past the last element
 } Cursor;
 
-typedef enum { NODE_INTERNAL, NODE_LEAF } NodeType;
+typedef enum
+{
+    NODE_INTERNAL,
+    NODE_LEAF
+} NodeType;
+
+/*
+ * Common Node Header Layout
+ */
+const uint32_t NODE_TYPE_SIZE = sizeof(uint8_t);
+const uint32_t NODE_TYPE_OFFSET = 0;
+const uint32_t IS_ROOT_SIZE = sizeof(uint8_t);
+const uint32_t IS_ROOT_OFFSET = NODE_TYPE_SIZE;
+const uint32_t PARENT_POINTER_SIZE = sizeof(uint32_t);
+const uint32_t PARENT_POINTER_OFFSET = IS_ROOT_OFFSET + IS_ROOT_SIZE;
+const uint8_t COMMON_NODE_HEADER_SIZE = NODE_TYPE_SIZE + IS_ROOT_SIZE + PARENT_POINTER_SIZE;
+
+/*
+ * Leaf Node Header Layout
+ */
+const uint32_t LEAF_NODE_NUM_CELLS_SIZE = sizeof(uint32_t);
+const uint32_t LEAF_NODE_NUM_CELLS_OFFSET = COMMON_NODE_HEADER_SIZE;
+const uint32_t LEAF_NODE_HEADER_SIZE = COMMON_NODE_HEADER_SIZE + LEAF_NODE_NUM_CELLS_SIZE;
+
+/*
+ * Leaf Node Body Layout
+ */
+const uint32_t LEAF_NODE_KEY_SIZE = sizeof(uint32_t);
+const uint32_t LEAF_NODE_KEY_OFFSET = 0;
+const uint32_t LEAF_NODE_VALUE_SIZE = ROW_SIZE;
+const uint32_t LEAF_NODE_VALUE_OFFSET = LEAF_NODE_KEY_OFFSET + LEAF_NODE_KEY_SIZE;
+const uint32_t LEAF_NODE_CELL_SIZE = LEAF_NODE_KEY_SIZE + LEAF_NODE_VALUE_SIZE;
+const uint32_t LEAF_NODE_SPACE_FOR_CELLS = PAGE_SIZE - LEAF_NODE_HEADER_SIZE;
+const uint32_t LEAF_NODE_MAX_CELLS = LEAF_NODE_SPACE_FOR_CELLS / LEAF_NODE_CELL_SIZE;
 
 const uint32_t ID_SIZE = size_of_attribute(Row, id);
 const uint32_t USERNAME_SIZE = size_of_attribute(Row, username);
@@ -88,8 +123,8 @@ const uint32_t USERNAME_OFFSET = ID_OFFSET + ID_SIZE;
 const uint32_t EMAIL_OFFSET = USERNAME_OFFSET + USERNAME_SIZE;
 const uint32_t ROW_SIZE = ID_SIZE + USERNAME_SIZE + EMAIL_SIZE;
 const uint32_t PAGE_SIZE = 4096;
-const uint32_t ROWS_PER_PAGE = PAGE_SIZE / ROW_SIZE;
-const uint32_t TABLE_MAX_ROWS = ROWS_PER_PAGE * TABLE_MAX_PAGES;
+// const uint32_t ROWS_PER_PAGE = PAGE_SIZE / ROW_SIZE;
+// const uint32_t TABLE_MAX_ROWS = ROWS_PER_PAGE * TABLE_MAX_PAGES;
 
 void print_row(Row *row)
 {
@@ -143,6 +178,10 @@ void *get_page(Pager *pager, uint32_t page_num)
         }
 
         pager->pages[page_num] = page;
+
+        if (page_num >= pager->num_pages) {
+            pager->num_pages = page_num + 1;
+        }
     }
 
     return pager->pages[page_num];
@@ -224,7 +263,7 @@ void close_input_buffer(InputBuffer *input_buffer)
     free(input_buffer);
 }
 
-void pager_flush(Pager *pager, uint32_t page_num, uint32_t size)
+void pager_flush(Pager *pager, uint32_t page_num)
 {
     if (pager->pages[page_num] == NULL)
     {
@@ -241,7 +280,7 @@ void pager_flush(Pager *pager, uint32_t page_num, uint32_t size)
     }
 
     ssize_t bytes_written =
-        write(pager->file_descriptor, pager->pages[page_num], size);
+        write(pager->file_descriptor, pager->pages[page_num], PAGE_SIZE);
 
     if (bytes_written == -1)
     {
@@ -261,22 +300,22 @@ void db_close(Table *table)
         {
             continue;
         }
-        pager_flush(pager, i, PAGE_SIZE);
+        pager_flush(pager, i);
         free(pager->pages[i]);
         pager->pages[i] = NULL;
     }
 
-    uint32_t num_additional_rows = table->num_rows % ROWS_PER_PAGE;
-    if (num_additional_rows > 0)
-    {
-        uint32_t page_num = num_full_pages;
-        if (pager->pages[page_num] != NULL)
-        {
-            pager_flush(pager, page_num, num_additional_rows * ROW_SIZE);
-            free(pager->pages[page_num]);
-            pager->pages[page_num] = NULL;
-        }
-    }
+    // uint32_t num_additional_rows = table->num_rows % ROWS_PER_PAGE;
+    // if (num_additional_rows > 0)
+    // {
+    //     uint32_t page_num = num_full_pages;
+    //     if (pager->pages[page_num] != NULL)
+    //     {
+    //         pager_flush(pager, page_num, num_additional_rows * ROW_SIZE);
+    //         free(pager->pages[page_num]);
+    //         pager->pages[page_num] = NULL;
+    //     }
+    // }
 
     int result = close(pager->file_descriptor);
     if (result == -1)
@@ -431,6 +470,7 @@ Pager *pager_open(const char *filename)
     Pager *pager = malloc(sizeof(Pager));
     pager->file_descriptor = fd;
     pager->file_length = file_length;
+    pager->num_pages = (file_length / PAGE_SIZE);
 
     for (uint32_t i = 0; i < TABLE_MAX_PAGES; i++)
     {
@@ -451,6 +491,28 @@ Table *db_open(const char *filename)
 
     return table;
 }
+
+uint32_t *leaf_node_num_cells(void *node)
+{
+    return node + LEAF_NODE_NUM_CELLS_OFFSET;
+}
+
+void *leaf_node_cell(void *node, uint32_t cell_num)
+{
+    return node + LEAF_NODE_HEADER_SIZE + cell_num * LEAF_NODE_CELL_SIZE;
+}
+
+uint32_t *leaf_node_key(void *node, uint32_t cell_num)
+{
+    return leaf_node_cell(node, cell_num);
+}
+
+void *leaf_node_value(void *node, uint32_t cell_num)
+{
+    return leaf_node_cell(node, cell_num) + LEAF_NODE_KEY_SIZE;
+}
+
+void initialize_leaf_node(void *node) { *leaf_node_num_cells(node) = 0; }
 
 /**
 column   size(bytes) offset
