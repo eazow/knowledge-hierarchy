@@ -206,9 +206,14 @@ void *cursor_value(Cursor *cursor)
 
 void cursor_advance(Cursor *cursor)
 {
-    cursor->row_num += 1;
-    if (cursor->row_num >= cursor->table->num_rows)
-    {
+    // cursor->row_num += 1;
+    // if (cursor->row_num >= cursor->table->num_rows)
+    // {
+    uint32_t page_num = cursor->page_num;
+    void* node = get_page(cursor->table->pager, page_num);
+
+    cursor->cell_num += 1;
+    if (cursor->cell_num >= (*leaf_node_num_cells(node))) {
         cursor->end_of_table = true;
     }
 }
