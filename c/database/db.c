@@ -506,14 +506,17 @@ Pager *pager_open(const char *filename)
     return pager;
 }
 
-Table *db_open(const char *filename)
+Table *open_db(const char *filename)
 {
     Pager *pager = pager_open(filename);
-    uint32_t num_rows = pager->file_length / ROW_SIZE;
+    // uint32_t num_rows = pager->file_length / ROW_SIZE;
+
 
     Table *table = (Table *)malloc(sizeof(Table));
     table->pager = pager;
-    table->num_rows = num_rows;
+    // table->num_rows = num_rows;
+    table->root_page_num = 0;
+
 
     return table;
 }
@@ -555,7 +558,7 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
     char *filename = argv[1];
-    Table *table = db_open(filename);
+    Table *table = open_db(filename);
 
     InputBuffer *input_buffer = new_input_buffer();
     while (true)
