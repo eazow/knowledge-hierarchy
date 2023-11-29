@@ -551,8 +551,13 @@ void *leaf_node_value(void *node, uint32_t cell_num)
 
 void initialize_leaf_node(void *node) { *leaf_node_num_cells(node) = 0; }
 
-void insert_leaf_node(Cursor *cursor, uint32_t key, Row *value)
+void insert_leaf_node(Cursor *cursor, uint32_t key, Row *row)
 {
+    void* node = get_page(cursor->table->pager, cursor->page_num);
+
+    uint32_t num_cells = *leaf_node_num_cells(node);
+
+
 }
 
 /**
