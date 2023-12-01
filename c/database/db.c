@@ -557,7 +557,11 @@ void insert_leaf_node(Cursor *cursor, uint32_t key, Row *row)
 
     uint32_t num_cells = *leaf_node_num_cells(node);
 
-
+    if (num_cells >= LEAF_NODE_MAX_CELLS) {
+        // Node full
+        printf("Need to implement splitting a leaf node.\n");
+        exit(EXIT_FAILURE);
+    }
 }
 
 /**
