@@ -562,6 +562,14 @@ void insert_leaf_node(Cursor *cursor, uint32_t key, Row *row)
         printf("Need to implement splitting a leaf node.\n");
         exit(EXIT_FAILURE);
     }
+
+    if (cursor->cell_num < num_cells) {
+        // Make room for new cell
+        for (uint32_t i = num_cells; i > cursor->cell_num; i--) {
+        memcpy(leaf_node_cell(node, i), leaf_node_cell(node, i - 1),
+                LEAF_NODE_CELL_SIZE);
+        }
+    }
 }
 
 /**
