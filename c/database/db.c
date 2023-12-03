@@ -570,6 +570,10 @@ void insert_leaf_node(Cursor *cursor, uint32_t key, Row *row)
                 LEAF_NODE_CELL_SIZE);
         }
     }
+
+    *(leaf_node_num_cells(node)) += 1;
+    *(leaf_node_key(node, cursor->cell_num)) = key;
+    serialize_row(row, leaf_node_value(node, cursor->cell_num));
 }
 
 /**
