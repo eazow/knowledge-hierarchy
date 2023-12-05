@@ -425,7 +425,9 @@ PrepareResult prepare_statement(InputBuffer *input_buffer, Statement *statement)
 
 ExecuteResult execute_insert(Statement *statement, Table *table)
 {
-    if (table->num_rows >= TABLE_MAX_ROWS)
+    void* node = get_page(table->pager, table->root_page_num);
+    // if (table->num_rows >= TABLE_MAX_ROWS)
+    if ((*leaf_node_num_cells(node) >= LEAF_NODE_MAX_CELLS)) {
     {
         return EXECUTE_TABLE_FULL;
     }
@@ -553,21 +555,23 @@ void initialize_leaf_node(void *node) { *leaf_node_num_cells(node) = 0; }
 
 void insert_leaf_node(Cursor *cursor, uint32_t key, Row *row)
 {
-    void* node = get_page(cursor->table->pager, cursor->page_num);
+    void *node = get_page(cursor->table->pager, cursor->page_num);
 
     uint32_t num_cells = *leaf_node_num_cells(node);
 
-    if (num_cells >= LEAF_NODE_MAX_CELLS) {
+    if (num_cells >= LEAF_NODE_MAX_CELLS)
+    {
         // Node full
         printf("Need to implement splitting a leaf node.\n");
         exit(EXIT_FAILURE);
     }
 
-    if (cursor->cell_num < num_cells) {
+    if (cursor->cell_num < num_cells)
+    {
         // Make room for new cell
-        for (uint32_t i = num_cells; i > cursor->cell_num; i--) {
-        memcpy(leaf_node_cell(node, i), leaf_node_cell(node, i - 1),
-                LEAF_NODE_CELL_SIZE);
+        for (uint32_t i = num_cells; i > cursor->cell_num; i--)
+        {
+            memcpy(leaf_node_cell(node, i), leaf_node_cell(node, i - 1), LEAF_NODE_CELL_SIZE);
         }
     }
 
