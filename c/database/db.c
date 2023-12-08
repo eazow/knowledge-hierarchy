@@ -438,7 +438,7 @@ ExecuteResult execute_insert(Statement *statement, Table *table)
     // serialize_row(row_to_insert, row_slot(table, table->num_rows));
     // serialize_row(row_to_insert, cursor_value(cursor));
     // table->num_rows += 1;
-    leaf_node_insert(cursor, row_to_insert->id, row_to_insert);
+    insert_leaf_node(cursor, row_to_insert->id, row_to_insert);
 
 
     free(cursor);
