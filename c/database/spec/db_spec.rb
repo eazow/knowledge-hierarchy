@@ -134,5 +134,17 @@ describe 'database' do
     script << ".btree"
     script << ".exit"
     result = run_script(script)
+    
+    expect(result).to match_array([
+      "db > Executed.",
+      "db > Executed.",
+      "db > Executed.",
+      "db > Tree:",
+      "leaf (size 3)",
+      "  - 0 : 3",
+      "  - 1 : 1",
+      "  - 2 : 2",
+      "db > "
+    ])
   end
 end
