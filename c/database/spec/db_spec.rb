@@ -134,7 +134,7 @@ describe 'database' do
     script << ".btree"
     script << ".exit"
     result = run_script(script)
-
+    
     expect(result).to match_array([
       "db > Executed.",
       "db > Executed.",

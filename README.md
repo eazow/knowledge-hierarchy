@@ -1,8 +1,9 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
 
-
 # Knowledge Hierarchy
+
+> Talk is cheap. Show me the code.
 
 ### Python
 
@@ -16,4 +17,4 @@
 
 
 ### English
-New Concept English 4
+- New Concept English 4

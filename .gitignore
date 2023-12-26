@@ -6,14 +6,17 @@
 .idea/workspace.xml
 .idea/vcs.xml
 .idea/
+.vscode
 .DS_Store
 __pycache__
 venv
 .ipynb_checkpoints
+.vscode
 *.log
 node_modules
 .vscode
 
+.env
 **/volumes/data
 **/volumes/log
 
