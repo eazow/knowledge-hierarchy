@@ -89,9 +89,6 @@ typedef enum
 } NodeType;
 
 
-const uint32_t ROW_SIZE = ID_SIZE + USERNAME_SIZE + EMAIL_SIZE;
-
-
 /*
  * Common Node Header Layout
  */
