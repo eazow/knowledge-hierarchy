@@ -1,4 +1,4 @@
-from scapy.all import Ether, IP, ICMP, sendp
+from scapy.all import Ether, IP, ICMP, sendp, send
 
 eth = Ether(src="00:11:22:33:44:55")
 
@@ -9,3 +9,6 @@ icmp = ICMP()
 packet = eth / ip / icmp
 
 sendp(packet)
+
+packet = ip / icmp
+send(packet)
