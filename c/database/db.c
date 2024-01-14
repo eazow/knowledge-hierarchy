@@ -312,7 +312,7 @@ void pager_flush(Pager *pager, uint32_t page_num)
     }
 }
 
-void db_close(Table *table)
+void close_db(Table *table)
 {
     Pager *pager = table->pager;
     uint32_t num_full_pages = table->num_rows / ROWS_PER_PAGE;
