@@ -1,4 +1,4 @@
->  How much of each year do spiders spend killing insects?
+> How much of each year do spiders spend killing insects?
 
 
 
