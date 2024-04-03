@@ -1,12 +1,14 @@
+//go:build (prod && ignore) || (dev && ignore) || test
+// +build prod,ignore dev,ignore test
+
 // Single line comment
 /* Multi-
- line comment */
+line comment */
 
 /* A build tag is a line comment starting with // +build
-  and can be executed by go build -tags="foo bar" command.
-  Build tags are placed before the package clause near or at the top of the file
-  followed by a blank line or other line comments. */
-// +build prod, dev, test
+and can be executed by go build -tags="foo bar" command.
+Build tags are placed before the package clause near or at the top of the file
+followed by a blank line or other line comments. */
 
 // A package clause starts every source file.
 // Main is a special name declaring an executable rather than a library.
@@ -14,29 +16,29 @@ package main
 
 // Import declaration declares library packages referenced in this file.
 import (
-    "fmt"       // A package in the Go standard library.
-//     "io/ioutil" // Implements some I/O utility functions.
-//     m "math"    // Math library with local alias m.
-//     "net/http"  // Yes, a web server!
-//     "os"        // OS functions like working with the file system
-//     "strconv"   // String conversions.
-    "time"
-    "strings"
+	"fmt" // A package in the Go standard library.
+	//     "io/ioutil" // Implements some I/O utility functions.
+	//     m "math"    // Math library with local alias m.
+	//     "net/http"  // Yes, a web server!
+	//     "os"        // OS functions like working with the file system
+	//     "strconv"   // String conversions.
+	"strings"
+	"time"
 )
 
 // A function definition. Main is special. It is the entry point for the
 // executable program. Love it or hate it, Go uses brace brackets.
 func main() {
-    // Println outputs a line to stdout.
-    // It comes from the package fmt.
-    fmt.Println("Hello world!")
+	// Println outputs a line to stdout.
+	// It comes from the package fmt.
+	fmt.Println("Hello world!")
 
-    // Call another function within this package.
-//     beyondHello()
+	// Call another function within this package.
+	//     beyondHello()
 
-    time.Now()
+	time.Now()
 
-    broker := "#hello#"
-    replacer := strings.NewReplacer("#", "O")
-    replacer.Replace(broken)
+	broker := "#hello#"
+	replacer := strings.NewReplacer("q#", "O")
+	replacer.Replace(broker)
 }
