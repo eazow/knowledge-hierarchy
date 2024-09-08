@@ -12,9 +12,12 @@
 
 6. Perfectly matched pearls, strung into a necklace, bring a far higher price than the same pearls sold individually.
 
-7. The development of mechanical timepieces spurred the search for more accurate sundialswith which to regulate them.
+7. The development of mechanical timepieces spurred the search for more accurate sundials with which to regulate them.
+
 8. Studies of the gravity field of the Earth indicate that its crust and mantle yield when unusual weight is placed on them.
+
 9. Quails typically have short rounded wings that enable them to spring into full flight instantly when disturbed in their hiding places.
+
 10. Fungi are important in the process of decay, which returns ingredients to the soil, enhances soil fertility, and decomposes animal debris.
 11. Most substance contract when they freeze so that the density of a substance’s solid is higher than the density of its liquid.
 12. By the middle of the twentieth century, painters and sculptors in the United States had begun to exert a great worldwide influence over art.
