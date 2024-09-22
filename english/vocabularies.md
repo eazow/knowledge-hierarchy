@@ -6,6 +6,8 @@ affinity: If you get along with someone very well, you have an affinity with the
 
 punctuality: punctuality is the state of being prompt.
 
+rational: Use the adjective rational to describe people or ideas that operate according to logic or reason.
+
 sufferance: sufferance is a type of patience, especially the patience to endure pain and suffering.
 
 symbolic: When one thing represents something else that's more abstract, it is symbolic, like a cowboy's black hat in western films is symbolic of his sinister intentions.
