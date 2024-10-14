@@ -60,8 +60,13 @@
 
 30. Many people who wanted to become archaeologists ended up pursuing other careers and contributing to archaeological research only as unpaid amateurs.
 
-31. Even before the discovery of germs, beliefs that disease spread by “miasmas” （noxious forms of bad air）prompted attention to sewers and open garbage.
+31. Even before the discovery of germs, beliefs that disease spread by "miasmas"(noxious forms of bad air) prompted attention to sewers and open garbage.
+
 32. Since the consumer considers the best fruit to be that which is the most attractive, the grower must provide products that satisfy the discerning eye.
+
 33. With no oceans to dissolve it, out gassed carbon dioxide began to accumulate in the atmosphere, intensifying the green house effect even more.
+
 34. Buildings contribute to human life when they provide shelter, enrich space, complement their site, suit the climate, and are economically feasible.
+
 35. Research into the dynamics of storms is directed toward improving the ability to predict these events and thus to minimize damage and avoid loss of life.
+
