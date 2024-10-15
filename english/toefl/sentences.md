@@ -70,3 +70,4 @@
 
 35. Research into the dynamics of storms is directed toward improving the ability to predict these events and thus to minimize damage and avoid loss of life.
 
+36. Their streamlined bodies, the absence of hind legs, and the presence of a fluke and blowhole cannot disguise their affinities with land dwelling mammals.
