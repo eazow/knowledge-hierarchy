@@ -71,3 +71,7 @@
 35. Research into the dynamics of storms is directed toward improving the ability to predict these events and thus to minimize damage and avoid loss of life.
 
 36. Their streamlined bodies, the absence of hind legs, and the presence of a fluke and blowhole cannot disguise their affinities with land dwelling mammals.
+
+37. Scientists do not know why dinosaurs became extinct, but some theories postulate that changes in geography, climate, and sea levels were responsible.
+
+38. The elimination of inflation would ensure that the amount of money used in repaying a loan would have the same value as the amount of money borrowed.
