@@ -4,6 +4,10 @@ artifacts: an artifact is a man-made object that has some kind of cultural signi
 
 affinity: If you get along with someone very well, you have an affinity with them. Sometimes opposites attract, so you might feel a strange affinity to someone who is seemingly very different from you.
 
+elimination: Elimination is the process of getting rid of something, whether it’s waste, errors, or the competition.
+
+inflation: Think of inflation as expansion, usually from being filled with air, like a balloon. This also refers to rising prices.
+
 punctuality: punctuality is the state of being prompt.
 
 rational: Use the adjective rational to describe people or ideas that operate according to logic or reason.
