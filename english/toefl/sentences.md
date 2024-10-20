@@ -75,3 +75,7 @@
 37. Scientists do not know why dinosaurs became extinct, but some theories postulate that changes in geography, climate, and sea levels were responsible.
 
 38. The elimination of inflation would ensure that the amount of money used in repaying a loan would have the same value as the amount of money borrowed.
+
+39. Futurism, an early twentieth-century movement in art, rejected all traditions and attempted to glorify contemporary life by emphasizing the machine and motion.
+
+40. Acids are chemical compounds that, in water solution, have a sharp taste, a corrosive action on metals, and the ability to turn certain blue vegetable dyes red.
