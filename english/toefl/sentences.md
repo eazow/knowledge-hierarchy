@@ -79,3 +79,12 @@
 39. Futurism, an early twentieth-century movement in art, rejected all traditions and attempted to glorify contemporary life by emphasizing the machine and motion.
 
 40. Acids are chemical compounds that, in water solution, have a sharp taste, a corrosive action on metals, and the ability to turn certain blue vegetable dyes red.
+
+41. In other instances, such as the Indus River Valley, the cities lacked a royal precinct and the ostentatious palaces that marked their contemporaries else where.
+
+42. Offshore drilling platforms extend the search for oil to the ocean’s continental shelves—those gently sloping submarine regions at the edges of the continents.
+
+
+
+
+
