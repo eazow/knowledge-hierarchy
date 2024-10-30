@@ -84,6 +84,8 @@
 
 42. Offshore drilling platforms extend the search for oil to the ocean’s continental shelves—those gently sloping submarine regions at the edges of the continents.
 
+43. Even those artists who were most dependent on photography became reluctant to admit that they made use of it, in case this compromised their professional standing.
+
 
 
 

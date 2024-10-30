@@ -19,3 +19,18 @@ symbolic: When one thing represents something else that's more abstract, it is s
 sinister: People who are left-handed might feel unlucky having to use a desk designed for right-handers, but there probably wasn't any sinister, or evil, intent behind the design.
 
 usurpation: usurpation means taking someone's power or property by force.
+
+
+
+
+
+
+
+
+
+
+dependent on: 依赖于
+reluctant: 不情愿的，勉强的
+admit: 承认
+compromise: 损害，危及
+professional standing: 专业地位
