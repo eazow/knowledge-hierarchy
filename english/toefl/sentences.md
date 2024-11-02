@@ -86,7 +86,7 @@
 
 43. Even those artists who were most dependent on photography became reluctant to admit that they made use of it, in case this compromised their professional standing.
 
-
+44. According to anthropologists, the earliest ancestors of humans that stood upright resembled chimpanzees facially, with sloping foreheads and protruding brows.
 
 
 
