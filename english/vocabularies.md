@@ -2,6 +2,8 @@
 
 admit: 承认
 
+anarchism: 无政府主义
+
 anthropologists: 人类学家
 
 artifacts: an artifact is a man-made object that has some kind of cultural significance.

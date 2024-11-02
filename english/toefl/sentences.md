@@ -88,5 +88,5 @@
 
 44. According to anthropologists, the earliest ancestors of humans that stood upright resembled chimpanzees facially, with sloping foreheads and protruding brows.
 
-
+45. Anarchism is a term describing a cluster of doctrines and attitudes whose principal uniting feature is the belief that government is both harmful and unnecessary.
 
