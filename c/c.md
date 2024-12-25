@@ -127,3 +127,145 @@ void safe_memory_ops() {
 - 考虑使用安全版本的函数
 - 注意内存泄漏
 
+
+
+
+
+## 高级使用
+
+### 函数指针
+
+```
+// 函数指针定义和使用
+typedef int (*operation)(int, int);
+
+int add(int a, int b) { return a + b; }
+int subtract(int a, int b) { return a - b; }
+
+// 使用函数指针数组
+operation ops[] = {add, subtract};
+int result = ops[0](10, 5);  // 调用add
+```
+
+
+
+### 指针数组和数组指针
+
+```
+// 指针数组
+char *names[] = {"John", "Mary", "Tom"};
+
+// 数组指针
+int (*matrix)[4];  // 指向含4个整数的数组的指针
+```
+
+
+
+### 内存管理
+
+#### 动态内存分配
+
+```
+// 内存分配和释放
+void *memory_manager() {
+    // 分配内存
+    int *array = (int*)malloc(sizeof(int) * 10);
+    if (!array) return NULL;
+    
+    // 重新分配
+    array = (int*)realloc(array, sizeof(int) * 20);
+    
+    // 释放内存
+    free(array);
+    return NULL;
+}
+```
+
+#### 内存对齐
+
+```
+// 结构体对齐
+#pragma pack(push, 1)  // 设置1字节对齐
+struct packed_struct {
+    char c;
+    int i;
+    double d;
+};
+#pragma pack(pop)
+```
+
+
+
+
+
+### 查看.so
+
+**nm(name mangling 或 name mapping) ** 
+
+name list of symbols
+
+显示目标文件（object file）中的符号信息
+
+```
+# 查看所有符号
+nm -D libxxx.so
+
+# 只查看导出的符号
+nm -gD libxxx.so
+
+# 带类型信息查看
+nm -gDC libxxx.so
+
+```
+
+**使用 objdump 命令**
+
+```
+# 查看所有信息
+objdump -T libxxx.so
+
+# 查看详细反汇编
+objdump -d libxxx.so
+
+# 查看动态符号表
+objdump -tT libxxx.so
+```
+
+**使用 readelf 命令**
+
+```
+# 查看符号表
+readelf -s libxxx.so
+
+# 查看动态符号表
+readelf --dyn-syms libxxx.so
+
+# 查看所有头信息
+readelf -a libxxx.so
+```
+
+
+
+### coredump
+
+Segmentation Fault (段错误):
+
+- 是一种程序运行时错误
+- 发生在程序访问非法内存地址时
+- 常见原因：
+  1. 访问空指针
+  2. 访问已释放的内存
+  3. 数组越界
+  4. 栈溢出
+  5. 访问只读内存区域
+
+Coredump (核心转储):
+
+- 是程序崩溃时产生的内存快照文件
+- 包含程序崩溃时的状态信息
+- 可由多种错误触发，Segmentation Fault 只是其中之一
+- 其他可能导致 Coredump 的原因：
+  1. 断言失败（assert）
+  2. 未捕获的异常
+  3. 程序主动调用 abort()
+  4. 收到特定信号（如 SIGSEGV, SIGABRT）
