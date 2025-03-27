@@ -14,6 +14,8 @@ chimpanzee: 黑猩猩
 
 compromise: 损害，危及
 
+dreary: 
+
 elimination: Elimination is the process of getting rid of something, whether it’s waste, errors, or the competition.
 
 facially: 在面部特征上
@@ -28,7 +30,9 @@ rational: Use the adjective rational to describe people or ideas that operate ac
 
 reluctant: 不情愿的，勉强的
 
-resembled: xi
+resembled: 
+
+splendid: 
 
 sufferance: sufferance is a type of patience, especially the patience to endure pain and suffering.
 
@@ -48,6 +52,27 @@ usurpation: usurpation means taking someone's power or property by force.
 
 
 
-
 dependent on: 依赖于
+
 professional standing: 专业地位
+
+
+mean 吝啬的，小气的
+
+devotion 挚爱，忠诚
+
+cosmic 宇宙的，外层空间的；巨大的，极重要的
+
+violent 暴力的
+
+suburban 郊区的
+
+conceited 自负的
+
+presumptuous 专横的；放肆的；冒昧的
+
+fatuous 愚蠢的
+
+dreary 沉闷的，令人沮丧的
+
+cliches 陈腔滥调
