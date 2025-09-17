@@ -47,15 +47,9 @@ usurpation: usurpation means taking someone's power or property by force.
 
 
 
-
-
-
-
-
 dependent on: 依赖于
 
 professional standing: 专业地位
-
 
 mean 吝啬的，小气的
 
@@ -76,3 +70,5 @@ fatuous 愚蠢的
 dreary 沉闷的，令人沮丧的
 
 cliches 陈腔滥调
+
+commitment 忠诚，献身；承诺，保证；奉献，投入；热情，决心；义务，责任
