@@ -46,5 +46,6 @@ int main(int argc, char* argv[]) {  // 入口函数；
       typename(conns[i].id)
     );
   }
+  printf("Host value: %d, IP value: %d\n", Host, IP);
   return EXIT_SUCCESS; 
 }
